@@ -1,11 +1,16 @@
 ---
 title: "How to Track Macros Without Losing Your Mind: A Beginner's Guide"
+description: Macro tracking sounds complicated, but it's a learnable skill that
+  gives you way more control over your results than calorie counting alone.
+  Here's how to start without the overwhelm.
 pubDate: 2026-04-01
-description: "Macro tracking sounds complicated, but it's a learnable skill that gives you way more control over your results than calorie counting alone. Here's how to start without the overwhelm."
-author: "Mike"
-tags: ["Macros", "Nutrition Basics", "Beginners"]
+author: CaloricLab Team
+heroImage: /images/plated-food-table-tracking-macros.jpg
+tags:
+  - Macros
+  - Nutrition Basics
+  - Beginners
 ---
-
 Tracking calories gets you partway there. Tracking macros gets you all the way. Two people can eat exactly 2,000 calories a day and end up with completely different bodies over six months — different energy levels, different body fat percentages, different amounts of muscle — because what those 2,000 calories are made of matters enormously. Macros — **protein, fat, and carbohydrates** — are the levers that determine how your body uses the food you eat. The good news is that tracking them is a learnable skill, and after a few weeks, it starts to feel like second nature rather than a second job.
 
 ## Why Macros Beat Calorie Counting Alone
@@ -38,18 +43,18 @@ Use the [Macro Calculator](/macro-calculator/) to generate your complete numbers
 
 Once you have your targets, you need a way to track them. Three apps dominate this space:
 
-- **MyFitnessPal** — the largest food database in the world, making it easiest to find what you're eating. Free tier works fine. Best for convenience.
-- **Cronometer** — the most accurate nutritional data, with detailed micronutrient tracking too. Great if you want more than just macros.
-- **MacroFactor** — the best adaptive algorithm that adjusts your calorie target based on your real-world weigh-ins over time. Paid, but worth it for serious users.
+* **MyFitnessPal** — the largest food database in the world, making it easiest to find what you're eating. Free tier works fine. Best for convenience.
+* **Cronometer** — the most accurate nutritional data, with detailed micronutrient tracking too. Great if you want more than just macros.
+* **MacroFactor** — the best adaptive algorithm that adjusts your calorie target based on your real-world weigh-ins over time. Paid, but worth it for serious users.
 
 The most important tool you can add to your setup is a **food scale**. Measuring cups are notoriously inaccurate for dry foods — a "cup" of dry oats can range from 80g to 120g depending on how loosely or tightly you pack it. That's a 50% variance. A scale makes everything exact and takes roughly the same amount of time. Weigh in grams; it's more precise than ounces.
 
 A few workflow tips that make a big difference:
 
-- **Scan barcodes** for packaged foods — it's faster and more accurate than searching manually
-- **Pre-log your meals the night before** — planning ahead prevents the "I already ate it, now what?" panic
-- **Don't stress about hitting targets exactly** — being within 5–10g on any macro is close enough. Precision beats perfection.
-- **Log restaurant meals** using the closest match in the database and slightly overestimate portions. You'll almost always be close enough.
+* **Scan barcodes** for packaged foods — it's faster and more accurate than searching manually
+* **Pre-log your meals the night before** — planning ahead prevents the "I already ate it, now what?" panic
+* **Don't stress about hitting targets exactly** — being within 5–10g on any macro is close enough. Precision beats perfection.
+* **Log restaurant meals** using the closest match in the database and slightly overestimate portions. You'll almost always be close enough.
 
 ## Common Beginner Mistakes
 
@@ -62,8 +67,6 @@ Most people who struggle with macro tracking aren't failing because the system i
 **Logging cooked vs. raw food incorrectly** causes consistent miscalculations. Dry oats and cooked oats have very different weights for the same amount of food — always log food in the state described on the nutrition label (usually raw/dry for grains, cooked for meats). When in doubt, weigh and log raw.
 
 **Giving up after one bad day** is purely a mindset trap. One day of eating over your targets doesn't undo your progress — it's about the weekly average, not daily perfection. Log the bad day honestly and move on. The data is still useful.
-
----
 
 ## FAQ
 
@@ -79,7 +82,7 @@ For most people, tracking macros is simply a practical tool — no different tha
 
 You don't need to. Being within **5–10g of your target** for any macro is completely fine. Your body is not a calculator that resets at midnight — it works on averages over days and weeks. If you nail your protein most days and stay close to your calorie target, you'll get results. Consistency over time matters far more than daily precision. The goal is a sustainable habit, not a perfect spreadsheet.
 
----
+- - -
 
 [Calculate your macro targets →](/macro-calculator/)
 
