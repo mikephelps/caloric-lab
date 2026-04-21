@@ -11,7 +11,6 @@ tags:
   - Women's Health
   - Metabolism
 ---
-
 If you're over 40 and feel like your metabolism betrayed you somewhere around your last birthday, you're not imagining things — but you're probably blaming the wrong culprit. Yes, things change. But the story of "menopause ruined my metabolism" is mostly a myth. What's actually happening is more specific, more manageable, and — good news — more reversible than most people think. Understanding the real mechanisms is the first step to recalculating your **Total Daily Energy Expenditure (TDEE)** in a way that actually works for your body right now.
 
 ## What Actually Changes After 40
@@ -50,16 +49,14 @@ Higher protein helps in three important ways. First, it helps **preserve muscle 
 
 Here's a concrete plan to get started without overthinking it:
 
-- **Calculate your TDEE** at the Lightly Active setting as your baseline
-- **Set a modest deficit** — 300–400 calories below TDEE max. Aggressive cuts backfire badly after 40.
-- **Hit your protein target first** — aim for 0.8–1g per lb of bodyweight every day
-- **Add resistance training** 2–3 times per week. Lifting weights is the most powerful tool you have against sarcopenia.
-- **Track for 3–4 weeks** before adjusting anything. One week of data means nothing. Four weeks tells you something real.
-- **Don't compare your current results to your 20s**. Your body is different now. That's not a failure, it's just context.
+* **Calculate your TDEE** at the Lightly Active setting as your baseline
+* **Set a modest deficit** — 300–400 calories below TDEE max. Aggressive cuts backfire badly after 40.
+* **Hit your protein target first** — aim for 0.8–1g per lb of bodyweight every day
+* **Add resistance training** 2–3 times per week. Lifting weights is the most powerful tool you have against sarcopenia.
+* **Track for 3–4 weeks** before adjusting anything. One week of data means nothing. Four weeks tells you something real.
+* **Don't compare your current results to your 20s**. Your body is different now. That's not a failure, it's just context.
 
 The goal isn't to fight your body — it's to work with where it actually is right now. A TDEE recalculated for your real current situation is worth far more than a number based on who you used to be.
-
----
 
 ## FAQ
 
@@ -75,6 +72,6 @@ Recalculate any time your weight changes by 10 lbs or more, after a major change
 
 Not necessarily — it depends on your goals and activity level. Your **calorie needs** do tend to decrease slightly over time as muscle mass drops (unless you're actively working to maintain it). But slashing calories dramatically often makes things worse by accelerating muscle loss. The smarter approach is a modest deficit, high protein, and strength training — which can actually increase your TDEE over time by preserving or building metabolically active tissue.
 
----
+- - -
 
 [Calculate your TDEE →](/tdee-calculator/)
