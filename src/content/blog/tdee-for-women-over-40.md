@@ -1,9 +1,15 @@
 ---
 title: "TDEE for Women Over 40: What Changes and How to Adjust"
+description: Your metabolism does change after 40 — but probably not in the way
+  you think. Here's what's actually happening and how to recalculate your TDEE
+  accordingly.
 pubDate: 2026-04-10
-description: "Your metabolism does change after 40 — but probably not in the way you think. Here's what's actually happening and how to recalculate your TDEE accordingly."
-author: "Mike"
-tags: ["TDEE", "Women's Health", "Metabolism"]
+author: Mike
+heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
+tags:
+  - TDEE
+  - Women's Health
+  - Metabolism
 ---
 
 If you're over 40 and feel like your metabolism betrayed you somewhere around your last birthday, you're not imagining things — but you're probably blaming the wrong culprit. Yes, things change. But the story of "menopause ruined my metabolism" is mostly a myth. What's actually happening is more specific, more manageable, and — good news — more reversible than most people think. Understanding the real mechanisms is the first step to recalculating your **Total Daily Energy Expenditure (TDEE)** in a way that actually works for your body right now.
