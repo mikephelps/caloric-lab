@@ -68,6 +68,15 @@ const fullTitle = title.includes("CaloricLab") ? title : `${title} | CaloricLab`
       rel="stylesheet"
     />
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JYE39MKM1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2JYE39MKM1');
+    </script>
+
     <!-- Slot for additional head content (structured data, etc.) -->
     <slot name="head" />
   </head>
