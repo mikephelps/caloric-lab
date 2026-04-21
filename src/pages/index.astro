@@ -97,8 +97,19 @@ const features = [
   </slot>
 
   <!-- Hero -->
-  <section class="bg-[#F9FFFF] pt-16 pb-20 sm:pt-20 sm:pb-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative overflow-hidden bg-[#F9FFFF] pt-16 pb-20 sm:pt-20 sm:pb-28">
+
+    <!-- Background scene image — faint -->
+    <img
+      src="/images/mountains-runner-scene.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.20] select-none pointer-events-none"
+    />
+    <!-- Soft edge fade so image doesn't bleed into surrounding sections -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#F9FFFF]/70 via-transparent to-[#F9FFFF]/80 pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
 
         <!-- Badge -->
