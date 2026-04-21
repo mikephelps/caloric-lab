@@ -96,74 +96,33 @@ const features = [
     </script>
   </slot>
 
-  <style is:global>
-    @keyframes heroOrb1 {
-      from { transform: translate(0,      0);      }
-      to   { transform: translate(-140px, 100px);  }
-    }
-    @keyframes heroOrb2 {
-      from { transform: translate(0,     0);       }
-      to   { transform: translate(120px, -90px);   }
-    }
-    @keyframes heroOrb3 {
-      from { transform: translate(0,      0);      }
-      to   { transform: translate(100px, -120px);  }
-    }
-    @keyframes heroOrb4 {
-      from { transform: translate(0,     0);       }
-      to   { transform: translate(-80px,  70px);   }
-    }
-    .hero-orb-1 { animation: heroOrb1 11s ease-in-out infinite alternate; }
-    .hero-orb-2 { animation: heroOrb2 15s ease-in-out infinite alternate; }
-    .hero-orb-3 { animation: heroOrb3 13s ease-in-out infinite alternate; }
-    .hero-orb-4 { animation: heroOrb4  8s ease-in-out infinite alternate; }
-  </style>
-
-  <!-- Hero — liquid glass -->
-  <section class="relative overflow-hidden bg-[#071e1a] pt-16 pb-20 sm:pt-20 sm:pb-28">
-
-    <!-- Subtle background photo -->
-    <img
-      src="/images/outside-runner-optimized.jpg"
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.09] pointer-events-none select-none"
-    />
-
-    <!-- Background orbs for organic liquid depth -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute -top-40 right-0 w-[640px] h-[640px] rounded-full bg-green-500/28 blur-[150px]" style="animation: heroOrb1 11s ease-in-out infinite alternate;"></div>
-      <div class="absolute top-1/3 -left-40 w-[520px] h-[520px] rounded-full bg-teal-500/25 blur-[120px]" style="animation: heroOrb2 15s ease-in-out infinite alternate;"></div>
-      <div class="absolute -bottom-20 left-[calc(50%-240px)] w-[480px] h-[480px] rounded-full bg-teal-400/20 blur-[110px]" style="animation: heroOrb3 13s ease-in-out infinite alternate;"></div>
-      <div class="absolute top-1/2 right-1/4 w-[260px] h-[260px] rounded-full bg-cyan-400/15 blur-[80px]" style="animation: heroOrb4 8s ease-in-out infinite alternate;"></div>
-    </div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Hero -->
+  <section class="bg-[#F9FFFF] pt-16 pb-20 sm:pt-20 sm:pb-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
 
-        <!-- Glass badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.12] text-white/80 text-xs font-semibold uppercase tracking-wider mb-7">
-          <svg class="w-3 h-3 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-50 border border-green-100 text-green-700 text-xs font-semibold uppercase tracking-wider mb-7">
+          <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.75 3.75a.75.75 0 0 0-1.5 0v3.5H3.75a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5z"/>
           </svg>
           Science-Backed Calculations
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight">
           Know Your Numbers.<br />
-          <span class="text-green-400">Hit Your Goals.</span>
+          <span class="text-green-600">Hit Your Goals.</span>
         </h1>
 
-        <p class="mt-6 text-lg sm:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto">
+        <p class="mt-6 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto">
           Free, precision nutrition calculators built on peer-reviewed science.
           Get your TDEE, macros, calorie targets, and more — in seconds.
         </p>
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <!-- Primary: solid white — stands out from glass -->
           <a
             href="/tdee-calculator/"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-green-50 text-green-900 text-sm font-semibold rounded-xl transition-colors shadow-sm"
+            class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-xl shadow-sm"
           >
             Calculate Your TDEE
             <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -171,10 +130,9 @@ const features = [
               <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
             </svg>
           </a>
-          <!-- Secondary: glass button -->
           <a
             href="/macro-calculator/"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/[0.08] hover:bg-white/[0.14] backdrop-blur-sm text-white text-sm font-semibold rounded-xl border border-white/[0.18] transition-colors"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
           >
             Get My Macros
           </a>
@@ -188,8 +146,8 @@ const features = [
             "Mifflin-St Jeor formula",
             "Privacy friendly",
           ].map(label => (
-            <span class="flex items-center gap-1.5 text-xs text-white/50 font-medium">
-              <svg class="w-3.5 h-3.5 text-teal-400 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <span class="flex items-center gap-1.5 text-xs text-gray-400 font-medium">
+              <svg class="w-3.5 h-3.5 text-green-600 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
               </svg>
               {label}
@@ -202,7 +160,7 @@ const features = [
   </section>
 
   <!-- Calculator cards -->
-  <section class="bg-gray-50 py-16 sm:py-20">
+  <section class="bg-white py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">All Calculators</h2>
@@ -214,7 +172,7 @@ const features = [
           <a
             href={calc.href}
             class:list={[
-              "group relative bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:border-teal-300 hover:shadow-xl hover:shadow-teal-900/10 hover:-translate-y-0.5 transition-all duration-200",
+              "group relative bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:bg-[#F9FFFF] hover:border-green-300 hover:shadow-xl hover:shadow-green-900/10 hover:-translate-y-0.5 transition-all duration-200",
               i === 0 ? "lg:col-span-1 ring-1 ring-teal-200/60" : "",
             ]}
           >
@@ -242,7 +200,7 @@ const features = [
   </section>
 
   <!-- Why CaloricLab -->
-  <section class="bg-white py-16 sm:py-20">
+  <section class="bg-[#F9FFFF] py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Why CaloricLab?</h2>
@@ -268,7 +226,7 @@ const features = [
   </section>
 
   <!-- Recent Articles -->
-  <section class="bg-gray-50 py-16 sm:py-20">
+  <section class="bg-white py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-10">
         <div>
@@ -288,7 +246,7 @@ const features = [
         {recentPosts.map(post => (
           <a
             href={`/blog/${post.id.replace(/\.md$/, '')}/`}
-            class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 hover:-translate-y-0.5 transition-all duration-200"
+            class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:bg-[#F9FFFF] hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 hover:-translate-y-0.5 transition-all duration-200"
           >
             {post.data.heroImage ? (
               <div class="aspect-video overflow-hidden bg-gray-100">
@@ -337,28 +295,24 @@ const features = [
   </section>
 
   <!-- CTA Banner -->
-  <section class="relative overflow-hidden bg-[#071e1a] py-16">
-    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-      <div class="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-teal-500/20 blur-[120px]"></div>
-      <div class="absolute -bottom-20 -left-20 w-[360px] h-[360px] rounded-full bg-green-500/20 blur-[100px]"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white">
+  <section class="bg-[#F9FFFF] py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">
         Ready to get started?
       </h2>
-      <p class="mt-3 text-white/55 text-base">
+      <p class="mt-3 text-gray-500 text-base">
         Pick a calculator and get your numbers in under two minutes.
       </p>
       <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="/tdee-calculator/"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-green-50 text-green-900 text-sm font-semibold rounded-xl transition-colors shadow-sm"
+          class="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl shadow-sm"
         >
           Calculate Your TDEE
         </a>
         <a
           href="/bmr-calculator/"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.08] hover:bg-white/[0.14] backdrop-blur-sm text-white text-sm font-semibold rounded-xl border border-white/[0.18] transition-colors"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
         >
           BMR Calculator
         </a>

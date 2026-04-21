@@ -36,7 +36,7 @@ function formatDate(date: Date) {
         </div>
         <h2 class="text-xl font-bold text-gray-900 mb-2">Articles coming soon</h2>
         <p class="text-gray-500 text-sm max-w-sm mx-auto leading-relaxed">We're working on science-backed articles on nutrition, fat loss, muscle building, and more.</p>
-        <a href="/tdee-calculator/" class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+        <a href="/tdee-calculator/" class="btn-primary mt-6 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl">
           Try our calculators
           <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
@@ -51,7 +51,7 @@ function formatDate(date: Date) {
           return (
             <a
               href={`/blog/${first.id.replace(/\.md$/, '')}/`}
-              class="group block bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-teal-300 hover:shadow-xl hover:shadow-teal-900/10 transition-all duration-200 mb-10"
+              class="group block bg-white rounded-2xl border border-gray-200 overflow-hidden hover:bg-[#F9FFFF] hover:border-green-300 hover:shadow-xl hover:shadow-green-900/10 transition-all duration-200 mb-10"
             >
               <div class="grid grid-cols-1 md:grid-cols-2">
                 {first.data.heroImage ? (
@@ -102,7 +102,7 @@ function formatDate(date: Date) {
             {posts.slice(1).map(post => (
               <a
                 href={`/blog/${post.id.replace(/\.md$/, '')}/`}
-                class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-teal-300 hover:shadow-lg hover:shadow-teal-900/10 hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+                class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:bg-[#F9FFFF] hover:border-green-300 hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
               >
                 {post.data.heroImage ? (
                   <div class="aspect-video bg-gray-100 overflow-hidden">
@@ -146,7 +146,7 @@ function formatDate(date: Date) {
             <span class="text-sm text-gray-400">Page 1 of {totalPages}</span>
             <a
               href="/blog/2/"
-              class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 hover:border-green-400 text-gray-700 text-sm font-semibold rounded-xl transition-colors"
+              class="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-green-50 border border-green-200 hover:border-green-400 text-green-700 text-sm font-semibold rounded-xl transition-colors"
             >
               Older posts
               <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

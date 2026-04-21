@@ -435,7 +435,7 @@ export default function TDEECalculator() {
 
           {/* Activity comparison table */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-gray-50/80 border-b border-gray-100">
+            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">TDEE at All Activity Levels</h3>
               <p className="text-xs text-gray-400 mt-0.5">Based on your BMR of {results.bmr.toLocaleString()} cal/day</p>
             </div>
@@ -475,7 +475,7 @@ export default function TDEECalculator() {
           </div>
 
           {/* What does this mean */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5 sm:p-6">
+          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5 sm:p-6">
             <h3 className="text-sm font-bold text-gray-900 mb-5">What does this mean for you?</h3>
             <div className="space-y-5">
               {(
@@ -528,7 +528,7 @@ export default function TDEECalculator() {
             </a>
             <a
               href="/calorie-deficit-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Set a calorie deficit
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

@@ -276,7 +276,7 @@ export default function MacroCalculator() {
           </div>
 
           {/* Ratio preview */}
-          <div className="rounded-xl bg-gray-50 border border-gray-100 px-4 py-3 flex items-center gap-3">
+          <div className="rounded-xl bg-[#F9FFFF] border border-green-100 px-4 py-3 flex items-center gap-3">
             <span className="text-xs text-gray-400 font-medium">Macro split:</span>
             {(["p", "c", "f"] as const).map((key, i) => {
               const preset = PRESETS[goal][diet];
@@ -347,7 +347,7 @@ export default function MacroCalculator() {
 
           {/* Per-meal breakdown */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-gray-50/80 border-b border-gray-100">
+            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Per-Meal Breakdown</h3>
               <p className="text-xs text-gray-400 mt-0.5">3 meals + 1 snack (25 / 30 / 35 / 10%)</p>
             </div>
@@ -384,7 +384,7 @@ export default function MacroCalculator() {
           </div>
 
           {/* Why this split */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
             <h3 className="text-sm font-bold text-gray-900 mb-2">
               Why this split?
               <span className="ml-2 text-xs font-semibold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
@@ -410,7 +410,7 @@ export default function MacroCalculator() {
             </a>
             <a
               href="/protein-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Protein Calculator
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -420,7 +420,7 @@ export default function MacroCalculator() {
             </a>
             <a
               href="/calorie-deficit-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Calorie Deficit
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

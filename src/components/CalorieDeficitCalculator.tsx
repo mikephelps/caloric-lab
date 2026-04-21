@@ -580,7 +580,7 @@ export default function CalorieDeficitCalculator() {
 
           {/* Goal date + breakdown */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-gray-50/80 border-b border-gray-100">
+            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Your Plan at a Glance</h3>
             </div>
             <div className="divide-y divide-gray-50">
@@ -621,7 +621,7 @@ export default function CalorieDeficitCalculator() {
             </a>
             <a
               href="/macro-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Macro Calculator
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -631,7 +631,7 @@ export default function CalorieDeficitCalculator() {
             </a>
             <a
               href="/protein-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Protein Calculator
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

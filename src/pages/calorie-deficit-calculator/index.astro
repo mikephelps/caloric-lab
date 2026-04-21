@@ -54,7 +54,7 @@ const faqSchema = [
           { label: "Aggressive", deficit: "−500 to −750 cal/day", loss: "~1–1.5 lb/week", tag: null, color: "orange" },
           { label: "Very Aggressive", deficit: "−750 to −1000 cal/day", loss: "~1.5–2 lb/week", tag: "Risk of muscle loss", color: "red" },
         ].map(d => (
-          <div class="bg-gray-50 rounded-xl border border-gray-100 p-4">
+          <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
             <p class={`text-xs font-semibold mb-1 text-${d.color}-600`}>{d.label}</p>
             <p class="text-sm font-bold text-gray-900">{d.deficit}</p>
             <p class="text-xs text-gray-500 mt-1">{d.loss}</p>

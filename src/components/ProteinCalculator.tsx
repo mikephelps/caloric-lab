@@ -378,7 +378,7 @@ export default function ProteinCalculator() {
           </div>
 
           {/* ISSN context */}
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
             <div className="flex gap-3">
               <div className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
                 <svg className="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -412,7 +412,7 @@ export default function ProteinCalculator() {
             </a>
             <a
               href="/tdee-calculator/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
             >
               Calculate your TDEE
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

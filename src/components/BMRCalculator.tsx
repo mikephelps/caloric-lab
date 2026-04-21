@@ -403,7 +403,7 @@ export default function BMRCalculator() {
 
           {/* Formula comparison table */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-gray-50/80 border-b border-gray-100">
+            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Formula Comparison</h3>
               <p className="text-xs text-gray-400 mt-0.5">
                 Different equations, same person — see how they compare
