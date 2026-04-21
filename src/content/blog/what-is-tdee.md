@@ -1,9 +1,15 @@
 ---
-title: "What Is TDEE and Why It's the Most Important Number for Your Diet"
+title: What Is TDEE and Why It's the Most Important Number for Your Diet
+description: TDEE (Total Daily Energy Expenditure) tells you how many calories
+  your body burns each day. Here's what it means, how it's calculated, and why
+  getting it right changes everything.
 pubDate: 2026-04-15
-description: "TDEE (Total Daily Energy Expenditure) tells you how many calories your body burns each day. Here's what it means, how it's calculated, and why getting it right changes everything."
-author: "CaloricLab Team"
-tags: ["TDEE", "Nutrition Basics", "Calorie Counting"]
+author: CaloricLab Team
+heroImage: /images/nutritious-food-exercise-weights-tdee.jpg
+tags:
+  - TDEE
+  - Nutrition Basics
+  - Calorie Counting
 ---
 
 If you've ever tracked your calories carefully and still didn't see the results you expected, there's a good chance the problem wasn't your discipline — it was your starting number.
