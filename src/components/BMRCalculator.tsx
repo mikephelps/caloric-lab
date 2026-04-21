@@ -47,7 +47,7 @@ function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: str
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
+      className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5"
     >
       {children}
     </label>
@@ -207,7 +207,7 @@ export default function BMRCalculator() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
         <div className="px-6 py-4 bg-gray-950 flex items-center gap-2">
           <svg className="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path fillRule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 4.75a.75.75 0 0 1 1.5 0v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5z" clipRule="evenodd"/>
+            <path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>
           </svg>
           <span className="text-sm font-bold text-white">BMR Calculator</span>
           <span className="text-sm text-gray-500">— Enter Your Details</span>

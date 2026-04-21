@@ -13,59 +13,122 @@ import GlassHero from "../../components/GlassHero.astro";
     subtitle="Free, accurate, science-backed nutrition calculators for everyone."
   />
 
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-    <div class="prose prose-gray prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-700">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-10">
 
-      <h2>What Is CaloricLab?</h2>
-      <p>
+    <!-- Lead section -->
+    <div>
+      <p class="text-xl text-gray-700 leading-relaxed font-medium">
         CaloricLab is a suite of free nutrition calculators designed to give you accurate, actionable
-        numbers for your health and fitness goals. Whether you're trying to lose fat, build muscle, or
-        simply understand how your body works, our calculators provide the foundation you need.
+        numbers for your health and fitness goals.
       </p>
-      <p>
-        We use established, peer-reviewed formulas — the same ones used by registered dietitians and
-        sports scientists — presented in a way that's actually easy to understand and use.
+      <p class="mt-4 text-gray-500 leading-relaxed">
+        Whether you're trying to lose fat, build muscle, or simply understand how your body works,
+        our calculators provide the foundation you need — using the same peer-reviewed formulas trusted
+        by registered dietitians and sports scientists.
       </p>
+    </div>
 
-      <h2>Our Approach</h2>
-      <p>
+    <hr class="border-gray-100"/>
+
+    <!-- Our approach -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-900 mb-3">Our Approach</h2>
+      <p class="text-gray-600 leading-relaxed">
         There's a lot of noise in the nutrition world. Fad diets, conflicting advice, and overcomplicated
         systems leave most people more confused than when they started. CaloricLab cuts through that.
       </p>
-      <p>
-        Our philosophy is simple: <strong>give people the right numbers, explain the science clearly,
-        and get out of the way</strong>. We're not here to sell you a program or a supplement. We're
-        here to give you the tools to make informed decisions.
-      </p>
-
-      <h2>The Science We Use</h2>
-      <p>All CaloricLab calculators are built on well-established research:</p>
-      <ul>
-        <li><strong>Mifflin-St Jeor equation</strong> for BMR and TDEE — the most validated formula for the general population</li>
-        <li><strong>Katch-McArdle formula</strong> for those who know their body fat percentage</li>
-        <li><strong>Evidence-based protein targets</strong> from sports nutrition research</li>
-        <li><strong>ISSN and ACSM guidelines</strong> for macronutrient recommendations</li>
-      </ul>
-
-      <h2>Completely Free</h2>
-      <p>
-        All calculators on CaloricLab are and will always be 100% free. No account required, no email
-        signups, no paywalls. We're supported by display advertising, not by selling your data or locking
-        features behind a subscription.
-      </p>
-
-      <h2>Privacy</h2>
-      <p>
-        The measurements you enter into our calculators are processed entirely in your browser. We don't
-        send your age, weight, height, or any other personal health data to our servers. For more detail,
-        see our <a href="/privacy/">Privacy Policy</a>.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        Have a question, found an error, or want to suggest a new calculator? We'd love to hear from you.
-        Reach us at <a href="mailto:hello@caloriclab.com">hello@caloriclab.com</a>.
+      <blockquote class="mt-5 pl-4 border-l-4 border-green-400 bg-green-50/50 py-3 pr-4 rounded-r-xl">
+        <p class="text-gray-700 font-medium leading-relaxed italic">
+          Give people the right numbers, explain the science clearly, and get out of the way.
+        </p>
+      </blockquote>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        We're not here to sell you a program or a supplement. We're here to give you the tools
+        to make informed decisions.
       </p>
     </div>
+
+    <hr class="border-gray-100"/>
+
+    <!-- Science section -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-900 mb-5">The Science We Use</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          {
+            title: "Mifflin-St Jeor",
+            desc: "The most validated BMR equation for the general population. Used by default in all our calculators.",
+          },
+          {
+            title: "Katch-McArdle",
+            desc: "More accurate when body fat % is known. Factors in lean mass instead of total body weight.",
+          },
+          {
+            title: "ISSN Protein Guidelines",
+            desc: "Evidence-based targets from the International Society of Sports Nutrition for muscle building and fat loss.",
+          },
+          {
+            title: "ACSM Activity Multipliers",
+            desc: "Established activity level factors used to convert BMR into your real-world daily calorie needs.",
+          },
+        ].map(item => (
+          <div class="flex gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
+            <div class="flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center mt-0.5">
+              <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">{item.title}</p>
+              <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <hr class="border-gray-100"/>
+
+    <!-- Free & Privacy side by side -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="p-5 bg-green-50 rounded-2xl border border-green-100">
+        <div class="flex items-center gap-2 mb-3">
+          <svg class="w-5 h-5 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+          <h3 class="font-bold text-gray-900">Completely Free</h3>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          No account required, no email signups, no paywalls. All calculators are and will always be
+          100% free. We're supported by display advertising, not by selling your data.
+        </p>
+      </div>
+
+      <div class="p-5 bg-teal-50 rounded-2xl border border-teal-100">
+        <div class="flex items-center gap-2 mb-3">
+          <svg class="w-5 h-5 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <h3 class="font-bold text-gray-900">Privacy First</h3>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Every calculation happens entirely in your browser. Your age, weight, height, and other
+          health data never leaves your device. See our <a href="/privacy/" class="text-teal-700 font-medium hover:underline">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+
+    <hr class="border-gray-100"/>
+
+    <!-- Contact -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-900 mb-3">Contact</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Have a question, found an error, or want to suggest a new calculator? We'd love to hear from you.
+        Reach us at{" "}
+        <a href="mailto:mikeephelps@gmail.com" class="text-green-700 font-medium hover:underline">mikeephelps@gmail.com</a>.
+      </p>
+    </div>
+
   </div>
 </Layout>

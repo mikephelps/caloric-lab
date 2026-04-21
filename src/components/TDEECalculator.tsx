@@ -62,7 +62,7 @@ function Label({
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
+      className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5"
     >
       {children}
     </label>
@@ -214,7 +214,7 @@ export default function TDEECalculator() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
         <div className="px-6 py-4 bg-gray-950 flex items-center gap-2">
           <svg className="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M2 3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3zm0 6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9zm8 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V9zm0 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1z"/>
+            <path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>
           </svg>
           <span className="text-sm font-bold text-white">TDEE Calculator</span>
           <span className="text-sm text-gray-500">— Enter Your Details</span>

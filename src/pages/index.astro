@@ -39,6 +39,14 @@ const calculators = [
   },
 ];
 
+const calcIcons: Record<string, string> = {
+  "flame": `<path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>`,
+  "trending-down": `<rect x="1.5" y="3" width="3" height="10" rx="1"/><rect x="6.5" y="5.5" width="3" height="7.5" rx="1"/><rect x="11.5" y="8" width="3" height="5" rx="1"/>`,
+  "chart-pie": `<path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/><path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/><path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>`,
+  "heart-pulse": `<path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>`,
+  "dumbbell": `<rect x="1" y="5.5" width="3.5" height="5" rx="1"/><rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/><rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>`,
+};
+
 const features = [
   {
     title: "Science-Backed Formulas",
@@ -79,15 +87,46 @@ const features = [
     </script>
   </slot>
 
+  <style is:global>
+    @keyframes heroOrb1 {
+      from { transform: translate(0,      0);      }
+      to   { transform: translate(-140px, 100px);  }
+    }
+    @keyframes heroOrb2 {
+      from { transform: translate(0,     0);       }
+      to   { transform: translate(120px, -90px);   }
+    }
+    @keyframes heroOrb3 {
+      from { transform: translate(0,      0);      }
+      to   { transform: translate(100px, -120px);  }
+    }
+    @keyframes heroOrb4 {
+      from { transform: translate(0,     0);       }
+      to   { transform: translate(-80px,  70px);   }
+    }
+    .hero-orb-1 { animation: heroOrb1 11s ease-in-out infinite alternate; }
+    .hero-orb-2 { animation: heroOrb2 15s ease-in-out infinite alternate; }
+    .hero-orb-3 { animation: heroOrb3 13s ease-in-out infinite alternate; }
+    .hero-orb-4 { animation: heroOrb4  8s ease-in-out infinite alternate; }
+  </style>
+
   <!-- Hero — liquid glass -->
   <section class="relative overflow-hidden bg-[#071e1a] pt-16 pb-20 sm:pt-20 sm:pb-28">
 
+    <!-- Subtle background photo -->
+    <img
+      src="/images/outside-runner-optimized.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.09] pointer-events-none select-none"
+    />
+
     <!-- Background orbs for organic liquid depth -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-      <div class="hero-orb-1 absolute -top-40 right-0 w-[640px] h-[640px] rounded-full bg-green-500/28 blur-[150px]"></div>
-      <div class="hero-orb-2 absolute top-1/3 -left-40 w-[520px] h-[520px] rounded-full bg-teal-500/25 blur-[120px]"></div>
-      <div class="hero-orb-3 absolute -bottom-20 left-[calc(50%-240px)] w-[480px] h-[480px] rounded-full bg-teal-400/20 blur-[110px]"></div>
-      <div class="hero-orb-4 absolute top-1/2 right-1/4 w-[260px] h-[260px] rounded-full bg-cyan-400/15 blur-[80px]"></div>
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-40 right-0 w-[640px] h-[640px] rounded-full bg-green-500/28 blur-[150px]" style="animation: heroOrb1 11s ease-in-out infinite alternate;"></div>
+      <div class="absolute top-1/3 -left-40 w-[520px] h-[520px] rounded-full bg-teal-500/25 blur-[120px]" style="animation: heroOrb2 15s ease-in-out infinite alternate;"></div>
+      <div class="absolute -bottom-20 left-[calc(50%-240px)] w-[480px] h-[480px] rounded-full bg-teal-400/20 blur-[110px]" style="animation: heroOrb3 13s ease-in-out infinite alternate;"></div>
+      <div class="absolute top-1/2 right-1/4 w-[260px] h-[260px] rounded-full bg-cyan-400/15 blur-[80px]" style="animation: heroOrb4 8s ease-in-out infinite alternate;"></div>
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -176,9 +215,7 @@ const features = [
               </span>
             )}
             <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center mb-4 group-hover:bg-green-100 transition-colors">
-              <svg class="w-5 h-5 text-green-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M2 3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3zM2 9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V9zm0 6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2z"/>
-              </svg>
+              <svg class="w-5 h-5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calcIcons[calc.icon] ?? calcIcons["flame"]}/>
             </div>
             <h3 class="text-base font-semibold text-gray-900 group-hover:text-green-700 transition-colors">{calc.name}</h3>
             <p class="mt-2 text-sm text-gray-500 leading-relaxed">{calc.desc}</p>

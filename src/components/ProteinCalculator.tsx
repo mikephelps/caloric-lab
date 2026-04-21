@@ -48,7 +48,7 @@ function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: str
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
+      className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5"
     >
       {children}
     </label>
@@ -199,7 +199,9 @@ export default function ProteinCalculator() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
         <div className="px-6 py-4 bg-gray-950 flex items-center gap-2">
           <svg className="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1.5a.5.5 0 0 1-.5.5H3.5a.5.5 0 0 1-.5-.5V2zm-.5 3A1.5 1.5 0 0 0 1 6.5v1A1.5 1.5 0 0 0 2.5 9H3v4.5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5V9h.5A1.5 1.5 0 0 0 15 7.5v-1A1.5 1.5 0 0 0 13.5 5h-11z"/>
+            <rect x="1" y="5.5" width="3.5" height="5" rx="1"/>
+            <rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/>
+            <rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>
           </svg>
           <span className="text-sm font-bold text-white">Protein Calculator</span>
           <span className="text-sm text-gray-500">— Enter Your Details</span>
@@ -233,7 +235,7 @@ export default function ProteinCalculator() {
 
           {/* Goal */}
           <div>
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5">Goal</p>
+            <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Goal</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               {GOALS.map((g) => (
                 <button key={g.key} type="button" onClick={() => setGoal(g.key)} className={cardBtn(goal === g.key)}>
@@ -250,7 +252,7 @@ export default function ProteinCalculator() {
 
           {/* Activity */}
           <div>
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5">Activity Level</p>
+            <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Activity Level</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               {ACTIVITIES.map((a) => (
                 <button key={a.key} type="button" onClick={() => setActivity(a.key)} className={cardBtn(activity === a.key)}>

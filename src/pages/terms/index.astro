@@ -13,35 +13,118 @@ const updated = "April 20, 2026";
     <p slot="below" class="mt-2 text-xs text-white/40">Last updated: {updated}</p>
   </GlassHero>
 
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-    <div class="prose prose-gray max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-700">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
 
-      <p>By using CaloricLab ("the Service"), you agree to these Terms of Use. If you do not agree, please do not use the Service.</p>
+    <!-- Important notice callout -->
+    <div class="bg-amber-50 border border-amber-100 rounded-2xl p-5 flex gap-3">
+      <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" clip-rule="evenodd"/>
+      </svg>
+      <p class="text-sm text-amber-800 leading-relaxed">
+        <strong>Not medical advice.</strong> All calculator results are estimates for informational
+        purposes only. Always consult a qualified healthcare provider before making changes to your
+        diet or exercise routine.
+      </p>
+    </div>
 
-      <h2>Informational Purposes Only</h2>
-      <p>All content on CaloricLab, including calculator results, articles, and other materials, is provided for <strong>informational and educational purposes only</strong>. Nothing on this site constitutes medical advice, nutritional advice, or a substitute for professional consultation with a qualified healthcare provider.</p>
-      <p>Calculator results are estimates based on population averages and established mathematical formulas. Individual results will vary. Always consult a registered dietitian or physician before making significant changes to your diet or exercise routine.</p>
+    <!-- Intro -->
+    <p class="text-gray-600 leading-relaxed">
+      By using CaloricLab ("the Service"), you agree to these Terms of Use. If you do not agree,
+      please do not use the Service.
+    </p>
 
-      <h2>No Warranties</h2>
-      <p>CaloricLab is provided "as is" without warranties of any kind, express or implied. We make no guarantee that calculator results will be accurate for any specific individual or that the Service will be available without interruption.</p>
+    <!-- Sections -->
+    <div class="space-y-7">
 
-      <h2>Limitation of Liability</h2>
-      <p>CaloricLab and its operators shall not be liable for any damages arising from your use of the Service, including but not limited to decisions made based on calculator results or content on this site.</p>
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Informational Purposes Only</h2>
+        <p class="text-gray-600 leading-relaxed text-sm mb-2">
+          All content on CaloricLab, including calculator results, articles, and other materials, is
+          provided for <strong class="text-gray-800">informational and educational purposes only</strong>.
+          Nothing on this site constitutes medical advice, nutritional advice, or a substitute for
+          professional consultation with a qualified healthcare provider.
+        </p>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          Calculator results are estimates based on population averages and established mathematical
+          formulas. Individual results will vary. Always consult a registered dietitian or physician
+          before making significant changes to your diet or exercise routine.
+        </p>
+      </div>
 
-      <h2>Intellectual Property</h2>
-      <p>All content on CaloricLab, including text, design, and code, is the property of CaloricLab and may not be reproduced without permission. Calculator results generated from your inputs are yours to use freely.</p>
+      <hr class="border-gray-100"/>
 
-      <h2>Acceptable Use</h2>
-      <p>You agree not to use the Service to scrape, harvest, or automatically query our calculators at scale; attempt to interfere with or disrupt the Service; or use the Service in any way that violates applicable law.</p>
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">No Warranties</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          CaloricLab is provided "as is" without warranties of any kind, express or implied. We make
+          no guarantee that calculator results will be accurate for any specific individual or that
+          the Service will be available without interruption.
+        </p>
+      </div>
 
-      <h2>Links to Third-Party Sites</h2>
-      <p>CaloricLab may contain links to third-party websites. We are not responsible for the content or privacy practices of those sites.</p>
+      <hr class="border-gray-100"/>
 
-      <h2>Changes to These Terms</h2>
-      <p>We reserve the right to update these terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms.</p>
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Limitation of Liability</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          CaloricLab and its operators shall not be liable for any damages arising from your use of
+          the Service, including but not limited to decisions made based on calculator results or
+          content on this site.
+        </p>
+      </div>
 
-      <h2>Contact</h2>
-      <p>Questions about these terms? Contact us at <a href="mailto:hello@caloriclab.com">hello@caloriclab.com</a>.</p>
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Intellectual Property</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          All content on CaloricLab, including text, design, and code, is the property of CaloricLab
+          and may not be reproduced without permission. Calculator results generated from your inputs
+          are yours to use freely.
+        </p>
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Acceptable Use</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          You agree not to use the Service to scrape, harvest, or automatically query our calculators
+          at scale; attempt to interfere with or disrupt the Service; or use the Service in any way
+          that violates applicable law.
+        </p>
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Links to Third-Party Sites</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          CaloricLab may contain links to third-party websites. We are not responsible for the
+          content or privacy practices of those sites.
+        </p>
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Changes to These Terms</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          We reserve the right to update these terms at any time. Continued use of the Service after
+          changes constitutes acceptance of the new terms.
+        </p>
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Contact</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          Questions about these terms? Contact us at{" "}
+          <a href="mailto:mikeephelps@gmail.com" class="text-green-700 font-medium hover:underline">mikeephelps@gmail.com</a>.
+        </p>
+      </div>
+
     </div>
   </div>
 </Layout>

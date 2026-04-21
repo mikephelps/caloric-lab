@@ -21,6 +21,10 @@ function formatDate(date: Date) {
 const siteUrl = "https://caloriclab.com";
 const postUrl = `${siteUrl}/blog/${post.id.replace(/\.md$/, "")}/`;
 
+// Estimate reading time
+const wordCount = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -74,6 +78,8 @@ const articleSchema = {
       <span>{post.data.author}</span>
       <span class="text-white/20">·</span>
       <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+      <span class="text-white/20">·</span>
+      <span>{readingTime} min read</span>
     </div>
   </GlassHero>
 
@@ -89,12 +95,21 @@ const articleSchema = {
 
   <!-- Article content -->
   <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-    <div class="prose prose-gray prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline">
+    <div class="article-body prose prose-gray prose-lg max-w-none
+      prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-gray-900
+      prose-h2:text-xl
+      prose-h3:text-lg
+      prose-p:text-gray-600 prose-p:leading-relaxed
+      prose-strong:text-gray-900 prose-strong:font-semibold
+      prose-li:text-gray-600
+      prose-a:text-green-700 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+      prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-base
+      prose-table:text-sm">
       <Content />
     </div>
 
     <!-- Back to blog -->
-    <div class="mt-12 pt-8 border-t border-gray-100">
+    <div class="mt-14 pt-8 border-t border-gray-100 flex items-center justify-between">
       <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors">
         <svg class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
@@ -102,6 +117,97 @@ const articleSchema = {
         </svg>
         Back to Blog
       </a>
+      <a href="/tdee-calculator/" class="inline-flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+        Try the Calculator
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+        </svg>
+      </a>
     </div>
   </article>
 </Layout>
+
+<style is:global>
+  /* Section separators */
+  .article-body h2 {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #f1f5f9;
+  }
+  .article-body > *:first-child,
+  .article-body h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  /* Lead paragraph */
+  .article-body > p:first-of-type {
+    font-size: 1.125rem;
+    color: #374151;
+  }
+
+  /* Styled table */
+  .article-body table {
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin: 2rem 0;
+    width: 100%;
+  }
+  .article-body thead tr {
+    background-color: #f9fafb;
+  }
+  .article-body th {
+    font-weight: 600;
+    color: #374151;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .article-body td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #f3f4f6;
+    color: #4b5563;
+    vertical-align: middle;
+  }
+  .article-body tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .article-body tbody tr:hover {
+    background-color: #f9fafb;
+  }
+
+  /* Styled blockquotes as callout boxes */
+  .article-body blockquote {
+    border-left: 4px solid #16a34a;
+    background-color: #f0fdf4;
+    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+  }
+  .article-body blockquote p {
+    color: #166534 !important;
+    margin: 0 !important;
+    font-size: 0.9375rem;
+  }
+
+  /* Tighter list spacing */
+  .article-body ul li,
+  .article-body ol li {
+    margin-top: 0.375rem;
+    margin-bottom: 0.375rem;
+  }
+
+  /* Formula-style strong text in lists */
+  .article-body li strong {
+    color: #111827;
+  }
+</style>

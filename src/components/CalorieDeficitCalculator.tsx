@@ -70,7 +70,7 @@ function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: str
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
+      className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5"
     >
       {children}
     </label>
@@ -275,7 +275,9 @@ export default function CalorieDeficitCalculator() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
         <div className="px-6 py-4 bg-gray-950 flex items-center gap-2">
           <svg className="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.25 7.75h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0v2.5h2.5a.75.75 0 0 1 0 1.5z"/>
+            <rect x="1.5" y="3" width="3" height="10" rx="1"/>
+            <rect x="6.5" y="5.5" width="3" height="7.5" rx="1"/>
+            <rect x="11.5" y="8" width="3" height="5" rx="1"/>
           </svg>
           <span className="text-sm font-bold text-white">Calorie Deficit Calculator</span>
           <span className="text-sm text-gray-500">— Enter Your Details</span>

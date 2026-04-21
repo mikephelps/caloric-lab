@@ -33,28 +33,6 @@
   transform: scale(0.98);
 }
 
-/* Homepage hero orb drift — each orb moves on its own timing */
-@keyframes heroOrb1 {
-  from { transform: translate(0,     0);      }
-  to   { transform: translate(-40px, 30px);   }
-}
-@keyframes heroOrb2 {
-  from { transform: translate(0,     0);      }
-  to   { transform: translate(35px, -28px);   }
-}
-@keyframes heroOrb3 {
-  from { transform: translate(0,     0);      }
-  to   { transform: translate(28px, -34px);   }
-}
-@keyframes heroOrb4 {
-  from { transform: translate(0,     0);      }
-  to   { transform: translate(-24px, 20px);   }
-}
-
-.hero-orb-1 { animation: heroOrb1 22s ease-in-out infinite alternate; will-change: transform; }
-.hero-orb-2 { animation: heroOrb2 29s ease-in-out infinite alternate; will-change: transform; }
-.hero-orb-3 { animation: heroOrb3 25s ease-in-out infinite alternate; will-change: transform; }
-.hero-orb-4 { animation: heroOrb4 17s ease-in-out infinite alternate; will-change: transform; }
 
 @layer base {
   html {
