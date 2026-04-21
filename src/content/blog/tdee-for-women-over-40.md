@@ -5,7 +5,7 @@ description: Your metabolism does change after 40 — but probably not in the wa
   accordingly.
 pubDate: 2026-04-10
 author: Mike
-heroImage: ""
+heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
 tags:
   - TDEE
   - Women's Health
