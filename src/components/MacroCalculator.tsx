@@ -32,14 +32,14 @@ const EXPLANATIONS: Record<GoalKey, Record<DietKey, string>> = {
     "keto":         "Near-zero carbs push your body into ketosis, using fat as its primary fuel. Protein is kept moderate to prevent gluconeogenesis; dietary fat provides sustained energy.",
   },
   "maintenance": {
-    "balanced":     "A well-rounded split that supports general health, training recovery, and metabolic stability. No macros are restricted — ideal for long-term sustainability.",
-    "high-protein": "More protein than a standard maintenance split supports body recomposition — slowly building muscle while keeping body weight stable.",
+    "balanced":     "A well-rounded split that supports general health, training recovery, and metabolic stability. No macros are restricted, ideal for long-term sustainability.",
+    "high-protein": "More protein than a standard maintenance split supports body recomposition, slowly building muscle while keeping body weight stable.",
     "low-carb":     "A moderate carb reduction with higher fat intake. Suitable for those who feel and perform better with fewer carbohydrates while staying at maintenance calories.",
     "keto":         "Ketogenic maintenance keeps carbs minimal to sustain fat-adapted metabolism. High dietary fat meets your daily energy needs without creating a calorie deficit.",
   },
   "muscle-gain": {
     "balanced":     "Carbohydrates are the primary driver of training intensity and glycogen replenishment. Ample carbs fuel your sessions and support muscle protein synthesis post-workout.",
-    "high-protein": "Elevated protein accelerates muscle repair and growth. Carbs remain high to power hard training sessions — a combination that maximises hypertrophy.",
+    "high-protein": "Elevated protein accelerates muscle repair and growth. Carbs remain high to power hard training sessions, a combination that maximises hypertrophy.",
     "low-carb":     "A less common muscle gain approach where dietary fat provides energy in place of carbs. Protein stays elevated for muscle growth; training intensity may be slightly reduced.",
     "keto":         "A ketogenic bulk is uncommon but achievable. Dietary fat supplies the caloric surplus; protein drives muscle growth. Expect a longer metabolic adaptation period.",
   },
@@ -196,7 +196,7 @@ export default function MacroCalculator() {
             <path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>
           </svg>
           <span className="text-sm font-bold text-white">Macro Calculator</span>
-          <span className="text-sm text-gray-500">— Enter Your Details</span>
+          <span className="text-sm text-gray-500">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">

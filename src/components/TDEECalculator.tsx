@@ -217,7 +217,7 @@ export default function TDEECalculator() {
             <path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>
           </svg>
           <span className="text-sm font-bold text-white">TDEE Calculator</span>
-          <span className="text-sm text-gray-500">— Enter Your Details</span>
+          <span className="text-sm text-gray-500">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -350,7 +350,7 @@ export default function TDEECalculator() {
               >
                 {ACTIVITY_LEVELS.map((l) => (
                   <option key={l.multiplier} value={l.multiplier}>
-                    {l.label} — {l.desc}
+                    {l.label}: {l.desc}
                   </option>
                 ))}
               </select>
@@ -366,7 +366,7 @@ export default function TDEECalculator() {
           <div>
             <Label htmlFor="tdee-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">— optional</span>
+              <span className="normal-case font-normal text-gray-400">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">

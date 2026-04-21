@@ -280,7 +280,7 @@ export default function CalorieDeficitCalculator() {
             <rect x="11.5" y="8" width="3" height="5" rx="1"/>
           </svg>
           <span className="text-sm font-bold text-white">Calorie Deficit Calculator</span>
-          <span className="text-sm text-gray-500">— Enter Your Details</span>
+          <span className="text-sm text-gray-500">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -325,7 +325,7 @@ export default function CalorieDeficitCalculator() {
                 >
                   {ACTIVITY_LEVELS.map((l) => (
                     <option key={l.multiplier} value={l.multiplier}>
-                      {l.label} — {l.desc}
+                      {l.label}: {l.desc}
                     </option>
                   ))}
                 </select>
@@ -474,7 +474,7 @@ export default function CalorieDeficitCalculator() {
           <div>
             <Label htmlFor="cd-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">— optional</span>
+              <span className="normal-case font-normal text-gray-400">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -564,7 +564,7 @@ export default function CalorieDeficitCalculator() {
               { label: "Weekly deficit", value: `−${results.weeklyDeficit.toLocaleString()}`, unit: "cal" },
               {
                 label: "Weeks to goal",
-                value: results.weeksToGoal ? results.weeksToGoal.toLocaleString() : "—",
+                value: results.weeksToGoal ? results.weeksToGoal.toLocaleString() : "N/A",
                 unit: results.weeksToGoal ? "wks" : "",
               },
             ].map((s) => (

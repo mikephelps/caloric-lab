@@ -204,7 +204,7 @@ export default function ProteinCalculator() {
             <rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>
           </svg>
           <span className="text-sm font-bold text-white">Protein Calculator</span>
-          <span className="text-sm text-gray-500">— Enter Your Details</span>
+          <span className="text-sm text-gray-500">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -271,7 +271,7 @@ export default function ProteinCalculator() {
           <div>
             <Label htmlFor="pc-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">— optional</span>
+              <span className="normal-case font-normal text-gray-400">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">

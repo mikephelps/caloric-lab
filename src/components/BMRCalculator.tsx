@@ -210,7 +210,7 @@ export default function BMRCalculator() {
             <path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>
           </svg>
           <span className="text-sm font-bold text-white">BMR Calculator</span>
-          <span className="text-sm text-gray-500">— Enter Your Details</span>
+          <span className="text-sm text-gray-500">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -334,7 +334,7 @@ export default function BMRCalculator() {
           <div>
             <Label htmlFor="bmr-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">— optional, unlocks Katch-McArdle</span>
+              <span className="normal-case font-normal text-gray-400">(optional, unlocks Katch-McArdle)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -406,7 +406,7 @@ export default function BMRCalculator() {
             <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Formula Comparison</h3>
               <p className="text-xs text-gray-400 mt-0.5">
-                Different equations, same person — see how they compare
+                Different equations, same person. See how they compare.
               </p>
             </div>
             <div className="divide-y divide-gray-50">
@@ -436,7 +436,7 @@ export default function BMRCalculator() {
                 <div className="flex-1 min-w-0">
                   <span className="text-sm font-semibold text-gray-700">Harris-Benedict</span>
                   <p className="text-xs text-gray-400 mt-0.5">
-                    Revised 1984 equation — tends to run slightly higher
+                    Revised 1984 equation. Tends to run slightly higher.
                   </p>
                 </div>
                 <div className="flex-shrink-0 text-right">
@@ -462,7 +462,7 @@ export default function BMRCalculator() {
                       </span>
                     </div>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      Based on lean mass — most accurate when body fat is known
+                      Based on lean mass. Most accurate when body fat is known.
                     </p>
                   </div>
                   <div className="flex-shrink-0 text-right">
@@ -484,7 +484,7 @@ export default function BMRCalculator() {
                       Enter body fat % above to unlock this formula
                     </p>
                   </div>
-                  <span className="text-sm font-medium text-gray-300">—</span>
+                  <span className="text-sm font-medium text-gray-300">N/A</span>
                 </div>
               )}
             </div>
@@ -500,7 +500,7 @@ export default function BMRCalculator() {
                 <p className="text-sm font-semibold text-amber-800">Important</p>
                 <p className="text-sm text-amber-700 mt-1 leading-relaxed">
                   This is the minimum calories your body needs at complete rest. Never eat below this
-                  number without medical supervision — doing so can impair organ function and metabolism.
+                  number without medical supervision. Doing so can impair organ function and metabolism.
                 </p>
               </div>
             </div>
