@@ -1,0 +1,74 @@
+# Decap CMS configuration for CaloricLab
+# Hosted on Cloudflare Pages with GitHub OAuth
+#
+# Before this works you need:
+# 1. Create a GitHub OAuth App:
+#    - Homepage URL: https://caloriclab.com
+#    - Callback URL: https://caloriclab.com/api/callback
+# 2. Add environment variables in Cloudflare Pages:
+#    - GITHUB_CLIENT_ID
+#    - GITHUB_CLIENT_SECRET
+
+backend:
+  name: github
+  repo: mikephelps/caloric-lab   # Update if repo name differs
+  branch: main
+  base_url: https://caloriclab.com
+  auth_endpoint: /api/auth
+
+# Where uploaded images are stored (relative to project root)
+media_folder: public/images
+# Path used in the rendered site
+public_folder: /images
+
+# Disable Netlify Identity (using custom GitHub OAuth instead)
+local_backend: false
+
+collections:
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: src/content/blog
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: "The post title. Keep it under 70 characters for SEO."
+
+      - label: Description
+        name: description
+        widget: text
+        hint: "150–160 characters. Used for meta description and post card preview."
+
+      - label: Publish Date
+        name: pubDate
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        hint: "Date the post was or will be published."
+
+      - label: Author
+        name: author
+        widget: string
+        default: Mike
+        required: false
+
+      - label: Hero Image
+        name: heroImage
+        widget: image
+        required: false
+        hint: "Featured image shown at the top of the post and in post cards."
+
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: "Comma-separated tags, e.g. TDEE, Nutrition Basics, Fat Loss"
+
+      - label: Body
+        name: body
+        widget: markdown

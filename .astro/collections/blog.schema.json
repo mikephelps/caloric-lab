@@ -28,7 +28,7 @@
         },
         "author": {
           "type": "string",
-          "default": "CaloricLab Team"
+          "default": "Mike"
         },
         "heroImage": {
           "type": "string"
