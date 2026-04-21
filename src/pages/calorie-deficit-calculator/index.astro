@@ -1,0 +1,77 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import CalorieDeficitCalculator from "../../components/CalorieDeficitCalculator";
+
+const relatedCalcs = [
+  { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Calculate maintenance calories first" },
+  { name: "Macro Calculator", href: "/macro-calculator/", desc: "Set protein, carbs & fat targets" },
+  { name: "BMR Calculator", href: "/bmr-calculator/", desc: "Your resting metabolic rate" },
+];
+
+const faqSchema = [
+  {
+    question: "What is a calorie deficit?",
+    answer: "A calorie deficit means consuming fewer calories than your body burns (TDEE). This forces your body to use stored energy (body fat) to make up the difference, resulting in fat loss over time.",
+  },
+  {
+    question: "How large should my calorie deficit be?",
+    answer: "A deficit of 300–500 calories per day is generally recommended for sustainable fat loss of 0.5–1 lb per week. Larger deficits can lead to muscle loss and metabolic adaptation.",
+  },
+  {
+    question: "How fast will I lose weight in a calorie deficit?",
+    answer: "A deficit of 500 calories per day theoretically produces about 1 lb (0.45 kg) of fat loss per week (3,500 calories = 1 lb of fat). Actual results vary based on water retention, muscle mass changes, and metabolic adaptation.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Calorie Deficit Calculator — How Many Calories to Lose Weight"
+  pageTitle="Calorie Deficit Calculator"
+  description="Calculate the right calorie deficit to lose weight at your target rate. Based on your TDEE with adjustable weekly weight loss goals."
+  subtitle="Find your ideal calorie intake for fat loss. Set your goal pace and get a precise daily calorie target."
+  breadcrumb="Calorie Deficit Calculator"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <CalorieDeficitCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How a Calorie Deficit Works</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Weight loss is fundamentally about energy balance. When you consistently consume fewer calories than
+        your body burns, it draws on stored body fat to make up the difference. This is a <strong>calorie deficit</strong>.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        The key is finding a deficit that's sustainable — large enough to produce results, but small enough that
+        you don't sacrifice muscle, energy, or long-term adherence.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Deficit Size Guidelines</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        {[
+          { label: "Moderate", deficit: "−300 to −500 cal/day", loss: "~0.5–1 lb/week", tag: "Recommended", color: "green" },
+          { label: "Aggressive", deficit: "−500 to −750 cal/day", loss: "~1–1.5 lb/week", tag: null, color: "orange" },
+          { label: "Very Aggressive", deficit: "−750 to −1000 cal/day", loss: "~1.5–2 lb/week", tag: "Risk of muscle loss", color: "red" },
+        ].map(d => (
+          <div class="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <p class={`text-xs font-semibold mb-1 text-${d.color}-600`}>{d.label}</p>
+            <p class="text-sm font-bold text-gray-900">{d.deficit}</p>
+            <p class="text-xs text-gray-500 mt-1">{d.loss}</p>
+            {d.tag && <p class={`text-xs mt-2 text-${d.color}-600 font-medium`}>{d.tag}</p>}
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</CalculatorLayout>

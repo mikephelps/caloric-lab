@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlassHero from "../../components/GlassHero.astro";
+const updated = "April 20, 2026";
+---
+
+<Layout
+  title="Terms of Use"
+  description="CaloricLab terms of use. Please read these terms before using our nutrition calculators."
+>
+  <!-- Page header — liquid glass -->
+  <GlassHero title="Terms of Use">
+    <p slot="below" class="mt-2 text-xs text-white/40">Last updated: {updated}</p>
+  </GlassHero>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <div class="prose prose-gray max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-green-700">
+
+      <p>By using CaloricLab ("the Service"), you agree to these Terms of Use. If you do not agree, please do not use the Service.</p>
+
+      <h2>Informational Purposes Only</h2>
+      <p>All content on CaloricLab, including calculator results, articles, and other materials, is provided for <strong>informational and educational purposes only</strong>. Nothing on this site constitutes medical advice, nutritional advice, or a substitute for professional consultation with a qualified healthcare provider.</p>
+      <p>Calculator results are estimates based on population averages and established mathematical formulas. Individual results will vary. Always consult a registered dietitian or physician before making significant changes to your diet or exercise routine.</p>
+
+      <h2>No Warranties</h2>
+      <p>CaloricLab is provided "as is" without warranties of any kind, express or implied. We make no guarantee that calculator results will be accurate for any specific individual or that the Service will be available without interruption.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>CaloricLab and its operators shall not be liable for any damages arising from your use of the Service, including but not limited to decisions made based on calculator results or content on this site.</p>
+
+      <h2>Intellectual Property</h2>
+      <p>All content on CaloricLab, including text, design, and code, is the property of CaloricLab and may not be reproduced without permission. Calculator results generated from your inputs are yours to use freely.</p>
+
+      <h2>Acceptable Use</h2>
+      <p>You agree not to use the Service to scrape, harvest, or automatically query our calculators at scale; attempt to interfere with or disrupt the Service; or use the Service in any way that violates applicable law.</p>
+
+      <h2>Links to Third-Party Sites</h2>
+      <p>CaloricLab may contain links to third-party websites. We are not responsible for the content or privacy practices of those sites.</p>
+
+      <h2>Changes to These Terms</h2>
+      <p>We reserve the right to update these terms at any time. Continued use of the Service after changes constitutes acceptance of the new terms.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms? Contact us at <a href="mailto:hello@caloriclab.com">hello@caloriclab.com</a>.</p>
+    </div>
+  </div>
+</Layout>

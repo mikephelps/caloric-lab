@@ -1,0 +1,73 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import MacroCalculator from "../../components/MacroCalculator";
+
+const relatedCalcs = [
+  { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Get your total calorie needs first" },
+  { name: "Protein Calculator", href: "/protein-calculator/", desc: "Dial in your protein targets" },
+  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Set your calorie goal" },
+];
+
+const faqSchema = [
+  {
+    question: "What are macros?",
+    answer: "Macros (macronutrients) are the three main categories of nutrients that provide energy: protein (4 cal/g), carbohydrates (4 cal/g), and fat (9 cal/g). Tracking macros gives you more control over your body composition than just tracking calories alone.",
+  },
+  {
+    question: "How much protein do I need?",
+    answer: "For most people with fitness goals, 0.7–1g of protein per pound of bodyweight (1.6–2.2g per kg) is optimal for muscle retention and growth. Higher protein intake also promotes satiety.",
+  },
+  {
+    question: "Should I follow a specific macro ratio?",
+    answer: "Common ratios include 40/30/30 (carbs/protein/fat) or 30/40/30 for muscle building. However, the best macro split is one that fits your food preferences and that you can sustain long-term.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Macro Calculator — Protein, Carbs & Fat Targets"
+  pageTitle="Macro Calculator"
+  description="Calculate your ideal macronutrient targets — protein, carbohydrates, and fat — based on your calorie goal and body composition objectives."
+  subtitle="Get precise protein, carb, and fat targets tailored to your calories and goals. Know exactly what to eat, not just how much."
+  breadcrumb="Macro Calculator"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <MacroCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Why Macros Matter</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Two people eating the same number of calories can get very different results depending on how those
+        calories are distributed across protein, carbs, and fat. <strong>Macros determine body composition</strong> —
+        whether you lose fat, build muscle, or maintain your physique.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Macronutrient Basics</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        {[
+          { macro: "Protein", cal: "4 cal/g", role: "Muscle building and repair, satiety, metabolism", color: "blue" },
+          { macro: "Carbohydrates", cal: "4 cal/g", role: "Primary energy source, brain function, workout fuel", color: "orange" },
+          { macro: "Fat", cal: "9 cal/g", role: "Hormone production, vitamin absorption, satiety", color: "yellow" },
+        ].map(m => (
+          <div class="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <p class="text-sm font-bold text-gray-900">{m.macro}</p>
+            <p class="text-xs font-semibold text-gray-500 mt-0.5">{m.cal}</p>
+            <p class="text-xs text-gray-500 mt-2 leading-relaxed">{m.role}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</CalculatorLayout>

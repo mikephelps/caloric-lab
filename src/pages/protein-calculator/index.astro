@@ -1,0 +1,77 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import ProteinCalculator from "../../components/ProteinCalculator";
+
+const relatedCalcs = [
+  { name: "Macro Calculator", href: "/macro-calculator/", desc: "Set all three macronutrients" },
+  { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Calculate your total calorie needs" },
+  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Plan your fat loss calories" },
+];
+
+const faqSchema = [
+  {
+    question: "How much protein do I need per day?",
+    answer: "For sedentary adults, the RDA is 0.8g per kg of bodyweight. For active individuals and those looking to build or maintain muscle, research supports 1.6–2.2g per kg (0.7–1g per lb) of bodyweight per day.",
+  },
+  {
+    question: "Does protein intake matter for fat loss?",
+    answer: "Yes — high protein intake during a calorie deficit helps preserve lean muscle mass, increases satiety (keeping you fuller longer), and has a higher thermic effect than carbs or fat, meaning your body burns more calories digesting it.",
+  },
+  {
+    question: "Can I eat too much protein?",
+    answer: "For healthy individuals, high protein intake up to 2–3g per kg of bodyweight appears to be safe. The main concern is displacing other important nutrients if taken to extremes.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Protein Calculator — Daily Protein Requirements"
+  pageTitle="Protein Calculator"
+  description="Calculate your optimal daily protein intake based on your weight, activity level, and fitness goals. Backed by sports nutrition research."
+  subtitle="Protein is the most important macronutrient for body composition. Find out exactly how much you need each day."
+  breadcrumb="Protein Calculator"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <ProteinCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Why Protein Is Non-Negotiable</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Protein is the building block of muscle tissue. Getting enough protein is critical not just for
+        building muscle, but for maintaining it during fat loss, supporting recovery from exercise, and
+        keeping hunger in check.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Protein Targets by Goal</h2>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Goal</th>
+              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Per lb bodyweight</th>
+              <th class="text-left py-2 font-semibold text-gray-900">Per kg bodyweight</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600">
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4">Sedentary / General health</td><td class="py-2 pr-4">0.36g</td><td class="py-2">0.8g</td></tr>
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4">Weight loss (muscle preservation)</td><td class="py-2 pr-4">0.7–0.8g</td><td class="py-2">1.5–1.8g</td></tr>
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4">Muscle building</td><td class="py-2 pr-4">0.8–1g</td><td class="py-2">1.8–2.2g</td></tr>
+            <tr><td class="py-2 pr-4">High performance / Athlete</td><td class="py-2 pr-4">1–1.2g</td><td class="py-2">2.2–2.6g</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</CalculatorLayout>

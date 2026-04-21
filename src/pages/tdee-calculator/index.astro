@@ -1,0 +1,108 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import TDEECalculator from "../../components/TDEECalculator";
+
+const relatedCalcs = [
+  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Set a deficit based on your TDEE" },
+  { name: "Macro Calculator", href: "/macro-calculator/", desc: "Break down calories into macros" },
+  { name: "BMR Calculator", href: "/bmr-calculator/", desc: "Your resting calorie burn" },
+];
+
+const faqSchema = [
+  {
+    question: "What is TDEE?",
+    answer: "TDEE stands for Total Daily Energy Expenditure. It's the total number of calories your body burns in a day, including your basal metabolic rate (BMR) plus calories burned through physical activity and daily movement.",
+  },
+  {
+    question: "How accurate is a TDEE calculator?",
+    answer: "TDEE calculators using the Mifflin-St Jeor equation are accurate within 10% for most people. Individual variation in metabolism, muscle mass, and activity levels can affect results.",
+  },
+  {
+    question: "Should I eat at my TDEE to maintain weight?",
+    answer: "Yes — eating at your TDEE (caloric maintenance) will result in weight maintenance over time. To lose weight, eat below your TDEE; to gain muscle, eat slightly above it.",
+  },
+  {
+    question: "What activity level should I choose?",
+    answer: "Be honest about your actual activity. Most office workers are sedentary or lightly active. Overestimating activity is one of the most common mistakes in calorie calculations.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="TDEE Calculator — Total Daily Energy Expenditure"
+  pageTitle="TDEE Calculator"
+  description="Calculate your Total Daily Energy Expenditure (TDEE) using the Mifflin-St Jeor equation. Find your maintenance calories based on age, height, weight, and activity level."
+  subtitle="Find out exactly how many calories your body burns each day. Use your TDEE to set the right calorie target for your goal."
+  breadcrumb="TDEE Calculator"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <TDEECalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What Is TDEE?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Your <strong>Total Daily Energy Expenditure (TDEE)</strong> is the number of calories your body
+        needs to maintain your current weight. It accounts for everything: the energy to keep your heart
+        beating, your organs functioning, and all your physical activity — from commuting to intense workouts.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Understanding your TDEE is the foundation of any nutrition plan. Whether you want to lose fat,
+        build muscle, or simply maintain your weight, your TDEE is the number everything else is built around.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How Is TDEE Calculated?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        CaloricLab uses the <strong>Mifflin-St Jeor equation</strong>, which is considered the most accurate
+        formula for estimating BMR in the general population according to multiple peer-reviewed studies.
+      </p>
+
+      <div class="bg-gray-50 rounded-xl border border-gray-100 p-5 mb-6 font-mono text-sm">
+        <p class="text-gray-700 mb-1"><span class="font-bold">Male:</span> BMR = (10 × kg) + (6.25 × cm) − (5 × age) + 5</p>
+        <p class="text-gray-700"><span class="font-bold">Female:</span> BMR = (10 × kg) + (6.25 × cm) − (5 × age) − 161</p>
+        <p class="mt-3 text-gray-500 font-sans text-xs">Then: TDEE = BMR × Activity Multiplier</p>
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Activity Multipliers Explained</h2>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Activity Level</th>
+              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Multiplier</th>
+              <th class="text-left py-2 font-semibold text-gray-900">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600">
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Sedentary</td><td class="py-2 pr-4">× 1.2</td><td class="py-2">Desk job, little or no exercise</td></tr>
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Lightly Active</td><td class="py-2 pr-4">× 1.375</td><td class="py-2">Light exercise 1–3 days/week</td></tr>
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Moderately Active</td><td class="py-2 pr-4">× 1.55</td><td class="py-2">Moderate exercise 3–5 days/week</td></tr>
+            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Very Active</td><td class="py-2 pr-4">× 1.725</td><td class="py-2">Hard exercise 6–7 days/week</td></tr>
+            <tr><td class="py-2 pr-4 font-medium">Extremely Active</td><td class="py-2 pr-4">× 1.9</td><td class="py-2">Physical job or twice-daily training</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How to Use Your TDEE</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Once you know your TDEE, you can set an appropriate calorie target:
+      </p>
+      <ul class="space-y-2 text-gray-600 mb-6">
+        <li class="flex items-start gap-2"><span class="mt-1.5 flex-shrink-0 w-4 h-4 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xs font-bold">−</span><span><strong>Fat loss:</strong> Eat 300–500 calories below TDEE for a sustainable deficit</span></li>
+        <li class="flex items-start gap-2"><span class="mt-1.5 flex-shrink-0 w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 text-xs font-bold">=</span><span><strong>Maintenance:</strong> Eat at TDEE to maintain your current weight</span></li>
+        <li class="flex items-start gap-2"><span class="mt-1.5 flex-shrink-0 w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 text-xs font-bold">+</span><span><strong>Muscle gain:</strong> Eat 200–300 calories above TDEE for a lean bulk</span></li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</CalculatorLayout>
