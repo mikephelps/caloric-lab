@@ -1,11 +1,16 @@
 ---
 title: "Cutting vs. Bulking: How to Set Your Calories for Each Phase"
+description: Whether you want to lose fat or build muscle, your calorie target
+  changes dramatically between phases. Here's exactly how to set your numbers
+  for cutting and bulking.
 pubDate: 2026-04-05
-description: "Whether you want to lose fat or build muscle, your calorie target changes dramatically between phases. Here's exactly how to set your numbers for cutting and bulking."
-author: "Mike"
-tags: ["Calorie Deficit", "Muscle Building", "Fat Loss"]
+author: CaloricLab Team
+heroImage: /images/exercising-in-gym-bulking-cutting-calories-setting.jpg
+tags:
+  - Calorie Deficit
+  - Muscle Building
+  - Fat Loss
 ---
-
 Most people want the same two things: less fat and more muscle. The frustrating truth is that your body can't do both at maximum capacity at the same time. Fat loss requires a calorie deficit. Muscle building requires a calorie surplus. These are opposing conditions. What you can do is alternate between phases — periods of focused fat loss (a **cut**) and periods of focused muscle building (a **bulk**) — and over time, your body composition shifts in the direction you want. The key is knowing exactly what numbers to use for each phase and why.
 
 ## What Is a Cut?
@@ -29,15 +34,17 @@ The **"dirty bulk"** — eating in a large surplus and eating whatever you want 
 Here's the key thing most people get wrong: your **protein target stays high in both phases**. Protein is the building block of muscle, and whether you're cutting or bulking, you want your body to have plenty of it available. Aim for **0.7–1g of protein per pound of bodyweight** regardless of which phase you're in.
 
 **During a cut:**
-- Keep protein at the high end (closer to 1g/lb) since muscle preservation is a priority
-- Reduce **carbohydrates** first — they're your most flexible macro
-- Keep fat at a minimum of **0.35g per lb of bodyweight** to support hormone production
-- Don't slash fat too aggressively; going too low disrupts testosterone, estrogen, and other key hormones
+
+* Keep protein at the high end (closer to 1g/lb) since muscle preservation is a priority
+* Reduce **carbohydrates** first — they're your most flexible macro
+* Keep fat at a minimum of **0.35g per lb of bodyweight** to support hormone production
+* Don't slash fat too aggressively; going too low disrupts testosterone, estrogen, and other key hormones
 
 **During a bulk:**
-- Keep protein the same — it doesn't need to go up dramatically above 1g/lb
-- Increase **carbohydrates** to fill your extra calories — carbs fuel training performance and recovery
-- Fat can stay roughly the same as maintenance
+
+* Keep protein the same — it doesn't need to go up dramatically above 1g/lb
+* Increase **carbohydrates** to fill your extra calories — carbs fuel training performance and recovery
+* Fat can stay roughly the same as maintenance
 
 Use the [Macro Calculator](/macro-calculator/) to generate the exact gram targets for your weight and goal, and let it do the math for you.
 
@@ -46,12 +53,14 @@ Use the [Macro Calculator](/macro-calculator/) to generate the exact gram target
 The decision of when to cut and when to bulk isn't arbitrary — there are general body fat ranges that work as useful guideposts.
 
 **Start a cut when you're at:**
-- 15–18% body fat or above (men)
-- 23–26% body fat or above (women)
+
+* 15–18% body fat or above (men)
+* 23–26% body fat or above (women)
 
 **Start a bulk when you're at:**
-- 10–12% body fat (men)
-- 18–22% body fat (women)
+
+* 10–12% body fat (men)
+* 18–22% body fat (women)
 
 These ranges aren't rigid rules, but they make strategic sense. Bulking from a leaner starting point means less fat to cut off at the end, and cutting from a higher body fat baseline means you have more fat available to fuel the deficit. Trying to bulk when you're already carrying significant fat tends to produce more fat gain than muscle gain.
 
@@ -61,13 +70,11 @@ As for duration: **cuts typically run 8–16 weeks**, and **bulks run 12–24 we
 
 Even people who understand the concept of cutting and bulking make predictable errors. Here are the ones that matter most:
 
-- **Deficit too large during a cut.** Losing more than 1–1.5 lbs per week consistently is a warning sign that you're losing muscle alongside fat. Slow it down.
-- **Surplus too large during a bulk.** Gaining more than 0.5 lbs per week means most of what you're gaining is fat. Trim your surplus.
-- **Neglecting protein in either phase.** Protein is non-negotiable. Dropping it to save calories during a cut is one of the fastest ways to lose muscle mass.
-- **Switching phases before seeing results.** Two weeks isn't long enough to evaluate anything. Give each phase at least 4–6 weeks before deciding it isn't working.
-- **Using a bulk as an excuse to eat junk.** A 300-calorie surplus of nutritious food and a 300-calorie surplus of pizza produce different body composition outcomes. The calories match; the nutrient quality doesn't.
-
----
+* **Deficit too large during a cut.** Losing more than 1–1.5 lbs per week consistently is a warning sign that you're losing muscle alongside fat. Slow it down.
+* **Surplus too large during a bulk.** Gaining more than 0.5 lbs per week means most of what you're gaining is fat. Trim your surplus.
+* **Neglecting protein in either phase.** Protein is non-negotiable. Dropping it to save calories during a cut is one of the fastest ways to lose muscle mass.
+* **Switching phases before seeing results.** Two weeks isn't long enough to evaluate anything. Give each phase at least 4–6 weeks before deciding it isn't working.
+* **Using a bulk as an excuse to eat junk.** A 300-calorie surplus of nutritious food and a 300-calorie surplus of pizza produce different body composition outcomes. The calories match; the nutrient quality doesn't.
 
 ## FAQ
 
@@ -83,7 +90,7 @@ You should start seeing measurable scale changes within **2–3 weeks** of a con
 
 First, check consistency — are you actually hitting your calorie target every day, or just most days? A few high days can erase a week's worth of deficit. Second, check accuracy — are you tracking everything, including drinks and cooking fats? Third, check the timeframe — week-to-week fluctuations from water, sodium, and digestion are normal. Judge your progress on a **3–4 week trend**, not a single weigh-in. If the trend is truly flat after a month, reduce calories by 100–150 per day and reassess.
 
----
+- - -
 
 [Calculate your calories for cutting →](/calorie-deficit-calculator/)
 
