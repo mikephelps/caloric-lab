@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://caloriclab.com/sitemap-index.xml
