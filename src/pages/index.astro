@@ -10,6 +10,19 @@ function formatDate(date: Date) {
   return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CaloricLab",
+  "url": "https://caloriclab.com",
+  "description": "Free, science-backed nutrition calculators",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://caloriclab.com/blog/?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 const calculators = [
   {
     name: "TDEE Calculator",
@@ -79,22 +92,9 @@ const features = [
   title="Free Nutrition Calculators: TDEE, Macros, BMR and More | CaloricLab"
   description="Science-backed nutrition calculators: TDEE, calorie deficit, macros, BMR, and protein. Free, accurate, and no signup required."
 >
-  <slot name="head" slot="head">
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "CaloricLab",
-        "url": "https://caloriclab.com",
-        "description": "Free, science-backed nutrition calculators",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://caloriclab.com/blog/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      })}
-    </script>
-  </slot>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  </Fragment>
 
   <!-- Hero -->
   <section class="relative overflow-hidden bg-[#F9FFFF] pt-16 pb-20 sm:pt-20 sm:pb-28">

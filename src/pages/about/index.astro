@@ -58,31 +58,40 @@ import GlassHero from "../../components/GlassHero.astro";
           {
             title: "Mifflin-St Jeor",
             desc: "The most validated BMR equation for the general population. Used by default in all our calculators.",
+            href: "https://pubmed.ncbi.nlm.nih.gov/2305711/",
           },
           {
             title: "Katch-McArdle",
             desc: "More accurate when body fat % is known. Factors in lean mass instead of total body weight.",
+            href: "https://en.wikipedia.org/wiki/Basal_metabolic_rate#Katch%E2%80%93McArdle_formula",
           },
           {
             title: "ISSN Protein Guidelines",
             desc: "Evidence-based targets from the International Society of Sports Nutrition for muscle building and fat loss.",
+            href: "https://www.tandfonline.com/doi/full/10.1186/s12970-017-0177-8",
           },
           {
             title: "ACSM Activity Multipliers",
             desc: "Established activity level factors used to convert BMR into your real-world daily calorie needs.",
+            href: "https://acsm.org/education-resources/trending-topics-resources/physical-activity-guidelines/",
           },
         ].map(item => (
-          <div class="flex gap-3 p-4 bg-[#F9FFFF] rounded-xl border border-green-100">
-            <div class="flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center mt-0.5">
+          <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex gap-3 p-4 bg-[#F9FFFF] rounded-xl border border-green-100 hover:border-green-300 hover:shadow-md hover:shadow-green-900/5 transition-all duration-200">
+            <div class="flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center mt-0.5 transition-colors">
               <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
               </svg>
             </div>
-            <div>
-              <p class="text-sm font-semibold text-gray-900">{item.title}</p>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-gray-900 group-hover:text-green-700 transition-colors flex items-center gap-1">
+                {item.title}
+                <svg class="w-3 h-3 text-gray-400 group-hover:text-green-700 transition-colors flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+                </svg>
+              </p>
               <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
