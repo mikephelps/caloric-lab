@@ -1,0 +1,248 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import BodyFatCalculator from "../../components/BodyFatCalculator";
+
+const relatedCalcs = [
+  { name: "BMI Calculator",            href: "/bmi-calculator/",            desc: "Check your body mass index" },
+  { name: "Ideal Weight Calculator",   href: "/ideal-weight-calculator/",   desc: "Find your healthy weight range" },
+  { name: "Protein Calculator",        href: "/protein-calculator/",        desc: "Set your daily protein target" },
+  { name: "TDEE Calculator",           href: "/tdee-calculator/",           desc: "Calculate your total calorie needs" },
+];
+
+const faqSchema = [
+  {
+    question: "How accurate is the Navy Method body fat calculator?",
+    answer:
+      "The US Navy Method has a margin of error of about 3 to 4% compared to DEXA scan measurements. It is less accurate than hydrostatic weighing or DEXA but significantly more accessible and free. Consistency in how you take measurements (time of day, measuring technique) matters more than the absolute number.",
+  },
+  {
+    question: "Where exactly should I measure my waist?",
+    answer:
+      "For men, measure at the navel (belly button level). For women, measure at the smallest point of the waist, usually about 1 inch above the navel. Take the measurement after exhaling normally and do not suck in.",
+  },
+  {
+    question: "Why does this calculator ask for hip measurements for women but not men?",
+    answer:
+      "The Navy formula for women accounts for hip circumference because women tend to store fat differently than men, more in the hips and thighs (gynoid distribution) versus the abdomen (android distribution). The hip measurement improves accuracy for women.",
+  },
+  {
+    question: "What is a healthy body fat percentage?",
+    answer:
+      "For men, 14 to 17% is considered fitness range, 18 to 24% is average, and below 13% is athletic. For women, 21 to 24% is fitness range, 25 to 31% is average, and below 20% is athletic. These ranges vary slightly by age because body fat naturally increases with age.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Body Fat Calculator: Navy Method | CaloricLab"
+  pageTitle="Body Fat Calculator"
+  description="Calculate your body fat percentage using the US Navy Method. Free and accurate. Get your fat mass, lean mass, and category based on your measurements."
+  subtitle="Estimate your body fat percentage from simple body measurements. Based on the US Navy circumference method used by the military for fitness assessments."
+  breadcrumb="Body Fat Calculator"
+  canonicalUrl="https://caloriclab.com/body-fat-calculator/"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <BodyFatCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How the Navy Body Fat Method Works</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The US Navy circumference method was developed by Hodgdon and Beckett in 1984 as a practical,
+        equipment-free way to estimate body fat percentage for military fitness assessments. Instead of
+        measuring fat directly, the method uses the relationship between specific body circumferences and
+        known body density values to produce a reliable estimate without calipers, tanks, or imaging equipment.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The formula works on a straightforward principle: fat tissue tends to accumulate in predictable
+        locations. For men, abdominal girth relative to neck girth tracks closely with overall fat mass.
+        For women, the combination of waist, hip, and neck measurements captures both android (belly) and
+        gynoid (hip and thigh) fat distribution patterns. By plugging these circumferences into a logarithmic
+        equation, the formula estimates the body fat percentage with reasonable accuracy across a wide range
+        of body types.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The US military still uses a version of this method today because it requires nothing more than a
+        flexible measuring tape. It can be administered anywhere, takes about two minutes, and produces
+        results that are reproducible across different assessors when measurement technique is consistent.
+        That combination of simplicity and consistency made it the standard for military physical readiness
+        testing for decades.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Body Fat vs. BMI: Why Percentage Matters More</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        BMI (body mass index) divides your weight by the square of your height. It says nothing about what
+        that weight is made of. Two people can have identical BMIs but completely different body compositions.
+        A 185-pound man who is 15% body fat looks and performs very differently from a 185-pound man who is
+        30% body fat, yet they would have the same BMI.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        This gap creates a phenomenon researchers call normal-weight obesity. A person can fall in the
+        "healthy" BMI range of 18.5 to 24.9 while carrying excess fat and below-average muscle mass. Studies
+        have found that normal-weight obesity carries many of the same metabolic risks as traditional obesity,
+        including insulin resistance, elevated triglycerides, and increased cardiovascular risk. BMI alone
+        would never flag these individuals.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Body fat percentage sidesteps this problem entirely. It tells you what fraction of your body is
+        fat tissue versus lean tissue (muscle, bone, organs, and water). That distinction matters for how
+        you look, how you perform, and your long-term health. It also gives you a more specific target to
+        aim for. Rather than trying to change a number on a scale, you can focus on reducing fat mass while
+        preserving or building lean mass, which is exactly what smart training and nutrition aims to do.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What Your Body Fat Percentage Means</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Body fat categories are different for men and women because the female body requires more essential
+        fat for hormonal function and reproductive health. Here is what each category represents in practice.
+      </p>
+
+      <p class="text-sm font-semibold text-gray-700 mb-2">For Men</p>
+      <div class="space-y-3 mb-5">
+        <div class="bg-blue-50 rounded-xl border border-blue-100 p-4">
+          <p class="text-sm font-bold text-blue-700 mb-1">Essential Fat (under 6%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            The minimum amount of fat required for normal physiological function. Only competitive
+            bodybuilders reach this level temporarily, and staying here long-term is harmful. At this
+            level you will see every muscle fiber and vein clearly.
+          </p>
+        </div>
+        <div class="bg-green-50 rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-green-700 mb-1">Athletes (6 to 13%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            The range associated with elite athletic performance and high-definition muscle visibility.
+            Professional and competitive athletes in physique sports, cycling, and distance running
+            typically land here. Sustainable but requires consistent training and careful nutrition.
+          </p>
+        </div>
+        <div class="bg-teal-50 rounded-xl border border-teal-100 p-4">
+          <p class="text-sm font-bold text-teal-700 mb-1">Fitness (14 to 17%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            A lean, fit appearance with visible muscle definition. This is the range most recreational
+            gym-goers aim for. Abs are visible in good lighting. Sustainable with regular exercise and
+            reasonable nutrition.
+          </p>
+        </div>
+        <div class="bg-yellow-50 rounded-xl border border-yellow-100 p-4">
+          <p class="text-sm font-bold text-yellow-700 mb-1">Average (18 to 24%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            The average range for healthy adult men. Some muscle tone is visible but not defined. Most
+            sedentary adults with no significant health conditions fall here. Health risk is low within
+            this range.
+          </p>
+        </div>
+        <div class="bg-red-50 rounded-xl border border-red-100 p-4">
+          <p class="text-sm font-bold text-red-600 mb-1">Obese (25% and above)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Elevated body fat associated with increased risk of metabolic disease, cardiovascular
+            disease, type 2 diabetes, and joint problems. This range warrants attention but is fully
+            reversible with consistent lifestyle changes.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-sm font-semibold text-gray-700 mb-2">For Women</p>
+      <div class="space-y-3 mb-6">
+        <div class="bg-blue-50 rounded-xl border border-blue-100 p-4">
+          <p class="text-sm font-bold text-blue-700 mb-1">Essential Fat (under 14%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            The minimum fat level required for female hormonal function and reproductive health. Falling
+            below this threshold can disrupt the menstrual cycle and harm bone density. Competitive
+            female bodybuilders may approach this range briefly during contest prep.
+          </p>
+        </div>
+        <div class="bg-green-50 rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-green-700 mb-1">Athletes (14 to 20%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Lean and highly conditioned. Elite female athletes across most sports fall in this range.
+            Muscle definition is clearly visible. Requires dedicated training and nutrition to reach
+            and maintain.
+          </p>
+        </div>
+        <div class="bg-teal-50 rounded-xl border border-teal-100 p-4">
+          <p class="text-sm font-bold text-teal-700 mb-1">Fitness (21 to 24%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            A lean, toned physique with some visible muscle definition. The range most active women
+            aim for. Sustainable with consistent exercise and a balanced diet.
+          </p>
+        </div>
+        <div class="bg-yellow-50 rounded-xl border border-yellow-100 p-4">
+          <p class="text-sm font-bold text-yellow-700 mb-1">Average (25 to 31%)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Normal and healthy for adult women. Less defined muscle tone but no significant health
+            risk within this range. Many healthy women who do not train regularly fall here.
+          </p>
+        </div>
+        <div class="bg-red-50 rounded-xl border border-red-100 p-4">
+          <p class="text-sm font-bold text-red-600 mb-1">Obese (32% and above)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Above the healthy range, associated with the same increased metabolic and cardiovascular
+            risks as in men. Addressable through lifestyle changes including strength training,
+            which builds lean mass and improves body composition simultaneously.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How to Take Accurate Measurements</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The Navy Method is only as accurate as your measurements. Small errors in technique compound
+        through the logarithmic formula and can shift your result by 2 to 3 percentage points. Follow
+        these guidelines to get the most consistent readings possible.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-gray-900 mb-2">Waist</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Men: measure at the navel. Women: measure at the narrowest point, roughly 1 inch above the
+            navel. Stand relaxed with your feet together. Exhale normally before you pull the tape snug.
+            Do not compress the skin. The tape should be parallel to the floor all the way around.
+          </p>
+        </div>
+        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-gray-900 mb-2">Neck</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Measure just below the larynx (Adam's apple) at the widest point of the neck. Keep your
+            head level and look straight ahead. Tilt the tape slightly downward toward the front to
+            follow the natural contour. Pull snug but not tight.
+          </p>
+        </div>
+        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-gray-900 mb-2">Hip (women only)</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Stand with feet together. Measure at the widest point of the hips and buttocks, which is
+            typically 7 to 9 inches below the natural waist. Keep the tape horizontal and parallel
+            to the floor all the way around.
+          </p>
+        </div>
+        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+          <p class="text-sm font-bold text-gray-900 mb-2">Timing and consistency</p>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Take measurements first thing in the morning before eating or drinking. Repeat each
+            measurement twice and average the readings. Use the same measuring tape each time.
+            Measure at the same time of day when tracking progress over weeks.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-gray-600 leading-relaxed mb-6">
+        For the most reliable progress tracking, re-measure every 4 to 6 weeks rather than weekly.
+        Short-term fluctuations from hydration, food volume, and inflammation can make weekly readings
+        noisy. Monthly measurements reveal the actual trend.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map((faq) => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</CalculatorLayout>

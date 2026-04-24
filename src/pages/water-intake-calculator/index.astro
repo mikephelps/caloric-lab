@@ -1,0 +1,146 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import WaterIntakeCalculator from "../../components/WaterIntakeCalculator";
+
+const relatedCalcs = [
+  { name: "TDEE Calculator",    href: "/tdee-calculator/",    desc: "Find your total daily calorie burn" },
+  { name: "Protein Calculator", href: "/protein-calculator/", desc: "Dial in your daily protein target" },
+  { name: "Macro Calculator",   href: "/macro-calculator/",   desc: "Set protein, carbs, and fat targets" },
+  { name: "BMR Calculator",     href: "/bmr-calculator/",     desc: "Calculate your resting metabolic rate" },
+];
+
+const faqSchema = [
+  {
+    question: "Is 8 glasses of water a day enough?",
+    answer: "The '8 glasses a day' rule is a rough starting point, not a science-backed prescription. Your actual needs depend on your body weight, activity level, climate, and health status. A 200-pound athlete training in summer heat needs significantly more water than a sedentary 130-pound person in a cool office. Use this calculator for a personalized estimate.",
+  },
+  {
+    question: "Does coffee count toward my daily water intake?",
+    answer: "Yes, caffeinated beverages like coffee and tea contribute to your fluid intake. While caffeine has a mild diuretic effect, research shows the net hydration from coffee is still positive. You also get water from fruits, vegetables, soups, and other foods, which can account for 20–30% of total daily fluid intake.",
+  },
+  {
+    question: "Can drinking more water help with weight loss?",
+    answer: "Drinking water before meals can reduce calorie intake by increasing feelings of fullness. Some research suggests drinking 500 ml of water can temporarily boost metabolism by 24–30% for up to 90 minutes. Replacing sugary drinks with water also reduces overall calorie consumption. However, water alone is not a weight-loss solution — it works best as part of a broader calorie-controlled approach.",
+  },
+  {
+    question: "How much extra water do I need when exercising?",
+    answer: "The general guideline is to drink 350–500 ml (12–17 fl oz) of water for every 30 minutes of exercise. For intense workouts or hot conditions, that amount may be higher. This calculator adds 350 ml per 30 minutes of exercise on top of your baseline needs. For prolonged exercise over 60–90 minutes, consider adding electrolytes to replace sodium and potassium lost through sweat.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Water Intake Calculator: Daily Hydration Needs | CaloricLab"
+  pageTitle="Water Intake Calculator"
+  description="Calculate how much water you should drink daily based on your weight, activity level, and climate. Go beyond the '8 glasses a day' myth with personalized hydration targets."
+  subtitle="Find out exactly how much water your body needs each day. Personalized to your weight, activity level, and environment."
+  breadcrumb="Water Intake Calculator"
+  canonicalUrl="https://caloriclab.com/water-intake-calculator/"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <WaterIntakeCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Why "8 Glasses a Day" Is Not Enough</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The advice to drink eight 8-ounce glasses of water per day has been repeated so often that most people assume it is medically established fact. It is not. The origin of this guideline is unclear, and it has no grounding in peer-reviewed research. A 140-pound sedentary woman working in an air-conditioned office has completely different hydration needs than a 220-pound construction worker in July.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        This calculator uses a weight-based formula (33 ml per kilogram of body weight as a baseline) and adjusts it for your activity level, climate, exercise, and special physiological conditions. The result is a number that is actually relevant to you, not a population-level average dressed up as personalized advice.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How Water Intake Is Calculated</h2>
+      <p class="text-gray-600 leading-relaxed mb-2">
+        The formula used in this calculator has four components:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        {[
+          { label: "Base Hydration",    detail: "33 ml per kg of body weight — the core starting point." },
+          { label: "Activity Factor",   detail: "Multiplier from 1.0 (sedentary) to 1.4 (extremely active) scales the base up as activity increases." },
+          { label: "Climate Factor",    detail: "Hot and humid conditions increase fluid loss through sweat. Cold, dry air increases respiratory water loss." },
+          { label: "Exercise Addition", detail: "350 ml added per 30 minutes of deliberate exercise on top of your activity level baseline." },
+        ].map(item => (
+          <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+            <p class="text-sm font-bold text-gray-900">{item.label}</p>
+            <p class="text-xs text-gray-500 mt-1.5 leading-relaxed">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Pregnancy adds 300 ml per day to support increased blood volume and amniotic fluid. Breastfeeding adds 700 ml per day, as the body uses water to produce milk. These figures align with recommendations from the National Academy of Medicine.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Signs You Are Not Drinking Enough</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Most people are mildly dehydrated without realizing it. The body does not trigger a strong thirst signal until you are already about 1–2% dehydrated — and at that point, cognitive performance and physical output are already declining. Common signs of mild dehydration include:
+      </p>
+      <ul class="space-y-2 mb-4">
+        {[
+          "Urine that is dark yellow or amber (well-hydrated urine is pale straw-colored)",
+          "Fatigue or difficulty concentrating, especially in the afternoon",
+          "Headaches with no obvious cause",
+          "Dry mouth, lips, or skin",
+          "Decreased physical performance during workouts",
+        ].map(item => (
+          <li class="flex items-start gap-2.5 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
+            </svg>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        If you regularly feel any of these, increasing your water intake is a low-cost, zero-risk intervention worth trying before attributing symptoms to anything else.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Practical Strategies for Hitting Your Target</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Knowing your number is only half the battle. Building a habit around it is the other half. A few approaches that work well in practice:
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-2">
+        <strong class="text-gray-800">Distribute intake across the day.</strong> Trying to drink a liter of water all at once is uncomfortable and less effective than spreading intake evenly. Your kidneys can only process about 800–1000 ml per hour. Divide your daily target by 16 (waking hours) to get a per-hour target and aim for that cadence.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-2">
+        <strong class="text-gray-800">Anchor intake to habits you already have.</strong> Drink a glass before coffee in the morning, one before each meal, and one before bed. These natural anchors help build the habit without relying on willpower.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-2">
+        <strong class="text-gray-800">Use a large reusable bottle.</strong> Research on behavior change consistently shows that making the healthy choice easier increases compliance. A 32-oz bottle that you refill twice gets you to 64 oz without much thought.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        <strong class="text-gray-800">Count food and other beverages.</strong> Coffee, tea, milk, fruits, vegetables, and soups all contribute to total fluid intake. Roughly 20–30% of most people's hydration comes from food alone. You do not need to account for this precisely, but knowing it exists means your water target is achievable even if you are not drinking water every single hour.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Water Intake and Exercise Performance</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Hydration has an outsized effect on physical performance. Studies show that dehydration of just 2% of body weight measurably reduces strength output, aerobic capacity, and reaction time. At 4–5% dehydration, performance can decline by 20–30%. For a 180-pound person, 2% dehydration is only about 3.6 lbs of water weight — easily achieved during an hour of intense exercise in warm conditions.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Hydration guidelines for exercise are often split into three phases: pre-exercise (drink 400–600 ml two hours before), during exercise (150–300 ml every 15–20 minutes), and post-exercise (replace 150% of fluid lost — weigh yourself before and after to estimate). For sessions under 60 minutes at moderate intensity, plain water is sufficient. For longer sessions or high sweat rates, electrolytes help retain the fluid you consume.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The exercise minutes field in this calculator adds a flat 350 ml per 30 minutes as a reasonable average for moderate exercise. Adjust upward if you train at high intensity, in hot conditions, or for sessions longer than 90 minutes.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-xl">
+        <p class="text-sm text-amber-800 leading-relaxed">
+          <strong>Medical conditions may alter your needs.</strong> Kidney disease, heart failure, certain medications (diuretics, lithium), and other conditions can require either higher or lower fluid intake than these estimates suggest. Always consult a physician if you have an underlying health condition before making significant changes to your fluid intake.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</CalculatorLayout>

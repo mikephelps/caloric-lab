@@ -1,0 +1,179 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import BMICalculator from "../../components/BMICalculator";
+
+const relatedCalcs = [
+  { name: "Body Fat % Calculator", href: "/body-fat-calculator/", desc: "Go beyond BMI with a true fat measure" },
+  { name: "Ideal Weight Calculator", href: "/ideal-weight-calculator/", desc: "Find your personal target weight" },
+  { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Calculate your total daily calorie needs" },
+  { name: "Protein Calculator", href: "/protein-calculator/", desc: "Set your daily protein target" },
+];
+
+const faqSchema = [
+  {
+    question: "Is BMI an accurate measure of health?",
+    answer: "BMI is a useful screening tool but has real limitations. It does not distinguish between fat mass and muscle mass, so athletes often show as overweight despite being very healthy. It also does not account for fat distribution, which is a strong independent predictor of metabolic risk. Use BMI as one data point alongside waist circumference, body fat percentage, and other health markers rather than treating it as a definitive verdict.",
+  },
+  {
+    question: "What is a healthy BMI?",
+    answer: "A BMI between 18.5 and 24.9 is classified as normal weight by the World Health Organization. However, optimal BMI ranges can vary by age, sex, and ethnicity. Some research suggests that people of Asian descent face elevated health risks at lower BMI thresholds, with some health organizations recommending action starting at 23.0 for this population. Older adults may also tolerate slightly higher BMI values without increased mortality risk.",
+  },
+  {
+    question: "Can I have a normal BMI and still be unhealthy?",
+    answer: "Yes. Normal-weight obesity, defined as having a normal BMI alongside high body fat percentage, is a recognized condition associated with metabolic syndrome, insulin resistance, and cardiovascular risk. Conversely, a muscular athlete may show as overweight or even obese on the BMI scale despite having very low body fat. This is exactly why BMI should be considered alongside other measures rather than used in isolation.",
+  },
+  {
+    question: "How often should I calculate my BMI?",
+    answer: "BMI changes slowly because it is tied to weight and height, and meaningful changes in body weight take weeks to months. Checking monthly is more than enough for most people. What matters more than any single reading is the long-term trend. If your BMI is moving in the right direction over several months, that is a much stronger signal than any individual number.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="BMI Calculator: Free Body Mass Index Calculator | CaloricLab"
+  pageTitle="BMI Calculator"
+  description="Calculate your BMI instantly. Free body mass index calculator with WHO classifications, healthy weight range for your height, and science-backed context."
+  subtitle="Find your body mass index in seconds. See where you fall on the scale and what a healthy weight range looks like for your height."
+  breadcrumb="BMI Calculator"
+  canonicalUrl="https://caloriclab.com/bmi-calculator/"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <BMICalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What Is BMI and How Is It Calculated?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Body mass index is a simple ratio of weight to height that has been used as a population-level
+        screening tool for over 150 years. Belgian mathematician Adolphe Quetelet developed the formula
+        in the 1830s as a statistical tool to describe average human body proportions, not to assess
+        individual health. The term "body mass index" itself was coined by physiologist Ancel Keys in
+        a landmark 1972 paper that compared the metric across several large population studies and concluded
+        it was the most useful weight-for-height index available.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The formula is straightforward: BMI equals your weight in kilograms divided by your height in meters
+        squared. In practical terms, if you weigh 80 kg and stand 1.75 m tall, your BMI is
+        80 divided by (1.75 x 1.75), which equals approximately 26.1. The same calculation applies in
+        imperial units when you multiply the result by a conversion factor of 703.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        The reason BMI became so widespread is that it requires only two measurements anyone can take at home,
+        requires no lab work, and correlates reasonably well with body fat percentage at the population level.
+        For large-scale public health research, that simplicity is enormously valuable. The limitations
+        become more apparent when you apply it to individuals.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">BMI Classifications: What the Numbers Mean</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The World Health Organization established the standard BMI cut-off points used today. Each range
+        carries different health implications and calls for different levels of attention.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        {[
+          { range: "Below 18.5", label: "Underweight", detail: "May indicate malnutrition, hormonal issues, or other underlying conditions. Associated with increased risk of osteoporosis and immune dysfunction.", color: "blue" },
+          { range: "18.5 to 24.9", label: "Normal Weight", detail: "Associated with the lowest all-cause mortality risk in most large population studies. Not a guarantee of health, but a favorable baseline.", color: "green" },
+          { range: "25.0 to 29.9", label: "Overweight", detail: "Modestly elevated risk for type 2 diabetes, high blood pressure, and cardiovascular disease. Lifestyle changes are often effective at this stage.", color: "yellow" },
+          { range: "30.0 to 34.9", label: "Obese Class I", detail: "Meaningfully higher risk for metabolic conditions. Most clinical guidelines recommend intervention at this threshold.", color: "orange" },
+          { range: "35.0 to 39.9", label: "Obese Class II", detail: "Substantially increased risk across multiple health categories. Weight management programs and medical supervision are typically recommended.", color: "red" },
+          { range: "40.0 and above", label: "Obese Class III", detail: "Formerly called morbid obesity. Severely elevated risk for a wide range of conditions. Bariatric intervention may be appropriate.", color: "red" },
+        ].map(cat => (
+          <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <p class="text-sm font-bold text-gray-900">{cat.label}</p>
+              <span class="text-xs font-semibold text-gray-500 tabular-nums">{cat.range}</span>
+            </div>
+            <p class="text-xs text-gray-500 leading-relaxed">{cat.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-gray-600 leading-relaxed mb-6">
+        One important note: these thresholds are not hard lines. Moving from 24.9 to 25.1 does not suddenly
+        make you unhealthy. The classifications are useful for identifying general risk patterns across large
+        groups. Your individual health picture depends on many more factors than a single number.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">The Limitations of BMI</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Understanding where BMI falls short helps you use it more intelligently.
+      </p>
+      <ul class="space-y-3 mb-6">
+        <li class="flex gap-3">
+          <span class="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          <span class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Muscle vs. fat.</strong> BMI cannot distinguish between lean tissue and adipose tissue. A 200-pound person with 10% body fat and a 200-pound person with 35% body fat get the exact same BMI score, even though their health profiles are dramatically different. This is the most well-known limitation and the one most relevant to athletes and people who strength train regularly.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          <span class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Ethnicity and population differences.</strong> The standard WHO thresholds were derived primarily from studies of European populations. Research consistently shows that people of South Asian, East Asian, and Southeast Asian descent develop metabolic complications at lower BMI values than these thresholds suggest. Several health organizations have proposed adjusted cut-off points for Asian populations, typically starting at 23.0 for overweight rather than 25.0.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          <span class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Age-related changes.</strong> As people age, they naturally lose muscle mass and gain fat even at a stable body weight. An older adult with a BMI of 22 may have considerably more body fat than a younger person with the same score. Some evidence suggests that slightly higher BMI values (24 to 27) are associated with better outcomes in older adults compared to the standard normal range.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          <span class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Fat distribution is not captured.</strong> Where you carry fat matters enormously. Visceral fat stored around the abdominal organs is far more metabolically active and harmful than subcutaneous fat stored under the skin. Two people with identical BMI scores can have very different amounts of visceral fat. Waist circumference and waist-to-hip ratio are better proxies for fat distribution risk than BMI alone.
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500"></span>
+          <span class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Sex differences.</strong> Women naturally carry more body fat than men at any given BMI. A woman and a man with identical BMI scores will have meaningfully different body fat percentages, yet the classification system treats them the same.
+          </span>
+        </li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What to Do With Your BMI Result</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Think of your BMI as a starting point, not a final answer. Here is how to put it to practical use.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        If your BMI falls in the normal range and you have no obvious health concerns, that is a good sign.
+        You do not need to obsess over the number. Focus on the behaviors that keep you there: consistent
+        physical activity, adequate protein intake, sufficient sleep, and a diet built around whole foods.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        If your BMI falls outside the normal range, the most useful next step is to gather more information
+        rather than act on the BMI number alone. A DEXA scan or body fat measurement can tell you what
+        your actual fat percentage is. Waist circumference above 35 inches for women or 40 inches for men
+        is a meaningful signal of visceral fat accumulation regardless of BMI. Blood work measuring fasting
+        glucose, HbA1c, triglycerides, and HDL cholesterol gives you a much clearer picture of metabolic health
+        than any weight-based metric.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        If you are strength training seriously and your BMI reads as overweight, do not panic. This is a
+        known limitation of the metric. A trained athlete carrying 175 lbs of lean mass will have a very
+        different health profile than a sedentary person of the same weight. In this case, body fat percentage
+        is a far more relevant number.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        If your BMI indicates obesity, particularly Class II or above, working with a physician or
+        registered dietitian is genuinely worthwhile. There are more effective, evidence-based interventions
+        available now than at any point in history, and a professional can help you identify what will
+        actually move the needle for your specific situation rather than following generic advice.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</CalculatorLayout>

@@ -1,0 +1,137 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import IdealWeightCalculator from "../../components/IdealWeightCalculator";
+
+const relatedCalcs = [
+  { name: "BMI Calculator",              href: "/bmi-calculator/",              desc: "See where your current weight falls on the BMI scale" },
+  { name: "Body Fat % Calculator",       href: "/body-fat-calculator/",         desc: "A more precise measure than weight alone" },
+  { name: "TDEE Calculator",             href: "/tdee-calculator/",             desc: "Find your daily calorie needs" },
+  { name: "Calorie Deficit Calculator",  href: "/calorie-deficit-calculator/",  desc: "Set a realistic calorie target to reach your goal" },
+];
+
+const faqSchema = [
+  {
+    question: "What is the most accurate ideal weight formula?",
+    answer: "No single formula is universally best. The Devine formula (1974) is the most widely cited in clinical settings, particularly for drug dosing calculations. For general health purposes, the BMI healthy weight range (18.5–24.9) applied to your height is more flexible and accounts for natural body weight variation. Athletes and people with high muscle mass should use body fat percentage as a better guide.",
+  },
+  {
+    question: "Is ideal weight the same as healthy weight?",
+    answer: "Not exactly. Ideal weight formulas were developed for clinical contexts and give a single-point estimate. Healthy weight is better understood as a range. The BMI 18.5–24.9 range applied to your height gives a span of weights where health risks are generally lowest. Most people's actual ideal weight sits somewhere in that range.",
+  },
+  {
+    question: "Do ideal weight formulas account for muscle mass?",
+    answer: "No, they do not. These formulas only use height and sex as inputs. A muscular 5'10\" athlete and a sedentary 5'10\" person would get the same ideal weight number, which is one reason body fat percentage is often a more meaningful target than a weight number.",
+  },
+  {
+    question: "Should I try to reach my ideal weight?",
+    answer: "Use ideal weight as a reference point, not a rigid target. Health is better measured by body fat percentage, metabolic markers (blood pressure, blood glucose, cholesterol), and how you feel and perform physically. A healthy weight range, sustained consistently, matters more than hitting a precise number.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Ideal Weight Calculator: Find Your Target Weight | CaloricLab"
+  pageTitle="Ideal Weight Calculator"
+  description="Calculate your ideal body weight using the Devine, Robinson, and Miller formulas plus BMI healthy range. Free, instant, personalized to your height and sex."
+  subtitle="Find your ideal weight range using multiple evidence-based formulas. See what different approaches recommend for your height."
+  breadcrumb="Ideal Weight Calculator"
+  canonicalUrl="https://caloriclab.com/ideal-weight-calculator/"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <IdealWeightCalculator client:load slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What Is Ideal Body Weight?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The concept of "ideal body weight" (IBW) started in the insurance industry in the early twentieth century. Life insurers noticed that people at certain weight-to-height ratios tended to live longer, and they started building reference tables to help classify risk. Those early tables were rough and often reflected the demographics of policyholders more than universal health data, but they planted the idea that there is a weight target a person can aim for.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The formulas used on this page came from a different direction entirely: medicine. In the 1970s and 1980s, pharmacologists needed a practical way to calculate drug doses for patients. Many medications, particularly antibiotics and chemotherapy agents, need to be dosed based on body weight, but using actual body weight in an obese patient could result in overdose. Researchers needed a formula that estimated a "lean" or "ideal" weight from height and sex alone, without any body composition measurements.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        B.J. Devine published the most widely adopted formula in 1974. It was not derived from a large population study; it was a clinical convenience formula meant to simplify medication dosing. D.S. Robinson and D.R. Miller each published revised versions in 1983, adjusting the baseline values slightly. All three formulas share the same basic structure: a starting weight at 5 feet, with a fixed number of kilograms added per inch above that baseline.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Today these formulas are still used in clinical settings, but they have also found their way into fitness culture, where they are often presented as targets people should aim to reach. That framing misrepresents what the formulas were designed for, which is worth keeping in mind as you look at your results.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">The Three Most Widely Used Formulas</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        All three formulas follow the same logic. They set a base weight for a person exactly 5 feet (60 inches) tall, then add a fixed amount per additional inch of height. The formulas differ only in their base values and the per-inch increment.
+      </p>
+
+      <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5 mb-6 space-y-4">
+        <div>
+          <p class="text-sm font-bold text-gray-900">Devine (1974)</p>
+          <p class="text-xs text-gray-500 mt-0.5 mb-1.5">The most cited formula in clinical literature</p>
+          <p class="text-sm text-gray-600">Male: 50 kg + 2.3 kg per inch over 5 ft</p>
+          <p class="text-sm text-gray-600">Female: 45.5 kg + 2.3 kg per inch over 5 ft</p>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-gray-900">Robinson (1983)</p>
+          <p class="text-xs text-gray-500 mt-0.5 mb-1.5">A modest revision to Devine's base values</p>
+          <p class="text-sm text-gray-600">Male: 52 kg + 1.9 kg per inch over 5 ft</p>
+          <p class="text-sm text-gray-600">Female: 49 kg + 1.7 kg per inch over 5 ft</p>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-gray-900">Miller (1983)</p>
+          <p class="text-xs text-gray-500 mt-0.5 mb-1.5">Higher base, lower per-inch increment</p>
+          <p class="text-sm text-gray-600">Male: 56.2 kg + 1.41 kg per inch over 5 ft</p>
+          <p class="text-sm text-gray-600">Female: 53.1 kg + 1.36 kg per inch over 5 ft</p>
+        </div>
+      </div>
+
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Notice that the Devine and Robinson formulas produce similar results at average heights, but they diverge as height increases because Robinson has a lower per-inch increment (1.9 vs 2.3 kg). Miller has the highest base weight but the smallest per-inch step, which means Miller tends to give higher estimates for shorter people and lower estimates for taller people compared to Devine.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        For a 5'9" male, the three formulas give roughly 82 lbs (Devine), 79 lbs (Robinson), and 84 lbs (Miller) -- not far apart, but different enough to matter if you are using the number as a specific goal. The spread tends to widen as height moves further from 5'5" in either direction.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        None of the three formulas was validated against large, diverse populations. All three were derived from convenience samples and clinical observation. This is not a reason to dismiss them; they remain useful reference points. But it is a reason not to treat any single output as a precise biological truth.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">BMI Range vs. Formula IBW: Which Should You Use?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The BMI healthy range (18.5 to 24.9) and the IBW formulas answer slightly different questions. The IBW formulas give a single target number. The BMI range gives a span of weights, typically 25 to 40 pounds wide depending on your height, that are associated with lower health risks based on large epidemiological studies.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        For most practical purposes, the BMI range is more useful as a personal health target because it acknowledges that there is a range of healthy weights at any given height, not one magic number. If your current weight falls within the BMI 18.5–24.9 range, the formula-based IBW values are largely academic. If your current weight is outside that range, the BMI range gives you a clear, evidence-backed target zone.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        The IBW formulas have some legitimate uses. In clinical settings, Devine IBW is used to calculate appropriate doses of medications that distribute poorly in fatty tissue. For that specific purpose, it is well established. As a personal fitness target, it is less appropriate because it was never designed for that role.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        The main limitation of BMI is the same as the IBW formulas: it does not account for body composition. A person with 25% body fat and a person with 15% body fat can have the same BMI. For that reason, body fat percentage is a better metric when you have access to it. A healthy body fat range is generally 10–20% for men and 18–28% for women, though these boundaries shift with age.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Why Your Ideal Weight Is Actually a Range</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Human bodies at the same height vary considerably in bone density, frame size, muscle mass, and organ mass. Two people with identical heights and sexes can have healthy, lean bodies at weights 15 to 20 pounds apart. Neither person is at the wrong weight; they simply have different body compositions.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        This is particularly relevant for anyone who lifts weights or plays sport regularly. Muscle is denser than fat, so a muscular person weighs more than a sedentary person of the same size. If a strength athlete tries to reach the Devine IBW for their height, they may need to lose significant muscle mass to get there, which is not a health improvement.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Age is another factor. As people get older, some increase in body fat is normal, and maintaining a slightly higher body weight in older age is associated with better outcomes than being at the low end of the healthy range. The idea of a fixed ideal weight that applies equally at age 25 and age 65 is not well supported by evidence.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        The most practical approach is to use the BMI healthy range as a broad target, track body fat percentage if you have access to measurement tools, and pay attention to functional markers like energy levels, strength, blood pressure, and blood glucose. These tell you more about your actual health status than a number on a scale.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-5">
+        {faqSchema.map(faq => (
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</CalculatorLayout>

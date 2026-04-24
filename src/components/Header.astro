@@ -1,18 +1,26 @@
 ---
 const calculators = [
-  { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Total daily energy expenditure", icon: "flame" },
-  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Plan your deficit for fat loss", icon: "trending-down" },
-  { name: "Macro Calculator", href: "/macro-calculator/", desc: "Protein, carbs & fat targets", icon: "chart-pie" },
-  { name: "BMR Calculator", href: "/bmr-calculator/", desc: "Your basal metabolic rate", icon: "heart-pulse" },
-  { name: "Protein Calculator", href: "/protein-calculator/", desc: "Daily protein requirements", icon: "dumbbell" },
+  { name: "TDEE Calculator",          href: "/tdee-calculator/",          desc: "Total daily energy expenditure",      icon: "flame"         },
+  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Plan your deficit for fat loss",   icon: "trending-down" },
+  { name: "BMR Calculator",           href: "/bmr-calculator/",           desc: "Your basal metabolic rate",           icon: "heart-pulse"   },
+  { name: "Macro Calculator",         href: "/macro-calculator/",         desc: "Protein, carbs & fat targets",        icon: "chart-pie"     },
+  { name: "Protein Calculator",       href: "/protein-calculator/",       desc: "Daily protein requirements",          icon: "dumbbell"      },
+  { name: "BMI Calculator",           href: "/bmi-calculator/",           desc: "Weight & health range",     icon: "person"        },
+  { name: "Body Fat Calculator",      href: "/body-fat-calculator/",      desc: "Body fat % via Navy method",          icon: "ruler"         },
+  { name: "Ideal Weight Calculator",  href: "/ideal-weight-calculator/",  desc: "Target weight for your height",       icon: "target"        },
+  { name: "Water Intake Calculator",  href: "/water-intake-calculator/",  desc: "Personalized daily hydration target", icon: "droplet"       },
 ];
 
 const calcIcons: Record<string, string> = {
-  "flame": `<path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>`,
+  "flame":         `<path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>`,
   "trending-down": `<rect x="1.5" y="3" width="3" height="10" rx="1"/><rect x="6.5" y="5.5" width="3" height="7.5" rx="1"/><rect x="11.5" y="8" width="3" height="5" rx="1"/>`,
-  "chart-pie": `<path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/><path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/><path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>`,
-  "heart-pulse": `<path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>`,
-  "dumbbell": `<rect x="1" y="5.5" width="3.5" height="5" rx="1"/><rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/><rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>`,
+  "heart-pulse":   `<path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>`,
+  "chart-pie":     `<path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/><path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/><path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>`,
+  "dumbbell":      `<rect x="1" y="5.5" width="3.5" height="5" rx="1"/><rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/><rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>`,
+  "person":        `<circle cx="8" cy="4" r="2.5"/><path d="M4 14.5v-3a4 4 0 0 1 8 0v3z"/>`,
+  "ruler":         `<rect x="1" y="7" width="14" height="2" rx="1"/><rect x="2.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="5.5" y="5.5" width="1.5" height="1.5" rx="0.5"/><rect x="8.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="11.5" y="5.5" width="1.5" height="1.5" rx="0.5"/>`,
+  "target":        `<circle cx="8" cy="8" r="7" opacity="0.2"/><circle cx="8" cy="8" r="4" opacity="0.5"/><circle cx="8" cy="8" r="1.5"/>`,
+  "droplet":       `<path d="M8 2C6 5 3 7.5 3 10a5 5 0 0 0 10 0C13 7.5 10 5 8 2z"/>`,
 };
 
 const currentPath = Astro.url.pathname;
@@ -54,16 +62,17 @@ const currentPath = Astro.url.pathname;
             </svg>
           </button>
 
-          <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-100/50 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
-            <div class="p-2">
-              {calculators.map(c => (
+          <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-100/50 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+            <div class="p-2 grid grid-cols-2">
+              {calculators.map((c, i) => (
                 <a
                   href={c.href}
                   class:list={[
                     "flex items-start gap-3 px-3 py-2.5 rounded-xl transition-colors",
                     currentPath === c.href
                       ? "bg-green-50 text-green-700"
-                      : "text-gray-700 hover:bg-gray-50"
+                      : "text-gray-700 hover:bg-gray-50",
+                    i === calculators.length - 1 && calculators.length % 2 !== 0 ? "col-span-2" : "",
                   ]}
                 >
                   <div class="mt-0.5 flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center">
