@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import WaterIntakeCalculator from "../../components/WaterIntakeCalculator";
+import WaterIntakeCalculator from "../../components/WaterIntakeCalculator.astro";
 
 const relatedCalcs = [
   { name: "TDEE Calculator",    href: "/tdee-calculator/",    desc: "Find your total daily calorie burn" },
@@ -39,7 +39,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <WaterIntakeCalculator client:visible slot="calculator" />
+  <WaterIntakeCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

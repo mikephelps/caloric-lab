@@ -1,0 +1,487 @@
+---
+// TDEECalculator.astro — zero React, vanilla JS interactivity
+---
+
+<div class="space-y-5">
+
+  <!-- ── Form card ── -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>
+      </svg>
+      <span class="text-sm font-bold text-white">TDEE Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-5">
+
+      <!-- Sex -->
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Biological Sex</label>
+        <div id="tdee-sex-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+          <button type="button" data-sex="male" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200">Male</button>
+          <button type="button" data-sex="female" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700">Female</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <!-- Age -->
+        <div>
+          <label for="tdee-age" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Age</label>
+          <input
+            id="tdee-age"
+            type="number"
+            inputmode="numeric"
+            min="18"
+            max="100"
+            placeholder="30"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+          />
+          <p id="tdee-age-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter an age between 18 and 100.</p>
+        </div>
+
+        <!-- Weight -->
+        <div>
+          <label for="tdee-weight" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Weight</label>
+          <div class="flex gap-2">
+            <input
+              id="tdee-weight"
+              type="number"
+              inputmode="decimal"
+              min="0"
+              placeholder="165"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <div id="tdee-weight-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+              <button type="button" data-wunit="lbs" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">lbs</button>
+              <button type="button" data-wunit="kg" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">kg</button>
+            </div>
+          </div>
+          <p id="tdee-weight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid weight.</p>
+        </div>
+      </div>
+
+      <!-- Height -->
+      <div>
+        <div class="flex items-center justify-between mb-2.5">
+          <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Height</label>
+          <div id="tdee-height-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+            <button type="button" data-hunit="imperial" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">ft / in</button>
+            <button type="button" data-hunit="metric" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">cm</button>
+          </div>
+        </div>
+
+        <!-- Imperial group (default shown) -->
+        <div id="tdee-ht-imperial">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="relative">
+              <input
+                id="tdee-ft"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                max="9"
+                placeholder="5"
+                aria-label="Height feet"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              />
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
+            </div>
+            <div class="relative">
+              <input
+                id="tdee-in"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="11"
+                placeholder="10"
+                aria-label="Height inches"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              />
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
+            </div>
+          </div>
+          <p id="tdee-height-err-imp" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height (e.g. 5 ft 10 in).</p>
+        </div>
+
+        <!-- Metric group (default hidden) -->
+        <div id="tdee-ht-metric" class="hidden">
+          <div class="relative">
+            <input
+              id="tdee-cm"
+              type="number"
+              inputmode="decimal"
+              min="50"
+              max="280"
+              placeholder="178"
+              aria-label="Height in centimetres"
+              class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
+          </div>
+          <p id="tdee-height-err-met" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height in cm (50–280).</p>
+        </div>
+      </div>
+
+      <!-- Activity Level -->
+      <div>
+        <label for="tdee-activity" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Activity Level</label>
+        <div class="relative">
+          <select id="tdee-activity" class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors appearance-none cursor-pointer">
+            <option value="1.2">Sedentary: Office job, little or no exercise</option>
+            <option value="1.375">Lightly Active: Exercise 1–2 days/week</option>
+            <option value="1.55" selected>Moderately Active: Exercise 3–5 days/week</option>
+            <option value="1.725">Very Active: Exercise 6–7 days/week</option>
+            <option value="1.9">Extremely Active: Athlete or physical job</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body Fat % — optional -->
+      <div>
+        <label for="tdee-bf" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">
+          Body Fat % <span class="normal-case font-normal text-gray-500">(optional)</span>
+        </label>
+        <div class="flex items-start gap-3">
+          <div class="relative w-32">
+            <input
+              id="tdee-bf"
+              type="number"
+              inputmode="decimal"
+              min="5"
+              max="50"
+              placeholder="e.g. 18"
+              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
+          </div>
+          <p class="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
+            Unlocks the more accurate Katch-McArdle formula.
+          </p>
+        </div>
+        <p id="tdee-bf-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a value between 5 and 50.</p>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="tdee-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate My TDEE
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Results (hidden until calculated) ── -->
+  <div id="tdee-results" class="hidden"></div>
+
+  <!-- Sentinel: keeps animate-fade-up in Tailwind's scan -->
+  <span class="animate-fade-up hidden" aria-hidden="true"></span>
+
+</div>
+
+<script>
+  // ── CSS class constants ──────────────────────────────────────────────────────
+  const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
+  const PILL_MD_ACTIVE   = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_MD_INACTIVE = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const ARROW_SVG = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
+
+  const ACTIVITY_LEVELS = [
+    { label: 'Sedentary',         desc: 'Office job, little or no exercise', multiplier: 1.2 },
+    { label: 'Lightly Active',    desc: 'Exercise 1–2 days/week',            multiplier: 1.375 },
+    { label: 'Moderately Active', desc: 'Exercise 3–5 days/week',            multiplier: 1.55 },
+    { label: 'Very Active',       desc: 'Exercise 6–7 days/week',            multiplier: 1.725 },
+    { label: 'Extremely Active',  desc: 'Athlete or physical job',           multiplier: 1.9 },
+  ];
+
+  // ── State ────────────────────────────────────────────────────────────────────
+  let sex        = 'male';
+  let weightUnit = 'lbs';
+  let heightUnit = 'imperial';
+
+  // ── Error helper ─────────────────────────────────────────────────────────────
+  function setErr(inputId, errId, show) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (inp) inp.className = show ? INPUT_ERROR : INPUT_OK;
+    if (err) err.classList.toggle('hidden', !show);
+  }
+
+  function setErrBf(show) {
+    const inp = document.getElementById('tdee-bf');
+    const err = document.getElementById('tdee-bf-err');
+    if (inp) inp.className = (show ? INPUT_ERROR : INPUT_OK) + ' pr-8';
+    if (err) err.classList.toggle('hidden', !show);
+  }
+
+  // ── Sex toggle ───────────────────────────────────────────────────────────────
+  document.querySelectorAll('#tdee-sex-toggle [data-sex]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sex = btn.dataset.sex;
+      document.querySelectorAll('#tdee-sex-toggle [data-sex]').forEach(b => {
+        b.className = b.dataset.sex === sex ? PILL_MD_ACTIVE : PILL_MD_INACTIVE;
+      });
+    });
+  });
+
+  // ── Weight unit toggle ───────────────────────────────────────────────────────
+  document.querySelectorAll('#tdee-weight-toggle [data-wunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.wunit;
+      if (newUnit === weightUnit) return;
+      const input = document.getElementById('tdee-weight');
+      const val = parseFloat(input.value);
+      if (!isNaN(val) && val > 0) {
+        input.value = newUnit === 'kg' ? (val * 0.453592).toFixed(1) : (val * 2.20462).toFixed(1);
+      }
+      input.placeholder = newUnit === 'lbs' ? '165' : '75';
+      weightUnit = newUnit;
+      document.querySelectorAll('#tdee-weight-toggle [data-wunit]').forEach(b => {
+        b.className = b.dataset.wunit === weightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // ── Height unit toggle ───────────────────────────────────────────────────────
+  document.querySelectorAll('#tdee-height-toggle [data-hunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.hunit;
+      if (newUnit === heightUnit) return;
+      if (newUnit === 'metric') {
+        const ft  = parseFloat(document.getElementById('tdee-ft').value) || 0;
+        const ins = parseFloat(document.getElementById('tdee-in').value) || 0;
+        const cm  = (ft * 12 + ins) * 2.54;
+        if (cm > 0) document.getElementById('tdee-cm').value = cm.toFixed(0);
+      } else {
+        const cm = parseFloat(document.getElementById('tdee-cm').value) || 0;
+        if (cm > 0) {
+          const totalIn = cm / 2.54;
+          document.getElementById('tdee-ft').value = Math.floor(totalIn / 12).toString();
+          document.getElementById('tdee-in').value = Math.round(totalIn % 12).toString();
+        }
+      }
+      heightUnit = newUnit;
+      document.getElementById('tdee-ht-imperial').classList.toggle('hidden', newUnit !== 'imperial');
+      document.getElementById('tdee-ht-metric').classList.toggle('hidden', newUnit !== 'metric');
+      document.querySelectorAll('#tdee-height-toggle [data-hunit]').forEach(b => {
+        b.className = b.dataset.hunit === heightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // ── Validation ───────────────────────────────────────────────────────────────
+  function validate() {
+    let ok = true;
+
+    const ageN = parseInt(document.getElementById('tdee-age').value);
+    const ageVal = document.getElementById('tdee-age').value;
+    const ageErr = !ageVal || isNaN(ageN) || ageN < 18 || ageN > 100;
+    setErr('tdee-age', 'tdee-age-err', ageErr);
+    if (ageErr) ok = false;
+
+    const wtVal = document.getElementById('tdee-weight').value;
+    const wtN   = parseFloat(wtVal);
+    const wtErr = !wtVal || isNaN(wtN) || wtN <= 0;
+    setErr('tdee-weight', 'tdee-weight-err', wtErr);
+    if (wtErr) ok = false;
+
+    if (heightUnit === 'imperial') {
+      const ftVal  = document.getElementById('tdee-ft').value;
+      const inVal  = document.getElementById('tdee-in').value;
+      const ft     = parseFloat(ftVal);
+      const inches = parseFloat(inVal) || 0;
+      const htErr  = !ftVal || isNaN(ft) || ft < 1 || ft > 9 || inches < 0 || inches >= 12;
+      // Apply error classes to both ft and in inputs
+      const ftInp  = document.getElementById('tdee-ft');
+      const inInp  = document.getElementById('tdee-in');
+      const errEl  = document.getElementById('tdee-height-err-imp');
+      ftInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-10';
+      inInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-10';
+      errEl.classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    } else {
+      const cmVal = document.getElementById('tdee-cm').value;
+      const cm    = parseFloat(cmVal);
+      const htErr = !cmVal || isNaN(cm) || cm < 50 || cm > 280;
+      const cmInp = document.getElementById('tdee-cm');
+      const errEl = document.getElementById('tdee-height-err-met');
+      cmInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-12';
+      errEl.classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    }
+
+    const bfVal = document.getElementById('tdee-bf').value;
+    if (bfVal) {
+      const bf    = parseFloat(bfVal);
+      const bfErr = isNaN(bf) || bf < 5 || bf > 50;
+      setErrBf(bfErr);
+      if (bfErr) ok = false;
+    } else {
+      setErrBf(false);
+    }
+
+    return ok;
+  }
+
+  // ── Calculate ────────────────────────────────────────────────────────────────
+  document.getElementById('tdee-submit').addEventListener('click', () => {
+    if (!validate()) return;
+
+    const ageN    = parseInt(document.getElementById('tdee-age').value);
+    const wtRaw   = parseFloat(document.getElementById('tdee-weight').value);
+    const weightKg = weightUnit === 'lbs' ? wtRaw * 0.453592 : wtRaw;
+
+    let heightCmVal;
+    if (heightUnit === 'imperial') {
+      const ft  = parseFloat(document.getElementById('tdee-ft').value) || 0;
+      const ins = parseFloat(document.getElementById('tdee-in').value) || 0;
+      heightCmVal = (ft * 12 + ins) * 2.54;
+    } else {
+      heightCmVal = parseFloat(document.getElementById('tdee-cm').value);
+    }
+
+    const bfVal    = document.getElementById('tdee-bf').value;
+    const activity = parseFloat(document.getElementById('tdee-activity').value);
+
+    let bmr;
+    let formula;
+
+    if (bfVal) {
+      const leanMass = weightKg * (1 - parseFloat(bfVal) / 100);
+      bmr     = 370 + 21.6 * leanMass;
+      formula = 'katch';
+    } else {
+      bmr = sex === 'male'
+        ? 10 * weightKg + 6.25 * heightCmVal - 5 * ageN + 5
+        : 10 * weightKg + 6.25 * heightCmVal - 5 * ageN - 161;
+      formula = 'mifflin';
+    }
+
+    const bmrRounded  = Math.round(bmr);
+    const tdeeRounded = Math.round(bmr * activity);
+
+    // ── Build activity table rows ──
+    const activityRows = ACTIVITY_LEVELS.map(level => {
+      const levelTDEE  = Math.round(bmrRounded * level.multiplier);
+      const isSelected = level.multiplier === activity;
+      return `
+        <div class="flex items-center gap-4 px-5 py-4${isSelected ? ' bg-green-50' : ''}">
+          <div class="flex-shrink-0 w-1 h-10 rounded-full ${isSelected ? 'bg-green-500' : 'bg-gray-100'}"></div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-sm font-semibold ${isSelected ? 'text-green-700' : 'text-gray-700'}">${level.label}</span>
+              ${isSelected ? '<span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Your level</span>' : ''}
+            </div>
+            <p class="text-xs text-gray-500 mt-0.5">${level.desc}</p>
+          </div>
+          <span class="flex-shrink-0 text-base font-bold tabular-nums ${isSelected ? 'text-green-700' : 'text-gray-500'}">${levelTDEE.toLocaleString()}</span>
+        </div>
+      `;
+    }).join('');
+
+    // ── Render results ──
+    const resultsEl = document.getElementById('tdee-results');
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+
+        <!-- Hero TDEE number -->
+        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
+          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your estimated daily calorie burn</p>
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${tdeeRounded.toLocaleString()}</span>
+            <span class="text-xl font-semibold text-green-300">cal / day</span>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">BMR: ${bmrRounded.toLocaleString()} cal/day</span>
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">${formula === 'katch' ? 'Katch-McArdle formula' : 'Mifflin-St Jeor formula'}</span>
+          </div>
+        </div>
+
+        <!-- Activity comparison table -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <h3 class="text-sm font-bold text-gray-700">TDEE at All Activity Levels</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Based on your BMR of ${bmrRounded.toLocaleString()} cal/day</p>
+          </div>
+          <div class="divide-y divide-gray-50">
+            ${activityRows}
+          </div>
+        </div>
+
+        <!-- What does this mean -->
+        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5 sm:p-6">
+          <h3 class="text-sm font-bold text-gray-900 mb-5">What does this mean for you?</h3>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-blue-400"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <span class="text-sm font-semibold text-gray-700">Maintain weight:</span>
+                  <span class="text-sm font-bold text-gray-900 tabular-nums">${tdeeRounded.toLocaleString()} cal/day</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1 leading-relaxed">Eat at your TDEE to keep your current weight stable over time.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-green-500"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <span class="text-sm font-semibold text-gray-700">Lose weight:</span>
+                  <span class="text-sm font-bold text-gray-900 tabular-nums">${(tdeeRounded - 500).toLocaleString()} – ${(tdeeRounded - 250).toLocaleString()} cal/day</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1 leading-relaxed">A 250–500 calorie daily deficit = approx. 0.5–1 lb of fat loss per week.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-orange-400"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <span class="text-sm font-semibold text-gray-700">Build muscle:</span>
+                  <span class="text-sm font-bold text-gray-900 tabular-nums">${(tdeeRounded + 250).toLocaleString()} – ${(tdeeRounded + 500).toLocaleString()} cal/day</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1 leading-relaxed">A modest 250–500 calorie surplus supports lean muscle gain with training.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA links -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/macro-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+            Calculate your macros
+            ${ARROW_SVG}
+          </a>
+          <a href="/calorie-deficit-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">
+            Set a calorie deficit
+            ${ARROW_SVG}
+          </a>
+        </div>
+
+      </div>
+    `;
+    resultsEl.classList.remove('hidden');
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>

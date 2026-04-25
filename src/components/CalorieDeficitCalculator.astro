@@ -1,0 +1,470 @@
+---
+// CalorieDeficitCalculator.astro — zero React, vanilla JS
+---
+
+<div class="space-y-5">
+
+  <!-- Form card -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <rect x="1.5" y="3" width="3" height="10" rx="1"/>
+        <rect x="6.5" y="5.5" width="3" height="7.5" rx="1"/>
+        <rect x="11.5" y="8" width="3" height="5" rx="1"/>
+      </svg>
+      <span class="text-sm font-bold text-white">Calorie Deficit Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-5">
+
+      <!-- Sex -->
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Biological Sex</label>
+        <div id="cd-sex-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+          <button type="button" data-sex="male" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200">Male</button>
+          <button type="button" data-sex="female" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700">Female</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <!-- Age -->
+        <div>
+          <label for="cd-age" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Age</label>
+          <input
+            id="cd-age"
+            type="number"
+            inputmode="numeric"
+            min="18"
+            max="100"
+            placeholder="30"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+          />
+          <p id="cd-age-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter an age between 18 and 100.</p>
+        </div>
+
+        <!-- Activity Level -->
+        <div>
+          <label for="cd-activity" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Activity Level</label>
+          <div class="relative">
+            <select id="cd-activity" class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors appearance-none cursor-pointer">
+              <option value="1.2">Sedentary: Office job, little or no exercise</option>
+              <option value="1.375">Lightly Active: Exercise 1–2 days/week</option>
+              <option value="1.55" selected>Moderately Active: Exercise 3–5 days/week</option>
+              <option value="1.725">Very Active: Exercise 6–7 days/week</option>
+              <option value="1.9">Extremely Active: Athlete or physical job</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current + Goal Weight -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="cd-weight" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Current Weight</label>
+          <div class="flex gap-2">
+            <input
+              id="cd-weight"
+              type="number"
+              inputmode="decimal"
+              min="0"
+              placeholder="185"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <div id="cd-wunit-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+              <button type="button" data-wunit="lbs" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">lbs</button>
+              <button type="button" data-wunit="kg" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">kg</button>
+            </div>
+          </div>
+          <p id="cd-weight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid current weight.</p>
+        </div>
+        <div>
+          <label for="cd-goalweight" id="cd-goalweight-label" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Goal Weight (lbs)</label>
+          <input
+            id="cd-goalweight"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            placeholder="165"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+          />
+          <p id="cd-goalweight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Goal weight must be less than your current weight.</p>
+        </div>
+      </div>
+
+      <!-- Height -->
+      <div>
+        <div class="flex items-center justify-between mb-2.5">
+          <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Height</label>
+          <div id="cd-hunit-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+            <button type="button" data-hunit="imperial" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">ft / in</button>
+            <button type="button" data-hunit="metric" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">cm</button>
+          </div>
+        </div>
+
+        <!-- Imperial -->
+        <div id="cd-ht-imperial">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="relative">
+              <input id="cd-ft" type="number" inputmode="numeric" min="1" max="9" placeholder="5" aria-label="Height feet"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"/>
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
+            </div>
+            <div class="relative">
+              <input id="cd-in" type="number" inputmode="numeric" min="0" max="11" placeholder="10" aria-label="Height inches"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"/>
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
+            </div>
+          </div>
+          <p id="cd-height-err-imp" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height (e.g. 5 ft 10 in).</p>
+        </div>
+
+        <!-- Metric -->
+        <div id="cd-ht-metric" class="hidden">
+          <div class="relative">
+            <input id="cd-cm" type="number" inputmode="decimal" min="50" max="280" placeholder="178" aria-label="Height in centimetres"
+              class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"/>
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
+          </div>
+          <p id="cd-height-err-met" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height in cm (50–280).</p>
+        </div>
+      </div>
+
+      <!-- Rate of Loss -->
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Rate of Loss</label>
+        <div class="grid grid-cols-3 gap-2.5" id="cd-rate-group">
+          <button type="button" data-rate="conservative" data-deficit="250" class="flex flex-col items-center gap-1 px-3 py-3.5 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Conservative</span>
+            <span class="text-xs font-medium text-gray-500">0.5 lb / week</span>
+            <span class="text-xs text-gray-500">−250 cal/day</span>
+          </button>
+          <button type="button" data-rate="moderate" data-deficit="500" class="flex flex-col items-center gap-1 px-3 py-3.5 rounded-xl border text-center transition-all cursor-pointer border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Moderate</span>
+            <span class="text-xs font-medium text-green-700">1 lb / week</span>
+            <span class="text-xs text-green-700">−500 cal/day</span>
+          </button>
+          <button type="button" data-rate="aggressive" data-deficit="750" class="flex flex-col items-center gap-1 px-3 py-3.5 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Aggressive</span>
+            <span class="text-xs font-medium text-gray-500">1.5 lb / week</span>
+            <span class="text-xs text-gray-500">−750 cal/day</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body Fat % (optional) -->
+      <div>
+        <label for="cd-bf" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">
+          Body Fat % <span class="normal-case font-normal text-gray-500">(optional)</span>
+        </label>
+        <div class="flex items-start gap-3">
+          <div class="relative w-32">
+            <input
+              id="cd-bf"
+              type="number"
+              inputmode="decimal"
+              min="5"
+              max="50"
+              placeholder="e.g. 22"
+              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
+          </div>
+          <p class="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">Unlocks the more accurate Katch-McArdle formula.</p>
+        </div>
+        <p id="cd-bf-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a value between 5 and 50.</p>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="cd-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate My Deficit
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="cd-results" class="hidden"></div>
+
+  <span class="animate-fade-up hidden" aria-hidden="true"></span>
+</div>
+
+<script>
+  const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
+  const PILL_MD_ACTIVE   = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_MD_INACTIVE = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700';
+  const RATE_ACTIVE   = 'flex flex-col items-center gap-1 px-3 py-3.5 rounded-xl border text-center transition-all cursor-pointer border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const RATE_INACTIVE = 'flex flex-col items-center gap-1 px-3 py-3.5 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const ARROW_SVG = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
+
+  let sex        = 'male';
+  let weightUnit = 'lbs';
+  let heightUnit = 'imperial';
+  let rateDeficit = 500;
+
+  // sex toggle
+  document.querySelectorAll('#cd-sex-toggle [data-sex]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sex = btn.dataset.sex;
+      document.querySelectorAll('#cd-sex-toggle [data-sex]').forEach(b => {
+        b.className = b.dataset.sex === sex ? PILL_MD_ACTIVE : PILL_MD_INACTIVE;
+      });
+    });
+  });
+
+  // weight unit
+  document.querySelectorAll('#cd-wunit-toggle [data-wunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.wunit;
+      if (newUnit === weightUnit) return;
+      const wInp = document.getElementById('cd-weight');
+      const gInp = document.getElementById('cd-goalweight');
+      const wVal = parseFloat(wInp.value);
+      const gVal = parseFloat(gInp.value);
+      if (!isNaN(wVal) && wVal > 0) wInp.value = newUnit === 'kg' ? (wVal * 0.453592).toFixed(1) : (wVal * 2.20462).toFixed(1);
+      if (!isNaN(gVal) && gVal > 0) gInp.value = newUnit === 'kg' ? (gVal * 0.453592).toFixed(1) : (gVal * 2.20462).toFixed(1);
+      wInp.placeholder = newUnit === 'lbs' ? '185' : '84';
+      gInp.placeholder = newUnit === 'lbs' ? '165' : '75';
+      document.getElementById('cd-goalweight-label').textContent = `Goal Weight (${newUnit})`;
+      weightUnit = newUnit;
+      document.querySelectorAll('#cd-wunit-toggle [data-wunit]').forEach(b => {
+        b.className = b.dataset.wunit === weightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // height unit
+  document.querySelectorAll('#cd-hunit-toggle [data-hunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.hunit;
+      if (newUnit === heightUnit) return;
+      if (newUnit === 'metric') {
+        const ft  = parseFloat(document.getElementById('cd-ft').value) || 0;
+        const ins = parseFloat(document.getElementById('cd-in').value) || 0;
+        const cm  = (ft * 12 + ins) * 2.54;
+        if (cm > 0) document.getElementById('cd-cm').value = cm.toFixed(0);
+      } else {
+        const cm = parseFloat(document.getElementById('cd-cm').value) || 0;
+        if (cm > 0) {
+          const totalIn = cm / 2.54;
+          document.getElementById('cd-ft').value = Math.floor(totalIn / 12).toString();
+          document.getElementById('cd-in').value = Math.round(totalIn % 12).toString();
+        }
+      }
+      heightUnit = newUnit;
+      document.getElementById('cd-ht-imperial').classList.toggle('hidden', newUnit !== 'imperial');
+      document.getElementById('cd-ht-metric').classList.toggle('hidden',   newUnit !== 'metric');
+      document.querySelectorAll('#cd-hunit-toggle [data-hunit]').forEach(b => {
+        b.className = b.dataset.hunit === heightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // rate cards
+  document.querySelectorAll('#cd-rate-group [data-rate]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      rateDeficit = parseInt(btn.dataset.deficit);
+      document.querySelectorAll('#cd-rate-group [data-rate]').forEach(b => {
+        const active = b === btn;
+        b.className = active ? RATE_ACTIVE : RATE_INACTIVE;
+        const spans = b.querySelectorAll('span');
+        if (spans[0]) spans[0].className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'}`;
+        if (spans[1]) spans[1].className = `text-xs font-medium ${active ? 'text-green-700' : 'text-gray-500'}`;
+        if (spans[2]) spans[2].className = `text-xs ${active ? 'text-green-700' : 'text-gray-500'}`;
+      });
+    });
+  });
+
+  document.getElementById('cd-submit').addEventListener('click', () => {
+    let ok = true;
+
+    const ageN = parseInt(document.getElementById('cd-age').value);
+    const ageErr = !document.getElementById('cd-age').value || isNaN(ageN) || ageN < 18 || ageN > 100;
+    document.getElementById('cd-age').className = ageErr ? INPUT_ERROR : INPUT_OK;
+    document.getElementById('cd-age-err').classList.toggle('hidden', !ageErr);
+    if (ageErr) ok = false;
+
+    const wtN = parseFloat(document.getElementById('cd-weight').value);
+    const wtErr = !document.getElementById('cd-weight').value || isNaN(wtN) || wtN <= 0;
+    document.getElementById('cd-weight').className = wtErr ? INPUT_ERROR : INPUT_OK;
+    document.getElementById('cd-weight-err').classList.toggle('hidden', !wtErr);
+    if (wtErr) ok = false;
+
+    const gwN = parseFloat(document.getElementById('cd-goalweight').value);
+    let gwErr = !document.getElementById('cd-goalweight').value || isNaN(gwN) || gwN <= 0;
+    if (!gwErr && !wtErr && gwN >= wtN) gwErr = true;
+    document.getElementById('cd-goalweight').className = gwErr ? INPUT_ERROR : INPUT_OK;
+    document.getElementById('cd-goalweight-err').textContent = (!document.getElementById('cd-goalweight').value || isNaN(gwN) || gwN <= 0)
+      ? 'Enter a valid goal weight.' : 'Goal weight must be less than your current weight.';
+    document.getElementById('cd-goalweight-err').classList.toggle('hidden', !gwErr);
+    if (gwErr) ok = false;
+
+    if (heightUnit === 'imperial') {
+      const ft  = parseFloat(document.getElementById('cd-ft').value);
+      const ins = parseFloat(document.getElementById('cd-in').value) || 0;
+      const htErr = !document.getElementById('cd-ft').value || isNaN(ft) || ft < 1 || ft > 9 || ins < 0 || ins >= 12;
+      const INPUT_PR10 = INPUT_OK + ' pr-10';
+      const INPUT_ERR_PR10 = INPUT_ERROR + ' pr-10';
+      document.getElementById('cd-ft').className = htErr ? INPUT_ERR_PR10 : INPUT_PR10;
+      document.getElementById('cd-in').className = htErr ? INPUT_ERR_PR10 : INPUT_PR10;
+      document.getElementById('cd-height-err-imp').classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    } else {
+      const cm = parseFloat(document.getElementById('cd-cm').value);
+      const htErr = !document.getElementById('cd-cm').value || isNaN(cm) || cm < 50 || cm > 280;
+      document.getElementById('cd-cm').className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-12';
+      document.getElementById('cd-height-err-met').classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    }
+
+    const bfVal = document.getElementById('cd-bf').value;
+    if (bfVal) {
+      const bf = parseFloat(bfVal);
+      const bfErr = isNaN(bf) || bf < 5 || bf > 50;
+      document.getElementById('cd-bf').className = (bfErr ? INPUT_ERROR : INPUT_OK) + ' pr-8';
+      document.getElementById('cd-bf-err').classList.toggle('hidden', !bfErr);
+      if (bfErr) ok = false;
+    } else {
+      document.getElementById('cd-bf').className = INPUT_OK + ' pr-8';
+      document.getElementById('cd-bf-err').classList.add('hidden');
+    }
+
+    if (!ok) return;
+
+    const weightKg = weightUnit === 'lbs' ? wtN * 0.453592 : wtN;
+    let heightCm;
+    if (heightUnit === 'imperial') {
+      const ft  = parseFloat(document.getElementById('cd-ft').value) || 0;
+      const ins = parseFloat(document.getElementById('cd-in').value) || 0;
+      heightCm = (ft * 12 + ins) * 2.54;
+    } else {
+      heightCm = parseFloat(document.getElementById('cd-cm').value);
+    }
+
+    let bmr, formula;
+    if (bfVal) {
+      const leanMass = weightKg * (1 - parseFloat(bfVal) / 100);
+      bmr     = 370 + 21.6 * leanMass;
+      formula = 'katch';
+    } else {
+      bmr = sex === 'male'
+        ? 10 * weightKg + 6.25 * heightCm - 5 * ageN + 5
+        : 10 * weightKg + 6.25 * heightCm - 5 * ageN - 161;
+      formula = 'mifflin';
+    }
+
+    const activity     = parseFloat(document.getElementById('cd-activity').value);
+    const tdee         = Math.round(bmr * activity);
+    const rawTarget    = tdee - rateDeficit;
+    const minCalories  = sex === 'male' ? 1500 : 1200;
+    const clamped      = rawTarget < minCalories;
+    const targetCalories = Math.max(rawTarget, minCalories);
+    const dailyDeficit   = tdee - targetCalories;
+    const weeklyDeficit  = dailyDeficit * 7;
+
+    // Goal date
+    const currentWeightLbs = weightUnit === 'lbs' ? wtN : wtN * 2.20462;
+    const goalWeightLbs    = weightUnit === 'lbs' ? gwN : gwN * 2.20462;
+    let weeksToGoal = null;
+    let goalDate    = null;
+    if (dailyDeficit > 0) {
+      const totalCaloriesToLose = (currentWeightLbs - goalWeightLbs) * 3500;
+      const totalDays = totalCaloriesToLose / dailyDeficit;
+      weeksToGoal = Math.ceil(totalDays / 7);
+      const target = new Date();
+      target.setDate(target.getDate() + Math.round(totalDays));
+      goalDate = target.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    const clampedWarning = clamped ? `
+      <div class="flex gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+        <svg class="flex-shrink-0 w-5 h-5 text-amber-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <p class="text-sm font-semibold text-amber-800">Deficit adjusted for safety</p>
+          <p class="text-xs text-amber-700 mt-0.5 leading-relaxed">This deficit may be too aggressive. Your target has been raised to the minimum safe intake (${sex === 'male' ? '1,500' : '1,200'} cal/day). Consider a slower rate of loss or consult a nutrition professional.</p>
+        </div>
+      </div>` : '';
+
+    const planRows = [
+      { label: 'Maintenance calories (TDEE)', value: `${tdee.toLocaleString()} cal/day`, highlight: false },
+      { label: 'Daily deficit',               value: `−${dailyDeficit.toLocaleString()} cal/day`, highlight: false },
+      { label: 'Daily calorie target',         value: `${targetCalories.toLocaleString()} cal/day`, highlight: true  },
+      ...(goalDate ? [{ label: 'Estimated goal date', value: goalDate, highlight: false }] : []),
+    ].map(row => `<div class="flex items-center justify-between px-5 py-3.5 ${row.highlight ? 'bg-green-50' : ''}">
+      <span class="text-sm ${row.highlight ? 'font-semibold text-green-800' : 'text-gray-500'}">${row.label}</span>
+      <span class="text-sm font-bold tabular-nums ${row.highlight ? 'text-green-700' : 'text-gray-800'}">${row.value}</span>
+    </div>`).join('');
+
+    const resultsEl = document.getElementById('cd-results');
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+        ${clampedWarning}
+
+        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
+          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your daily calorie target</p>
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${targetCalories.toLocaleString()}</span>
+            <span class="text-xl font-semibold text-green-300">cal / day</span>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">Maintenance (TDEE): ${tdee.toLocaleString()} cal/day</span>
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">${formula === 'katch' ? 'Katch-McArdle formula' : 'Mifflin-St Jeor formula'}</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
+            <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">−${dailyDeficit.toLocaleString()}<span class="text-sm font-semibold text-gray-500 ml-1">cal</span></p>
+            <p class="text-xs text-gray-500 mt-1.5 font-medium">Daily deficit</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
+            <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">−${weeklyDeficit.toLocaleString()}<span class="text-sm font-semibold text-gray-500 ml-1">cal</span></p>
+            <p class="text-xs text-gray-500 mt-1.5 font-medium">Weekly deficit</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
+            <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">${weeksToGoal ? weeksToGoal.toLocaleString() : 'N/A'}${weeksToGoal ? '<span class="text-sm font-semibold text-gray-500 ml-1">wks</span>' : ''}</p>
+            <p class="text-xs text-gray-500 mt-1.5 font-medium">Weeks to goal</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <h3 class="text-sm font-bold text-gray-700">Your Plan at a Glance</h3>
+          </div>
+          <div class="divide-y divide-gray-50">${planRows}</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="/tdee-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">TDEE Calculator ${ARROW_SVG}</a>
+          <a href="/macro-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">Macro Calculator ${ARROW_SVG}</a>
+          <a href="/protein-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">Protein Calculator ${ARROW_SVG}</a>
+        </div>
+      </div>`;
+    resultsEl.classList.remove('hidden');
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>

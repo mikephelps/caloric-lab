@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import BMRCalculator from "../../components/BMRCalculator";
+import BMRCalculator from "../../components/BMRCalculator.astro";
 
 const relatedCalcs = [
   { name: "TDEE Calculator",           href: "/tdee-calculator/",           desc: "Add activity to get your full daily burn" },
@@ -35,7 +35,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <BMRCalculator client:visible slot="calculator" />
+  <BMRCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import IdealWeightCalculator from "../../components/IdealWeightCalculator";
+import IdealWeightCalculator from "../../components/IdealWeightCalculator.astro";
 
 const relatedCalcs = [
   { name: "BMI Calculator",              href: "/bmi-calculator/",              desc: "See where your current weight falls on the BMI scale" },
@@ -39,7 +39,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <IdealWeightCalculator client:visible slot="calculator" />
+  <IdealWeightCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

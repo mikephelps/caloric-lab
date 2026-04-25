@@ -1,0 +1,334 @@
+---
+// Pure Astro component — zero framework JS
+---
+
+<div class="space-y-5">
+
+  <!-- Form card -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" opacity="0.2"/>
+        <circle cx="8" cy="8" r="4" opacity="0.5"/>
+        <circle cx="8" cy="8" r="1.5"/>
+      </svg>
+      <span class="text-sm font-bold text-white">Ideal Weight Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-6">
+
+      <!-- Sex -->
+      <div>
+        <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Sex</p>
+        <div class="grid grid-cols-2 gap-2.5" id="iw-sex-group">
+          <button type="button" data-sex="male" class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Male</span>
+          </button>
+          <button type="button" data-sex="female" class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Female</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Height -->
+      <div>
+        <div class="flex items-center justify-between mb-2.5">
+          <label id="iw-height-label" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Height (ft / in)</label>
+          <div id="iw-height-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+            <button type="button" data-hunit="imperial" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">ft / in</button>
+            <button type="button" data-hunit="metric"   class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">cm</button>
+          </div>
+        </div>
+
+        <!-- Imperial group (shown by default) -->
+        <div id="iw-ht-imp">
+          <div class="flex gap-2">
+            <div class="relative w-24">
+              <input id="iw-ft" type="number" inputmode="numeric" min="1" max="8" placeholder="5" class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-8"/>
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
+            </div>
+            <div class="relative w-24">
+              <input id="iw-in" type="number" inputmode="numeric" min="0" max="11" placeholder="10" class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-7"/>
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
+            </div>
+          </div>
+          <p id="iw-ft-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter feet (1–8).</p>
+          <p id="iw-in-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter inches (0–11).</p>
+        </div>
+
+        <!-- Metric group (hidden by default) -->
+        <div id="iw-ht-met" class="hidden">
+          <div class="relative">
+            <input id="iw-cm" type="number" inputmode="numeric" min="100" max="250" placeholder="178" class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-12"/>
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
+          </div>
+          <p id="iw-cm-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter height in cm (100–250).</p>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="iw-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate Ideal Weight
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Results (injected by script) -->
+  <div id="iw-results" class="hidden"></div>
+
+</div>
+
+<!-- Ensure animate-fade-up is included in Tailwind output -->
+<span class="animate-fade-up hidden" aria-hidden="true"></span>
+
+<script>
+  const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
+  const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const CARD_INACTIVE = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const ARROW_SVG = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
+
+  let sex = 'male';
+  let heightUnit = 'imperial';
+
+  function setErr(inputId, errId, show, extraClass) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    inp.className = (show ? INPUT_ERROR : INPUT_OK) + (extraClass ? ' ' + extraClass : '');
+    if (err) err.classList.toggle('hidden', !show);
+  }
+
+  // ── Sex selector ────────────────────────────────────────────────────────────
+  document.querySelectorAll('#iw-sex-group button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sex = btn.dataset.sex;
+      document.querySelectorAll('#iw-sex-group button').forEach(b => {
+        const active = b.dataset.sex === sex;
+        b.className = active ? CARD_ACTIVE : CARD_INACTIVE;
+        const span = b.querySelector('span');
+        if (span) span.className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'}`;
+      });
+    });
+  });
+
+  // ── Height unit toggle ──────────────────────────────────────────────────────
+  document.querySelectorAll('#iw-height-toggle [data-hunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.hunit;
+      if (newUnit === heightUnit) return;
+      if (newUnit === 'metric') {
+        const ft = parseFloat(document.getElementById('iw-ft').value) || 0;
+        const ins = parseFloat(document.getElementById('iw-in').value) || 0;
+        const cm = (ft * 12 + ins) * 2.54;
+        if (cm > 0) document.getElementById('iw-cm').value = Math.round(cm).toString();
+      } else {
+        const cm = parseFloat(document.getElementById('iw-cm').value) || 0;
+        if (cm > 0) {
+          const totalIn = cm / 2.54;
+          document.getElementById('iw-ft').value = Math.floor(totalIn / 12).toString();
+          document.getElementById('iw-in').value = Math.round(totalIn % 12).toString();
+        }
+      }
+      heightUnit = newUnit;
+      document.getElementById('iw-ht-imp').classList.toggle('hidden', newUnit !== 'imperial');
+      document.getElementById('iw-ht-met').classList.toggle('hidden', newUnit !== 'metric');
+      document.getElementById('iw-height-label').textContent = newUnit === 'imperial' ? 'Height (ft / in)' : 'Height (cm)';
+      document.querySelectorAll('#iw-height-toggle [data-hunit]').forEach(b => {
+        b.className = b.dataset.hunit === heightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // ── Calculate ───────────────────────────────────────────────────────────────
+  document.getElementById('iw-submit').addEventListener('click', () => {
+    const ftEl = document.getElementById('iw-ft');
+    const inEl = document.getElementById('iw-in');
+    const cmEl = document.getElementById('iw-cm');
+
+    // Reset errors
+    setErr('iw-ft', 'iw-ft-err', false, 'pr-8');
+    setErr('iw-in', 'iw-in-err', false, 'pr-7');
+    setErr('iw-cm', 'iw-cm-err', false, 'pr-12');
+
+    let valid = true;
+
+    if (heightUnit === 'imperial') {
+      const ft = parseFloat(ftEl.value);
+      if (!ftEl.value || isNaN(ft) || ft < 1 || ft > 8) {
+        setErr('iw-ft', 'iw-ft-err', true, 'pr-8');
+        valid = false;
+      }
+      const ins = parseFloat(inEl.value) || 0;
+      if (ins < 0 || ins > 11) {
+        setErr('iw-in', 'iw-in-err', true, 'pr-7');
+        valid = false;
+      }
+    } else {
+      const cm = parseFloat(cmEl.value);
+      if (!cmEl.value || isNaN(cm) || cm < 100 || cm > 250) {
+        setErr('iw-cm', 'iw-cm-err', true, 'pr-12');
+        valid = false;
+      }
+    }
+
+    if (!valid) return;
+
+    let totalInches, heightM;
+    if (heightUnit === 'imperial') {
+      const ft = parseFloat(ftEl.value) || 0;
+      const ins = parseFloat(inEl.value) || 0;
+      totalInches = ft * 12 + ins;
+      heightM = totalInches * 0.0254;
+    } else {
+      const cm = parseFloat(cmEl.value);
+      totalInches = cm / 2.54;
+      heightM = cm / 100;
+    }
+
+    const inchesOver60 = totalInches - 60;
+    function clampIbw(kg) { return Math.max(30, kg); }
+    const round1 = n => Math.round(n * 10) / 10;
+
+    const devineKg    = round1(clampIbw(sex === 'male' ? 50   + 2.3  * inchesOver60 : 45.5 + 2.3  * inchesOver60));
+    const robinsonKg  = round1(clampIbw(sex === 'male' ? 52   + 1.9  * inchesOver60 : 49   + 1.7  * inchesOver60));
+    const millerKg    = round1(clampIbw(sex === 'male' ? 56.2 + 1.41 * inchesOver60 : 53.1 + 1.36 * inchesOver60));
+    const devineLbs   = round1(devineKg   * 2.20462);
+    const robinsonLbs = round1(robinsonKg * 2.20462);
+    const millerLbs   = round1(millerKg   * 2.20462);
+    const bmiMinKg  = round1(heightM * heightM * 18.5);
+    const bmiMaxKg  = round1(heightM * heightM * 24.9);
+    const bmiMinLbs = round1(bmiMinKg * 2.20462);
+    const bmiMaxLbs = round1(bmiMaxKg * 2.20462);
+    const shortNote = heightM < 1.52;
+
+    const shortNoteHtml = shortNote ? `
+      <div class="flex gap-3 px-5 py-4 bg-amber-50 rounded-2xl border border-amber-100">
+        <svg class="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368zm-.53 3.996a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zm0 6.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" clip-rule="evenodd"/>
+        </svg>
+        <p class="text-xs text-amber-700 leading-relaxed">
+          The Devine, Robinson, and Miller formulas were derived from adults at least 5 feet (152 cm) tall. Formula values for shorter heights are less reliable. Use the BMI healthy range below as your primary guide.
+        </p>
+      </div>` : '';
+
+    const resultsEl = document.getElementById('iw-results');
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+
+        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
+          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your ideal weight (Devine formula)</p>
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${devineLbs}</span>
+            <span class="text-xl font-semibold text-green-300">lbs</span>
+          </div>
+          <p class="mt-2 text-xs text-green-200/60">Devine formula (most widely used)</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">${devineLbs} lbs</span>
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">${devineKg} kg</span>
+          </div>
+        </div>
+
+        ${shortNoteHtml}
+
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5">
+          <div class="flex items-start gap-3">
+            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm3.72 3.28a.75.75 0 0 1 0-1.06L6.44 7.5 3.72 4.78a.75.75 0 0 1 1.06-1.06l3.25 3.25a.75.75 0 0 1 0 1.06L4.78 11.28a.75.75 0 0 1-1.06 0zm4.5 0a.75.75 0 0 1 0-1.06L10.94 7.5 8.22 4.78a.75.75 0 0 1 1.06-1.06l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Healthy weight range for your height</p>
+              <p class="text-2xl font-extrabold text-gray-900 tabular-nums mt-1.5">
+                ${bmiMinLbs}<span class="text-base font-semibold text-gray-500 mx-1">–</span>${bmiMaxLbs}<span class="text-base font-semibold text-gray-500 ml-1.5">lbs</span>
+              </p>
+              <p class="text-sm text-gray-500 mt-0.5">${bmiMinKg} – ${bmiMaxKg} kg</p>
+              <p class="text-xs text-gray-500 mt-2">Based on BMI 18.5–24.9 (WHO Normal range)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-green-100">
+            <p class="text-sm font-semibold text-gray-900">Formula comparison</p>
+          </div>
+          <div class="divide-y divide-green-50">
+            <div class="flex items-center justify-between px-5 py-3.5 bg-green-50 ring-1 ring-inset ring-green-200/60">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-green-800">Devine (1974)</span>
+                <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Primary</span>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold tabular-nums text-green-800">${devineLbs} lbs</span>
+                <span class="block text-xs tabular-nums text-green-700">${devineKg} kg</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between px-5 py-3.5">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-gray-700">Robinson (1983)</span>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold tabular-nums text-gray-700">${robinsonLbs} lbs</span>
+                <span class="block text-xs tabular-nums text-gray-500">${robinsonKg} kg</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between px-5 py-3.5">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-gray-700">Miller (1983)</span>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold tabular-nums text-gray-700">${millerLbs} lbs</span>
+                <span class="block text-xs tabular-nums text-gray-500">${millerKg} kg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6a.75.75 0 0 1 .75-.75zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">About these estimates</p>
+              <p class="text-sm text-gray-600 leading-relaxed mt-1">
+                These formulas were developed for clinical drug dosing and give a single-point estimate. Your ideal weight depends on muscle mass, bone density, age, and personal health goals. Use the BMI range above as a more practical guide.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/bmi-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+            Calculate your BMI ${ARROW_SVG}
+          </a>
+          <a href="/body-fat-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">
+            Calculate your body fat % ${ARROW_SVG}
+          </a>
+        </div>
+
+      </div>`;
+
+    resultsEl.classList.remove('hidden');
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>

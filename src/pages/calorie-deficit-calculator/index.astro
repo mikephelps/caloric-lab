@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import CalorieDeficitCalculator from "../../components/CalorieDeficitCalculator";
+import CalorieDeficitCalculator from "../../components/CalorieDeficitCalculator.astro";
 
 const relatedCalcs = [
   { name: "TDEE Calculator", href: "/tdee-calculator/", desc: "Calculate maintenance calories first" },
@@ -33,7 +33,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <CalorieDeficitCalculator client:visible slot="calculator" />
+  <CalorieDeficitCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import BMICalculator from "../../components/BMICalculator";
+import BMICalculator from "../../components/BMICalculator.astro";
 
 const relatedCalcs = [
   { name: "Body Fat % Calculator", href: "/body-fat-calculator/", desc: "Go beyond BMI with a true fat measure" },
@@ -39,7 +39,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <BMICalculator client:visible slot="calculator" />
+  <BMICalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

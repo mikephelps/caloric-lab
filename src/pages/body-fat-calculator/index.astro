@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import BodyFatCalculator from "../../components/BodyFatCalculator";
+import BodyFatCalculator from "../../components/BodyFatCalculator.astro";
 
 const relatedCalcs = [
   { name: "BMI Calculator",            href: "/bmi-calculator/",            desc: "Check your body mass index" },
@@ -43,7 +43,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <BodyFatCalculator client:visible slot="calculator" />
+  <BodyFatCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

@@ -1,0 +1,488 @@
+---
+// BMRCalculator.astro — zero React, vanilla JS interactivity
+---
+
+<div class="space-y-5">
+
+  <!-- ── Form card ── -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>
+      </svg>
+      <span class="text-sm font-bold text-white">BMR Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-5">
+
+      <!-- Sex -->
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Biological Sex</label>
+        <div id="bmr-sex-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+          <button type="button" data-sex="male" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200">Male</button>
+          <button type="button" data-sex="female" class="rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700">Female</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <!-- Age -->
+        <div>
+          <label for="bmr-age" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Age</label>
+          <input
+            id="bmr-age"
+            type="number"
+            inputmode="numeric"
+            min="18"
+            max="100"
+            placeholder="30"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+          />
+          <p id="bmr-age-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter an age between 18 and 100.</p>
+        </div>
+
+        <!-- Weight -->
+        <div>
+          <label for="bmr-weight" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Weight</label>
+          <div class="flex gap-2">
+            <input
+              id="bmr-weight"
+              type="number"
+              inputmode="decimal"
+              min="0"
+              placeholder="165"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <div id="bmr-weight-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+              <button type="button" data-wunit="lbs" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">lbs</button>
+              <button type="button" data-wunit="kg" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">kg</button>
+            </div>
+          </div>
+          <p id="bmr-weight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid weight.</p>
+        </div>
+      </div>
+
+      <!-- Height -->
+      <div>
+        <div class="flex items-center justify-between mb-2.5">
+          <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider">Height</label>
+          <div id="bmr-height-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
+            <button type="button" data-hunit="imperial" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">ft / in</button>
+            <button type="button" data-hunit="metric" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">cm</button>
+          </div>
+        </div>
+
+        <!-- Imperial group (default shown) -->
+        <div id="bmr-ht-imperial">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="relative">
+              <input
+                id="bmr-ft"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                max="9"
+                placeholder="5"
+                aria-label="Height feet"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              />
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
+            </div>
+            <div class="relative">
+              <input
+                id="bmr-in"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                max="11"
+                placeholder="10"
+                aria-label="Height inches"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              />
+              <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
+            </div>
+          </div>
+          <p id="bmr-height-err-imp" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height (e.g. 5 ft 10 in).</p>
+        </div>
+
+        <!-- Metric group (default hidden) -->
+        <div id="bmr-ht-metric" class="hidden">
+          <div class="relative">
+            <input
+              id="bmr-cm"
+              type="number"
+              inputmode="decimal"
+              min="50"
+              max="280"
+              placeholder="178"
+              aria-label="Height in centimetres"
+              class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
+          </div>
+          <p id="bmr-height-err-met" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid height in cm (50–280).</p>
+        </div>
+      </div>
+
+      <!-- Body Fat % — optional -->
+      <div>
+        <label for="bmr-bf" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">
+          Body Fat % <span class="normal-case font-normal text-gray-500">(optional, unlocks Katch-McArdle)</span>
+        </label>
+        <div class="flex items-start gap-3">
+          <div class="relative w-32">
+            <input
+              id="bmr-bf"
+              type="number"
+              inputmode="decimal"
+              min="5"
+              max="50"
+              placeholder="e.g. 18"
+              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
+          </div>
+          <p class="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
+            Enables a third formula that accounts for your lean muscle mass directly.
+          </p>
+        </div>
+        <p id="bmr-bf-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a value between 5 and 50.</p>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="bmr-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate My BMR
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Results (hidden until calculated) ── -->
+  <div id="bmr-results" class="hidden"></div>
+
+  <!-- Sentinel: keeps animate-fade-up in Tailwind's scan -->
+  <span class="animate-fade-up hidden" aria-hidden="true"></span>
+
+</div>
+
+<script>
+  // ── CSS class constants ──────────────────────────────────────────────────────
+  const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
+  const PILL_MD_ACTIVE   = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_MD_INACTIVE = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+
+  // ── State ────────────────────────────────────────────────────────────────────
+  let sex        = 'male';
+  let weightUnit = 'lbs';
+  let heightUnit = 'imperial';
+
+  // ── Error helpers ────────────────────────────────────────────────────────────
+  function setErr(inputId, errId, show) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    if (inp) inp.className = show ? INPUT_ERROR : INPUT_OK;
+    if (err) err.classList.toggle('hidden', !show);
+  }
+
+  function setErrBf(show) {
+    const inp = document.getElementById('bmr-bf');
+    const err = document.getElementById('bmr-bf-err');
+    if (inp) inp.className = (show ? INPUT_ERROR : INPUT_OK) + ' pr-8';
+    if (err) err.classList.toggle('hidden', !show);
+  }
+
+  // ── Sex toggle ───────────────────────────────────────────────────────────────
+  document.querySelectorAll('#bmr-sex-toggle [data-sex]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sex = btn.dataset.sex;
+      document.querySelectorAll('#bmr-sex-toggle [data-sex]').forEach(b => {
+        b.className = b.dataset.sex === sex ? PILL_MD_ACTIVE : PILL_MD_INACTIVE;
+      });
+    });
+  });
+
+  // ── Weight unit toggle ───────────────────────────────────────────────────────
+  document.querySelectorAll('#bmr-weight-toggle [data-wunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.wunit;
+      if (newUnit === weightUnit) return;
+      const input = document.getElementById('bmr-weight');
+      const val = parseFloat(input.value);
+      if (!isNaN(val) && val > 0) {
+        input.value = newUnit === 'kg' ? (val * 0.453592).toFixed(1) : (val * 2.20462).toFixed(1);
+      }
+      input.placeholder = newUnit === 'lbs' ? '165' : '75';
+      weightUnit = newUnit;
+      document.querySelectorAll('#bmr-weight-toggle [data-wunit]').forEach(b => {
+        b.className = b.dataset.wunit === weightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // ── Height unit toggle ───────────────────────────────────────────────────────
+  document.querySelectorAll('#bmr-height-toggle [data-hunit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.hunit;
+      if (newUnit === heightUnit) return;
+      if (newUnit === 'metric') {
+        const ft  = parseFloat(document.getElementById('bmr-ft').value) || 0;
+        const ins = parseFloat(document.getElementById('bmr-in').value) || 0;
+        const cm  = (ft * 12 + ins) * 2.54;
+        if (cm > 0) document.getElementById('bmr-cm').value = cm.toFixed(0);
+      } else {
+        const cm = parseFloat(document.getElementById('bmr-cm').value) || 0;
+        if (cm > 0) {
+          const totalIn = cm / 2.54;
+          document.getElementById('bmr-ft').value = Math.floor(totalIn / 12).toString();
+          document.getElementById('bmr-in').value = Math.round(totalIn % 12).toString();
+        }
+      }
+      heightUnit = newUnit;
+      document.getElementById('bmr-ht-imperial').classList.toggle('hidden', newUnit !== 'imperial');
+      document.getElementById('bmr-ht-metric').classList.toggle('hidden', newUnit !== 'metric');
+      document.querySelectorAll('#bmr-height-toggle [data-hunit]').forEach(b => {
+        b.className = b.dataset.hunit === heightUnit ? PILL_SM_ACTIVE : PILL_SM_INACTIVE;
+      });
+    });
+  });
+
+  // ── Validation ───────────────────────────────────────────────────────────────
+  function validate() {
+    let ok = true;
+
+    const ageVal = document.getElementById('bmr-age').value;
+    const ageN   = parseInt(ageVal);
+    const ageErr = !ageVal || isNaN(ageN) || ageN < 18 || ageN > 100;
+    setErr('bmr-age', 'bmr-age-err', ageErr);
+    if (ageErr) ok = false;
+
+    const wtVal = document.getElementById('bmr-weight').value;
+    const wtN   = parseFloat(wtVal);
+    const wtErr = !wtVal || isNaN(wtN) || wtN <= 0;
+    setErr('bmr-weight', 'bmr-weight-err', wtErr);
+    if (wtErr) ok = false;
+
+    if (heightUnit === 'imperial') {
+      const ftVal  = document.getElementById('bmr-ft').value;
+      const inVal  = document.getElementById('bmr-in').value;
+      const ft     = parseFloat(ftVal);
+      const inches = parseFloat(inVal) || 0;
+      const htErr  = !ftVal || isNaN(ft) || ft < 1 || ft > 9 || inches < 0 || inches >= 12;
+      const ftInp  = document.getElementById('bmr-ft');
+      const inInp  = document.getElementById('bmr-in');
+      const errEl  = document.getElementById('bmr-height-err-imp');
+      ftInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-10';
+      inInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-10';
+      errEl.classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    } else {
+      const cmVal = document.getElementById('bmr-cm').value;
+      const cm    = parseFloat(cmVal);
+      const htErr = !cmVal || isNaN(cm) || cm < 50 || cm > 280;
+      const cmInp = document.getElementById('bmr-cm');
+      const errEl = document.getElementById('bmr-height-err-met');
+      cmInp.className = (htErr ? INPUT_ERROR : INPUT_OK) + ' pr-12';
+      errEl.classList.toggle('hidden', !htErr);
+      if (htErr) ok = false;
+    }
+
+    const bfVal = document.getElementById('bmr-bf').value;
+    if (bfVal) {
+      const bf    = parseFloat(bfVal);
+      const bfErr = isNaN(bf) || bf < 5 || bf > 50;
+      setErrBf(bfErr);
+      if (bfErr) ok = false;
+    } else {
+      setErrBf(false);
+    }
+
+    return ok;
+  }
+
+  // ── Calculate ────────────────────────────────────────────────────────────────
+  document.getElementById('bmr-submit').addEventListener('click', () => {
+    if (!validate()) return;
+
+    const ageN    = parseInt(document.getElementById('bmr-age').value);
+    const wtRaw   = parseFloat(document.getElementById('bmr-weight').value);
+    const weightKg = weightUnit === 'lbs' ? wtRaw * 0.453592 : wtRaw;
+
+    let heightCmVal;
+    if (heightUnit === 'imperial') {
+      const ft  = parseFloat(document.getElementById('bmr-ft').value) || 0;
+      const ins = parseFloat(document.getElementById('bmr-in').value) || 0;
+      heightCmVal = (ft * 12 + ins) * 2.54;
+    } else {
+      heightCmVal = parseFloat(document.getElementById('bmr-cm').value);
+    }
+
+    // Mifflin-St Jeor
+    const mifflin = sex === 'male'
+      ? 10 * weightKg + 6.25 * heightCmVal - 5 * ageN + 5
+      : 10 * weightKg + 6.25 * heightCmVal - 5 * ageN - 161;
+
+    // Harris-Benedict (revised)
+    const harris = sex === 'male'
+      ? 13.397 * weightKg + 4.799 * heightCmVal - 5.677 * ageN + 88.362
+      : 9.247  * weightKg + 3.098 * heightCmVal - 4.330 * ageN + 447.593;
+
+    // Katch-McArdle (only if body fat provided)
+    const bfVal = document.getElementById('bmr-bf').value;
+    let katch = null;
+    if (bfVal) {
+      const leanMass = weightKg * (1 - parseFloat(bfVal) / 100);
+      katch = Math.round(370 + 21.6 * leanMass);
+    }
+
+    const mifflinR = Math.round(mifflin);
+    const harrisR  = Math.round(harris);
+
+    const harrisDiff = harrisR - mifflinR;
+    const harrisDiffStr = (harrisDiff >= 0 ? '+' : '') + harrisDiff.toLocaleString();
+
+    // Katch row HTML
+    let katchRow;
+    if (katch !== null) {
+      const katchDiff = katch - mifflinR;
+      const katchDiffStr = (katchDiff >= 0 ? '+' : '') + katchDiff.toLocaleString();
+      katchRow = `
+        <div class="flex items-center gap-4 px-5 py-4">
+          <div class="flex-shrink-0 w-1 h-12 rounded-full bg-teal-400"></div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-sm font-semibold text-gray-700">Katch-McArdle</span>
+              <span class="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">Body fat adjusted</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-0.5">Based on lean mass. Most accurate when body fat is known.</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="text-lg font-bold tabular-nums text-gray-600">${katch.toLocaleString()}</span>
+            <p class="text-xs text-gray-500 mt-0.5">${katchDiffStr} vs Mifflin</p>
+          </div>
+        </div>
+      `;
+    } else {
+      katchRow = `
+        <div class="flex items-center gap-4 px-5 py-4 opacity-40">
+          <div class="flex-shrink-0 w-1 h-12 rounded-full bg-gray-100"></div>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-gray-500">Katch-McArdle</span>
+            <p class="text-xs text-gray-500 mt-0.5">Enter body fat % above to unlock this formula</p>
+          </div>
+          <span class="text-sm font-medium text-gray-500">N/A</span>
+        </div>
+      `;
+    }
+
+    // ── Render results ──
+    const resultsEl = document.getElementById('bmr-results');
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+
+        <!-- Hero BMR number -->
+        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
+          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your Basal Metabolic Rate</p>
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${mifflinR.toLocaleString()}</span>
+            <span class="text-xl font-semibold text-green-300">cal / day</span>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">Mifflin-St Jeor formula</span>
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">At complete rest</span>
+          </div>
+        </div>
+
+        <!-- Formula comparison table -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <h3 class="text-sm font-bold text-gray-700">Formula Comparison</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Different equations, same person. See how they compare.</p>
+          </div>
+          <div class="divide-y divide-gray-50">
+
+            <!-- Mifflin-St Jeor — primary -->
+            <div class="flex items-center gap-4 px-5 py-4 bg-green-50">
+              <div class="flex-shrink-0 w-1 h-12 rounded-full bg-green-500"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-green-700">Mifflin-St Jeor</span>
+                  <span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Recommended</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-0.5">Most accurate for the general population</p>
+              </div>
+              <span class="flex-shrink-0 text-lg font-bold tabular-nums text-green-700">${mifflinR.toLocaleString()}</span>
+            </div>
+
+            <!-- Harris-Benedict -->
+            <div class="flex items-center gap-4 px-5 py-4">
+              <div class="flex-shrink-0 w-1 h-12 rounded-full bg-gray-200"></div>
+              <div class="flex-1 min-w-0">
+                <span class="text-sm font-semibold text-gray-700">Harris-Benedict</span>
+                <p class="text-xs text-gray-500 mt-0.5">Revised 1984 equation. Tends to run slightly higher.</p>
+              </div>
+              <div class="flex-shrink-0 text-right">
+                <span class="text-lg font-bold tabular-nums text-gray-600">${harrisR.toLocaleString()}</span>
+                <p class="text-xs text-gray-500 mt-0.5">${harrisDiffStr} vs Mifflin</p>
+              </div>
+            </div>
+
+            <!-- Katch-McArdle — conditional -->
+            ${katchRow}
+
+          </div>
+        </div>
+
+        <!-- Warning box -->
+        <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <div class="flex gap-3">
+            <svg class="flex-shrink-0 w-5 h-5 text-amber-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <p class="text-sm font-semibold text-amber-800">Important</p>
+              <p class="text-sm text-amber-700 mt-1 leading-relaxed">
+                This is the minimum calories your body needs at complete rest. Never eat below this
+                number without medical supervision. Doing so can impair organ function and metabolism.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TDEE CTA -->
+        <a href="/tdee-calculator/" class="group flex items-center justify-between gap-4 bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4 hover:border-green-300 hover:shadow-md transition-all">
+          <div>
+            <p class="text-sm font-bold text-gray-900 group-hover:text-green-700 transition-colors">
+              Calculate your full daily calorie needs (TDEE)
+            </p>
+            <p class="text-xs text-gray-500 mt-0.5">
+              Add your activity level to BMR to get your total daily energy expenditure
+            </p>
+          </div>
+          <svg class="flex-shrink-0 w-5 h-5 text-gray-300 group-hover:text-green-500 transition-all" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+
+      </div>
+    `;
+    resultsEl.classList.remove('hidden');
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>

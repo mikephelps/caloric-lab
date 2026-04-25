@@ -1,0 +1,324 @@
+---
+// MacroCalculator.astro — zero React, vanilla JS
+---
+
+<div class="space-y-5">
+
+  <!-- Form card -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/>
+        <path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/>
+        <path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>
+      </svg>
+      <span class="text-sm font-bold text-white">Macro Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-6">
+
+      <!-- Calorie Target -->
+      <div>
+        <label for="mc-calories" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Daily Calorie Target</label>
+        <div class="flex gap-3 items-start">
+          <div class="relative w-44">
+            <input
+              id="mc-calories"
+              type="number"
+              inputmode="numeric"
+              min="800"
+              max="10000"
+              placeholder="2,200"
+              class="w-full px-4 py-3 pr-14 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none">cal</span>
+          </div>
+          <p class="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
+            Don't know your calories?
+            <a href="/tdee-calculator/" class="text-green-600 hover:underline font-medium">Calculate your TDEE →</a>
+          </p>
+        </div>
+        <p id="mc-calories-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a daily calorie target between 800 and 10,000.</p>
+      </div>
+
+      <!-- Goal -->
+      <div>
+        <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Goal</p>
+        <div class="grid grid-cols-3 gap-2.5" id="mc-goal-group">
+          <button type="button" data-goal="fat-loss" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Fat Loss</span>
+            <span class="text-xs font-medium text-green-700">Eat below maintenance</span>
+          </button>
+          <button type="button" data-goal="maintenance" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Maintenance</span>
+            <span class="text-xs font-medium text-gray-500">Sustain current weight</span>
+          </button>
+          <button type="button" data-goal="muscle-gain" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Muscle Gain</span>
+            <span class="text-xs font-medium text-gray-500">Eat above maintenance</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Diet Style -->
+      <div>
+        <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Diet Style</p>
+        <div class="grid grid-cols-2 gap-2.5" id="mc-diet-group">
+          <button type="button" data-diet="balanced" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Balanced</span>
+            <span class="text-xs font-medium text-green-700">Standard ratios</span>
+          </button>
+          <button type="button" data-diet="high-protein" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">High Protein</span>
+            <span class="text-xs font-medium text-gray-500">Prioritize protein</span>
+          </button>
+          <button type="button" data-diet="low-carb" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Low Carb</span>
+            <span class="text-xs font-medium text-gray-500">Reduced carbs</span>
+          </button>
+          <button type="button" data-diet="keto" class="flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Keto</span>
+            <span class="text-xs font-medium text-gray-500">&lt; 5–10% carbs</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ratio preview -->
+      <div id="mc-ratio-preview" class="rounded-xl bg-[#F9FFFF] border border-green-100 px-4 py-3 flex items-center gap-3">
+        <span class="text-xs text-gray-500 font-medium">Macro split:</span>
+        <span class="text-xs font-bold text-green-600">Protein 35%</span>
+        <span class="text-xs font-bold text-sky-500">Carbs 35%</span>
+        <span class="text-xs font-bold text-orange-500">Fat 30%</span>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="mc-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate My Macros
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="mc-results" class="hidden"></div>
+
+  <span class="animate-fade-up hidden" aria-hidden="true"></span>
+</div>
+
+<script>
+  const CARD_CENTER_ACTIVE   = 'flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const CARD_CENTER_INACTIVE = 'flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300';
+  const INPUT_OK    = 'w-full px-4 py-3 pr-14 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 pr-14 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const ARROW_SVG = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
+
+  const PRESETS = {
+    'fat-loss':    { 'balanced': {p:35,c:35,f:30}, 'high-protein': {p:40,c:30,f:30}, 'low-carb': {p:35,c:20,f:45}, 'keto': {p:25,c:5,f:70} },
+    'maintenance': { 'balanced': {p:25,c:45,f:30}, 'high-protein': {p:35,c:35,f:30}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:5,f:70} },
+    'muscle-gain': { 'balanced': {p:25,c:50,f:25}, 'high-protein': {p:30,c:45,f:25}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:10,f:65} },
+  };
+
+  const EXPLANATIONS = {
+    'fat-loss': {
+      'balanced':     'Higher protein protects lean muscle during your deficit. Moderate carbs sustain training performance, and fat is kept reasonable to support hormones and satiety.',
+      'high-protein': 'Maximum protein intake drives muscle preservation and keeps hunger in check on fewer calories. Reduced carbs tighten the deficit without sacrificing training fuel entirely.',
+      'low-carb':     'Lowering carbs reduces insulin and shifts your body toward fat oxidation. Higher fat and protein keep hunger in check and help sustain energy through the deficit.',
+      'keto':         'Near-zero carbs push your body into ketosis, using fat as its primary fuel. Protein is kept moderate to prevent gluconeogenesis; dietary fat provides sustained energy.',
+    },
+    'maintenance': {
+      'balanced':     'A well-rounded split that supports general health, training recovery, and metabolic stability. No macros are restricted, ideal for long-term sustainability.',
+      'high-protein': 'More protein than a standard maintenance split supports body recomposition, slowly building muscle while keeping body weight stable.',
+      'low-carb':     'A moderate carb reduction with higher fat intake. Suitable for those who feel and perform better with fewer carbohydrates while staying at maintenance calories.',
+      'keto':         'Ketogenic maintenance keeps carbs minimal to sustain fat-adapted metabolism. High dietary fat meets your daily energy needs without creating a calorie deficit.',
+    },
+    'muscle-gain': {
+      'balanced':     'Carbohydrates are the primary driver of training intensity and glycogen replenishment. Ample carbs fuel your sessions and support muscle protein synthesis post-workout.',
+      'high-protein': 'Elevated protein accelerates muscle repair and growth. Carbs remain high to power hard training sessions, a combination that maximises hypertrophy.',
+      'low-carb':     'A less common muscle gain approach where dietary fat provides energy in place of carbs. Protein stays elevated for muscle growth; training intensity may be slightly reduced.',
+      'keto':         'A ketogenic bulk is uncommon but achievable. Dietary fat supplies the caloric surplus; protein drives muscle growth. Expect a longer metabolic adaptation period.',
+    },
+  };
+
+  const GOAL_LABELS = { 'fat-loss': 'Fat Loss', 'maintenance': 'Maintenance', 'muscle-gain': 'Muscle Gain' };
+  const DIET_LABELS  = { 'balanced': 'Balanced', 'high-protein': 'High Protein', 'low-carb': 'Low Carb', 'keto': 'Keto' };
+  const MEALS = [
+    { name: 'Breakfast', pct: 0.25 },
+    { name: 'Lunch',     pct: 0.30 },
+    { name: 'Dinner',    pct: 0.35 },
+    { name: 'Snack',     pct: 0.10 },
+  ];
+
+  let goal = 'fat-loss';
+  let diet = 'balanced';
+
+  function updateRatioPreview() {
+    const preset = PRESETS[goal][diet];
+    const preview = document.getElementById('mc-ratio-preview');
+    preview.innerHTML = `<span class="text-xs text-gray-500 font-medium">Macro split:</span>
+      <span class="text-xs font-bold text-green-600">Protein ${preset.p}%</span>
+      <span class="text-xs font-bold text-sky-500">Carbs ${preset.c}%</span>
+      <span class="text-xs font-bold text-orange-500">Fat ${preset.f}%</span>`;
+  }
+
+  function setCardCenterGroup(groupId, activeValue, dataAttr) {
+    document.querySelectorAll(`#${groupId} [${dataAttr}]`).forEach(btn => {
+      const active = btn.getAttribute(dataAttr) === activeValue;
+      btn.className = active ? CARD_CENTER_ACTIVE : CARD_CENTER_INACTIVE;
+      const spans = btn.querySelectorAll('span');
+      if (spans[0]) spans[0].className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'}`;
+      if (spans[1]) spans[1].className = `text-xs font-medium ${active ? 'text-green-700' : 'text-gray-500'}`;
+    });
+  }
+
+  document.querySelectorAll('#mc-goal-group [data-goal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goal = btn.dataset.goal;
+      setCardCenterGroup('mc-goal-group', goal, 'data-goal');
+      updateRatioPreview();
+    });
+  });
+
+  document.querySelectorAll('#mc-diet-group [data-diet]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      diet = btn.dataset.diet;
+      setCardCenterGroup('mc-diet-group', diet, 'data-diet');
+      updateRatioPreview();
+    });
+  });
+
+  document.getElementById('mc-submit').addEventListener('click', () => {
+    const calInput = document.getElementById('mc-calories');
+    const cal = parseInt(calInput.value);
+    if (!calInput.value || isNaN(cal) || cal < 800 || cal > 10000) {
+      calInput.className = INPUT_ERROR;
+      document.getElementById('mc-calories-err').classList.remove('hidden');
+      return;
+    }
+    calInput.className = INPUT_OK;
+    document.getElementById('mc-calories-err').classList.add('hidden');
+
+    const ratios   = PRESETS[goal][diet];
+    const proteinG = Math.round((cal * ratios.p) / 100 / 4);
+    const carbsG   = Math.round((cal * ratios.c) / 100 / 4);
+    const fatG     = Math.round((cal * ratios.f) / 100 / 9);
+
+    // Donut chart
+    const r = 56;
+    const circumference = 2 * Math.PI * r;
+    const GAP = 3;
+    const totalG = proteinG + carbsG + fatG;
+    const pPct = totalG > 0 ? (proteinG / totalG) * 100 : 33.3;
+    const cPct = totalG > 0 ? (carbsG   / totalG) * 100 : 33.3;
+    const fPct = totalG > 0 ? (fatG     / totalG) * 100 : 33.4;
+    const segs = [
+      { pct: pPct, color: '#16a34a' },
+      { pct: cPct, color: '#0ea5e9' },
+      { pct: fPct, color: '#f97316' },
+    ];
+    let cum = 0;
+    const arcs = segs.map(seg => {
+      const fullLen = (seg.pct / 100) * circumference;
+      const dashLen = Math.max(0, fullLen - GAP);
+      const arc = { color: seg.color, dashArray: `${dashLen} ${circumference - dashLen}`, dashOffset: -cum };
+      cum += fullLen;
+      return arc;
+    });
+    const arcSvgs = arcs.map(a => `<circle cx="80" cy="80" r="${r}" fill="none" stroke="${a.color}" stroke-width="22" stroke-dasharray="${a.dashArray}" stroke-dashoffset="${a.dashOffset}" stroke-linecap="butt"/>`).join('');
+
+    const donutSvg = `<svg width="160" height="160" viewBox="0 0 160 160" aria-hidden="true">
+      <circle cx="80" cy="80" r="${r}" fill="none" stroke="#f3f4f6" stroke-width="22"/>
+      <g transform="rotate(-90 80 80)">${arcSvgs}</g>
+      <text x="80" y="74" text-anchor="middle" dominant-baseline="central" font-size="19" font-weight="800" fill="#111827">${cal.toLocaleString()}</text>
+      <text x="80" y="90" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#9ca3af">cal / day</text>
+    </svg>`;
+
+    const macroRows = [
+      { label: 'Protein', grams: proteinG, pct: ratios.p, color: 'bg-green-500',  text: 'text-green-700',  bg: 'bg-green-50',  border: 'border-green-100' },
+      { label: 'Carbs',   grams: carbsG,   pct: ratios.c, color: 'bg-sky-500',    text: 'text-sky-700',    bg: 'bg-sky-50',    border: 'border-sky-100'   },
+      { label: 'Fat',     grams: fatG,     pct: ratios.f, color: 'bg-orange-500', text: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-100' },
+    ].map(m => `<div class="flex items-center gap-3 rounded-xl border ${m.border} ${m.bg} px-4 py-3">
+      <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full ${m.color}"></div>
+      <span class="text-sm font-semibold ${m.text} w-16">${m.label}</span>
+      <span class="text-xl font-extrabold text-gray-900 tabular-nums">${m.grams}g</span>
+      <span class="ml-auto text-xs font-semibold text-gray-500">${m.pct}%</span>
+    </div>`).join('');
+
+    const mealRows = MEALS.map(meal => {
+      const mCal  = Math.round(cal      * meal.pct);
+      const mProt = Math.round(proteinG * meal.pct);
+      const mCarb = Math.round(carbsG   * meal.pct);
+      const mFat  = Math.round(fatG     * meal.pct);
+      return `<tr class="hover:bg-gray-50/50 transition-colors">
+        <td class="px-5 py-3 font-semibold text-gray-700">${meal.name}</td>
+        <td class="px-4 py-3 text-right font-medium text-gray-500 tabular-nums">${mCal}</td>
+        <td class="px-4 py-3 text-right font-bold text-green-600 tabular-nums">${mProt}g</td>
+        <td class="px-4 py-3 text-right font-bold text-sky-500 tabular-nums">${mCarb}g</td>
+        <td class="px-5 py-3 text-right font-bold text-orange-500 tabular-nums">${mFat}g</td>
+      </tr>`;
+    }).join('');
+
+    const resultsEl = document.getElementById('mc-results');
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex-shrink-0">${donutSvg}</div>
+            <div class="flex-1 w-full space-y-3">${macroRows}</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <h3 class="text-sm font-bold text-gray-700">Per-Meal Breakdown</h3>
+            <p class="text-xs text-gray-500 mt-0.5">3 meals + 1 snack (25 / 30 / 35 / 10%)</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-100">
+                  <th class="text-left px-5 py-2.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Meal</th>
+                  <th class="text-right px-4 py-2.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Cal</th>
+                  <th class="text-right px-4 py-2.5 text-xs font-semibold text-green-600 uppercase tracking-wider">Protein</th>
+                  <th class="text-right px-4 py-2.5 text-xs font-semibold text-sky-500 uppercase tracking-wider">Carbs</th>
+                  <th class="text-right px-5 py-2.5 text-xs font-semibold text-orange-500 uppercase tracking-wider">Fat</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-50">${mealRows}</tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <h3 class="text-sm font-bold text-gray-900 mb-2">
+            Why this split?
+            <span class="ml-2 text-xs font-semibold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">${GOAL_LABELS[goal]} · ${DIET_LABELS[diet]}</span>
+          </h3>
+          <p class="text-sm text-gray-600 leading-relaxed">${EXPLANATIONS[goal][diet]}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="/tdee-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">TDEE Calculator ${ARROW_SVG}</a>
+          <a href="/protein-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">Protein Calculator ${ARROW_SVG}</a>
+          <a href="/calorie-deficit-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">Calorie Deficit ${ARROW_SVG}</a>
+        </div>
+
+      </div>`;
+    resultsEl.classList.remove('hidden');
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>
