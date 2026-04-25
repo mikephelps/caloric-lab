@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
-import ProteinCalculator from "../../components/ProteinCalculator";
+import ProteinCalculator from "../../components/ProteinCalculator.astro";
 
 const relatedCalcs = [
   { name: "Macro Calculator",      href: "/macro-calculator/",      desc: "Set all three macronutrients" },
@@ -33,7 +33,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <ProteinCalculator client:visible slot="calculator" />
+  <ProteinCalculator slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">

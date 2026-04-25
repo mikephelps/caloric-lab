@@ -1,0 +1,373 @@
+---
+// Pure Astro component — zero framework JS
+---
+
+<div class="space-y-5">
+
+  <!-- Form card -->
+  <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
+    <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
+      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <rect x="1" y="5.5" width="3.5" height="5" rx="1"/>
+        <rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/>
+        <rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>
+      </svg>
+      <span class="text-sm font-bold text-white">Protein Calculator</span>
+      <span class="text-sm text-green-400">· Enter Your Details</span>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-6">
+
+      <!-- Weight -->
+      <div>
+        <label for="pc-weight" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Body Weight</label>
+        <div class="flex gap-2">
+          <input
+            id="pc-weight"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            placeholder="185"
+            class="flex-1 px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+          />
+          <div class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5" id="pc-unit-toggle">
+            <button type="button" data-unit="lbs" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">lbs</button>
+            <button type="button" data-unit="kg"  class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700">kg</button>
+          </div>
+        </div>
+        <p id="pc-weight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid weight.</p>
+      </div>
+
+      <!-- Goal -->
+      <div>
+        <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Goal</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="pc-goal-group">
+          <button type="button" data-goal="fat-loss"    class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Fat Loss</span>
+            <span class="text-xs text-gray-500">Preserve muscle in a deficit</span>
+          </button>
+          <button type="button" data-goal="maintenance" class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Maintenance</span>
+            <span class="text-xs text-gray-500">Sustain current body composition</span>
+          </button>
+          <button type="button" data-goal="muscle-gain" class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Muscle Gain</span>
+            <span class="text-xs text-green-700">Support muscle growth</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Activity Level -->
+      <div>
+        <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Activity Level</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="pc-activity-group">
+          <button type="button" data-activity="sedentary"   class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Sedentary</span>
+            <span class="text-xs text-gray-500">Little or no exercise</span>
+          </button>
+          <button type="button" data-activity="moderate"    class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            <span class="text-sm font-bold text-green-700">Moderate</span>
+            <span class="text-xs text-green-700">Exercise 3–5 days/week</span>
+          </button>
+          <button type="button" data-activity="very-active" class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
+            <span class="text-sm font-bold text-gray-700">Very Active</span>
+            <span class="text-xs text-gray-500">Daily or intense training</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body Fat % (optional) -->
+      <div>
+        <label for="pc-bf" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">
+          Body Fat % <span class="normal-case font-normal text-gray-500">(optional)</span>
+        </label>
+        <div class="flex items-start gap-3">
+          <div class="relative w-32">
+            <input
+              id="pc-bf"
+              type="number"
+              inputmode="decimal"
+              min="5"
+              max="50"
+              placeholder="e.g. 18"
+              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            />
+            <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
+          </div>
+          <p class="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
+            Calculates protein based on lean body mass for greater precision.
+          </p>
+        </div>
+        <p id="pc-bf-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a value between 5 and 50.</p>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2 border-t border-gray-100">
+        <button
+          id="pc-submit"
+          type="button"
+          class="btn-calc w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-white text-sm font-bold rounded-xl shadow-md"
+        >
+          Calculate My Protein
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Results (injected by script) -->
+  <div id="pc-results" class="hidden"></div>
+
+</div>
+
+<!-- Ensure animate-fade-up is included in Tailwind output -->
+<span class="animate-fade-up hidden" aria-hidden="true"></span>
+
+<script>
+  const MULTIPLIERS: Record<string, Record<string, number>> = {
+    'fat-loss':    { 'sedentary': 0.8, 'moderate': 0.9, 'very-active': 1.0 },
+    'maintenance': { 'sedentary': 0.7, 'moderate': 0.8, 'very-active': 0.9 },
+    'muscle-gain': { 'sedentary': 0.8, 'moderate': 1.0, 'very-active': 1.2 },
+  };
+
+  const CONTEXT: Record<string, { label: string; range: string }> = {
+    'fat-loss':    { label: 'fat loss',    range: '0.8–1.0' },
+    'maintenance': { label: 'maintenance', range: '0.7–0.9' },
+    'muscle-gain': { label: 'muscle gain', range: '0.8–1.2' },
+  };
+
+  // Current selections — match the default active state in HTML above
+  let weightUnit = 'lbs';
+  let goal       = 'muscle-gain';
+  let activity   = 'moderate';
+
+  // ── Pill toggle (lbs / kg) ──────────────────────────────────────────────────
+  const PILL_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
+  const PILL_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
+
+  document.querySelectorAll<HTMLButtonElement>('#pc-unit-toggle [data-unit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newUnit = btn.dataset.unit!;
+      if (newUnit === weightUnit) return;
+
+      const wInput = document.getElementById('pc-weight') as HTMLInputElement;
+      const val = parseFloat(wInput.value);
+      if (!isNaN(val) && val > 0) {
+        wInput.value = newUnit === 'kg'
+          ? (val * 0.453592).toFixed(1)
+          : (val * 2.20462).toFixed(1);
+      }
+
+      weightUnit = newUnit;
+      wInput.placeholder = newUnit === 'lbs' ? '185' : '84';
+
+      document.querySelectorAll<HTMLButtonElement>('#pc-unit-toggle [data-unit]').forEach(b => {
+        b.className = b.dataset.unit === weightUnit ? PILL_ACTIVE : PILL_INACTIVE;
+      });
+    });
+  });
+
+  // ── Card selector helper ────────────────────────────────────────────────────
+  const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const CARD_INACTIVE = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300';
+
+  function setActiveCard(group: Element, activeValue: string) {
+    group.querySelectorAll<HTMLButtonElement>('button').forEach(btn => {
+      const val = btn.dataset.goal ?? btn.dataset.activity;
+      const active = val === activeValue;
+      btn.className = active ? CARD_ACTIVE : CARD_INACTIVE;
+      const spans = btn.querySelectorAll('span');
+      if (spans[0]) spans[0].className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'}`;
+      if (spans[1]) spans[1].className = `text-xs ${active ? 'text-green-700' : 'text-gray-500'}`;
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('#pc-goal-group button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goal = btn.dataset.goal!;
+      setActiveCard(document.getElementById('pc-goal-group')!, goal);
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('#pc-activity-group button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activity = btn.dataset.activity!;
+      setActiveCard(document.getElementById('pc-activity-group')!, activity);
+    });
+  });
+
+  // ── Validation helpers ──────────────────────────────────────────────────────
+  const INPUT_BASE  = 'w-full px-4 py-3 rounded-xl border text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_OK    = INPUT_BASE + ' border-gray-200 hover:border-gray-300';
+  const INPUT_ERROR = INPUT_BASE + ' border-red-300 bg-red-50/40';
+
+  function setFieldError(input: HTMLInputElement, errEl: HTMLElement, show: boolean) {
+    input.className = show ? INPUT_ERROR : INPUT_OK;
+    errEl.classList.toggle('hidden', !show);
+  }
+
+  // ── Calculate ───────────────────────────────────────────────────────────────
+  document.getElementById('pc-submit')!.addEventListener('click', () => {
+    const wInput  = document.getElementById('pc-weight') as HTMLInputElement;
+    const bfInput = document.getElementById('pc-bf')     as HTMLInputElement;
+    const wErr    = document.getElementById('pc-weight-err')!;
+    const bfErr   = document.getElementById('pc-bf-err')!;
+
+    // Reset
+    setFieldError(wInput,  wErr,  false);
+    setFieldError(bfInput, bfErr, false);
+    // restore bf input width class
+    bfInput.className = INPUT_OK.replace('w-full', 'w-full') + ' pr-8';
+
+    // Validate
+    let valid = true;
+    const wtN = parseFloat(wInput.value);
+    if (!wInput.value || isNaN(wtN) || wtN <= 0) {
+      setFieldError(wInput, wErr, true);
+      valid = false;
+    }
+
+    const bfVal = bfInput.value !== '' ? parseFloat(bfInput.value) : null;
+    if (bfInput.value !== '' && (bfVal === null || isNaN(bfVal) || bfVal < 5 || bfVal > 50)) {
+      const bfInputEl = bfInput;
+      bfInputEl.className = (INPUT_ERROR + ' pr-8').replace('w-full', 'w-full');
+      bfErr.classList.remove('hidden');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // Compute
+    const weightLbs = weightUnit === 'lbs' ? wtN : wtN * 2.20462;
+    const base      = MULTIPLIERS[goal][activity];
+
+    let dailyG: number;
+    let leanLbs: number | null = null;
+    let usedLeanMass = false;
+    let multiplierUsed = base;
+
+    if (bfVal !== null) {
+      leanLbs       = weightLbs * (1 - bfVal / 100);
+      multiplierUsed = parseFloat((base * 1.1).toFixed(2));
+      dailyG        = leanLbs * multiplierUsed;
+      usedLeanMass  = true;
+    } else {
+      dailyG = weightLbs * base;
+    }
+
+    dailyG               = Math.round(dailyG);
+    const perMealG       = Math.round(dailyG / 4);
+    const weightLbsRnd   = Math.round(weightLbs * 10) / 10;
+    const leanLbsRnd     = leanLbs !== null ? Math.round(leanLbs * 10) / 10 : null;
+    const ctx            = CONTEXT[goal];
+
+    const leanBadge = (usedLeanMass && leanLbsRnd !== null)
+      ? `<span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">Lean mass: ${leanLbsRnd} lbs</span>`
+      : '';
+
+    const issnSuffix = usedLeanMass
+      ? 'within this range when adjusted for lean mass.'
+      : 'within this range.';
+
+    let thirdCard: string;
+    if (usedLeanMass && leanLbsRnd !== null) {
+      const perLbTotal = parseFloat((dailyG / weightLbsRnd).toFixed(2));
+      thirdCard = `
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center col-span-2 sm:col-span-1">
+          <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
+            ${perLbTotal}<span class="text-sm font-semibold text-gray-500 ml-1">g/lb</span>
+          </p>
+          <p class="text-xs text-gray-500 mt-1.5 font-medium">Per lb total weight</p>
+        </div>`;
+    } else {
+      thirdCard = `
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center hidden sm:block">
+          <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
+            ${dailyG * 4}<span class="text-sm font-semibold text-gray-500 ml-1">cal</span>
+          </p>
+          <p class="text-xs text-gray-500 mt-1.5 font-medium">From protein daily</p>
+        </div>`;
+    }
+
+    const arrowSvg = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+      <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+    </svg>`;
+
+    const resultsEl = document.getElementById('pc-results')!;
+    resultsEl.innerHTML = `
+      <div class="animate-fade-up space-y-4">
+
+        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
+          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your daily protein target</p>
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${dailyG}</span>
+            <span class="text-xl font-semibold text-green-300">grams / day</span>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+              ${multiplierUsed}g per lb ${usedLeanMass ? 'lean mass' : 'bodyweight'}
+            </span>
+            ${leanBadge}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
+            <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
+              ${perMealG}<span class="text-sm font-semibold text-gray-500 ml-1">g</span>
+            </p>
+            <p class="text-xs text-gray-500 mt-1.5 font-medium">Per meal (4 meals)</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
+            <p class="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
+              ${multiplierUsed}<span class="text-sm font-semibold text-gray-500 ml-1">g/lb</span>
+            </p>
+            <p class="text-xs text-gray-500 mt-1.5 font-medium">${usedLeanMass ? 'Per lb lean mass' : 'Per lb bodyweight'}</p>
+          </div>
+          ${thirdCard}
+        </div>
+
+        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
+              <svg class="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6a.75.75 0 0 1 .75-.75zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Research context</p>
+              <p class="text-sm text-gray-600 leading-relaxed mt-1">
+                For your goal of <strong>${ctx.label}</strong>, research from the International Society
+                of Sports Nutrition recommends
+                <strong>${ctx.range}g of protein per pound of body weight</strong> per day.
+                Your target of <strong>${multiplierUsed}g/lb</strong> falls ${issnSuffix}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/macro-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+            Set all your macros ${arrowSvg}
+          </a>
+          <a href="/tdee-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">
+            Calculate your TDEE ${arrowSvg}
+          </a>
+        </div>
+
+      </div>`;
+
+    resultsEl.classList.remove('hidden');
+
+    // Scroll to results
+    setTimeout(() => {
+      const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }, 80);
+  });
+</script>
