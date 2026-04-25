@@ -20,7 +20,7 @@ const faqSchema = [
   },
   {
     question: "Can drinking more water help with weight loss?",
-    answer: "Drinking water before meals can reduce calorie intake by increasing feelings of fullness. Some research suggests drinking 500 ml of water can temporarily boost metabolism by 24–30% for up to 90 minutes. Replacing sugary drinks with water also reduces overall calorie consumption. However, water alone is not a weight-loss solution — it works best as part of a broader calorie-controlled approach.",
+    answer: "Drinking water before meals can reduce calorie intake by increasing feelings of fullness. Some research suggests drinking 500 ml of water can temporarily boost metabolism by 24–30% for up to 90 minutes. Replacing sugary drinks with water also reduces overall calorie consumption. However, water alone is not a weight-loss solution. It works best as part of a broader calorie-controlled approach.",
   },
   {
     question: "How much extra water do I need when exercising?",
@@ -39,7 +39,7 @@ const faqSchema = [
   {relatedCalcs}
   {faqSchema}
 >
-  <WaterIntakeCalculator client:load slot="calculator" />
+  <WaterIntakeCalculator client:visible slot="calculator" />
 
   <div slot="content">
     <div class="prose prose-gray max-w-none">
@@ -58,7 +58,7 @@ const faqSchema = [
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         {[
-          { label: "Base Hydration",    detail: "33 ml per kg of body weight — the core starting point." },
+          { label: "Base Hydration",    detail: "33 ml per kg of body weight, your core starting point." },
           { label: "Activity Factor",   detail: "Multiplier from 1.0 (sedentary) to 1.4 (extremely active) scales the base up as activity increases." },
           { label: "Climate Factor",    detail: "Hot and humid conditions increase fluid loss through sweat. Cold, dry air increases respiratory water loss." },
           { label: "Exercise Addition", detail: "350 ml added per 30 minutes of deliberate exercise on top of your activity level baseline." },
@@ -75,7 +75,7 @@ const faqSchema = [
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">Signs You Are Not Drinking Enough</h2>
       <p class="text-gray-600 leading-relaxed mb-4">
-        Most people are mildly dehydrated without realizing it. The body does not trigger a strong thirst signal until you are already about 1–2% dehydrated — and at that point, cognitive performance and physical output are already declining. Common signs of mild dehydration include:
+        Most people are mildly dehydrated without realizing it. The body does not trigger a strong thirst signal until you are already about 1–2% dehydrated. By that point, cognitive performance and physical output are already declining. Common signs of mild dehydration include:
       </p>
       <ul class="space-y-2 mb-4">
         {[
@@ -116,10 +116,10 @@ const faqSchema = [
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">Water Intake and Exercise Performance</h2>
       <p class="text-gray-600 leading-relaxed mb-4">
-        Hydration has an outsized effect on physical performance. Studies show that dehydration of just 2% of body weight measurably reduces strength output, aerobic capacity, and reaction time. At 4–5% dehydration, performance can decline by 20–30%. For a 180-pound person, 2% dehydration is only about 3.6 lbs of water weight — easily achieved during an hour of intense exercise in warm conditions.
+        Hydration has an outsized effect on physical performance. Studies show that dehydration of just 2% of body weight measurably reduces strength output, aerobic capacity, and reaction time. At 4–5% dehydration, performance can decline by 20–30%. For a 180-pound person, 2% dehydration is only about 3.6 lbs of water weight, easily achieved during an hour of intense exercise in warm conditions.
       </p>
       <p class="text-gray-600 leading-relaxed mb-4">
-        Hydration guidelines for exercise are often split into three phases: pre-exercise (drink 400–600 ml two hours before), during exercise (150–300 ml every 15–20 minutes), and post-exercise (replace 150% of fluid lost — weigh yourself before and after to estimate). For sessions under 60 minutes at moderate intensity, plain water is sufficient. For longer sessions or high sweat rates, electrolytes help retain the fluid you consume.
+        Hydration guidelines for exercise are often split into three phases: pre-exercise (drink 400–600 ml two hours before), during exercise (150–300 ml every 15–20 minutes), and post-exercise (replace 150% of fluid lost (weigh yourself before and after to estimate)). For sessions under 60 minutes at moderate intensity, plain water is sufficient. For longer sessions or high sweat rates, electrolytes help retain the fluid you consume.
       </p>
       <p class="text-gray-600 leading-relaxed mb-4">
         The exercise minutes field in this calculator adds a flat 350 ml per 30 minutes as a reasonable average for moderate exercise. Adjust upward if you train at high intensity, in hot conditions, or for sessions longer than 90 minutes.

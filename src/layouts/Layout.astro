@@ -67,9 +67,6 @@ const fullTitle = title.includes("CaloricLab") ? title : `${title} | CaloricLab`
       rel="stylesheet"
     />
 
-    <!-- Google AdSense -->
-    <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2245319169803316" crossorigin="anonymous"></script>
-
     <!-- Google Analytics -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-2JYE39MKM1"></script>
     <script is:inline>
@@ -88,5 +85,7 @@ const fullTitle = title.includes("CaloricLab") ? title : `${title} | CaloricLab`
       <slot />
     </main>
     <Footer />
+    <!-- Google AdSense (deferred to end of body — does not block initial render) -->
+    <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2245319169803316" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -182,7 +182,7 @@ export default function ProteinCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   const cardBtn = (active: boolean) =>
     [
@@ -204,7 +204,7 @@ export default function ProteinCalculator() {
             <rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>
           </svg>
           <span className="text-sm font-bold text-white">Protein Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -242,7 +242,7 @@ export default function ProteinCalculator() {
                   <span className={`text-sm font-bold ${goal === g.key ? "text-green-700" : "text-gray-700"}`}>
                     {g.label}
                   </span>
-                  <span className={`text-xs ${goal === g.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs ${goal === g.key ? "text-green-700" : "text-gray-500"}`}>
                     {g.desc}
                   </span>
                 </button>
@@ -259,7 +259,7 @@ export default function ProteinCalculator() {
                   <span className={`text-sm font-bold ${activity === a.key ? "text-green-700" : "text-gray-700"}`}>
                     {a.label}
                   </span>
-                  <span className={`text-xs ${activity === a.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs ${activity === a.key ? "text-green-700" : "text-gray-500"}`}>
                     {a.desc}
                   </span>
                 </button>
@@ -271,7 +271,7 @@ export default function ProteinCalculator() {
           <div>
             <Label htmlFor="pc-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">(optional)</span>
+              <span className="normal-case font-normal text-gray-500">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -288,7 +288,7 @@ export default function ProteinCalculator() {
                 />
                 <span className={unitSuffix}>%</span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Calculates protein based on lean body mass for greater precision.
               </p>
             </div>
@@ -345,16 +345,16 @@ export default function ProteinCalculator() {
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.perMealG}
-                <span className="text-sm font-semibold text-gray-400 ml-1">g</span>
+                <span className="text-sm font-semibold text-gray-500 ml-1">g</span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">Per meal (4 meals)</p>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Per meal (4 meals)</p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.multiplierUsed}
-                <span className="text-sm font-semibold text-gray-400 ml-1">g/lb</span>
+                <span className="text-sm font-semibold text-gray-500 ml-1">g/lb</span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">
                 {results.usedLeanMass ? "Per lb lean mass" : "Per lb bodyweight"}
               </p>
             </div>
@@ -362,17 +362,17 @@ export default function ProteinCalculator() {
               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center col-span-2 sm:col-span-1">
                 <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                   {parseFloat((results.dailyG / results.weightLbs).toFixed(2))}
-                  <span className="text-sm font-semibold text-gray-400 ml-1">g/lb</span>
+                  <span className="text-sm font-semibold text-gray-500 ml-1">g/lb</span>
                 </p>
-                <p className="text-xs text-gray-400 mt-1.5 font-medium">Per lb total weight</p>
+                <p className="text-xs text-gray-500 mt-1.5 font-medium">Per lb total weight</p>
               </div>
             ) : (
               <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center hidden sm:block">
                 <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                   {results.dailyG * 4}
-                  <span className="text-sm font-semibold text-gray-400 ml-1">cal</span>
+                  <span className="text-sm font-semibold text-gray-500 ml-1">cal</span>
                 </p>
-                <p className="text-xs text-gray-400 mt-1.5 font-medium">From protein daily</p>
+                <p className="text-xs text-gray-500 mt-1.5 font-medium">From protein daily</p>
               </div>
             )}
           </div>

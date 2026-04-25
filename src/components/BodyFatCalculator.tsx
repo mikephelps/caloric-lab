@@ -219,7 +219,7 @@ export default function BodyFatCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   const cardBtn = (active: boolean) =>
     [
@@ -245,7 +245,7 @@ export default function BodyFatCalculator() {
             <rect x="11.5" y="5.5" width="1.5" height="1.5" rx="0.5"/>
           </svg>
           <span className="text-sm font-bold text-white">Body Fat Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Measurements</span>
+          <span className="text-sm text-green-400">· Enter Your Measurements</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -264,7 +264,7 @@ export default function BodyFatCalculator() {
                   <span className={`text-sm font-bold ${sex === s ? "text-green-700" : "text-gray-700"}`}>
                     {s === "male" ? "Male" : "Female"}
                   </span>
-                  <span className={`text-xs ${sex === s ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs ${sex === s ? "text-green-700" : "text-gray-500"}`}>
                     {s === "male" ? "Waist + neck" : "Waist + hip + neck"}
                   </span>
                 </button>
@@ -385,7 +385,7 @@ export default function BodyFatCalculator() {
           )}
 
           {/* Helper note */}
-          <p className="text-xs text-gray-400 leading-relaxed -mt-2">
+          <p className="text-xs text-gray-500 leading-relaxed -mt-2">
             Measure waist at the widest point, neck below the Adam's apple.
           </p>
 
@@ -443,20 +443,20 @@ export default function BodyFatCalculator() {
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.weightUnit === "lbs" ? results.fatMassLbs : results.fatMassKg}
-                <span className="text-sm font-semibold text-gray-400 ml-1">
+                <span className="text-sm font-semibold text-gray-500 ml-1">
                   {results.weightUnit === "lbs" ? "lbs" : "kg"}
                 </span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">Fat mass</p>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Fat mass</p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.weightUnit === "lbs" ? results.leanMassLbs : results.leanMassKg}
-                <span className="text-sm font-semibold text-gray-400 ml-1">
+                <span className="text-sm font-semibold text-gray-500 ml-1">
                   {results.weightUnit === "lbs" ? "lbs" : "kg"}
                 </span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">Lean mass</p>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Lean mass</p>
             </div>
           </div>
 
@@ -487,7 +487,7 @@ export default function BodyFatCalculator() {
                           "flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all",
                           isActive
                             ? `${cat.bgColor} ${cat.textColor} ring-1 ring-current/20`
-                            : "text-gray-400",
+                            : "text-gray-500",
                         ].join(" ")}
                       >
                         <span>{cat.label}</span>

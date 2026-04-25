@@ -203,7 +203,7 @@ export default function TDEECalculator() {
         : "border-gray-200 hover:border-gray-300",
     ].join(" ");
 
-  const unitSuffix = "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+  const unitSuffix = "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   // ── render ──
 
@@ -217,7 +217,7 @@ export default function TDEECalculator() {
             <path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>
           </svg>
           <span className="text-sm font-bold text-white">TDEE Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -354,7 +354,7 @@ export default function TDEECalculator() {
                   </option>
                 ))}
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
                 <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                   <path fillRule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z" clipRule="evenodd"/>
                 </svg>
@@ -366,7 +366,7 @@ export default function TDEECalculator() {
           <div>
             <Label htmlFor="tdee-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">(optional)</span>
+              <span className="normal-case font-normal text-gray-500">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -383,7 +383,7 @@ export default function TDEECalculator() {
                 />
                 <span className={unitSuffix}>%</span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Unlocks the more accurate Katch-McArdle formula.
               </p>
             </div>
@@ -437,7 +437,7 @@ export default function TDEECalculator() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">TDEE at All Activity Levels</h3>
-              <p className="text-xs text-gray-400 mt-0.5">Based on your BMR of {results.bmr.toLocaleString()} cal/day</p>
+              <p className="text-xs text-gray-500 mt-0.5">Based on your BMR of {results.bmr.toLocaleString()} cal/day</p>
             </div>
             <div className="divide-y divide-gray-50">
               {ACTIVITY_LEVELS.map((level) => {
@@ -462,7 +462,7 @@ export default function TDEECalculator() {
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-400 mt-0.5">{level.desc}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{level.desc}</p>
                     </div>
 
                     <span className={`flex-shrink-0 text-base font-bold tabular-nums ${isSelected ? "text-green-700" : "text-gray-500"}`}>

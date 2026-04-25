@@ -264,7 +264,7 @@ export default function CalorieDeficitCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   // ── render ──
 
@@ -280,7 +280,7 @@ export default function CalorieDeficitCalculator() {
             <rect x="11.5" y="8" width="3" height="5" rx="1"/>
           </svg>
           <span className="text-sm font-bold text-white">Calorie Deficit Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -329,7 +329,7 @@ export default function CalorieDeficitCalculator() {
                     </option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z" clipRule="evenodd"/>
                   </svg>
@@ -459,10 +459,10 @@ export default function CalorieDeficitCalculator() {
                   <span className={`text-sm font-bold ${rate === r.key ? "text-green-700" : "text-gray-700"}`}>
                     {r.label}
                   </span>
-                  <span className={`text-xs font-medium ${rate === r.key ? "text-green-600" : "text-gray-400"}`}>
+                  <span className={`text-xs font-medium ${rate === r.key ? "text-green-700" : "text-gray-500"}`}>
                     {r.detail}
                   </span>
-                  <span className={`text-xs ${rate === r.key ? "text-green-500" : "text-gray-300"}`}>
+                  <span className={`text-xs ${rate === r.key ? "text-green-700" : "text-gray-500"}`}>
                     −{r.deficit} cal/day
                   </span>
                 </button>
@@ -474,7 +474,7 @@ export default function CalorieDeficitCalculator() {
           <div>
             <Label htmlFor="cd-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">(optional)</span>
+              <span className="normal-case font-normal text-gray-500">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -491,7 +491,7 @@ export default function CalorieDeficitCalculator() {
                 />
                 <span className={unitSuffix}>%</span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Unlocks the more accurate Katch-McArdle formula.
               </p>
             </div>
@@ -571,9 +571,9 @@ export default function CalorieDeficitCalculator() {
               <div key={s.label} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
                 <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                   {s.value}
-                  {s.unit && <span className="text-sm font-semibold text-gray-400 ml-1">{s.unit}</span>}
+                  {s.unit && <span className="text-sm font-semibold text-gray-500 ml-1">{s.unit}</span>}
                 </p>
-                <p className="text-xs text-gray-400 mt-1.5 font-medium">{s.label}</p>
+                <p className="text-xs text-gray-500 mt-1.5 font-medium">{s.label}</p>
               </div>
             ))}
           </div>

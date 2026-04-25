@@ -196,7 +196,7 @@ export default function BMRCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   // ── render ──
 
@@ -210,7 +210,7 @@ export default function BMRCalculator() {
             <path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>
           </svg>
           <span className="text-sm font-bold text-white">BMR Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-5">
@@ -334,7 +334,7 @@ export default function BMRCalculator() {
           <div>
             <Label htmlFor="bmr-bf">
               Body Fat %{" "}
-              <span className="normal-case font-normal text-gray-400">(optional, unlocks Katch-McArdle)</span>
+              <span className="normal-case font-normal text-gray-500">(optional, unlocks Katch-McArdle)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -351,7 +351,7 @@ export default function BMRCalculator() {
                 />
                 <span className={unitSuffix}>%</span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Enables a third formula that accounts for your lean muscle mass directly.
               </p>
             </div>
@@ -405,7 +405,7 @@ export default function BMRCalculator() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Formula Comparison</h3>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-gray-500 mt-0.5">
                 Different equations, same person. See how they compare.
               </p>
             </div>
@@ -421,7 +421,7 @@ export default function BMRCalculator() {
                       Recommended
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-xs text-gray-500 mt-0.5">
                     Most accurate for the general population
                   </p>
                 </div>
@@ -435,7 +435,7 @@ export default function BMRCalculator() {
                 <div className="flex-shrink-0 w-1 h-12 rounded-full bg-gray-200" />
                 <div className="flex-1 min-w-0">
                   <span className="text-sm font-semibold text-gray-700">Harris-Benedict</span>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-xs text-gray-500 mt-0.5">
                     Revised 1984 equation. Tends to run slightly higher.
                   </p>
                 </div>
@@ -443,7 +443,7 @@ export default function BMRCalculator() {
                   <span className="text-lg font-bold tabular-nums text-gray-600">
                     {results.harris.toLocaleString()}
                   </span>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-xs text-gray-500 mt-0.5">
                     {results.harris > results.mifflin ? "+" : ""}
                     {(results.harris - results.mifflin).toLocaleString()} vs Mifflin
                   </p>
@@ -461,7 +461,7 @@ export default function BMRCalculator() {
                         Body fat adjusted
                       </span>
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       Based on lean mass. Most accurate when body fat is known.
                     </p>
                   </div>
@@ -469,7 +469,7 @@ export default function BMRCalculator() {
                     <span className="text-lg font-bold tabular-nums text-gray-600">
                       {results.katch.toLocaleString()}
                     </span>
-                    <p className="text-xs text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       {results.katch > results.mifflin ? "+" : ""}
                       {(results.katch - results.mifflin).toLocaleString()} vs Mifflin
                     </p>
@@ -480,11 +480,11 @@ export default function BMRCalculator() {
                   <div className="flex-shrink-0 w-1 h-12 rounded-full bg-gray-100" />
                   <div className="flex-1">
                     <span className="text-sm font-semibold text-gray-500">Katch-McArdle</span>
-                    <p className="text-xs text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       Enter body fat % above to unlock this formula
                     </p>
                   </div>
-                  <span className="text-sm font-medium text-gray-300">N/A</span>
+                  <span className="text-sm font-medium text-gray-500">N/A</span>
                 </div>
               )}
             </div>
@@ -515,7 +515,7 @@ export default function BMRCalculator() {
               <p className="text-sm font-bold text-gray-900 group-hover:text-green-700 transition-colors">
                 Calculate your full daily calorie needs (TDEE)
               </p>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-gray-500 mt-0.5">
                 Add your activity level to BMR to get your total daily energy expenditure
               </p>
             </div>

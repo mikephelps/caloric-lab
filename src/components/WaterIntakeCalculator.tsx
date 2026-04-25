@@ -205,7 +205,7 @@ export default function WaterIntakeCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   const cardBtn = (active: boolean) =>
     [
@@ -225,7 +225,7 @@ export default function WaterIntakeCalculator() {
             <path d="M8 2C6 5 3 7.5 3 10a5 5 0 0 0 10 0C13 7.5 10 5 8 2z"/>
           </svg>
           <span className="text-sm font-bold text-white">Water Intake Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -278,7 +278,7 @@ export default function WaterIntakeCalculator() {
                   <span className={`text-sm font-bold ${climate === c.key ? "text-green-700" : "text-gray-700"}`}>
                     {c.label}
                   </span>
-                  <span className={`text-xs ${climate === c.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs ${climate === c.key ? "text-green-700" : "text-gray-500"}`}>
                     {c.desc}
                   </span>
                 </button>
@@ -290,7 +290,7 @@ export default function WaterIntakeCalculator() {
           <div>
             <Label htmlFor="wic-exercise">
               Daily Exercise{" "}
-              <span className="normal-case font-normal text-gray-400">(optional)</span>
+              <span className="normal-case font-normal text-gray-500">(optional)</span>
             </Label>
             <div className="flex items-start gap-3">
               <div className="relative w-32">
@@ -307,7 +307,7 @@ export default function WaterIntakeCalculator() {
                 />
                 <span className={unitSuffix}>min</span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Adds 350 ml per 30 minutes of exercise to account for sweat loss.
               </p>
             </div>
@@ -320,7 +320,7 @@ export default function WaterIntakeCalculator() {
           <div>
             <p className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">
               Special Conditions{" "}
-              <span className="normal-case font-normal text-gray-400">(optional)</span>
+              <span className="normal-case font-normal text-gray-500">(optional)</span>
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               {SPECIALS.map((s) => (
@@ -328,7 +328,7 @@ export default function WaterIntakeCalculator() {
                   <span className={`text-sm font-bold ${special === s.key ? "text-green-700" : "text-gray-700"}`}>
                     {s.label}
                   </span>
-                  <span className={`text-xs ${special === s.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs ${special === s.key ? "text-green-700" : "text-gray-500"}`}>
                     {s.note}
                   </span>
                 </button>
@@ -384,16 +384,16 @@ export default function WaterIntakeCalculator() {
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.totalOz}
-                <span className="text-sm font-semibold text-gray-400 ml-1">fl oz</span>
+                <span className="text-sm font-semibold text-gray-500 ml-1">fl oz</span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">Total per day</p>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Total per day</p>
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 text-center">
               <p className="text-2xl font-extrabold text-gray-900 tabular-nums leading-none">
                 {results.ozPerHour}
-                <span className="text-sm font-semibold text-gray-400 ml-1">fl oz</span>
+                <span className="text-sm font-semibold text-gray-500 ml-1">fl oz</span>
               </p>
-              <p className="text-xs text-gray-400 mt-1.5 font-medium">Per waking hour</p>
+              <p className="text-xs text-gray-500 mt-1.5 font-medium">Per waking hour</p>
             </div>
           </div>
 

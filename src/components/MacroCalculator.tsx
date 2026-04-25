@@ -196,7 +196,7 @@ export default function MacroCalculator() {
             <path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>
           </svg>
           <span className="text-sm font-bold text-white">Macro Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -227,11 +227,11 @@ export default function MacroCalculator() {
                     error ? "border-red-300 bg-red-50/40" : "border-gray-200 hover:border-gray-300",
                   ].join(" ")}
                 />
-                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none">
+                <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none">
                   cal
                 </span>
               </div>
-              <p className="flex-1 text-xs text-gray-400 leading-relaxed pt-3.5">
+              <p className="flex-1 text-xs text-gray-500 leading-relaxed pt-3.5">
                 Don't know your calories?{" "}
                 <a href="/tdee-calculator/" className="text-green-600 hover:underline font-medium">
                   Calculate your TDEE →
@@ -250,7 +250,7 @@ export default function MacroCalculator() {
                   <span className={`text-sm font-bold ${goal === g.key ? "text-green-700" : "text-gray-700"}`}>
                     {g.label}
                   </span>
-                  <span className={`text-xs font-medium ${goal === g.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs font-medium ${goal === g.key ? "text-green-700" : "text-gray-500"}`}>
                     {g.desc}
                   </span>
                 </button>
@@ -267,7 +267,7 @@ export default function MacroCalculator() {
                   <span className={`text-sm font-bold ${diet === d.key ? "text-green-700" : "text-gray-700"}`}>
                     {d.label}
                   </span>
-                  <span className={`text-xs font-medium ${diet === d.key ? "text-green-500" : "text-gray-400"}`}>
+                  <span className={`text-xs font-medium ${diet === d.key ? "text-green-700" : "text-gray-500"}`}>
                     {d.desc}
                   </span>
                 </button>
@@ -277,7 +277,7 @@ export default function MacroCalculator() {
 
           {/* Ratio preview */}
           <div className="rounded-xl bg-[#F9FFFF] border border-green-100 px-4 py-3 flex items-center gap-3">
-            <span className="text-xs text-gray-400 font-medium">Macro split:</span>
+            <span className="text-xs text-gray-500 font-medium">Macro split:</span>
             {(["p", "c", "f"] as const).map((key, i) => {
               const preset = PRESETS[goal][diet];
               const val = key === "p" ? preset.p : key === "c" ? preset.c : preset.f;
@@ -338,7 +338,7 @@ export default function MacroCalculator() {
                     <div className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${m.color}`} />
                     <span className={`text-sm font-semibold ${m.text} w-16`}>{m.label}</span>
                     <span className="text-xl font-extrabold text-gray-900 tabular-nums">{m.grams}g</span>
-                    <span className="ml-auto text-xs font-semibold text-gray-400">{m.pct}%</span>
+                    <span className="ml-auto text-xs font-semibold text-gray-500">{m.pct}%</span>
                   </div>
                 ))}
               </div>
@@ -349,14 +349,14 @@ export default function MacroCalculator() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Per-Meal Breakdown</h3>
-              <p className="text-xs text-gray-400 mt-0.5">3 meals + 1 snack (25 / 30 / 35 / 10%)</p>
+              <p className="text-xs text-gray-500 mt-0.5">3 meals + 1 snack (25 / 30 / 35 / 10%)</p>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100">
-                    <th className="text-left px-5 py-2.5 text-xs font-semibold text-gray-400 uppercase tracking-wider">Meal</th>
-                    <th className="text-right px-4 py-2.5 text-xs font-semibold text-gray-400 uppercase tracking-wider">Cal</th>
+                    <th className="text-left px-5 py-2.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Meal</th>
+                    <th className="text-right px-4 py-2.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Cal</th>
                     <th className="text-right px-4 py-2.5 text-xs font-semibold text-green-600 uppercase tracking-wider">Protein</th>
                     <th className="text-right px-4 py-2.5 text-xs font-semibold text-sky-500 uppercase tracking-wider">Carbs</th>
                     <th className="text-right px-5 py-2.5 text-xs font-semibold text-orange-500 uppercase tracking-wider">Fat</th>

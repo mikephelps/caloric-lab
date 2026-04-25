@@ -179,7 +179,7 @@ export default function BMICalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   return (
     <div className="space-y-5">
@@ -192,7 +192,7 @@ export default function BMICalculator() {
             <path d="M4 14.5v-3a4 4 0 0 1 8 0v3z"/>
           </svg>
           <span className="text-sm font-bold text-white">BMI Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -359,7 +359,7 @@ export default function BMICalculator() {
                     <span className={`font-semibold ${isActive ? cat.textColor : "text-gray-500"}`}>
                       {cat.label}
                     </span>
-                    <span className={`tabular-nums font-medium ${isActive ? cat.textColor : "text-gray-400"}`}>
+                    <span className={`tabular-nums font-medium ${isActive ? cat.textColor : "text-gray-500"}`}>
                       {rangeLabel}
                     </span>
                   </div>

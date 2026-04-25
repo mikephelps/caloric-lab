@@ -202,7 +202,7 @@ export default function IdealWeightCalculator() {
     ].join(" ");
 
   const unitSuffix =
-    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400 pointer-events-none select-none";
+    "absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none";
 
   const cardBtn = (active: boolean) =>
     [
@@ -231,7 +231,7 @@ export default function IdealWeightCalculator() {
             <circle cx="8" cy="8" r="1.5"/>
           </svg>
           <span className="text-sm font-bold text-white">Ideal Weight Calculator</span>
-          <span className="text-sm text-gray-500">· Enter Your Details</span>
+          <span className="text-sm text-green-400">· Enter Your Details</span>
         </div>
 
         <div className="p-6 sm:p-8 space-y-6">
@@ -396,14 +396,14 @@ export default function IdealWeightCalculator() {
                 <p className="text-sm font-semibold text-gray-900">Healthy weight range for your height</p>
                 <p className="text-2xl font-extrabold text-gray-900 tabular-nums mt-1.5">
                   {results.bmiMinLbs}
-                  <span className="text-base font-semibold text-gray-400 mx-1">–</span>
+                  <span className="text-base font-semibold text-gray-500 mx-1">–</span>
                   {results.bmiMaxLbs}
                   <span className="text-base font-semibold text-gray-500 ml-1.5">lbs</span>
                 </p>
                 <p className="text-sm text-gray-500 mt-0.5">
                   {results.bmiMinKg} – {results.bmiMaxKg} kg
                 </p>
-                <p className="text-xs text-gray-400 mt-2">Based on BMI 18.5–24.9 (WHO Normal range)</p>
+                <p className="text-xs text-gray-500 mt-2">Based on BMI 18.5–24.9 (WHO Normal range)</p>
               </div>
             </div>
           </div>
@@ -440,7 +440,7 @@ export default function IdealWeightCalculator() {
                     <span className={`text-sm font-bold tabular-nums ${row.primary ? "text-green-800" : "text-gray-700"}`}>
                       {row.lbs} lbs
                     </span>
-                    <span className={`block text-xs tabular-nums ${row.primary ? "text-green-600" : "text-gray-400"}`}>
+                    <span className={`block text-xs tabular-nums ${row.primary ? "text-green-700" : "text-gray-500"}`}>
                       {row.kg} kg
                     </span>
                   </div>
