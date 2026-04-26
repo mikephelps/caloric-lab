@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import CalculatorSidebar from "../../components/CalculatorSidebar.astro";
+import CalculatorCallout from "../../components/CalculatorCallout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -33,24 +34,54 @@ const postUrl = `${siteUrl}/blog/${post.id.replace(/\.md$/, "")}/`;
 const wordCount = post.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
+const ABOUT_MAP: Record<string, string> = {
+  "tdee":           "Total Daily Energy Expenditure",
+  "calorie-deficit":"Calorie Deficit",
+  "macro":          "Macronutrients",
+  "protein":        "Dietary Protein",
+  "bmr":            "Basal Metabolic Rate",
+  "bmi":            "Body Mass Index",
+  "body-fat":       "Body Fat Percentage",
+  "ideal-weight":   "Ideal Body Weight",
+  "water-intake":   "Hydration",
+};
+
+const aboutEntities = (post.data.relatedCalculators ?? [])
+  .filter(k => ABOUT_MAP[k])
+  .map(k => ({ "@type": "Thing", "name": ABOUT_MAP[k] }));
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": post.data.title,
   "description": post.data.description,
-  "author": { "@type": "Person", "name": post.data.author },
+  ...(post.data.heroImage ? { "image": `${siteUrl}${post.data.heroImage}` } : {}),
+  "author": {
+    "@type": "Person",
+    "name": post.data.author,
+    "url": `${siteUrl}/about`,
+  },
   "datePublished": post.data.pubDate.toISOString(),
-  "dateModified": post.data.pubDate.toISOString(),
+  "dateModified": (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   "url": postUrl,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl,
+  },
   "publisher": {
     "@type": "Organization",
     "name": "CaloricLab",
-    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/logo.svg`,
+    },
   },
+  ...(aboutEntities.length > 0 ? { "about": aboutEntities } : {}),
 };
 
 const sidebarCalculators = post.data.relatedCalculators ?? ["tdee", "macro", "calorie-deficit"];
 const tldr = post.data.tldr;
+const callout = post.data.callout;
 ---
 
 <Layout
@@ -146,6 +177,17 @@ const tldr = post.data.tldr;
 
       <!-- Article content: pushed left on desktop via order -->
       <div class="lg:order-first min-w-0">
+        <!-- Callout rendered hidden; JS injects it after 2nd <p> in article body -->
+        {callout && (
+          <div id="callout-tpl" hidden aria-hidden="true">
+            <CalculatorCallout
+              label={callout.label}
+              text={callout.text}
+              calculatorName={callout.calculatorName}
+              calculatorLink={callout.calculatorLink}
+            />
+          </div>
+        )}
         <div class="article-body prose prose-gray prose-lg max-w-none
           prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-gray-900
           prose-p:text-gray-600 prose-p:leading-relaxed
@@ -213,6 +255,21 @@ const tldr = post.data.tldr;
   </div>
 </Layout>
 
+<script>
+  const tpl = document.getElementById("callout-tpl");
+  if (tpl) {
+    const body = document.querySelector(".article-body");
+    const paragraphs = body ? Array.from(body.querySelectorAll(":scope > p")) : [];
+    const target = paragraphs[1] ?? paragraphs[0] ?? null;
+    const calloutEl = tpl.firstElementChild as HTMLElement | null;
+    if (calloutEl && target) {
+      calloutEl.removeAttribute("hidden");
+      target.after(calloutEl);
+    }
+    tpl.remove();
+  }
+</script>
+
 <style is:global>
   /* Article headings */
   .article-body h2 {
@@ -252,6 +309,15 @@ const tldr = post.data.tldr;
   }
   .article-body a:hover {
     color: #0891b2;
+  }
+
+  /* Callout links — override article link color so they stay white */
+  .article-body .not-prose a {
+    color: white;
+    text-underline-offset: 2px;
+  }
+  .article-body .not-prose a:hover {
+    color: #bfdbfe;
   }
 
   /* Horizontal rules — subtle */

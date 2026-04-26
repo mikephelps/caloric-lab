@@ -11,6 +11,13 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     tldr: z.array(z.string()).optional(),
     relatedCalculators: z.array(z.string()).optional(),
+    updatedDate: z.coerce.date().optional(),
+    callout: z.object({
+      label: z.string(),
+      text: z.string(),
+      calculatorName: z.string(),
+      calculatorLink: z.string(),
+    }).optional(),
   }),
 });
 

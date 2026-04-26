@@ -52,6 +52,46 @@
             "type": "string"
           }
         },
+        "updatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "callout": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "calculatorName": {
+              "type": "string"
+            },
+            "calculatorLink": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "text",
+            "calculatorName",
+            "calculatorLink"
+          ],
+          "additionalProperties": false
+        },
         "$schema": {
           "type": "string"
         }

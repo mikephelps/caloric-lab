@@ -16,14 +16,17 @@ relatedCalculators:
   - macro
   - protein
   - tdee
+callout:
+  label: "Get your macro split in 10 seconds."
+  text: "Enter your calories and goal into our {{calculator}} and it handles all the math — protein, carbs, and fat in grams."
+  calculatorName: Macro Calculator
+  calculatorLink: /macro-calculator/
 ---
 Tracking calories gets you partway there. Tracking macros gets you all the way. Two people can eat exactly 2,000 calories a day and end up with completely different bodies over six months: different energy levels, different body fat percentages, different amounts of muscle, because what those 2,000 calories are made of matters enormously. Macros, specifically **protein, fat, and carbohydrates**, are the levers that determine how your body uses the food you eat. The good news is that tracking them is a learnable skill, and after a few weeks, it starts to feel like second nature rather than a second job.
 
 ## Why does macro tracking beat calorie counting?
 
 A calorie is a unit of energy, but not all calories do the same things inside your body. **Protein** is the primary building block for muscle tissue. Without enough of it, you'll lose muscle in a deficit and struggle to build it in a surplus. **Fat** is essential for hormone production, joint health, and absorbing fat-soluble vitamins. **Carbohydrates** are your body's preferred fuel source for high-intensity exercise and brain function.
-
-> **Get your personal macro split in 10 seconds — [no account needed.](/macro-calculator/)**
 
 Consider two people both eating 2,000 calories. Person A gets 80g of protein, 80g of fat, and 210g of carbs, a pretty typical American intake. Person B gets 160g of protein, 60g of fat, and 130g of carbs. Same calories. Wildly different outcomes. Person B will have better muscle retention in a deficit, better satiety throughout the day (protein is the most filling macronutrient), and a slightly higher calorie burn from digestion alone due to **protein's thermic effect**. Calorie counting tells you how much fuel you're putting in. Macro tracking tells you what kind of fuel it is.
 

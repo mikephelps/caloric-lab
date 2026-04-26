@@ -16,14 +16,17 @@ relatedCalculators:
   - calorie-deficit
   - macro
   - protein
+callout:
+  label: "Ready to set your targets?"
+  text: "Use our {{calculator}} to find the precise deficit or surplus for your goal pace — no guesswork required."
+  calculatorName: Calorie Deficit Calculator
+  calculatorLink: /calorie-deficit-calculator/
 ---
 Most people want the same two things: less fat and more muscle. The frustrating truth is that your body can't do both at maximum capacity at the same time. Fat loss requires a calorie deficit. Muscle building requires a calorie surplus. These are opposing conditions. What you can do is alternate between phases: periods of focused fat loss (a **cut**) and periods of focused muscle building (a **bulk**). Over time, your body composition shifts in the direction you want. The key is knowing exactly what numbers to use for each phase and why.
 
 ## What is cutting and how big should your deficit be?
 
 A **cut** is a phase where you eat below your **Total Daily Energy Expenditure (TDEE)** with the goal of losing body fat while preserving as much muscle as possible. Notice that second part: preserving muscle is the whole game during a cut. Anyone can lose weight by eating almost nothing. The skill is losing fat without burning through the muscle you've worked hard to build.
-
-> **Ready to set your targets?** [Calculate your calorie deficit or surplus now — free, instant results.](/calorie-deficit-calculator/)
 
 The recommended deficit for most people is **300–500 calories below TDEE**, which represents roughly 10–15% below maintenance. This range produces a **target loss rate of 0.5–1% of your bodyweight per week**. For a 180-lb person, that's 0.9–1.8 lbs per week. At a 500-calorie daily deficit, they'd hit the high end of that range, about 1 lb per week, which is a realistic and sustainable pace.
 

@@ -16,13 +16,16 @@ relatedCalculators:
   - tdee
   - calorie-deficit
   - macro
+callout:
+  label: "Want to skip the math?"
+  text: "Use our {{calculator}} to get your exact calorie maintenance target in under 60 seconds."
+  calculatorName: TDEE Calculator
+  calculatorLink: /tdee-calculator/
 ---
 
 If you've ever tracked your calories carefully and still didn't see the results you expected, there's a good chance the problem wasn't your discipline. It was your starting number.
 
 **TDEE (Total Daily Energy Expenditure)** is the total number of calories your body burns in a 24-hour period. It's the foundation of any intelligent nutrition plan. Whether you want to lose fat, build muscle, or simply maintain your weight, TDEE is the number everything else is built around.
-
-> **Want to skip the math?** [Calculate your TDEE in 10 seconds — no signup required.](/tdee-calculator/)
 
 ## What makes up your TDEE?
 

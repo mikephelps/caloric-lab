@@ -1,0 +1,29 @@
+---
+interface Props {
+  label: string;
+  text: string; // contains {{calculator}} placeholder
+  calculatorName: string;
+  calculatorLink: string;
+}
+
+const { label, text, calculatorName, calculatorLink } = Astro.props;
+const [before, after] = text.split("{{calculator}}");
+---
+
+<aside class="not-prose flex rounded-xl overflow-hidden shadow-md my-8" aria-label="Calculator tip">
+  <!-- Left accent bar — lighter shade -->
+  <div class="w-1 shrink-0" style="background-color: #3BA8C0;" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="flex-1 px-5 py-3 sm:px-6" style="background-color: #0D7490;">
+    <p class="text-sm text-white leading-relaxed">
+      <strong class="font-bold">{label}</strong>{" "}
+      {before}<a
+        href={calculatorLink}
+        class="font-semibold underline underline-offset-2 text-white hover:opacity-80 transition-opacity"
+        style="text-decoration-color: rgba(255,255,255,0.5);"
+      >{calculatorName}</a>{after ?? ""}
+    </p>
+    <p class="mt-1 text-xs font-medium" style="color: rgba(255,255,255,0.65); margin-bottom: 0;">No account required.</p>
+  </div>
+</aside>

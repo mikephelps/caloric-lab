@@ -20,6 +20,19 @@ tags:
   - TDEE
   - Women's Health
   - Weight Loss
+tldr:
+  - "Metabolism decreases roughly 1-2% per decade after 30 — real but often exaggerated"
+  - "Activity level and muscle mass matter more than age alone"
+  - "Recalculate your TDEE every 6-8 weeks and prioritize protein to preserve lean mass"
+relatedCalculators:
+  - tdee
+  - ideal-weight
+  - protein
+callout:
+  label: "Current metabolic estimate:"
+  text: "Most women over 40 overestimate their activity level. Use our {{calculator}} and select 'Lightly Active' for a conservative, science-backed baseline."
+  calculatorName: TDEE Calculator
+  calculatorLink: /tdee-calculator/
 ---
 If you're over 40 and feel like your metabolism betrayed you somewhere around your last birthday, you're not imagining things, but you're probably blaming the wrong culprit. Yes, things change. But the story of "menopause ruined my metabolism" is mostly a myth. What's actually happening is more specific, more manageable, and, good news, more reversible than most people think. Understanding the real mechanisms is the first step to recalculating your **Total Daily Energy Expenditure (TDEE)** in a way that actually works for your body right now.
 
