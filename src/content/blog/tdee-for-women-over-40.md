@@ -1,15 +1,9 @@
 ---
-heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
-relatedCalculators:
-  - tdee
-  - ideal-weight
-  - protein
 title: TDEE for Women Over 40 | Metabolism & Calorie Guide
-description: Does your metabolism really slow down after 40? Learn how to adjust
-  your TDEE and nutrition for hormonal changes. Calculate your new targets
-  instantly.
+description: Does your metabolism really slow down after 40? Learn how to adjust your TDEE and nutrition for hormonal changes. Calculate your new targets instantly.
 pubDate: 2026-04-10
 author: CaloricLab Team
+heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
 tags:
   - TDEE
   - Women's Health
