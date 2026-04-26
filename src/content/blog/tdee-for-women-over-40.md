@@ -1,21 +1,25 @@
 ---
-title: "TDEE for Women Over 40 | Metabolism & Calorie Guide"
-description: Does your metabolism really slow down after 40? Learn how to adjust your TDEE and nutrition for hormonal changes. Calculate your new targets instantly.
-pubDate: 2026-04-10
-author: CaloricLab Team
 heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
-tags:
-  - TDEE
-  - Women's Health
-  - Weight Loss
-tldr:
-  - "Metabolism decreases roughly 1-2% per decade after 30 — real but often exaggerated"
-  - "Activity level and muscle mass matter more than age alone"
-  - "Recalculate your TDEE every 6-8 weeks and prioritize protein to preserve lean mass"
 relatedCalculators:
   - tdee
   - ideal-weight
   - protein
+tldr:
+  - Metabolism decreases roughly 1-2% per decade after 30 — real but often
+    exaggerated
+  - Activity level and muscle mass matter more than age alone
+  - Recalculate your TDEE every 6-8 weeks and prioritize protein to preserve
+    lean mass
+title: TDEE for Women Over 40 | Metabolism & Calorie Guide
+description: Does your metabolism really slow down after 40? Learn how to adjust
+  your TDEE and nutrition for hormonal changes. Calculate your new targets
+  instantly.
+pubDate: 2026-04-10
+author: CaloricLab Team
+tags:
+  - TDEE
+  - Women's Health
+  - Weight Loss
 ---
 If you're over 40 and feel like your metabolism betrayed you somewhere around your last birthday, you're not imagining things, but you're probably blaming the wrong culprit. Yes, things change. But the story of "menopause ruined my metabolism" is mostly a myth. What's actually happening is more specific, more manageable, and, good news, more reversible than most people think. Understanding the real mechanisms is the first step to recalculating your **Total Daily Energy Expenditure (TDEE)** in a way that actually works for your body right now.
 
@@ -23,11 +27,11 @@ If you're over 40 and feel like your metabolism betrayed you somewhere around yo
 
 The biggest metabolic villain isn't your hormones. It's **muscle loss**. Starting in your 30s and accelerating after 40, most people lose **3–8% of their muscle mass per decade** through a process called **sarcopenia**. Muscle is metabolically expensive tissue, meaning it burns calories just to exist. Less muscle means a lower resting metabolic rate, period. A woman who weighed 145 lbs at 30 and weighs 145 lbs at 45 may have lost 10 lbs of muscle and gained 10 lbs of fat over that span, and her metabolism looks completely different even though the scale reads the same.
 
-> **Find your current calorie baseline — [calculate your TDEE now](tdee-calculator/) (free, no signup).**
+> **Current metabolic estimate:** Most women over 40 overestimate their activity level. Use our [TDEE Calculator](/tdee-calculator/) and select "Lightly Active" for a conservative, science-backed baseline. No account required.
 
 **Estrogen decline** does play a role, but it's more nuanced than "your metabolism tanks." What estrogen changes primarily affect is **fat distribution**: you may notice more fat accumulating around your midsection rather than hips and thighs. This is frustrating, but it's not a dramatic metabolic slowdown. Research suggests estrogen-related metabolic changes account for only about 50–100 extra calories per day of difference, which is real but manageable.
 
-The third factor is **NEAT (Non-Exercise Activity Thermogenesis)**. This is all the movement that isn't formal exercise: walking to your car, fidgeting, household tasks, gesturing when you talk. Studies show NEAT naturally decreases with age, and it can account for a few hundred calories per day of difference without you noticing. Your **BMR (Basal Metabolic Rate)** does drop roughly **1–2% per decade**, but NEAT reduction often has a bigger practical impact on your total daily burn than your resting rate.
+The third factor is **NEAT (Non-Exercise Activity Thermogenesis)**. This is all the movement that isn't formal exercise: walking to your car, fidgeting, household tasks, gesturing when you talk. Studies show NEAT naturally decreases with age, and it can account for a few hundred calories per day of difference without you noticing. Your **BMR (Basal Metabolic Rate)** does drop roughly **1–2% per decade**, but NEAT reduction often has a bigger practical impact on your total daily burn than your resting rate. A simple way to track NEAT is via step count; a drop from 8,000 to 5,000 steps a day can represent a 200–300 calorie decrease in your TDEE.
 
 ## How does this affect your TDEE calculation?
 
@@ -51,6 +55,8 @@ Here's something that surprises a lot of women: your **protein target should go 
 
 After 40, your body becomes less efficient at using dietary protein to build and maintain muscle, a phenomenon called **anabolic resistance**. To compensate, you need to eat more of it. Research consistently supports a target of **0.8–1 gram of protein per pound of bodyweight** for active women over 40. For a 150-lb woman, that's 120–150g of protein per day. That's more than most people eat.
 
+To overcome anabolic resistance, aim for at least 25–30g of protein per meal, specifically focusing on leucine-rich sources like whey, eggs, or lean meats to trigger muscle protein synthesis.
+
 Higher protein helps in three important ways. First, it helps **preserve muscle mass** during a calorie deficit, which protects your metabolism over time. Second, protein has the highest **thermic effect of food**: your body burns roughly 25–30% of protein calories just digesting it, compared to 5–10% for carbs and 0–3% for fat. Third, protein keeps you **fuller longer**, which makes it easier to eat less without feeling deprived. Don't cut protein to save calories. Cut carbs or fat instead.
 
 ## How do you actually start recalculating your TDEE?
@@ -64,7 +70,7 @@ Here's a concrete plan to get started without overthinking it:
 * **Track for 3–4 weeks** before adjusting anything. One week of data means nothing. Four weeks tells you something real.
 * **Don't compare your current results to your 20s**. Your body is different now. That's not a failure, it's just context.
 
-If you also want to understand where your current weight sits relative to a healthy range for your height, the [Ideal Weight Calculator](/ideal-weight-calculator/) can give you a science-based target to work toward. Once you have your TDEE and a goal weight, you have everything you need to set a realistic timeline.
+Weight loss isn't just about the number on the scale, but if you're looking for a healthy reference point for your frame size, our [Ideal Weight Calculator](/ideal-weight-calculator/) uses the Robinson and Miller formulas to provide a realistic range for your height.
 
 The goal isn't to fight your body. Work with where it actually is right now. For a deeper understanding of how macros fit into this picture, see [How to Track Macros for Beginners](/blog/how-to-track-macros-beginners/).
 
