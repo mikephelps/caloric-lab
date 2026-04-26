@@ -4,12 +4,6 @@ relatedCalculators:
   - tdee
   - ideal-weight
   - protein
-tldr:
-  - Metabolism decreases roughly 1-2% per decade after 30 — real but often
-    exaggerated
-  - Activity level and muscle mass matter more than age alone
-  - Recalculate your TDEE every 6-8 weeks and prioritize protein to preserve
-    lean mass
 title: TDEE for Women Over 40 | Metabolism & Calorie Guide
 description: Does your metabolism really slow down after 40? Learn how to adjust
   your TDEE and nutrition for hormonal changes. Calculate your new targets
