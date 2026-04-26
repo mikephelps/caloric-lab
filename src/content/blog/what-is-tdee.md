@@ -1,22 +1,30 @@
 ---
-title: What Is TDEE and Why It's the Most Important Number for Your Diet
-description: TDEE (Total Daily Energy Expenditure) tells you how many calories
-  your body burns each day. Here's what it means, how it's calculated, and why
-  getting it right changes everything.
+title: "What Is TDEE? How to Calculate Your Maintenance Calories"
+description: Learn what Total Daily Energy Expenditure is and why it's the foundation of any successful diet. Includes a free, instant TDEE calculator.
 pubDate: 2026-04-15
 author: CaloricLab Team
 heroImage: /images/nutritious-food-exercise-weights-tdee.jpg
 tags:
   - TDEE
+  - Weight Loss
   - Nutrition Basics
-  - Calorie Counting
+tldr:
+  - "TDEE is the total calories your body burns daily — it's the starting point for any nutrition plan"
+  - "It's calculated from your BMR multiplied by an activity factor using the Mifflin-St Jeor equation"
+  - "Eat below your TDEE to lose fat, above it to build muscle, or at it to maintain weight"
+relatedCalculators:
+  - tdee
+  - calorie-deficit
+  - macro
 ---
 
 If you've ever tracked your calories carefully and still didn't see the results you expected, there's a good chance the problem wasn't your discipline. It was your starting number.
 
 **TDEE (Total Daily Energy Expenditure)** is the total number of calories your body burns in a 24-hour period. It's the foundation of any intelligent nutrition plan. Whether you want to lose fat, build muscle, or simply maintain your weight, TDEE is the number everything else is built around.
 
-## The Four Components of TDEE
+> **Want to skip the math?** [Calculate your TDEE in 10 seconds — no signup required.](/tdee-calculator/)
+
+## What makes up your TDEE?
 
 Your total daily energy expenditure is the sum of four distinct components:
 
@@ -28,7 +36,7 @@ Your total daily energy expenditure is the sum of four distinct components:
 
 **EAT (Exercise Activity Thermogenesis)** is deliberate, structured exercise: gym sessions, runs, bike rides. For most people who aren't training daily, EAT is a smaller portion of total TDEE than they assume.
 
-## How TDEE Is Calculated
+## How do you calculate TDEE accurately?
 
 Most TDEE calculators, including CaloricLab, start with the **Mifflin-St Jeor equation** to estimate your BMR from your age, height, weight, and sex:
 
@@ -47,7 +55,7 @@ Your BMR is then multiplied by an **activity factor** to estimate your full TDEE
 
 If you know your body fat percentage, the **Katch-McArdle formula** (BMR = 370 + 21.6 × lean mass in kg) is more accurate because it works directly from lean mass rather than estimating from total weight.
 
-## TDEE Is Your Maintenance Calorie Level
+## What should you do with your TDEE number?
 
 Think of your TDEE as the calorie intake at which your weight stays stable over time. Once you know it, setting your calorie target becomes straightforward:
 
@@ -55,7 +63,7 @@ Think of your TDEE as the calorie intake at which your weight stays stable over 
 - **Eat at TDEE** → maintenance → weight stays the same
 - **Eat above TDEE** → calorie surplus → weight gain (ideally muscle, with proper training and protein intake)
 
-A moderate deficit of 300–500 calories below TDEE typically produces 0.5–1 lb of fat loss per week, sustainable enough to preserve muscle and maintain energy.
+A moderate deficit of 300–500 calories below TDEE typically produces 0.5–1 lb of fat loss per week, sustainable enough to preserve muscle and maintain energy. Use the [Calorie Deficit Calculator](/calorie-deficit-calculator/) to find the exact target that matches your goal pace.
 
 ## The Biggest Mistake People Make
 
@@ -77,6 +85,6 @@ The formula gets you close. Real-world data gets you exact.
 
 ## Start With TDEE
 
-Every other number in your nutrition plan, from calorie targets to macro splits to deficit size, flows from your TDEE. Get this number right first, and everything else becomes much easier to calibrate.
+Every other number in your nutrition plan, from calorie targets to macro splits to deficit size, flows from your TDEE. Get this number right first, and everything else becomes much easier to calibrate. If you're over 40 or have specific hormonal considerations, see our guide on [TDEE for Women Over 40](/blog/tdee-for-women-over-40/) for how to adjust your targets.
 
 [Calculate your TDEE now →](/tdee-calculator/)

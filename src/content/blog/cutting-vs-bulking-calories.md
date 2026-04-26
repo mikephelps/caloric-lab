@@ -1,27 +1,35 @@
 ---
-title: "Cutting vs. Bulking: How to Set Your Calories for Each Phase"
-description: Whether you want to lose fat or build muscle, your calorie target
-  changes dramatically between phases. Here's exactly how to set your numbers
-  for cutting and bulking.
+title: "Cutting vs. Bulking: How to Calculate Your Calories"
+description: Should you bulk or cut? Learn how to set the right calorie deficit or surplus for your goals. Use our free calorie and macro calculators to start.
 pubDate: 2026-04-05
 author: CaloricLab Team
 heroImage: /images/exercising-in-gym-bulking-cutting-calories-setting.jpg
 tags:
   - Calorie Deficit
+  - Body Composition
   - Muscle Building
-  - Fat Loss
+tldr:
+  - "Cutting means eating 15-25% below your TDEE to lose fat while preserving muscle"
+  - "Bulking means eating 10-20% above your TDEE with adequate protein for muscle growth"
+  - "Use a calorie deficit calculator to set your cut and a macro calculator to dial in your split"
+relatedCalculators:
+  - calorie-deficit
+  - macro
+  - protein
 ---
 Most people want the same two things: less fat and more muscle. The frustrating truth is that your body can't do both at maximum capacity at the same time. Fat loss requires a calorie deficit. Muscle building requires a calorie surplus. These are opposing conditions. What you can do is alternate between phases: periods of focused fat loss (a **cut**) and periods of focused muscle building (a **bulk**). Over time, your body composition shifts in the direction you want. The key is knowing exactly what numbers to use for each phase and why.
 
-## What Is a Cut?
+## What is cutting and how big should your deficit be?
 
 A **cut** is a phase where you eat below your **Total Daily Energy Expenditure (TDEE)** with the goal of losing body fat while preserving as much muscle as possible. Notice that second part: preserving muscle is the whole game during a cut. Anyone can lose weight by eating almost nothing. The skill is losing fat without burning through the muscle you've worked hard to build.
+
+> **Ready to set your targets?** [Calculate your calorie deficit or surplus now — free, instant results.](/calorie-deficit-calculator/)
 
 The recommended deficit for most people is **300–500 calories below TDEE**, which represents roughly 10–15% below maintenance. This range produces a **target loss rate of 0.5–1% of your bodyweight per week**. For a 180-lb person, that's 0.9–1.8 lbs per week. At a 500-calorie daily deficit, they'd hit the high end of that range, about 1 lb per week, which is a realistic and sustainable pace.
 
 Going below **1,200 calories per day for women** or **1,500 calories per day for men** is generally too aggressive. At those levels, you're not just losing fat. You're losing muscle, impairing recovery, disrupting hormones, and making yourself miserable enough to quit. A bigger deficit is not a smarter cut. Use the [Calorie Deficit Calculator](/calorie-deficit-calculator/) to find a deficit that matches your goals without going overboard.
 
-## What Is a Bulk?
+## What is bulking and how large should your surplus be?
 
 A **bulk** is a phase where you eat above your TDEE to provide the calorie surplus your body needs to build new muscle tissue. Building muscle is an energy-intensive process. Your body won't invest resources in it unless there's a consistent surplus available.
 
@@ -29,7 +37,7 @@ The smarter approach is a **lean bulk**: eating **200–300 calories above your 
 
 The **"dirty bulk"**, eating in a large surplus and eating whatever you want, is a trap. Studies consistently show that the extra fat gained during an aggressive bulk doesn't come with extra muscle. You just end up needing a longer, harder cut afterward to undo the damage. A 180-lb man eating 500 calories over maintenance instead of 250 doesn't build muscle twice as fast. He just gains fat twice as fast. Keep the surplus tight.
 
-## Macro Setup for Each Phase
+## How do you set your macros for cutting and bulking?
 
 Here's the key thing most people get wrong: your **protein target stays high in both phases**. Protein is the building block of muscle, and whether you're cutting or bulking, you want your body to have plenty of it available. Aim for **0.7–1g of protein per pound of bodyweight** regardless of which phase you're in.
 
@@ -46,7 +54,7 @@ Here's the key thing most people get wrong: your **protein target stays high in 
 * Increase **carbohydrates** to fill your extra calories. Carbs fuel training performance and recovery.
 * Fat can stay roughly the same as maintenance
 
-Use the [Macro Calculator](/macro-calculator/) to generate the exact gram targets for your weight and goal, and let it do the math for you.
+Use the [Macro Calculator](/macro-calculator/) to generate the exact gram targets for your weight and goal. If you're new to tracking, [How to Track Macros for Beginners](/blog/how-to-track-macros-beginners/) covers the practical setup step by step.
 
 ## When Should You Switch Phases?
 
@@ -66,7 +74,7 @@ These ranges aren't rigid rules, but they make strategic sense. Bulking from a l
 
 As for duration: **cuts typically run 8–16 weeks**, and **bulks run 12–24 weeks**. Mini phases of 6–8 weeks each work too if you prefer shorter cycles. What doesn't work is switching every 2–3 weeks. Your body needs time to respond to a consistent signal before you flip the script.
 
-## The Most Common Mistakes
+## What mistakes do people make when cutting or bulking?
 
 Even people who understand the concept of cutting and bulking make predictable errors. Here are the ones that matter most:
 

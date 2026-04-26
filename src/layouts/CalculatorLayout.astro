@@ -51,11 +51,27 @@ const faqJsonLd = faqSchema ? {
     "acceptedAnswer": { "@type": "Answer", "text": f.answer },
   })),
 } : null;
+
+const softwareAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": pageTitle,
+  "description": description,
+  "url": canonical,
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+};
 ---
 
 <Layout {title} {description} {canonicalUrl}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(softwareAppJsonLd)} />
     {faqJsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
     )}

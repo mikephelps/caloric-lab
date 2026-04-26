@@ -1,0 +1,103 @@
+---
+interface Props {
+  calculators?: string[];
+}
+
+const { calculators = ["tdee", "macro", "calorie-deficit"] } = Astro.props;
+
+const CALC_DATA: Record<string, { name: string; href: string; desc: string; icon: string }> = {
+  tdee: {
+    name: "TDEE Calculator",
+    href: "/tdee-calculator/",
+    desc: "Find your total daily calorie burn",
+    icon: `<path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>`,
+  },
+  macro: {
+    name: "Macro Calculator",
+    href: "/macro-calculator/",
+    desc: "Set protein, carb & fat targets",
+    icon: `<path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/><path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/><path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>`,
+  },
+  "calorie-deficit": {
+    name: "Calorie Deficit Calculator",
+    href: "/calorie-deficit-calculator/",
+    desc: "Calculate calories for fat loss",
+    icon: `<rect x="1.5" y="3" width="3" height="10" rx="1"/><rect x="6.5" y="5.5" width="3" height="7.5" rx="1"/><rect x="11.5" y="8" width="3" height="5" rx="1"/>`,
+  },
+  bmr: {
+    name: "BMR Calculator",
+    href: "/bmr-calculator/",
+    desc: "Calculate your resting metabolic rate",
+    icon: `<path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>`,
+  },
+  protein: {
+    name: "Protein Calculator",
+    href: "/protein-calculator/",
+    desc: "Dial in your daily protein target",
+    icon: `<rect x="1" y="5.5" width="3.5" height="5" rx="1"/><rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/><rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>`,
+  },
+  bmi: {
+    name: "BMI Calculator",
+    href: "/bmi-calculator/",
+    desc: "Check your body mass index",
+    icon: `<circle cx="8" cy="4" r="2.5"/><path d="M4 14.5v-3a4 4 0 0 1 8 0v3z"/>`,
+  },
+  "body-fat": {
+    name: "Body Fat Calculator",
+    href: "/body-fat-calculator/",
+    desc: "Estimate your body fat percentage",
+    icon: `<rect x="1" y="7" width="14" height="2" rx="1"/><rect x="2.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="5.5" y="5.5" width="1.5" height="1.5" rx="0.5"/><rect x="8.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="11.5" y="5.5" width="1.5" height="1.5" rx="0.5"/>`,
+  },
+  "ideal-weight": {
+    name: "Ideal Weight Calculator",
+    href: "/ideal-weight-calculator/",
+    desc: "Find your healthy weight range",
+    icon: `<circle cx="8" cy="8" r="7" opacity="0.2"/><circle cx="8" cy="8" r="4" opacity="0.5"/><circle cx="8" cy="8" r="1.5"/>`,
+  },
+  water: {
+    name: "Water Intake Calculator",
+    href: "/water-intake-calculator/",
+    desc: "Personalized daily hydration target",
+    icon: `<path d="M8 2C6 5 3 7.5 3 10a5 5 0 0 0 10 0C13 7.5 10 5 8 2z"/>`,
+  },
+};
+
+const items = calculators.map(key => CALC_DATA[key]).filter(Boolean);
+---
+
+<div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-4 lg:p-5">
+  <h3 class="text-sm font-semibold text-gray-900 mb-3 lg:mb-4">Related Calculators</h3>
+
+  <!-- Mobile: horizontal 3-column grid (compact, no desc) -->
+  <!-- Desktop: vertical list (full card with desc) -->
+  <div class="grid grid-cols-3 gap-2 lg:hidden">
+    {items.map(calc => (
+      <a
+        href={calc.href}
+        class="group flex flex-col items-center gap-1.5 p-2.5 rounded-xl hover:bg-white hover:shadow-sm transition-all text-center"
+      >
+        <div class="w-8 h-8 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center transition-colors flex-shrink-0">
+          <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calc.icon} />
+        </div>
+        <p class="text-xs font-semibold text-gray-800 group-hover:text-green-700 transition-colors leading-tight">{calc.name}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="hidden lg:block space-y-2">
+    {items.map(calc => (
+      <a
+        href={calc.href}
+        class="group flex items-start gap-3 p-3 rounded-xl hover:bg-white hover:shadow-sm transition-all"
+      >
+        <div class="mt-0.5 flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center transition-colors">
+          <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calc.icon} />
+        </div>
+        <div>
+          <div class="text-sm font-medium text-gray-800 group-hover:text-green-700 transition-colors">{calc.name}</div>
+          <div class="text-xs text-gray-500 mt-0.5 leading-relaxed">{calc.desc}</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>

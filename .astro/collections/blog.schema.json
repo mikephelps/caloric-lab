@@ -40,6 +40,18 @@
           },
           "default": []
         },
+        "tldr": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relatedCalculators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "$schema": {
           "type": "string"
         }
