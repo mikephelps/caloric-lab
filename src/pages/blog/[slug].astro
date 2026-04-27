@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { marked } from "marked";
 import Layout from "../../layouts/Layout.astro";
 import CalculatorSidebar from "../../components/CalculatorSidebar.astro";
 import CalculatorCallout from "../../components/CalculatorCallout.astro";
@@ -55,7 +56,13 @@ const articleSchema = {
   "@type": "Article",
   "headline": post.data.title,
   "description": post.data.description,
-  ...(post.data.heroImage ? { "image": `${siteUrl}${post.data.heroImage}` } : {}),
+  ...(post.data.heroImage ? {
+    "image": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}${post.data.heroImage}`,
+      "caption": post.data.title,
+    },
+  } : {}),
   "author": {
     "@type": "Person",
     "name": post.data.author,
@@ -79,13 +86,25 @@ const articleSchema = {
   ...(aboutEntities.length > 0 ? { "about": aboutEntities } : {}),
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",         "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Blog",         "item": `${siteUrl}/blog/` },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": postUrl },
+  ],
+};
+
 const sidebarCalculators = post.data.relatedCalculators ?? ["tdee", "macro", "calorie-deficit"];
 const tldr = post.data.tldr;
 const callout = post.data.callout;
+const DEFAULT_TRUST_BODY = "Our guides are based on peer-reviewed nutrition science, including the Mifflin-St Jeor equation, Katch-McArdle formula, and guidelines from the International Society of Sports Nutrition. Every calculator on CaloricLab uses transparent, published formulas — no black boxes, no proprietary algorithms.";
+const trustBodyHtml = marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY);
 ---
 
 <Layout
-  title={`${post.data.title} | CaloricLab`}
+  title={post.data.metaTitle ?? post.data.title}
   description={post.data.description}
   canonicalUrl={postUrl}
   ogType="article"
@@ -93,6 +112,7 @@ const callout = post.data.callout;
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
 
   <!-- Article header — narrow, centered -->
@@ -202,7 +222,7 @@ const callout = post.data.callout;
         <!-- Why Trust CaloricLab -->
         <div class="mt-10 p-5 bg-gray-50 rounded-2xl border border-gray-100">
           <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Why Trust CaloricLab</p>
-          <p class="text-sm text-gray-600 leading-relaxed">Our guides are based on peer-reviewed nutrition science, including the Mifflin-St Jeor equation, Katch-McArdle formula, and guidelines from the International Society of Sports Nutrition. Every calculator on CaloricLab uses transparent, published formulas — no black boxes, no proprietary algorithms.</p>
+          <div class="trust-body text-sm text-gray-600 leading-relaxed" set:html={trustBodyHtml} />
         </div>
 
         <!-- Prev / Next navigation -->
@@ -386,6 +406,22 @@ const callout = post.data.callout;
   }
   .article-body li strong {
     color: #111827;
+  }
+
+  /* Why Trust body — marked outputs <p> tags */
+  .trust-body p {
+    margin-bottom: 0.75rem;
+  }
+  .trust-body p:last-child {
+    margin-bottom: 0;
+  }
+  .trust-body a {
+    color: #15803d;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .trust-body a:hover {
+    color: #166534;
   }
 
   /* Responsive images */

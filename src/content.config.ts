@@ -4,6 +4,7 @@ const blog = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    metaTitle: z.string().optional(),
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().default("Mike"),
@@ -18,6 +19,7 @@ const blog = defineCollection({
       calculatorName: z.string(),
       calculatorLink: z.string(),
     }).optional(),
+    trustBody: z.string().optional(),
   }),
 });
 

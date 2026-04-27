@@ -1,12 +1,55 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import GlassHero from "../../components/GlassHero.astro";
+
+const siteUrl = "https://caloriclab.com";
+const pageUrl = `${siteUrl}/about/`;
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": `${pageUrl}#webpage`,
+      "url": pageUrl,
+      "name": "About CaloricLab: Science-Backed Nutrition Calculators",
+      "description": "Learn about CaloricLab, free, science-backed nutrition calculators built to help you understand your body and reach your health goals.",
+      "author": { "@id": `${pageUrl}#mike` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${pageUrl}#mike`,
+      "name": "Mike Phelps",
+      "jobTitle": "Senior UX Designer & Nutrition Coach in Training",
+      "url": pageUrl,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cary",
+        "addressRegion": "NC",
+      },
+      "knowsAbout": [
+        "User Experience Design",
+        "Nutrition Science",
+        "Metabolic Health",
+        "Data Privacy",
+      ],
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Precision Nutrition",
+        "description": "PN1 Certification Candidate",
+      },
+    },
+  ],
+};
 ---
 
 <Layout
   title="About CaloricLab: Science-Backed Nutrition Calculators"
   description="Learn about CaloricLab, free, science-backed nutrition calculators built to help you understand your body and reach your health goals."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+  </Fragment>
   <!-- Page header — liquid glass -->
   <GlassHero
     title="About CaloricLab"
@@ -17,8 +60,13 @@ import GlassHero from "../../components/GlassHero.astro";
 
     <!-- Lead section -->
     <div>
+      <h2 class="text-xl font-bold text-gray-900 mb-3">Mission</h2>
       <p class="text-xl text-gray-700 leading-relaxed font-medium">
-        We built CaloricLab because nutrition science should be accessible, not gatekept. Our calculators help you find your calorie targets, macro splits, and body composition using peer-reviewed formulas. We show the math behind every result so you know exactly where your numbers come from. There are no accounts, paywalls, or email sign-ups required.
+        I’m Mike, a Senior UX Designer and the founder of CaloricLab. I built this platform because I believe nutrition science should be accessible, not gatekept. As a designer currently working toward my Precision Nutrition (PN1) certification, I wanted to bridge the gap between complex peer-reviewed formulas and the everyday tools we use to hit our goals.
+      </p>
+      <br>
+      <p class="text-xl text-gray-700 leading-relaxed font-medium">
+        Most fitness apps want your email address, your location, and a monthly subscription before they’ll even show you your BMR. I’m building a faster, privacy-first alternative. No accounts, no paywalls, just science-backed tools that get out of your way so you can get to work.
       </p>
     </div>
 
@@ -51,42 +99,42 @@ import GlassHero from "../../components/GlassHero.astro";
         {[
           {
             title: "Mifflin-St Jeor",
-            desc: "The most validated BMR equation for the general population. Used by default in all our calculators.",
+            desc: "The gold-standard BMR formula for the general population. Used by CaloricLab to provide the most accurate daily calorie baseline.",
             href: "https://pubmed.ncbi.nlm.nih.gov/2305711/",
           },
           {
             title: "Katch-McArdle",
-            desc: "More accurate when body fat % is known. Factors in lean mass instead of total body weight.",
+            desc: "Optimized for those who know their body fat percentage. This formula calculates BMR based on lean muscle mass for higher precision.",
             href: "https://en.wikipedia.org/wiki/Basal_metabolic_rate#Katch%E2%80%93McArdle_formula",
           },
           {
             title: "ISSN Protein Guidelines",
-            desc: "Evidence-based targets from the International Society of Sports Nutrition for muscle building and fat loss.",
+            desc: "Science-backed protein intake targets for muscle preservation and fat loss, based on the latest sports nutrition research.",
             href: "https://www.tandfonline.com/doi/full/10.1186/s12970-017-0177-8",
           },
           {
             title: "ACSM Activity Multipliers",
-            desc: "Established activity level factors used to convert BMR into your real-world daily calorie needs.",
+            desc: "The industry-standard activity levels used to calculate your Total Daily Energy Expenditure (TDEE) from your resting metabolism.",
             href: "https://acsm.org/education-resources/trending-topics-resources/physical-activity-guidelines/",
           },
           {
             title: "National Academies: Water DRI",
-            desc: "Dietary Reference Intake values establishing evidence-based daily water intake recommendations by sex and activity.",
+            desc: "Evidence-based daily water intake targets. Calculates hydration needs based on biological sex, weight, and metabolic water loss.",
             href: "https://nap.nationalacademies.org/catalog/10925/dietary-reference-intakes-for-water-potassium-sodium-chloride-and-sulfate",
           },
           {
             title: "WHO BMI Classifications",
-            desc: "World Health Organization cut-off points for BMI used in clinical practice and epidemiological research worldwide.",
+            desc: "The official BMI categories used globally to assess weight-to-height ratios and health risk classifications.",
             href: "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight",
           },
           {
             title: "US Navy Body Fat Method",
-            desc: "Circumference-based body composition assessment developed for military fitness testing. Used in our Body Fat calculator.",
+            desc: "A validated body fat percentage formula using physical measurements. A reliable alternative to expensive DEXA scans.",
             href: "https://pubmed.ncbi.nlm.nih.gov/6497226/",
           },
           {
             title: "Devine & IBW Formulas",
-            desc: "Widely cited ideal body weight formulas used in clinical pharmacology and adapted for general health guidance.",
+            desc: "The standard medical formulas for calculating Ideal Body Weight. Used in clinical settings to determine healthy weight ranges.",
             href: "https://pubmed.ncbi.nlm.nih.gov/10981254/",
           },
         ].map(item => (
@@ -135,8 +183,8 @@ import GlassHero from "../../components/GlassHero.astro";
           <h3 class="font-bold text-gray-900">Privacy First</h3>
         </div>
         <p class="text-sm text-gray-600 leading-relaxed">
-          Every calculation happens entirely in your browser. Your age, weight, height, and other
-          health data never leaves your device. See our <a href="/privacy/" class="text-teal-700 font-medium hover:underline">Privacy Policy</a>.
+          Every calculation happens in your browser. Your age, weight, height, and other
+          health data never leaves your device. No 3rd party trackers or data selling. See our <a href="/privacy/" class="text-teal-700 font-medium hover:underline">Privacy Policy</a>.
         </p>
       </div>
     </div>

@@ -69,6 +69,12 @@ collections:
         required: false
         hint: "Comma-separated tags, e.g. TDEE, Nutrition Basics, Fat Loss"
 
+      - label: "Why Trust CaloricLab — Body Text"
+        name: trustBody
+        widget: markdown
+        required: false
+        hint: "Replaces the default 'Why Trust CaloricLab' description on this post. Supports links, bold, and italic. Keep to 1–2 sentences."
+
       - label: Body
         name: body
         widget: markdown

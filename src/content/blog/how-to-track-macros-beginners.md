@@ -1,6 +1,7 @@
 ---
-title: "How to Track Macros for Beginners | Simple Guide"
-description: Stop overcomplicating your diet. Learn the simplest way to track protein, carbs, and fats. Use our instant macro calculator to get your numbers.
+title: "The No-Stress Guide to Macro Tracking: Hit Your Goals Without the Math"
+metaTitle: "How to Track Macros for Beginners | Simplified Macro Guide"
+description: Stop overcomplicating your nutrition. Learn the simplest way to track protein, carbs, and fats to hit your goals. Use our instant macro tools.
 pubDate: 2026-04-01
 author: CaloricLab Team
 heroImage: /images/plated-food-table-tracking-macros.jpg
@@ -21,6 +22,7 @@ callout:
   text: "Enter your calories and goal into our {{calculator}} and it handles all the math — protein, carbs, and fat in grams."
   calculatorName: Macro Calculator
   calculatorLink: /macro-calculator/
+trustBody: "The macro targets on this page are based on ISSN protein recommendations and standard macronutrient energy values (protein: 4 kcal/g, carbohydrates: 4 kcal/g, fat: 9 kcal/g). Our [Macro Calculator](/macro-calculator/) and [Protein Calculator](/protein-calculator/) use these published values with the Mifflin-St Jeor equation — transparent math you can verify yourself."
 ---
 Tracking calories gets you partway there. Tracking macros gets you all the way. Two people can eat exactly 2,000 calories a day and end up with completely different bodies over six months: different energy levels, different body fat percentages, different amounts of muscle, because what those 2,000 calories are made of matters enormously. Macros, specifically **protein, fat, and carbohydrates**, are the levers that determine how your body uses the food you eat. The good news is that tracking them is a learnable skill, and after a few weeks, it starts to feel like second nature rather than a second job.
 

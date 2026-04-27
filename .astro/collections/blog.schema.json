@@ -7,6 +7,9 @@
         "title": {
           "type": "string"
         },
+        "metaTitle": {
+          "type": "string"
+        },
         "pubDate": {
           "anyOf": [
             {
@@ -91,6 +94,9 @@
             "calculatorLink"
           ],
           "additionalProperties": false
+        },
+        "trustBody": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"

@@ -1,6 +1,7 @@
 ---
-title: TDEE for Women Over 40 | Metabolism & Calorie Guide
-description: Does your metabolism really slow down after 40? Learn how to adjust your TDEE and nutrition for hormonal changes. Calculate your new targets instantly.
+title: Is Your Metabolism Actually Slowing Down? The Truth About TDEE After 40
+metaTitle: "TDEE for Women Over 40 | Metabolism & Calorie Guide"
+description: Learn how to adjust your TDEE and nutrition for hormonal changes. Discover why muscle mass matters more than age. Calculate your new targets instantly.
 pubDate: 2026-04-10
 author: CaloricLab Team
 heroImage: /images/woman-over-40-outside-yoga-metabolism-tdee.jpg
@@ -21,6 +22,7 @@ callout:
   text: "Most women over 40 overestimate their activity level. Use our {{calculator}} and select 'Lightly Active' for a conservative, science-backed baseline."
   calculatorName: TDEE Calculator
   calculatorLink: /tdee-calculator/
+trustBody: "The metabolic figures cited here — including the 1–2% BMR decline per decade and 3–8% muscle loss per decade — are drawn from peer-reviewed sports medicine and endocrinology literature. Our [TDEE Calculator](/tdee-calculator/) supports both the Mifflin-St Jeor and Katch-McArdle formulas, giving you a lean-mass-based estimate if you know your body fat percentage."
 ---
 If you're over 40 and feel like your metabolism betrayed you somewhere around your last birthday, you're not imagining things, but you're probably blaming the wrong culprit. Yes, things change. But the story of "menopause ruined my metabolism" is mostly a myth. What's actually happening is more specific, more manageable, and, good news, more reversible than most people think. Understanding the real mechanisms is the first step to recalculating your **Total Daily Energy Expenditure (TDEE)** in a way that actually works for your body right now.
 

@@ -1,6 +1,7 @@
 ---
-title: "Cutting vs. Bulking: How to Calculate Your Calories"
-description: Should you bulk or cut? Learn how to set the right calorie deficit or surplus for your goals. Use our free calorie and macro calculators to start.
+title: "Burn Fat or Build Muscle? How to Set Your Calories for Every Phase"
+metaTitle: "Cutting vs. Bulking: How to Calculate Your Calorie Targets"
+description: Should you bulk or cut? Learn how to set the perfect calorie deficit or surplus for your fitness goals. Includes instant calculation steps.
 pubDate: 2026-04-05
 author: CaloricLab Team
 heroImage: /images/exercising-in-gym-bulking-cutting-calories-setting.jpg
@@ -21,6 +22,7 @@ callout:
   text: "Use our {{calculator}} to find the precise deficit or surplus for your goal pace — no guesswork required."
   calculatorName: Calorie Deficit Calculator
   calculatorLink: /calorie-deficit-calculator/
+trustBody: "The deficit and surplus ranges on this page align with body composition guidelines from the International Society of Sports Nutrition (ISSN). Our [Calorie Deficit Calculator](/calorie-deficit-calculator/) and [Macro Calculator](/macro-calculator/) implement these ranges directly — the same math, no markup."
 ---
 Most people want the same two things: less fat and more muscle. The frustrating truth is that your body can't do both at maximum capacity at the same time. Fat loss requires a calorie deficit. Muscle building requires a calorie surplus. These are opposing conditions. What you can do is alternate between phases: periods of focused fat loss (a **cut**) and periods of focused muscle building (a **bulk**). Over time, your body composition shifts in the direction you want. The key is knowing exactly what numbers to use for each phase and why.
 

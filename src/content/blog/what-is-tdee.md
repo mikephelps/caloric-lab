@@ -1,6 +1,7 @@
 ---
-title: "What Is TDEE? How to Calculate Your Maintenance Calories"
-description: Learn what Total Daily Energy Expenditure is and why it's the foundation of any successful diet. Includes a free, instant TDEE calculator.
+title: "TDEE Explained: Why This Number Is the Foundation of Your Diet"
+metaTitle: "What Is TDEE? How to Calculate Your Maintenance Calories"
+description: Understand Total Daily Energy Expenditure (TDEE) and how it dictates your weight loss success. Learn to calculate your burn without the guesswork.
 pubDate: 2026-04-15
 author: CaloricLab Team
 heroImage: /images/nutritious-food-exercise-weights-tdee.jpg
@@ -21,6 +22,7 @@ callout:
   text: "Use our {{calculator}} to get your exact calorie maintenance target in under 60 seconds."
   calculatorName: TDEE Calculator
   calculatorLink: /tdee-calculator/
+trustBody: "The TDEE formula and activity multipliers on this page are based on the Mifflin-St Jeor equation, validated in peer-reviewed research as the most accurate BMR formula for the general population. Our [TDEE Calculator](/tdee-calculator/) applies the same equation directly — no proprietary adjustments, no estimations beyond what the published formula provides."
 ---
 
 If you've ever tracked your calories carefully and still didn't see the results you expected, there's a good chance the problem wasn't your discipline. It was your starting number.
