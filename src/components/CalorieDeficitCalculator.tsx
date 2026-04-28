@@ -588,9 +588,6 @@ export default function CalorieDeficitCalculator() {
                 { label: "Maintenance calories (TDEE)", value: `${results.tdee.toLocaleString()} cal/day` },
                 { label: "Daily deficit", value: `−${results.deficit.toLocaleString()} cal/day` },
                 { label: "Daily calorie target", value: `${results.targetCalories.toLocaleString()} cal/day`, highlight: true },
-                ...(results.goalDate
-                  ? [{ label: "Estimated goal date", value: results.goalDate, highlight: false }]
-                  : []),
               ].map((row) => (
                 <div
                   key={row.label}
@@ -604,6 +601,20 @@ export default function CalorieDeficitCalculator() {
                   </span>
                 </div>
               ))}
+              {results.goalDate && (
+                <div className="flex items-start justify-between px-5 py-3.5">
+                  <div>
+                    <span className="text-sm text-gray-500">Estimated goal date</span>
+                    <a
+                      href="/blog/tdee-for-women-over-40/"
+                      className="block mt-1 text-xs text-green-700 hover:text-green-800 hover:underline transition-colors leading-snug"
+                    >
+                      How to hit this date without crashing your metabolism → Read: TDEE After 40
+                    </a>
+                  </div>
+                  <span className="text-sm font-bold tabular-nums text-gray-800 ml-4 shrink-0">{results.goalDate}</span>
+                </div>
+              )}
             </div>
           </div>
 

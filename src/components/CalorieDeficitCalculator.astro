@@ -220,6 +220,7 @@
   let weightUnit = 'lbs';
   let heightUnit = 'imperial';
   let rateDeficit = 500;
+  let rateLabel   = 'Moderate';
 
   // sex toggle
   document.querySelectorAll('#cd-sex-toggle [data-sex]').forEach(btn => {
@@ -283,6 +284,7 @@
   document.querySelectorAll('#cd-rate-group [data-rate]').forEach(btn => {
     btn.addEventListener('click', () => {
       rateDeficit = parseInt(btn.dataset.deficit);
+      rateLabel   = btn.querySelector('span')?.textContent?.trim() ?? rateLabel;
       document.querySelectorAll('#cd-rate-group [data-rate]').forEach(b => {
         const active = b === btn;
         b.className = active ? RATE_ACTIVE : RATE_INACTIVE;
@@ -410,11 +412,17 @@
       { label: 'Maintenance calories (TDEE)', value: `${tdee.toLocaleString()} cal/day`, highlight: false },
       { label: 'Daily deficit',               value: `−${dailyDeficit.toLocaleString()} cal/day`, highlight: false },
       { label: 'Daily calorie target',         value: `${targetCalories.toLocaleString()} cal/day`, highlight: true  },
-      ...(goalDate ? [{ label: 'Estimated goal date', value: goalDate, highlight: false }] : []),
     ].map(row => `<div class="flex items-center justify-between px-5 py-3.5 ${row.highlight ? 'bg-green-50' : ''}">
       <span class="text-sm ${row.highlight ? 'font-semibold text-green-800' : 'text-gray-500'}">${row.label}</span>
       <span class="text-sm font-bold tabular-nums ${row.highlight ? 'text-green-700' : 'text-gray-800'}">${row.value}</span>
-    </div>`).join('');
+    </div>`).join('') + (goalDate ? `
+    <div class="flex items-start justify-between px-5 py-3.5">
+      <div>
+        <span class="text-sm text-gray-500">Estimated goal date</span>
+        <a href="/blog/tdee-for-women-over-40/" class="block mt-1 text-xs text-green-700 hover:text-green-800 hover:underline transition-colors leading-snug">How to hit this date without crashing your metabolism → Read: TDEE After 40</a>
+      </div>
+      <span class="text-sm font-bold tabular-nums text-gray-800 ml-4 shrink-0">${goalDate}</span>
+    </div>` : '');
 
     const resultsEl = document.getElementById('cd-results');
     resultsEl.innerHTML = `
@@ -462,6 +470,12 @@
         </div>
       </div>`;
     resultsEl.classList.remove('hidden');
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'calculator_complete', {
+        calculator_name: 'calorie_deficit',
+        deficit_type: rateLabel,
+      });
+    }
     setTimeout(() => {
       const top = resultsEl.getBoundingClientRect().top + window.scrollY - 88;
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
