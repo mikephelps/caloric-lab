@@ -6,7 +6,7 @@ const blog = defineCollection({
     title: z.string(),
     metaTitle: z.string().optional(),
     featured: z.boolean().optional(),
-    category: z.enum(["Weight Loss", "Body Composition", "Nutrition Basics", "Women's Health", "Hydration"]).optional(),
+    category: z.enum(["Weight Loss", "Body Composition", "Nutrition Basics", "Metabolism", "Hydration"]).optional(),
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().default("Mike"),

@@ -35,7 +35,7 @@ function formatDate(date: Date) {
     {posts.length > 0 && (
       <div class="flex flex-wrap items-center gap-2 mb-8">
         <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider mr-1">Browse:</span>
-        {["All", "Weight Loss", "Body Composition", "Nutrition Basics", "Women's Health", "Hydration"].map(cat => (
+        {["All", "Weight Loss", "Body Composition", "Nutrition Basics", "Metabolism", "Hydration"].map(cat => (
           <button
             data-filter={cat}
             class:list={[
