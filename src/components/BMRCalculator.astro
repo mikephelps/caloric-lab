@@ -480,7 +480,7 @@
       </div>
     `;
     resultsEl.classList.remove('hidden');
-    if (typeof window.gtag !== 'undefined') {
+    if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'bmr',
       });

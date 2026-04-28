@@ -471,7 +471,7 @@
       </div>`;
     resultsEl.classList.remove('hidden');
     const capturedLabel = rateLabel;
-    if (typeof window.gtag !== 'undefined') {
+    if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'calorie_deficit',
         'deficit_type': capturedLabel,
