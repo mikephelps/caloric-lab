@@ -82,18 +82,21 @@ const fullTitle = title.includes("CaloricLab") ? title : `${title} | CaloricLab`
     <Footer />
     <!-- Analytics + Ads: injected after window load so they never block render -->
     <script is:inline>
+      // 1. Define gtag immediately so it's globally available
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'G-2JYE39MKM1');
+
+      // 2. Wait for load to bring in the heavy external scripts
       window.addEventListener('load', function() {
-        // Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){ dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', 'G-2JYE39MKM1');
+        // Google Analytics Script
         var ga = document.createElement('script');
         ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JYE39MKM1';
         ga.async = true;
         document.head.appendChild(ga);
 
-        // Google AdSense
+        // Google AdSense Script
         var ads = document.createElement('script');
         ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2245319169803316';
         ads.async = true;
