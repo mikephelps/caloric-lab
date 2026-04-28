@@ -1,6 +1,7 @@
 ---
 title: "Burn Fat or Build Muscle? How to Set Your Calories for Every Phase"
 metaTitle: "Cutting vs. Bulking: How to Calculate Your Calorie Targets"
+category: "Body Composition"
 description: Should you bulk or cut? Learn how to set the perfect calorie deficit or surplus for your fitness goals. Includes instant calculation steps.
 pubDate: 2026-04-05
 author: CaloricLab Team

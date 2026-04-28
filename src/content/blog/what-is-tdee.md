@@ -1,6 +1,7 @@
 ---
 title: "TDEE Explained: Why This Number Is the Foundation of Your Diet"
 metaTitle: "What Is TDEE? How to Calculate Your Maintenance Calories"
+category: "Weight Loss"
 description: Understand Total Daily Energy Expenditure (TDEE) and how it dictates your weight loss success. Learn to calculate your burn without the guesswork.
 pubDate: 2026-04-15
 author: CaloricLab Team

@@ -10,6 +10,19 @@
         "metaTitle": {
           "type": "string"
         },
+        "featured": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Weight Loss",
+            "Body Composition",
+            "Nutrition Basics",
+            "Women's Health",
+            "Hydration"
+          ]
+        },
         "pubDate": {
           "anyOf": [
             {

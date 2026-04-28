@@ -1,6 +1,8 @@
 ---
 title: Is Your Metabolism Actually Slowing Down? The Truth About TDEE After 40
 metaTitle: "TDEE for Women Over 40 | Metabolism & Calorie Guide"
+featured: true
+category: "Women's Health"
 description: Learn how to adjust your TDEE and nutrition for hormonal changes. Discover why muscle mass matters more than age. Calculate your new targets instantly.
 pubDate: 2026-04-10
 author: CaloricLab Team

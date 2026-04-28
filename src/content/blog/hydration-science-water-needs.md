@@ -1,6 +1,7 @@
 ---
 title: "How Much Water Do You Actually Need? (Hint: It's Not 8 Glasses)"
 metaTitle: "How Much Water Should You Drink? | Hydration Science | CaloricLab"
+category: "Hydration"
 description: Stop following the 8-glass myth. Use our science-backed hydration calculator to find your daily water needs based on weight, activity, and climate. No-login & instant results.
 pubDate: 2026-04-27
 author: CaloricLab Team

@@ -5,6 +5,8 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     metaTitle: z.string().optional(),
+    featured: z.boolean().optional(),
+    category: z.enum(["Weight Loss", "Body Composition", "Nutrition Basics", "Women's Health", "Hydration"]).optional(),
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().default("Mike"),

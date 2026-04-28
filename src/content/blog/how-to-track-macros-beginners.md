@@ -1,6 +1,7 @@
 ---
 title: "The No-Stress Guide to Macro Tracking: Hit Your Goals Without the Math"
 metaTitle: "How to Track Macros for Beginners | Simplified Macro Guide"
+category: "Nutrition Basics"
 description: Stop overcomplicating your nutrition. Learn the simplest way to track protein, carbs, and fats to hit your goals. Use our instant macro tools.
 pubDate: 2026-04-01
 author: CaloricLab Team
