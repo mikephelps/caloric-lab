@@ -100,7 +100,16 @@ const sidebarCalculators = post.data.relatedCalculators ?? ["tdee", "macro", "ca
 const tldr = post.data.tldr;
 const callout = post.data.callout;
 const DEFAULT_TRUST_BODY = "Our guides are based on peer-reviewed nutrition science, including the Mifflin-St Jeor equation, Katch-McArdle formula, and guidelines from the International Society of Sports Nutrition. Every calculator on CaloricLab uses transparent, published formulas — no black boxes, no proprietary algorithms.";
-const trustBodyHtml = marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY);
+
+const EXTERNAL_LINK_ICON = `<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:inline;margin-left:3px;vertical-align:middle;opacity:0.7"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) as string)
+  .replace(/<a\s+href="([^"]+)"([^>]*)>([\s\S]*?)<\/a>/g, (_match, href, attrs, inner) => {
+    if (/^https?:\/\//.test(href)) {
+      return `<a href="${href}"${attrs} target="_blank" rel="noopener noreferrer">${inner}${EXTERNAL_LINK_ICON}</a>`;
+    }
+    return `<a href="${href}"${attrs}>${inner}</a>`;
+  });
 ---
 
 <Layout
