@@ -470,10 +470,11 @@
         </div>
       </div>`;
     resultsEl.classList.remove('hidden');
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'calculator_complete', {
-        calculator_name: 'calorie_deficit',
-        deficit_type: rateLabel,
+    const capturedLabel = rateLabel;
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('event', 'calculator_complete', {
+        'calculator_name': 'calorie_deficit',
+        'deficit_type': capturedLabel,
       });
     }
     setTimeout(() => {

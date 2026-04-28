@@ -363,6 +363,11 @@
       </div>`;
 
     resultsEl.classList.remove('hidden');
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('event', 'calculator_complete', {
+        'calculator_name': 'protein',
+      });
+    }
 
     // Scroll to results
     setTimeout(() => {
