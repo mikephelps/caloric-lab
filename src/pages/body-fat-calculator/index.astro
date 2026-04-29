@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import BodyFatCalculator from "../../components/BodyFatCalculator.astro";
+import FaqAccordion from "../../components/FaqAccordion.astro";
 
 const relatedCalcs = [
   { name: "BMI Calculator",            href: "/bmi-calculator/",            desc: "Check your body mass index" },
@@ -234,13 +235,7 @@ const faqSchema = [
       </p>
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-      <div class="space-y-5">
-        {faqSchema.map((faq) => (
-          <div>
-            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
-          </div>
-        ))}
+      <FaqAccordion items={faqSchema} />
       </div>
 
     </div>

@@ -268,9 +268,9 @@
           </div>
           <div class="divide-y divide-green-50">
             <div class="flex items-center justify-between px-5 py-3.5 bg-green-50 ring-1 ring-inset ring-green-200/60">
-              <div class="flex items-center gap-2">
+              <div>
                 <span class="text-sm font-semibold text-green-800">Devine (1974)</span>
-                <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Primary</span>
+                <span class="block text-xs text-green-600 mt-0.5">Most widely used · recommended</span>
               </div>
               <div class="text-right">
                 <span class="text-sm font-bold tabular-nums text-green-800">${devineLbs} lbs</span>
@@ -278,8 +278,9 @@
               </div>
             </div>
             <div class="flex items-center justify-between px-5 py-3.5">
-              <div class="flex items-center gap-2">
+              <div>
                 <span class="text-sm font-semibold text-gray-700">Robinson (1983)</span>
+                <span class="block text-xs text-gray-500 mt-0.5">Best general estimate</span>
               </div>
               <div class="text-right">
                 <span class="text-sm font-bold tabular-nums text-gray-700">${robinsonLbs} lbs</span>
@@ -287,8 +288,9 @@
               </div>
             </div>
             <div class="flex items-center justify-between px-5 py-3.5">
-              <div class="flex items-center gap-2">
+              <div>
                 <span class="text-sm font-semibold text-gray-700">Miller (1983)</span>
+                <span class="block text-xs text-gray-500 mt-0.5">Higher estimates for taller people</span>
               </div>
               <div class="text-right">
                 <span class="text-sm font-bold tabular-nums text-gray-700">${millerLbs} lbs</span>
@@ -298,28 +300,14 @@
           </div>
         </div>
 
-        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
-          <div class="flex gap-3">
-            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
-              <svg class="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6a.75.75 0 0 1 .75-.75zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-gray-900">About these estimates</p>
-              <p class="text-sm text-gray-600 leading-relaxed mt-1">
-                These formulas were developed for clinical drug dosing and give a single-point estimate. Your ideal weight depends on muscle mass, bone density, age, and personal health goals. Use the BMI range above as a more practical guide.
-              </p>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm text-gray-500 leading-relaxed px-1">Knowing your ideal weight is step one. Understanding how to get there is step two.</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <a href="/bmi-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
-            Calculate your BMI ${ARROW_SVG}
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="/calorie-deficit-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+            Calculate Your Calorie Target ${ARROW_SVG}
           </a>
-          <a href="/body-fat-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors">
-            Calculate your body fat % ${ARROW_SVG}
+          <a href="/body-fat-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-green-700 hover:text-green-800 text-sm font-semibold transition-colors">
+            Estimate Your Body Fat % ${ARROW_SVG}
           </a>
         </div>
 

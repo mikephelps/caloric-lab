@@ -1,6 +1,7 @@
 ---
 import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
 import TDEECalculator from "../../components/TDEECalculator.astro";
+import FaqAccordion from "../../components/FaqAccordion.astro";
 
 const relatedCalcs = [
   { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Set a deficit based on your TDEE" },
@@ -97,14 +98,7 @@ const faqSchema = [
       </ul>
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-      <div class="space-y-5">
-        {faqSchema.map(faq => (
-          <div>
-            <h3 class="font-semibold text-gray-900 mb-1.5">{faq.question}</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">{faq.answer}</p>
-          </div>
-        ))}
-      </div>
+      <FaqAccordion items={faqSchema} />
     </div>
   </div>
 </CalculatorLayout>
