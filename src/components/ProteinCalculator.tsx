@@ -319,21 +319,21 @@ export default function ProteinCalculator() {
 
           {/* Hero */}
           <div className="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-            <p className="text-sm font-medium text-green-200/75 mb-2 tracking-wide">
+            <p className="text-sm font-medium text-green-100 mb-2 tracking-wide">
               Your daily protein target
             </p>
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">
                 {results.dailyG}
               </span>
-              <span className="text-xl font-semibold text-green-300">grams / day</span>
+              <span className="text-xl font-semibold text-green-100">grams / day</span>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
                 {results.multiplierUsed}g per lb {results.usedLeanMass ? "lean mass" : "bodyweight"}
               </span>
               {results.usedLeanMass && results.leanLbs !== null && (
-                <span className="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+                <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
                   Lean mass: {results.leanLbs} lbs
                 </span>
               )}

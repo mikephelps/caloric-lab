@@ -1,0 +1,124 @@
+---
+import CalculatorLayout from "../../layouts/CalculatorLayout.astro";
+import DietBreakCalculator from "../../components/DietBreakCalculator.astro";
+import FaqAccordion from "../../components/FaqAccordion.astro";
+
+const relatedCalcs = [
+  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Set your deficit target for fat loss" },
+  { name: "Macro Calculator",           href: "/macro-calculator/",           desc: "Set protein, carbs, and fat targets" },
+  { name: "TDEE Calculator",            href: "/tdee-calculator/",            desc: "Calculate your total calorie needs" },
+  { name: "Protein Calculator",         href: "/protein-calculator/",         desc: "Find your daily protein target" },
+];
+
+const faqSchema = [
+  {
+    question: "Will I gain fat during a diet break?",
+    answer: "If you eat at or near your true maintenance calories, fat gain is negligible. The 2–4 lbs of scale weight increase in the first week is almost entirely water and glycogen from increased carbohydrate intake. This is temporary and reverses quickly when you resume your deficit.",
+  },
+  {
+    question: "How long should a diet break last?",
+    answer: "The research-backed MATADOR protocol uses 2-week breaks. Most practitioners recommend a minimum of 1 week for meaningful hormonal recovery. If you've been dieting for more than 16 weeks continuously, a 2-week break is strongly recommended.",
+  },
+  {
+    question: "Should I keep exercising during a diet break?",
+    answer: "Yes. Maintain your current training routine. The extra calories give your body more fuel for recovery and performance. Many people find their strength and energy increase during a break, which is a sign that the metabolic reset is working.",
+  },
+  {
+    question: "What should I eat during a diet break?",
+    answer: "Keep protein at your current level to protect muscle mass. Increase calories primarily through carbohydrates — this is the most effective macronutrient for stimulating leptin production and thyroid function. Keep fat moderate. Use the Macro Calculator to set your break macros.",
+  },
+  {
+    question: "How do I know my maintenance calories have dropped?",
+    answer: "If you've been dieting consistently and fat loss has stalled for 2–3 weeks despite accurate tracking and consistent adherence, metabolic adaptation is likely a factor. Other signs include increased hunger, lower body temperature, reduced energy, and declining workout performance.",
+  },
+];
+---
+
+<CalculatorLayout
+  title="Diet Break Calculator — MATADOR Protocol Planner | CaloricLab"
+  pageTitle="Diet Break Calculator"
+  description="Plan your diet break using the science-backed MATADOR protocol. Calculate your maintenance calories, recovery targets, and break schedule. Free, instant results."
+  subtitle="Calculate your maintenance calories, adaptive thermogenesis offset, and break schedule. Based on the MATADOR protocol (Byrne et al., 2018)."
+  breadcrumb="Diet Break Calculator"
+  canonicalUrl="https://caloriclab.com/diet-break-calculator/"
+  {relatedCalcs}
+  {faqSchema}
+>
+  <DietBreakCalculator slot="calculator" />
+
+  <div slot="content">
+    <div class="prose prose-gray max-w-none">
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">What Is a Diet Break?</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        A diet break is a planned period of eating at or near maintenance calories during an extended fat loss phase. The purpose is to counteract metabolic adaptation — the process by which your body reduces energy expenditure in response to prolonged calorie restriction. Diet breaks are not falling off the wagon. They are a strategic tool used by evidence-based coaches and supported by clinical research. Done correctly, a diet break does not significantly slow your overall fat loss and may actually improve your long-term results by preserving lean mass and restoring hormonal function.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">The MATADOR Protocol Explained</h2>
+      <p class="text-gray-600 leading-relaxed mb-3">
+        MATADOR stands for Minimizing Adaptive Thermogenesis And Deactivating Obesity Rebound. The protocol is based on a landmark 2018 study by Byrne et al., published in the <em>International Journal of Obesity</em>.
+      </p>
+
+      <div class="not-prose bg-[#F9FFFF] rounded-2xl border border-green-100 overflow-hidden mb-6">
+        <div class="px-5 py-3.5 border-b border-green-100">
+          <p class="text-sm font-semibold text-gray-900">The Byrne et al. 2018 Study</p>
+        </div>
+        <div class="divide-y divide-green-50">
+          {[
+            { label: "Participants", detail: "51 obese men across two groups: continuous calorie restriction vs. intermittent restriction (2 weeks on / 2 weeks off)" },
+            { label: "Duration", detail: "Both groups completed 16 weeks of active calorie restriction. The intermittent group took twice as long overall due to maintenance phases." },
+            { label: "Key finding", detail: "The intermittent group lost significantly more fat and retained more lean mass than the continuous group." },
+            { label: "Six-month follow-up", detail: "The intermittent group maintained more of their fat loss six months after the study ended, suggesting better long-term outcomes." },
+            { label: "Important caveat", detail: "The study was conducted in obese men. Results may vary for leaner individuals, women, or those in moderate deficits." },
+          ].map(item => (
+            <div class="px-5 py-3.5 flex gap-4">
+              <span class="flex-shrink-0 text-xs font-bold text-green-700 min-w-[100px]">{item.label}</span>
+              <span class="text-sm text-gray-600">{item.detail}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">How Adaptive Thermogenesis Works</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        When you eat in a calorie deficit, your body gradually reduces energy expenditure through multiple mechanisms: reduced NEAT (non-exercise activity thermogenesis), lower thermic effect of food, hormonal changes including decreased leptin and thyroid downregulation, and increased metabolic efficiency at the cellular level. The longer and steeper the deficit, the more pronounced these adaptations become. This is why fat loss often stalls even when intake remains consistent — your body has simply adjusted its output downward to match your reduced input.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        A diet break at maintenance calories allows these systems to partially recover. Leptin signaling is particularly important: leptin is a hormone produced by fat cells that signals satiety and metabolic rate to the brain. During a calorie deficit, leptin drops significantly. Eating at maintenance for 1–2 weeks allows leptin levels to recover, which helps restore energy, reduce hunger, and partially reverse the metabolic slowdown that accumulates during prolonged dieting.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">When to Take a Diet Break</h2>
+      <ul class="space-y-2 mb-6">
+        {[
+          "After 8–12 weeks of continuous dieting",
+          "When fat loss has stalled despite consistent adherence and accurate tracking",
+          "When energy, mood, or training performance have noticeably declined",
+          "When hunger and cravings become increasingly difficult to manage",
+          "Proactively as part of a planned intermittent dieting protocol (MATADOR)",
+        ].map(item => (
+          <li class="flex items-start gap-2.5 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
+            </svg>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Diet Break vs. Refeed Day</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        A refeed day is a single day of increased calories — usually from carbohydrates — while a diet break is a sustained period of 1–2 weeks at maintenance. Refeeds provide a brief psychological and hormonal boost but are too short to meaningfully reverse metabolic adaptation. Research suggests that leptin levels respond to energy intake within hours, but a single day is not sufficient to restore the underlying hormonal environment that has shifted over weeks of dieting. Diet breaks of at least 7 days appear to be needed for measurable hormonal recovery, which is why the 2-week MATADOR break produces stronger results than frequent single-day refeeds.
+      </p>
+
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <FaqAccordion items={faqSchema} />
+
+      <div class="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-xl">
+        <p class="text-sm text-amber-800 leading-relaxed">
+          <strong>Disclaimer:</strong> The MATADOR protocol is based on peer-reviewed research (Byrne et al., 2018) but individual results vary. Adaptive thermogenesis estimates are approximations — actual metabolic adaptation depends on genetics, diet composition, training, sleep, and stress. If you've been in an extreme deficit (more than 30% below TDEE) for an extended period, consult a dietitian or nutrition professional before adjusting your intake.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</CalculatorLayout>

@@ -352,21 +352,21 @@ export default function IdealWeightCalculator() {
 
           {/* Hero — Devine primary result */}
           <div className="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-            <p className="text-sm font-medium text-green-200/75 mb-2 tracking-wide">
+            <p className="text-sm font-medium text-green-100 mb-2 tracking-wide">
               Your ideal weight (Devine formula)
             </p>
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">
                 {results.devineLbs}
               </span>
-              <span className="text-xl font-semibold text-green-300">lbs</span>
+              <span className="text-xl font-semibold text-green-100">lbs</span>
             </div>
-            <p className="mt-2 text-xs text-green-200/60">Devine formula (most widely used)</p>
+            <p className="mt-2 text-xs text-green-100">Devine formula (most widely used)</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
                 {results.devineLbs} lbs
               </span>
-              <span className="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
                 {results.devineKg} kg
               </span>
             </div>
