@@ -266,7 +266,7 @@
     const ctx            = CONTEXT[goal];
 
     const leanBadge = (usedLeanMass && leanLbsRnd !== null)
-      ? `<span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">Lean mass: ${leanLbsRnd} lbs</span>`
+      ? `<span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">Lean mass: ${leanLbsRnd} lbs</span>`
       : '';
 
     const issnSuffix = usedLeanMass
@@ -303,13 +303,13 @@
       <div class="animate-fade-up space-y-4">
 
         <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your daily protein target</p>
+          <p class="text-sm font-medium text-green-100 mb-2 tracking-wide">Your daily protein target</p>
           <div class="flex items-baseline gap-3 flex-wrap">
             <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${dailyG}</span>
-            <span class="text-xl font-semibold text-green-300">grams / day</span>
+            <span class="text-xl font-semibold text-green-100">grams / day</span>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">
+            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
               ${multiplierUsed}g per lb ${usedLeanMass ? 'lean mass' : 'bodyweight'}
             </span>
             ${leanBadge}
@@ -363,6 +363,12 @@
       </div>`;
 
     resultsEl.classList.remove('hidden');
+    resultsEl.classList.remove('results-updated');
+    void resultsEl.offsetWidth;
+    resultsEl.classList.add('results-updated');
+    setTimeout(() => resultsEl.classList.remove('results-updated'), 700);
+    const _heroNum = resultsEl.querySelector('[class*="text-6xl"]');
+    if (_heroNum) { _heroNum.classList.add('number-pop'); }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'protein',

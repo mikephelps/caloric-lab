@@ -111,6 +111,28 @@
 }
 
 
+/* ── Results recalculation feedback ── */
+@keyframes resultsFlash {
+  0%   { box-shadow: 0 0 0 0 rgba(8, 145, 178, 0); }
+  20%  { box-shadow: 0 0 0 8px rgba(8, 145, 178, 0.22); }
+  100% { box-shadow: 0 0 0 0 rgba(8, 145, 178, 0); }
+}
+
+@keyframes numberPop {
+  0%, 100% { transform: scale(1); }
+  45%       { transform: scale(1.04); }
+}
+
+.results-updated {
+  animation: resultsFlash 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1rem;
+}
+
+.number-pop {
+  animation: numberPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
 @layer base {
   html {
     font-family: var(--font-sans);

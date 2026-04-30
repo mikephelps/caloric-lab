@@ -405,14 +405,14 @@
 
         <!-- Hero TDEE number -->
         <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-          <p class="text-sm font-medium text-green-200/75 mb-2 tracking-wide">Your estimated daily calorie burn</p>
+          <p class="text-sm font-medium text-green-100 mb-2 tracking-wide">Your estimated daily calorie burn</p>
           <div class="flex items-baseline gap-3 flex-wrap">
             <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${tdeeRounded.toLocaleString()}</span>
-            <span class="text-xl font-semibold text-green-300">cal / day</span>
+            <span class="text-xl font-semibold text-green-100">cal / day</span>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">BMR: ${bmrRounded.toLocaleString()} cal/day</span>
-            <span class="text-xs font-medium text-green-100/60 bg-white/[0.1] px-3 py-1 rounded-full">${formula === 'katch' ? 'Katch-McArdle formula' : 'Mifflin-St Jeor formula'}</span>
+            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">BMR: ${bmrRounded.toLocaleString()} cal/day</span>
+            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">${formula === 'katch' ? 'Katch-McArdle formula' : 'Mifflin-St Jeor formula'}</span>
           </div>
         </div>
 
@@ -479,6 +479,12 @@
       </div>
     `;
     resultsEl.classList.remove('hidden');
+    resultsEl.classList.remove('results-updated');
+    void resultsEl.offsetWidth;
+    resultsEl.classList.add('results-updated');
+    setTimeout(() => resultsEl.classList.remove('results-updated'), 700);
+    const _heroNum = resultsEl.querySelector('[class*="text-6xl"]');
+    if (_heroNum) { _heroNum.classList.add('number-pop'); }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'tdee',
