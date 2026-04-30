@@ -1,16 +1,32 @@
 ---
-const calculators = [
-  { name: "TDEE Calculator",          href: "/tdee-calculator/",          desc: "Total daily energy expenditure",      icon: "flame"         },
-  { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Plan your deficit for fat loss",   icon: "trending-down" },
-  { name: "BMR Calculator",           href: "/bmr-calculator/",           desc: "Your basal metabolic rate",           icon: "heart-pulse"   },
-  { name: "Macro Calculator",         href: "/macro-calculator/",         desc: "Protein, carbs & fat targets",        icon: "chart-pie"     },
-  { name: "Protein Calculator",       href: "/protein-calculator/",       desc: "Daily protein requirements",          icon: "dumbbell"      },
-  { name: "BMI Calculator",           href: "/bmi-calculator/",           desc: "Weight & health range",     icon: "person"        },
-  { name: "Body Fat Calculator",      href: "/body-fat-calculator/",      desc: "Body fat % via Navy method",          icon: "ruler"         },
-  { name: "Ideal Weight Calculator",  href: "/ideal-weight-calculator/",  desc: "Target weight for your height",       icon: "target"        },
-  { name: "Water Intake Calculator",  href: "/water-intake-calculator/",  desc: "Personalized daily hydration target", icon: "droplet"       },
-  { name: "Diet Break Calculator",    href: "/diet-break-calculator/",    desc: "MATADOR protocol planner",            icon: "refresh"       },
+const columns = [
+  {
+    label: "Most Popular",
+    items: [
+      { name: "Ideal Weight Calculator",    href: "/ideal-weight-calculator/",    desc: "Target weight for your height",   icon: "target"        },
+      { name: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/", desc: "Set a fat loss calorie target",    icon: "trending-down" },
+      { name: "BMR Calculator",             href: "/bmr-calculator/",             desc: "Resting calorie burn",             icon: "heart-pulse"   },
+    ],
+  },
+  {
+    label: "Advanced Labs",
+    items: [
+      { name: "Body Fat Calculator",   href: "/body-fat-calculator/",   desc: "Estimate your body fat %",        icon: "ruler"    },
+      { name: "Diet Break Calculator", href: "/diet-break-calculator/", desc: "Plan your metabolic reset",       icon: "refresh"  },
+      { name: "TDEE Calculator",       href: "/tdee-calculator/",       desc: "Total daily energy expenditure",  icon: "flame"    },
+    ],
+  },
+  {
+    label: "Daily Metrics",
+    items: [
+      { name: "Macro Calculator",        href: "/macro-calculator/",        desc: "Protein, carbs & fat targets",  icon: "chart-pie" },
+      { name: "Protein Calculator",      href: "/protein-calculator/",      desc: "Daily protein requirements",    icon: "dumbbell"  },
+      { name: "Water Intake Calculator", href: "/water-intake-calculator/", desc: "Daily water target",            icon: "droplet"   },
+    ],
+  },
 ];
+
+const allCalcs = columns.flatMap(col => col.items);
 
 const calcIcons: Record<string, string> = {
   "flame":         `<path d="M8 2c-1 2-4 4.5-4 7a4 4 0 0 0 8 0C12 6.5 9 4 8 2z"/>`,
@@ -18,7 +34,6 @@ const calcIcons: Record<string, string> = {
   "heart-pulse":   `<path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>`,
   "chart-pie":     `<path d="M8 8L8 2A6 6 0 0 1 11.53 12.85Z"/><path d="M8 8L11.53 12.85A6 6 0 0 1 2 8Z" opacity="0.65"/><path d="M8 8L2 8A6 6 0 0 1 8 2Z" opacity="0.4"/>`,
   "dumbbell":      `<rect x="1" y="5.5" width="3.5" height="5" rx="1"/><rect x="11.5" y="5.5" width="3.5" height="5" rx="1"/><rect x="4" y="7.25" width="8" height="1.5" rx="0.75"/>`,
-  "person":        `<circle cx="8" cy="4" r="2.5"/><path d="M4 14.5v-3a4 4 0 0 1 8 0v3z"/>`,
   "ruler":         `<rect x="1" y="7" width="14" height="2" rx="1"/><rect x="2.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="5.5" y="5.5" width="1.5" height="1.5" rx="0.5"/><rect x="8.5" y="5" width="1.5" height="2" rx="0.5"/><rect x="11.5" y="5.5" width="1.5" height="1.5" rx="0.5"/>`,
   "target":        `<circle cx="8" cy="8" r="7" opacity="0.2"/><circle cx="8" cy="8" r="4" opacity="0.5"/><circle cx="8" cy="8" r="1.5"/>`,
   "droplet":       `<path d="M8 2C6 5 3 7.5 3 10a5 5 0 0 0 10 0C13 7.5 10 5 8 2z"/>`,
@@ -29,66 +44,43 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- nav is `relative` so the megamenu panel positions itself against the nav's right padding edge -->
+  <nav class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 shrink-0" aria-label="CaloricLab home">
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g clip-path="url(#header_clip)">
-          <path d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z" fill="#0D7490"/>
-          <path d="M15.812 20.329C17.849 20.329 18.626 19.174 18.815 17.935H22.553C22.217 21.022 20.243 23.647 15.686 23.647C11.612 23.647 8.672 20.602 8.672 16.276C8.672 11.866 11.612 8.905 15.686 8.905C20.201 8.905 22.238 11.467 22.553 14.617H18.815C18.605 13.441 17.744 12.223 15.791 12.223C13.922 12.223 12.515 13.777 12.536 16.276C12.557 18.796 13.943 20.329 15.812 20.329Z" fill="white"/>
-          <path d="M5.14 11.02C6.44 11.02 7.28 11.86 7.3 13.08C7.3 14.28 6.44 15.16 5.14 15.16C3.86 15.16 3 14.28 3 13.08C3 11.86 3.86 11.02 5.14 11.02Z" fill="white" fill-opacity="0.4"/>
-          <path d="M19 20.9674C19 25.2 16.1594 27.9349 12.0338 28C7.97584 28 5 25.2 5 20.9674C5 16.8 7.97585 14 12.0338 14C16.1594 14 19 16.8 19 20.9674Z" fill="white" fill-opacity="0.2"/>
-        </g>
-        <defs>
-          <clipPath id="header_clip"><rect width="32" height="32" fill="white"/></clipPath>
-        </defs>
-      </svg>
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g clip-path="url(#header_clip)">
+            <path d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z" fill="#0D7490"/>
+            <path d="M15.812 20.329C17.849 20.329 18.626 19.174 18.815 17.935H22.553C22.217 21.022 20.243 23.647 15.686 23.647C11.612 23.647 8.672 20.602 8.672 16.276C8.672 11.866 11.612 8.905 15.686 8.905C20.201 8.905 22.238 11.467 22.553 14.617H18.815C18.605 13.441 17.744 12.223 15.791 12.223C13.922 12.223 12.515 13.777 12.536 16.276C12.557 18.796 13.943 20.329 15.812 20.329Z" fill="white"/>
+            <path d="M5.14 11.02C6.44 11.02 7.28 11.86 7.3 13.08C7.3 14.28 6.44 15.16 5.14 15.16C3.86 15.16 3 14.28 3 13.08C3 11.86 3.86 11.02 5.14 11.02Z" fill="white" fill-opacity="0.4"/>
+            <path d="M19 20.9674C19 25.2 16.1594 27.9349 12.0338 28C7.97584 28 5 25.2 5 20.9674C5 16.8 7.97585 14 12.0338 14C16.1594 14 19 16.8 19 20.9674Z" fill="white" fill-opacity="0.2"/>
+          </g>
+          <defs>
+            <clipPath id="header_clip"><rect width="32" height="32" fill="white"/></clipPath>
+          </defs>
+        </svg>
         <span class="text-lg font-bold text-gray-900 tracking-tight">CaloricLab</span>
       </a>
 
       <!-- Desktop nav -->
       <div class="hidden md:flex items-center gap-1">
 
-        <!-- Calculators dropdown -->
-        <div class="relative group">
-          <button
-            class="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 hover:text-green-700 rounded-lg hover:bg-green-50 transition-colors"
-            aria-haspopup="true"
-          >
-            Calculators
-            <svg class="w-3.5 h-3.5 mt-px transition-transform group-hover:rotate-180" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M4 6l4 4 4-4"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M3.293 5.293a1 1 0 0 1 1.414 0L8 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z"/>
-            </svg>
-          </button>
-
-          <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-100/50 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
-            <div class="p-2 grid grid-cols-2">
-              {calculators.map((c, i) => (
-                <a
-                  href={c.href}
-                  class:list={[
-                    "flex items-start gap-3 px-3 py-2.5 rounded-xl transition-colors",
-                    currentPath === c.href
-                      ? "bg-green-50 text-green-700"
-                      : "text-gray-700 hover:bg-gray-50",
-                    i === calculators.length - 1 && calculators.length % 2 !== 0 ? "col-span-2" : "",
-                  ]}
-                >
-                  <div class="mt-0.5 flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 flex items-center justify-center">
-                    <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calcIcons[c.icon]}/>
-                  </div>
-                  <div>
-                    <div class="text-sm font-medium">{c.name}</div>
-                    <div class="text-xs text-gray-500 mt-0.5">{c.desc}</div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <!-- Calculators trigger button -->
+        <button
+          id="calc-btn"
+          type="button"
+          class="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 hover:text-green-700 rounded-lg hover:bg-green-50 transition-colors"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="calc-menu"
+        >
+          Calculators
+          <svg id="calc-chevron" class="w-3.5 h-3.5 mt-px" style="transition: transform 0.2s;" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.293 5.293a1 1 0 0 1 1.414 0L8 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z"/>
+          </svg>
+        </button>
 
         <a
           href="/blog/"
@@ -131,31 +123,109 @@ const currentPath = Astro.url.pathname;
         </svg>
       </button>
     </div>
+
+    <!--
+      Megamenu panel — positioned absolute within the `relative` nav.
+      right-4/6/8 mirrors the nav's own horizontal padding so the panel
+      right-aligns with the content edge and always stays on-screen.
+      width: 280px at md, 800px at lg+.
+    -->
+    <div
+      id="calc-menu"
+      role="menu"
+      aria-label="Calculators menu"
+      style="opacity:0; transform:translateY(6px); visibility:hidden; pointer-events:none; transition: opacity 0.18s ease, transform 0.18s ease;"
+      class="absolute top-16 right-4 sm:right-6 lg:right-8 z-50
+             w-[280px] lg:w-[800px]
+             bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-900/[0.07]
+             overflow-hidden"
+    >
+
+      <!-- 3-column grid — lg and up only -->
+      <div class="hidden lg:grid grid-cols-3 gap-x-px p-2">
+        {columns.map(col => (
+          <div class="flex flex-col">
+            <p class="px-3 pt-2.5 pb-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest select-none">
+              {col.label}
+            </p>
+            {col.items.map(c => (
+              <a
+                href={c.href}
+                role="menuitem"
+                class:list={[
+                  "flex items-center gap-2.5 px-3 py-2 rounded-xl transition-colors",
+                  currentPath === c.href
+                    ? "bg-green-50 text-green-700"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900",
+                ]}
+              >
+                <div class="flex-shrink-0 w-6 h-6 rounded-lg bg-green-100 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calcIcons[c.icon]}/>
+                </div>
+                <div>
+                  <div class="text-sm font-medium whitespace-nowrap">{c.name}</div>
+                  <div class="text-xs text-gray-500 whitespace-nowrap">{c.desc}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <!-- Single-column list — md only (hidden at lg) -->
+      <div class="lg:hidden py-2">
+        {columns.map((col, colIdx) => (
+          <div class:list={[colIdx > 0 ? "mt-1 pt-1 border-t border-gray-100" : ""]}>
+            <p class="px-4 pt-2 pb-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest select-none">
+              {col.label}
+            </p>
+            {col.items.map(c => (
+              <a
+                href={c.href}
+                role="menuitem"
+                class:list={[
+                  "flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
+                  currentPath === c.href
+                    ? "text-green-700 bg-green-50"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900",
+                ]}
+              >
+                {c.name}
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+
+    </div>
   </nav>
 
-  <!-- Mobile menu -->
+  <!-- Mobile menu — grouped by category -->
   <div
     id="mobile-menu"
     class="hidden md:hidden border-t border-gray-100 bg-white"
     role="navigation"
     aria-label="Mobile navigation"
   >
-    <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+    <div class="max-w-7xl mx-auto px-4 py-3">
 
-      <!-- Mobile calculators section -->
-      <div class="pb-2">
-        <p class="px-3 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wider">Calculators</p>
-        {calculators.map(c => (
-          <a
-            href={c.href}
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
-          >
-            {c.name}
-          </a>
-        ))}
-      </div>
+      {columns.map((col, colIdx) => (
+        <div class:list={["pb-1", colIdx > 0 ? "mt-1 pt-1 border-t border-gray-100" : ""]}>
+          <p class="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            {col.label}
+          </p>
+          {col.items.map(c => (
+            <a
+              href={c.href}
+              class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+            >
+              {c.name}
+            </a>
+          ))}
+        </div>
+      ))}
 
-      <div class="border-t border-gray-100 pt-2 space-y-1">
+      <div class="mt-2 pt-2 border-t border-gray-100 space-y-0.5">
         <a href="/blog/" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">Blog</a>
         <a href="/about/" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">About</a>
       </div>
@@ -164,24 +234,75 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const btn = document.getElementById("mobile-menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  const hamburger = document.getElementById("hamburger-icon");
-  const closeIcon = document.getElementById("close-icon");
+  // ── Megamenu hover ──────────────────────────────────────────────────────────
+  const calcBtn     = document.getElementById('calc-btn') as HTMLButtonElement | null;
+  const calcMenu    = document.getElementById('calc-menu') as HTMLElement | null;
+  const calcChevron = document.getElementById('calc-chevron') as SVGElement | null;
 
-  btn?.addEventListener("click", () => {
-    const isOpen = !menu?.classList.contains("hidden");
+  let closeTimer: ReturnType<typeof setTimeout> | undefined;
+  let menuOpen = false;
 
+  function openMenu() {
+    clearTimeout(closeTimer);
+    if (menuOpen) return;
+    menuOpen = true;
+    if (calcMenu) {
+      calcMenu.style.opacity = '1';
+      calcMenu.style.transform = 'translateY(0)';
+      calcMenu.style.visibility = 'visible';
+      calcMenu.style.pointerEvents = 'auto';
+    }
+    if (calcChevron) calcChevron.style.transform = 'rotate(180deg)';
+    calcBtn?.setAttribute('aria-expanded', 'true');
+  }
+
+  function scheduleClose() {
+    closeTimer = setTimeout(() => {
+      menuOpen = false;
+      if (calcMenu) {
+        calcMenu.style.opacity = '0';
+        calcMenu.style.transform = 'translateY(6px)';
+        calcMenu.style.visibility = 'hidden';
+        calcMenu.style.pointerEvents = 'none';
+      }
+      if (calcChevron) calcChevron.style.transform = 'rotate(0deg)';
+      calcBtn?.setAttribute('aria-expanded', 'false');
+    }, 120);
+  }
+
+  calcBtn?.addEventListener('mouseenter', openMenu);
+  calcBtn?.addEventListener('mouseleave', scheduleClose);
+  calcMenu?.addEventListener('mouseenter', openMenu);
+  calcMenu?.addEventListener('mouseleave', scheduleClose);
+
+  // Close on Escape or click outside
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) scheduleClose();
+  });
+  document.addEventListener('click', (e) => {
+    if (menuOpen && !calcBtn?.contains(e.target as Node) && !calcMenu?.contains(e.target as Node)) {
+      scheduleClose();
+    }
+  });
+
+  // ── Mobile hamburger ────────────────────────────────────────────────────────
+  const mobileBtn   = document.getElementById('mobile-menu-btn');
+  const mobileMenu  = document.getElementById('mobile-menu');
+  const hamburger   = document.getElementById('hamburger-icon');
+  const closeIcon   = document.getElementById('close-icon');
+
+  mobileBtn?.addEventListener('click', () => {
+    const isOpen = !mobileMenu?.classList.contains('hidden');
     if (isOpen) {
-      menu?.classList.add("hidden");
-      hamburger?.classList.remove("hidden");
-      closeIcon?.classList.add("hidden");
-      btn?.setAttribute("aria-expanded", "false");
+      mobileMenu?.classList.add('hidden');
+      hamburger?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      mobileBtn?.setAttribute('aria-expanded', 'false');
     } else {
-      menu?.classList.remove("hidden");
-      hamburger?.classList.add("hidden");
-      closeIcon?.classList.remove("hidden");
-      btn?.setAttribute("aria-expanded", "true");
+      mobileMenu?.classList.remove('hidden');
+      hamburger?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      mobileBtn?.setAttribute('aria-expanded', 'true');
     }
   });
 </script>
