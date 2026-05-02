@@ -27,6 +27,10 @@ const faqSchema = [
     question: "Should I try to reach my ideal weight?",
     answer: "Use ideal weight as a reference point, not a rigid target. Health is better measured by body fat percentage, metabolic markers (blood pressure, blood glucose, cholesterol), and how you feel and perform physically. A healthy weight range, sustained consistently, matters more than hitting a precise number.",
   },
+  {
+    question: "How does this differ from the Stylecraze ideal weight calculator?",
+    answer: "While general lifestyle sites like Stylecraze provide weight estimates, CaloricLab focuses on clinical precision. We utilize the exact Devine, Robinson, and Miller formulas used in medical settings and pharmacology. Our tool provides a comprehensive range based on peer-reviewed research, ensuring your results are grounded in metabolic science rather than generic averages.",
+  },
 ];
 ---
 
@@ -56,7 +60,7 @@ const faqSchema = [
         <div class="divide-y divide-gray-100">
           <div class="px-5 py-4" style="background-color: var(--cl-violet-subtle);">
             <div class="flex items-center justify-between mb-1">
-              <p class="text-sm font-bold" style="color: var(--cl-violet-dark);">Devine (1974)</p>
+              <p class="text-sm font-bold" style="color: var(--cl-violet-dark);">Devine (1974) <a href="https://pubmed.ncbi.nlm.nih.gov/4835444/" target="_blank" rel="noopener noreferrer nofollow" title="Gentamicin delivery in the obese" class="inline-flex items-center font-medium text-xs" style="color: var(--cl-violet);">[PubMed]<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="display:inline;margin-left:2px;vertical-align:middle;opacity:0.85"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></p>
               <span class="text-xs font-medium bg-white px-2 py-0.5 rounded-full" style="color: var(--cl-violet-dark);">Most widely used</span>
             </div>
             <p class="text-sm text-gray-700">The standard in clinical settings for over 50 years. Most fitness references default to this formula.</p>
@@ -64,14 +68,14 @@ const faqSchema = [
           </div>
           <div class="px-5 py-4">
             <div class="flex items-center justify-between mb-1">
-              <p class="text-sm font-bold text-gray-800">Robinson (1983)</p>
+              <p class="text-sm font-bold text-gray-800">Robinson (1983) <a href="https://pubmed.ncbi.nlm.nih.gov/6846373/" target="_blank" rel="noopener noreferrer nofollow" title="Estimation of ideal body weight" class="inline-flex items-center font-medium text-xs" style="color: var(--cl-violet-dark);">[PubMed]<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="display:inline;margin-left:2px;vertical-align:middle;opacity:0.85"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></p>
             </div>
             <p class="text-sm text-gray-600">A modest revision to Devine with slightly adjusted base values. Results are similar but diverge at taller heights due to a lower per-inch increment.</p>
             <p class="text-xs text-gray-500 mt-1">Best for: general estimates across a range of heights</p>
           </div>
           <div class="px-5 py-4">
             <div class="flex items-center justify-between mb-1">
-              <p class="text-sm font-bold text-gray-800">Miller (1983)</p>
+              <p class="text-sm font-bold text-gray-800">Miller (1983) <a href="https://pubmed.ncbi.nlm.nih.gov/6826630/" target="_blank" rel="noopener noreferrer nofollow" title="Relative weight, body mass index, and body fat" class="inline-flex items-center font-medium text-xs" style="color: var(--cl-violet-dark);">[PubMed]<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="display:inline;margin-left:2px;vertical-align:middle;opacity:0.85"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></p>
             </div>
             <p class="text-sm text-gray-600">Higher starting weight, smaller per-inch increment. Gives higher estimates for shorter people and lower for taller — useful as a second opinion.</p>
             <p class="text-xs text-gray-500 mt-1">Best for: taller individuals who find Devine too lean</p>
