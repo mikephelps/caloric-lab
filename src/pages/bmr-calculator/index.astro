@@ -30,6 +30,10 @@ const faqSchema = [
     answer: "The Mifflin-St Jeor equation is considered the most accurate for most people. The Katch-McArdle formula is more accurate if you know your body fat percentage, as it accounts for lean mass directly. Accuracy also depends on having a healthy body composition. You can find your target range using our Ideal Weight Calculator.",
     answerHtml: `The Mifflin-St Jeor equation is considered the most accurate for most people. The Katch-McArdle formula is more accurate if you know your body fat percentage, as it accounts for lean mass directly. Accuracy also depends on having a healthy body composition. You can find your target range using our <a href="/ideal-weight-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">Ideal Weight Calculator</a>.`,
   },
+  {
+    question: "What factors change my BMR?",
+    answer: "Several physiological variables determine your metabolic baseline, most notably your total lean muscle mass, as muscle tissue is significantly more metabolically active than fat even at rest. Age also plays a critical role, as the body’s basal metabolic rate naturally tends to decline by approximately one to two percent per decade after age 20 due to the gradual loss of lean tissue. Additionally, temporary factors such as hormonal fluctuations, thyroid health, and even elevated body temperature from a fever can cause your energy expenditure to spike or drop as the body works to maintain internal homeostasis.",
+  },
 ];
 ---
 
@@ -56,11 +60,12 @@ const faqSchema = [
         BMR typically accounts for <strong>60-75% of your total daily calorie burn</strong>, making it the
         most important factor in your overall energy equation.
       </p>
+
       <p class="text-gray-600 leading-relaxed mb-6">
-        While BMR is your baseline, your <a href="/tdee-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">TDEE (Total Daily Energy Expenditure)</a> accounts for your activity level. Most people require 20–50% more calories than their BMR to maintain weight.
+        Knowing your BMR is the first step. To find out how many calories you actually burn in a day, use your BMR result with our <a href="/tdee-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">TDEE Calculator</a> to factor in your physical activity level. Most people require 20–50% more calories than their BMR just to maintain their current weight.
       </p>
 
-      <h2 class="text-xl font-bold text-gray-900 mb-4">BMR Formulas</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Scientifically Validated BMR Formulas</h2>
       <div class="not-prose mb-6">
         <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
           <div class="divide-y divide-gray-100">
@@ -100,7 +105,7 @@ const faqSchema = [
         </div>
       </div>
 
-      <h2 class="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-4">BMR & Metabolic Health FAQ</h2>
       <FaqAccordion items={faqSchema} />
     </div>
   </div>
