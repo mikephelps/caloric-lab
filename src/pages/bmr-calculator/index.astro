@@ -13,6 +13,11 @@ const relatedCalcs = [
 
 const faqSchema = [
   {
+    question: "When is BMR most accurate?",
+    answer: "Basal Metabolic Rate (BMR) is most accurate when measured in a clinical laboratory under strict conditions: after 12 hours of fasting, 8 hours of sleep, and in a temperature-controlled environment. For most users at home, the term Resting Metabolic Rate (RMR) is technically more accurate, as it accounts for the body's energy expenditure while at rest but not under laboratory constraints. While 'BMR' is the industry-standard term, we utilize the Mifflin-St Jeor equation, which clinical studies have found to be the most reliable for predicting RMR in modern populations. For athletes or those with a verified body fat percentage, the Katch-McArdle formula provides the highest precision by factoring in lean tissue.",
+    answerHtml: `Basal Metabolic Rate (BMR) is most accurate when measured in a clinical laboratory under strict conditions: after 12 hours of fasting, 8 hours of sleep, and in a temperature-controlled environment.<br><br>For most users at home, the term Resting Metabolic Rate (RMR) is technically more accurate, as it accounts for the body's energy expenditure while at rest but not under laboratory constraints. While "BMR" is the industry-standard term, we utilize the Mifflin-St Jeor equation, which clinical studies have found to be the most reliable for predicting RMR in modern populations. For athletes or those with a verified body fat percentage, the Katch-McArdle formula provides the highest precision by factoring in lean tissue.`,
+  },
+  {
     question: "What is BMR?",
     answer: "BMR (Basal Metabolic Rate) is the number of calories your body needs to perform basic life-sustaining functions at complete rest: breathing, circulation, cell production, and organ function.",
   },
@@ -22,15 +27,16 @@ const faqSchema = [
   },
   {
     question: "Which BMR formula is most accurate?",
-    answer: "The Mifflin-St Jeor equation is considered the most accurate for most people. The Katch-McArdle formula is more accurate if you know your body fat percentage, as it accounts for lean mass directly.",
+    answer: "The Mifflin-St Jeor equation is considered the most accurate for most people. The Katch-McArdle formula is more accurate if you know your body fat percentage, as it accounts for lean mass directly. Accuracy also depends on having a healthy body composition. You can find your target range using our Ideal Weight Calculator.",
+    answerHtml: `The Mifflin-St Jeor equation is considered the most accurate for most people. The Katch-McArdle formula is more accurate if you know your body fat percentage, as it accounts for lean mass directly. Accuracy also depends on having a healthy body composition. You can find your target range using our <a href="/ideal-weight-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">Ideal Weight Calculator</a>.`,
   },
 ];
 ---
 
 <CalculatorLayout
-  title="BMR Calculator | Basal Metabolic Rate | CaloricLab"
+  title="BMR Calculator (Mifflin-St Jeor & Harris-Benedict) | CaloricLab"
   pageTitle="BMR Calculator"
-  description="Calculate your Basal Metabolic Rate (BMR) instantly. Discover how many calories your body burns at rest using science-backed formulas. Fast, private, and no-login required."
+  description="Calculate your Basal Metabolic Rate using clinically validated formulas. Compare Mifflin-St Jeor and Harris-Benedict results instantly. No sign-up required."
   subtitle="Your BMR is the minimum calories your body needs to survive. It's the starting point for calculating your full daily calorie needs."
   breadcrumb="BMR Calculator"
   {relatedCalcs}
@@ -46,22 +52,51 @@ const faqSchema = [
         to maintain essential physiological functions. This includes maintaining body temperature, circulating
         blood, breathing, and keeping every cell in your body alive.
       </p>
-      <p class="text-gray-600 leading-relaxed mb-6">
-        BMR typically accounts for <strong>60–75% of your total daily calorie burn</strong>, making it the
+      <p class="text-gray-600 leading-relaxed mb-4">
+        BMR typically accounts for <strong>60-75% of your total daily calorie burn</strong>, making it the
         most important factor in your overall energy equation.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        While BMR is your baseline, your <a href="/tdee-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">TDEE (Total Daily Energy Expenditure)</a> accounts for your activity level. Most people require 20–50% more calories than their BMR to maintain weight.
       </p>
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">BMR Formulas</h2>
-      <div class="space-y-4 mb-6">
-        <div class="bg-white rounded-xl shadow-sm p-5">
-          <p class="text-sm font-semibold text-gray-700 mb-2">Mifflin-St Jeor (Default)</p>
-          <p class="font-mono text-xs text-gray-600"><span class="font-bold">Male:</span> (10 × kg) + (6.25 × cm) − (5 × age) + 5</p>
-          <p class="font-mono text-xs text-gray-600 mt-1"><span class="font-bold">Female:</span> (10 × kg) + (6.25 × cm) − (5 × age) − 161</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm p-5">
-          <p class="text-sm font-semibold text-gray-700 mb-2">Katch-McArdle (If you know body fat %)</p>
-          <p class="font-mono text-xs text-gray-600">BMR = 370 + (21.6 × lean mass in kg)</p>
-          <p class="text-xs text-gray-500 mt-1">More accurate if you have a body composition measurement.</p>
+      <div class="not-prose mb-6">
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div class="divide-y divide-gray-100">
+            <div class="px-5 py-4" style="background-color: var(--cl-violet-subtle);">
+              <p class="text-sm font-bold mb-2" style="color: var(--cl-violet-dark);">Mifflin-St Jeor <span class="text-xs font-medium bg-white px-2 py-0.5 rounded-full ml-1.5" style="color: var(--cl-violet-dark);">Default</span></p>
+              <p class="font-mono text-xs text-gray-600"><span class="font-bold">Male:</span> (10 × kg) + (6.25 × cm) − (5 × age) + 5</p>
+              <p class="font-mono text-xs text-gray-600 mt-1"><span class="font-bold">Female:</span> (10 × kg) + (6.25 × cm) − (5 × age) − 161</p>
+              <p class="text-xs text-gray-600 mt-2">The current clinical gold standard, published in <em>The American Journal of Clinical Nutrition</em>, 1990.</p>
+            </div>
+            <div class="px-5 py-4">
+              <p class="text-sm font-bold text-gray-800 mb-2">Harris-Benedict</p>
+              <p class="font-mono text-xs text-gray-600"><span class="font-bold">Male:</span> 88.362 + (13.397 × kg) + (4.799 × cm) − (5.677 × age)</p>
+              <p class="font-mono text-xs text-gray-600 mt-1"><span class="font-bold">Female:</span> 447.593 + (9.247 × kg) + (3.098 × cm) − (4.330 × age)</p>
+              <p class="text-xs text-gray-500 mt-2">The classic metabolic study from 1919, re-evaluated in 1984 for modern accuracy.</p>
+            </div>
+            <div class="px-5 py-4">
+              <p class="text-sm font-bold text-gray-800 mb-2">Katch-McArdle <span class="text-xs font-normal text-gray-500 ml-1">(requires body fat %)</span></p>
+              <p class="font-mono text-xs text-gray-600">BMR = 370 + (21.6 × lean mass in kg)</p>
+              <p class="text-xs text-gray-500 mt-2">Utilizes Lean Body Mass; recommended for users with accurate body fat data from DEXA or skinfold tests.</p>
+            </div>
+            <div class="px-5 py-3.5 bg-gray-50">
+              <p class="text-xs font-semibold mb-2 text-gray-500">Scientific References</p>
+              <ul class="space-y-1.5">
+                <li>
+                  <a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" target="_blank" rel="noopener noreferrer nofollow" class="text-xs" style="color: var(--cl-violet-dark);">
+                    Mifflin, M. D., et al. (1990). A new predictive equation for resting energy expenditure. <em>AJCN</em>.<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="display:inline;margin-left:3px;vertical-align:middle;opacity:0.85"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://pubmed.ncbi.nlm.nih.gov/6350827/" target="_blank" rel="noopener noreferrer nofollow" class="text-xs" style="color: var(--cl-violet-dark);">
+                    Roza, A. M., &amp; Shizgal, H. M. (1984). The Harris Benedict equation reevaluated. <em>AJCN</em>.<svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="display:inline;margin-left:3px;vertical-align:middle;opacity:0.85"><path d="M3.5 3H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 2h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 2L5.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
