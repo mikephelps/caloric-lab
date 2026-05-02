@@ -28,13 +28,17 @@ const faqSchema = [
     question: "What activity level should I choose?",
     answer: "Be honest about your actual activity. Most office workers are sedentary or lightly active. Overestimating activity is one of the most common mistakes in calorie calculations.",
   },
+  {
+    question: "Which activity level should I choose?",
+    answer: "Selecting the right activity multiplier is the most critical step in determining an accurate TDEE. Most people tend to overestimate their daily movement, so we recommend starting with a lower tier if you are unsure. For example, 'Sedentary' applies to those with office jobs and minimal intentional exercise, while 'Moderately Active' typically requires an equivalent of 3–5 moderate workouts per week alongside daily movement. If your goal is weight loss, underestimating your activity slightly is a safer baseline for establishing a sustainable calorie deficit.",
+  },
 ];
 ---
 
 <CalculatorLayout
-  title="TDEE Calculator | No-Login & Instant | CaloricLab"
+  title="TDEE Calculator (Mifflin-St Jeor & PAL Method) | CaloricLab"
   pageTitle="TDEE Calculator"
-  description="Find your Total Daily Energy Expenditure (TDEE). Get accurate maintenance calorie results based on your activity level. No sign-up or subscription required."
+  description="Calculate your Total Daily Energy Expenditure (TDEE) with clinical precision. Use our evidence-based activity multipliers to find your maintenance, fat loss, and muscle gain calories."
   subtitle="Find out exactly how many calories your body burns each day. Use your TDEE to set the right calorie target for your goal."
   breadcrumb="TDEE Calculator"
   {relatedCalcs}
@@ -58,7 +62,10 @@ const faqSchema = [
       <h2 class="text-xl font-bold text-gray-900 mb-4">How Is TDEE Calculated?</h2>
       <p class="text-gray-600 leading-relaxed mb-4">
         CaloricLab uses the <strong>Mifflin-St Jeor equation</strong>, which is considered the most accurate
-        formula for estimating BMR in the general population according to multiple peer-reviewed studies.
+        formula for estimating BMR in the general population according to multiple peer-reviewed studies. Our activity multipliers are calibrated based on the FAO/WHO/UNU clinical standards for human energy requirements, ensuring your results align with established nutritional science.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        <em>TDEE is derived by multiplying your Basal Metabolic Rate (BMR) by a Physical Activity Level (PAL) constant. For the most accurate baseline, ensure your <a href="/bmr-calculator/" class="text-green-700 hover:text-violet-dark underline underline-offset-2">BMR</a> is calculated using clinical formulas.</em>
       </p>
 
       <div class="bg-white rounded-xl shadow-sm p-5 mb-6 font-mono text-sm">
@@ -68,21 +75,24 @@ const faqSchema = [
       </div>
 
       <h2 class="text-xl font-bold text-gray-900 mb-4">Activity Multipliers Explained</h2>
-      <div class="overflow-x-auto mb-6">
-        <table class="w-full text-sm border-collapse">
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Multipliers derived from Physical Activity Level (PAL) constants.
+      </p>
+      <div class="not-prose overflow-hidden rounded-2xl shadow-sm mb-6">
+        <table class="w-full text-sm">
           <thead>
-            <tr class="border-b-2 border-gray-200">
-              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Activity Level</th>
-              <th class="text-left py-2 pr-4 font-semibold text-gray-900">Multiplier</th>
-              <th class="text-left py-2 font-semibold text-gray-900">Description</th>
+            <tr style="background-color: var(--cl-violet-subtle);">
+              <th class="text-left px-5 py-3 font-semibold" style="color: var(--cl-violet-dark);">Activity Level</th>
+              <th class="text-left px-5 py-3 font-semibold" style="color: var(--cl-violet-dark);">Multiplier</th>
+              <th class="text-left px-5 py-3 font-semibold" style="color: var(--cl-violet-dark);">Description</th>
             </tr>
           </thead>
-          <tbody class="text-gray-600">
-            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Sedentary</td><td class="py-2 pr-4">× 1.2</td><td class="py-2">Desk job, little or no exercise</td></tr>
-            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Lightly Active</td><td class="py-2 pr-4">× 1.375</td><td class="py-2">Light exercise 1–3 days/week</td></tr>
-            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Moderately Active</td><td class="py-2 pr-4">× 1.55</td><td class="py-2">Moderate exercise 3–5 days/week</td></tr>
-            <tr class="border-b border-gray-100"><td class="py-2 pr-4 font-medium">Very Active</td><td class="py-2 pr-4">× 1.725</td><td class="py-2">Hard exercise 6–7 days/week</td></tr>
-            <tr><td class="py-2 pr-4 font-medium">Extremely Active</td><td class="py-2 pr-4">× 1.9</td><td class="py-2">Physical job or twice-daily training</td></tr>
+          <tbody class="bg-white divide-y divide-gray-100">
+            <tr><td class="px-5 py-3.5 font-medium text-gray-800">Sedentary</td><td class="px-5 py-3.5 font-mono text-gray-700">× 1.2</td><td class="px-5 py-3.5 text-gray-600">Desk job, little or no exercise</td></tr>
+            <tr><td class="px-5 py-3.5 font-medium text-gray-800">Lightly Active</td><td class="px-5 py-3.5 font-mono text-gray-700">× 1.375</td><td class="px-5 py-3.5 text-gray-600">Light exercise 1–3 days/week</td></tr>
+            <tr><td class="px-5 py-3.5 font-medium text-gray-800">Moderately Active</td><td class="px-5 py-3.5 font-mono text-gray-700">× 1.55</td><td class="px-5 py-3.5 text-gray-600">Moderate exercise 3–5 days/week</td></tr>
+            <tr><td class="px-5 py-3.5 font-medium text-gray-800">Very Active</td><td class="px-5 py-3.5 font-mono text-gray-700">× 1.725</td><td class="px-5 py-3.5 text-gray-600">Hard exercise 6–7 days/week</td></tr>
+            <tr><td class="px-5 py-3.5 font-medium text-gray-800">Extremely Active</td><td class="px-5 py-3.5 font-mono text-gray-700">× 1.9</td><td class="px-5 py-3.5 text-gray-600">Physical job or twice-daily training</td></tr>
           </tbody>
         </table>
       </div>
