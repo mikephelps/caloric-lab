@@ -111,6 +111,10 @@
   color: var(--cl-violet);
 }
 
+/* Calculator page SEO content — section breathing room */
+.calc-content h2 { margin-top: 2.5rem; }
+.calc-content h2:first-child { margin-top: 0; }
+
 /* Calculator submit button */
 .btn-calc {
   cursor: pointer;
