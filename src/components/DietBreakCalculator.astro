@@ -7,11 +7,11 @@
   <!-- Form card -->
   <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
     <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
-      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <svg class="w-4 h-4 text-violet" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.75.75 0 0 1 1.362-.632A6.5 6.5 0 1 1 8 1.5v-.75a.75.75 0 0 1 1.28-.53l2 2a.75.75 0 0 1 0 1.06l-2 2A.75.75 0 0 1 8 5.03V3z" clip-rule="evenodd"/>
       </svg>
       <span class="text-sm font-bold text-white">Diet Break Calculator</span>
-      <span class="text-sm text-green-400">· Enter Your Details</span>
+      <span class="text-sm" style="color: rgba(255,255,255,0.65);">· Enter Your Details</span>
     </div>
 
     <div class="p-6 sm:p-8 space-y-6">
@@ -21,8 +21,8 @@
         <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Sex</p>
         <div class="grid grid-cols-2 gap-2.5" id="db-sex-group">
           <button type="button" data-sex="male"
-            class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30">
-            <span class="text-sm font-bold text-green-700">Male</span>
+            class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20">
+            <span class="text-sm font-bold text-violet-dark">Male</span>
           </button>
           <button type="button" data-sex="female"
             class="flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300">
@@ -36,7 +36,7 @@
         <label for="db-age" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Age</label>
         <div class="relative w-32">
           <input id="db-age" type="number" inputmode="numeric" min="18" max="100" placeholder="30"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-10"/>
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-10"/>
           <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">yrs</span>
         </div>
         <p id="db-age-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter age (18–100).</p>
@@ -55,7 +55,7 @@
         </div>
         <div class="relative">
           <input id="db-weight" type="number" inputmode="decimal" min="50" max="700" placeholder="185"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-10"/>
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-10"/>
           <span id="db-weight-unit-label" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">lbs</span>
         </div>
         <p id="db-weight-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter a valid weight.</p>
@@ -76,12 +76,12 @@
           <div class="flex gap-2">
             <div class="relative w-24">
               <input id="db-ft" type="number" inputmode="numeric" min="1" max="8" placeholder="5"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-8"/>
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-8"/>
               <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
             </div>
             <div class="relative w-24">
               <input id="db-in" type="number" inputmode="numeric" min="0" max="11" placeholder="10"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-7"/>
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-7"/>
               <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
             </div>
           </div>
@@ -91,7 +91,7 @@
         <div id="db-ht-met" class="hidden">
           <div class="relative">
             <input id="db-cm" type="number" inputmode="numeric" min="100" max="250" placeholder="178"
-              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-12"/>
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-12"/>
             <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
           </div>
           <p id="db-cm-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter height in cm (100–250).</p>
@@ -103,7 +103,7 @@
         <label for="db-activity" class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Activity Level</label>
         <div class="relative">
           <select id="db-activity"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors appearance-none pr-10">
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors appearance-none pr-10">
             <option value="1.2">Sedentary (little or no exercise)</option>
             <option value="1.375">Lightly Active (1–3 days/week)</option>
             <option value="1.55" selected>Moderately Active (3–5 days/week)</option>
@@ -125,7 +125,7 @@
         <p class="text-xs text-gray-400 mb-2.5">Leave blank to use Mifflin-St Jeor</p>
         <div class="relative w-36">
           <input id="db-bf" type="number" inputmode="decimal" min="2" max="60" placeholder="e.g., 20"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-7"/>
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-7"/>
           <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
         </div>
         <p id="db-bf-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter body fat % (2–60) or leave blank.</p>
@@ -137,7 +137,7 @@
         <p class="text-xs text-gray-400 mb-2.5">What you're eating right now during your cut</p>
         <div class="relative">
           <input id="db-cals" type="number" inputmode="numeric" min="500" max="10000" placeholder="e.g., 1800"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-20"/>
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-20"/>
           <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cal/day</span>
         </div>
         <p id="db-cals-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter your current daily calories (500–10,000).</p>
@@ -149,7 +149,7 @@
         <p class="text-xs text-gray-400 mb-2.5">How long you've been continuously dieting</p>
         <div class="relative w-36">
           <input id="db-weeks" type="number" inputmode="numeric" min="1" max="200" placeholder="e.g., 10"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300 pr-14"/>
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300 pr-14"/>
           <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">weeks</span>
         </div>
         <p id="db-weeks-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter weeks in deficit (1–200).</p>
@@ -160,10 +160,10 @@
         <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2.5">Break Type</p>
         <div id="db-break-group" class="space-y-2">
           <button type="button" data-break="matador"
-            class="flex items-start gap-3 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30">
+            class="flex items-start gap-3 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20">
             <div>
-              <span class="text-sm font-bold text-green-700 block">Strict MATADOR (2 weeks off / 2 weeks on)</span>
-              <span class="text-xs text-green-600 mt-0.5 block">Research-backed protocol — Byrne et al. 2018</span>
+              <span class="text-sm font-bold text-violet-dark block">Strict MATADOR (2 weeks off / 2 weeks on)</span>
+              <span class="text-xs text-violet mt-0.5 block">Research-backed protocol — Byrne et al. 2018</span>
             </div>
           </button>
           <button type="button" data-break="standard"
@@ -212,12 +212,12 @@
 <script>
   const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
-  const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20';
   const CARD_INACTIVE = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300';
-  const BREAK_ACTIVE   = 'flex items-start gap-3 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-green-400 bg-green-50 ring-1 ring-green-400/30';
+  const BREAK_ACTIVE   = 'flex items-start gap-3 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20';
   const BREAK_INACTIVE = 'flex items-start gap-3 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-gray-200 bg-white hover:border-gray-300';
-  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
-  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300';
   const ARROW_SVG = `<svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
 
   let sex = 'male';
@@ -240,7 +240,7 @@
         const active = (b as HTMLButtonElement).dataset.sex === sex;
         b.className = active ? CARD_ACTIVE : CARD_INACTIVE;
         const span = b.querySelector('span');
-        if (span) span.className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'}`;
+        if (span) span.className = `text-sm font-bold ${active ? 'text-violet-dark' : 'text-gray-700'}`;
       });
     });
   });
@@ -316,8 +316,8 @@
         b.className = active ? BREAK_ACTIVE : BREAK_INACTIVE;
         const titleSpan = b.querySelector('span:first-child');
         const noteSpan = b.querySelector('span:last-child');
-        if (titleSpan) titleSpan.className = `text-sm font-bold ${active ? 'text-green-700' : 'text-gray-700'} block`;
-        if (noteSpan) noteSpan.className = `text-xs ${active ? 'text-green-600' : 'text-gray-500'} mt-0.5 block`;
+        if (titleSpan) titleSpan.className = `text-sm font-bold ${active ? 'text-violet-dark' : 'text-gray-700'} block`;
+        if (noteSpan) noteSpan.className = `text-xs ${active ? 'text-violet' : 'text-gray-500'} mt-0.5 block`;
       });
     });
   });
@@ -482,11 +482,11 @@
     const defSign = d.deficitAmt >= 0 ? '+' : '';
 
     const offsetBadge = d.offset > 0
-      ? `<span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">−${d.offset}% adaptive offset applied</span>`
+      ? `<span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">−${d.offset}% adaptive offset applied</span>`
       : '';
 
     const adaptiveNote = d.offset > 0
-      ? `<p class="mt-3 text-xs text-green-100/80 leading-relaxed">After ${d.weeks} weeks of continuous dieting, your predicted TDEE has been reduced by ${d.offset}% to account for metabolic adaptation.</p>`
+      ? `<p class="result-label mt-3 text-xs leading-relaxed">After ${d.weeks} weeks of continuous dieting, your predicted TDEE has been reduced by ${d.offset}% to account for metabolic adaptation.</p>`
       : '';
 
     const scheduleHtml = renderSchedule(d.breakType, d.maintenanceTarget, d.currentCals);
@@ -498,20 +498,20 @@
       : `<p class="text-xs text-amber-700 mt-3 leading-relaxed bg-amber-50 border border-amber-100 rounded-lg px-3 py-2"><strong>Note:</strong> After 16+ weeks of continuous dieting, significant metabolic adaptation is expected. An 8% offset has been applied. A full 2-week break is strongly recommended.</p>`;
 
     const xMarkSVG = `<svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>`;
-    const checkSVG = `<svg class="w-3.5 h-3.5 text-green-600 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/></svg>`;
+    const checkSVG = `<svg class="w-3.5 h-3.5 text-violet flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/></svg>`;
 
     const html = `
       <div class="animate-fade-up space-y-4">
 
         <!-- Section 1: Maintenance Target -->
-        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-          <p class="text-sm font-medium text-green-100 mb-2 tracking-wide">Diet Break Calories</p>
+        <div class="rounded-2xl bg-gray-950 result-hero p-6 sm:p-8 text-white">
+          <p class="result-label text-sm font-medium mb-2 tracking-wide">Diet Break Calories</p>
           <div class="flex items-baseline gap-3 flex-wrap">
             <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${m}</span>
-            <span class="text-xl font-semibold text-green-100">cal / day</span>
+            <span class="result-label text-xl font-semibold">cal / day</span>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
+            <span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">
               Base TDEE: ${d.tdee.toLocaleString()} cal · ${d.formula}
             </span>
             ${offsetBadge}
@@ -520,13 +520,13 @@
         </div>
 
         <!-- Context card -->
-        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+        <div class="bg-white rounded-2xl shadow-sm p-5">
           <p class="text-sm text-gray-700 leading-relaxed">
             You've been eating <strong>${cc} cal/day</strong>. Your diet break target is approximately <strong>${m} cal/day</strong> — that's <strong>${defSign}${Math.abs(d.deficitAmt).toLocaleString()} calories</strong> ${d.deficitAmt >= 0 ? 'more' : 'less'} than your current intake.
           </p>
-          <div class="mt-4 pt-4 border-t border-green-100 flex items-start gap-3">
-            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
-              <svg class="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <div class="mt-4 pt-4 border-t border-gray-100 flex items-start gap-3">
+            <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-violet-subtle flex items-center justify-center">
+              <svg class="w-4 h-4 text-violet" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-3.25a.75.75 0 0 1 1.5 0V8a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1 0-1.5H7.25V4.75z" clip-rule="evenodd"/>
               </svg>
             </div>
@@ -540,8 +540,8 @@
         </div>
 
         <!-- Section 2: Break Schedule -->
-        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 overflow-hidden">
-          <div class="px-5 py-3.5 border-b border-green-100">
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-gray-100">
             <p class="text-sm font-semibold text-gray-900">Your Break Schedule</p>
           </div>
           <div class="p-5">
@@ -561,8 +561,8 @@
         </div>
 
         <!-- Section 4: Science Comparison -->
-        <div class="bg-[#F9FFFF] rounded-2xl border border-green-100 overflow-hidden">
-          <div class="px-5 py-3.5 border-b border-green-100">
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-gray-100">
             <p class="text-sm font-semibold text-gray-900">The Science: Continuous vs. Intermittent Dieting</p>
           </div>
           <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -572,13 +572,13 @@
                 ${['Continuous calorie restriction', 'Metabolism adapts downward over time', 'Higher muscle loss risk over extended cuts', 'Harder to sustain psychologically'].map(item => `<li class="flex items-start gap-2 text-xs text-gray-600">${xMarkSVG}${item}</li>`).join('')}
               </ul>
             </div>
-            <div class="bg-green-50 rounded-xl border border-green-100 p-4">
+            <div class="bg-white rounded-xl p-4" style="border-left: 4px solid var(--cl-violet);">
               <div class="flex items-center gap-2 mb-3">
-                <p class="text-sm font-bold text-green-700">MATADOR Protocol</p>
-                <span class="text-xs font-medium text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full">Research-backed</span>
+                <p class="text-sm font-bold text-violet-dark">MATADOR Protocol</p>
+                <span class="text-xs font-medium text-violet-dark bg-violet-subtle px-1.5 py-0.5 rounded-full">Research-backed</span>
               </div>
               <ul class="space-y-2">
-                ${['Alternating restriction and maintenance', 'Periodic metabolic reset via leptin and thyroid', 'Retained significantly more lean mass', 'Better long-term adherence and outcomes', 'Byrne et al. 2018 · International Journal of Obesity'].map(item => `<li class="flex items-start gap-2 text-xs text-green-700">${checkSVG}${item}</li>`).join('')}
+                ${['Alternating restriction and maintenance', 'Periodic metabolic reset via leptin and thyroid', 'Retained significantly more lean mass', 'Better long-term adherence and outcomes', 'Byrne et al. 2018 · International Journal of Obesity'].map(item => `<li class="flex items-start gap-2 text-xs text-violet-dark">${checkSVG}${item}</li>`).join('')}
               </ul>
             </div>
           </div>
@@ -589,20 +589,20 @@
           <p class="text-sm font-semibold text-gray-900 mb-4">What's Next</p>
           <div class="space-y-4">
             <div>
-              <a href="/calorie-deficit-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-700 hover:bg-green-800 text-white text-sm font-semibold rounded-xl transition-colors">
+              <a href="/calorie-deficit-calculator/" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-calc text-white text-sm font-semibold rounded-xl transition-colors">
                 Resume your cut ${ARROW_SVG}
                 <span class="sr-only">Calorie Deficit Calculator</span>
               </a>
               <p class="mt-1.5 text-xs text-gray-500">When your break is over, recalculate your deficit target.</p>
             </div>
             <div>
-              <a href="/macro-calculator/" class="inline-flex items-center gap-2 text-green-700 hover:text-green-800 text-sm font-semibold transition-colors">
+              <a href="/macro-calculator/" class="inline-flex items-center gap-2 text-violet hover:text-violet-dark text-sm font-semibold transition-colors">
                 Set your break macros → Macro Calculator ${ARROW_SVG}
               </a>
               <p class="mt-1 text-xs text-gray-500">During a diet break, keep protein high to protect muscle while increasing carbs to signal metabolic recovery.</p>
             </div>
             <div>
-              <a href="/protein-calculator/" class="inline-flex items-center gap-2 text-green-700 hover:text-green-800 text-sm font-semibold transition-colors">
+              <a href="/protein-calculator/" class="inline-flex items-center gap-2 text-violet hover:text-violet-dark text-sm font-semibold transition-colors">
                 Check your protein target → Protein Calculator ${ARROW_SVG}
               </a>
             </div>
@@ -636,8 +636,8 @@
     const d = dietCals.toLocaleString();
 
     const breakRow = (weeks: string, label: string) => `
-      <div class="flex items-center gap-3 bg-green-50 border border-green-100 rounded-xl px-4 py-3">
-        <span class="flex-shrink-0 text-xs font-bold text-green-700 bg-green-200 px-2 py-0.5 rounded-full whitespace-nowrap">BREAK</span>
+      <div class="flex items-center gap-3 bg-violet-subtle border border-violet-light rounded-xl px-4 py-3">
+        <span class="flex-shrink-0 text-xs font-bold text-violet-dark bg-violet-subtle px-2 py-0.5 rounded-full whitespace-nowrap">BREAK</span>
         <div>
           <p class="text-sm font-semibold text-gray-900">${weeks}: ${m} cal/day</p>
           <p class="text-xs text-gray-500">${label}</p>
@@ -678,9 +678,9 @@
     // maintenance phase
     return `
       <p class="text-sm text-gray-600 mb-3">Eat at maintenance indefinitely until weight stabilizes, then reassess your goals.</p>
-      <div class="bg-green-50 border border-green-100 rounded-xl px-4 py-4">
+      <div class="bg-violet-subtle border border-violet-light rounded-xl px-4 py-4">
         <div class="flex items-center gap-3 mb-2">
-          <span class="text-xs font-bold text-green-700 bg-green-200 px-2 py-0.5 rounded-full">MAINTENANCE</span>
+          <span class="text-xs font-bold text-violet-dark bg-violet-subtle px-2 py-0.5 rounded-full">MAINTENANCE</span>
           <p class="text-sm font-semibold text-gray-900">Every day: ${m} cal/day</p>
         </div>
         <p class="text-sm text-gray-600 leading-relaxed">Eat at maintenance until your weight stabilizes for 2–3 consecutive weeks. Once stable, you can choose to resume your deficit, continue at maintenance, or begin a slow lean bulk.</p>

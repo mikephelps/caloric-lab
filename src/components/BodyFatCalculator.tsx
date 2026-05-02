@@ -6,7 +6,7 @@ type MeasurementUnit = "imperial" | "metric"; // inches vs cm
 const CATEGORIES_MALE = [
   { min: 0,   max: 6,   label: "Essential Fat", textColor: "text-blue-700",   bgColor: "bg-blue-50"   },
   { min: 6,   max: 14,  label: "Athletes",       textColor: "text-green-700",  bgColor: "bg-green-50"  },
-  { min: 14,  max: 18,  label: "Fitness",         textColor: "text-teal-700",   bgColor: "bg-teal-50"   },
+  { min: 14,  max: 18,  label: "Fitness",         textColor: "text-violet-dark", bgColor: "bg-violet-subtle"   },
   { min: 18,  max: 25,  label: "Average",         textColor: "text-yellow-700", bgColor: "bg-yellow-50" },
   { min: 25,  max: 999, label: "Obese",           textColor: "text-red-600",    bgColor: "bg-red-50"    },
 ];
@@ -14,7 +14,7 @@ const CATEGORIES_MALE = [
 const CATEGORIES_FEMALE = [
   { min: 0,   max: 14,  label: "Essential Fat", textColor: "text-blue-700",   bgColor: "bg-blue-50"   },
   { min: 14,  max: 21,  label: "Athletes",       textColor: "text-green-700",  bgColor: "bg-green-50"  },
-  { min: 21,  max: 25,  label: "Fitness",         textColor: "text-teal-700",   bgColor: "bg-teal-50"   },
+  { min: 21,  max: 25,  label: "Fitness",         textColor: "text-violet-dark", bgColor: "bg-violet-subtle"   },
   { min: 25,  max: 32,  label: "Average",         textColor: "text-yellow-700", bgColor: "bg-yellow-50" },
   { min: 32,  max: 999, label: "Obese",           textColor: "text-red-600",    bgColor: "bg-red-50"    },
 ];
@@ -413,23 +413,23 @@ export default function BodyFatCalculator() {
 
           {/* Hero */}
           <div className="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-            <p className="text-sm font-medium text-green-100 mb-2 tracking-wide">
+            <p className="result-label text-sm font-medium mb-2 tracking-wide">
               Your body fat percentage
             </p>
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">
                 {results.bodyFatPct}
               </span>
-              <span className="text-xl font-semibold text-green-100">% body fat</span>
+              <span className="result-label text-xl font-semibold">% body fat</span>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">
                 Fat mass:{" "}
                 {results.weightUnit === "lbs"
                   ? `${results.fatMassLbs} lbs`
                   : `${results.fatMassKg} kg`}
               </span>
-              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">
                 Lean mass:{" "}
                 {results.weightUnit === "lbs"
                   ? `${results.leanMassLbs} lbs`

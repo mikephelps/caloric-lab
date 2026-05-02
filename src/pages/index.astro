@@ -136,35 +136,42 @@ const features = [
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </Fragment>
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden bg-[#F9FFFF] pt-16 pb-20 sm:pt-20 sm:pb-28">
+  <!-- Hero — full dark with aurora -->
+  <section class="relative overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28" style="background-color: var(--cl-dark-nav);">
 
-    <!-- Background scene image — faint -->
-    <img
-      src="/images/food-forest-md.jpg"
-      alt="Abstract metabolic landscape with kale, blueberries, and molecular structures framing a winding path toward a sunrise"
-      class="absolute inset-0 w-full h-full object-cover object-center opacity-[0.15] select-none pointer-events-none"
-    />
-    <!-- Soft edge fade so image doesn't bleed into surrounding sections -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#F9FFFF]/70 via-transparent to-[#F9FFFF]/80 pointer-events-none" aria-hidden="true"></div>
+    <!-- Aurora background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1160 420" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="aurora-blur1"><feGaussianBlur stdDeviation="28"/></filter>
+          <filter id="aurora-blur2"><feGaussianBlur stdDeviation="40"/></filter>
+          <filter id="aurora-blur3"><feGaussianBlur stdDeviation="22"/></filter>
+        </defs>
+        <ellipse cx="280" cy="260" rx="520" ry="90" fill="none" stroke="#0e7490" stroke-width="60" opacity="0.13" filter="url(#aurora-blur1)" transform="rotate(-8 280 260)"/>
+        <ellipse cx="640" cy="200" rx="480" ry="70" fill="none" stroke="oklch(59% 0.24 292)" stroke-width="50" opacity="0.11" filter="url(#aurora-blur2)" transform="rotate(4 640 200)"/>
+        <ellipse cx="920" cy="140" rx="340" ry="50" fill="none" stroke="#22d3ee" stroke-width="36" opacity="0.09" filter="url(#aurora-blur3)" transform="rotate(-5 920 140)"/>
+        <ellipse cx="500" cy="310" rx="400" ry="55" fill="none" stroke="#0891b2" stroke-width="44" opacity="0.08" filter="url(#aurora-blur2)" transform="rotate(6 500 310)"/>
+        <ellipse cx="820" cy="340" rx="300" ry="45" fill="none" stroke="oklch(70% 0.18 292)" stroke-width="30" opacity="0.07" filter="url(#aurora-blur1)" transform="rotate(-3 820 340)"/>
+      </svg>
+    </div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
 
         <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-50 border border-green-100 text-green-700 text-xs font-semibold uppercase tracking-wider mb-7">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-7" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);">
           <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M6 1a1 1 0 0 0 0 2v3.27L3.1 12.5A1.5 1.5 0 0 0 4.46 15h7.08a1.5 1.5 0 0 0 1.36-2.5L10 6.27V3a1 1 0 0 0 0-2H6z"/>
           </svg>
           Science-Backed Calculations
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
           Instant, Science-Backed<br />
-          <span class="text-green-600">Nutrition Tools</span>
+          <span style="color: var(--cl-violet-light);">Nutrition Tools</span>
         </h1>
 
-        <p class="mt-6 text-lg sm:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto">
+        <p class="mt-6 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto" style="color: rgba(255,255,255,0.6);">
           Find your calorie targets, macro splits, and body metrics in seconds. No accounts, no tracking, just the math.
         </p>
 
@@ -181,7 +188,10 @@ const features = [
           </a>
           <a
             href="/macro-calculator/"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-xl border transition-colors"
+            style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); color: white;"
+            onmouseenter="this.style.background='rgba(255,255,255,0.13)';"
+            onmouseleave="this.style.background='rgba(255,255,255,0.08)';"
           >
             Get My Macros
           </a>
@@ -195,8 +205,8 @@ const features = [
             "Mifflin-St Jeor formula",
             "Privacy friendly",
           ].map(label => (
-            <span class="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-              <svg class="w-3.5 h-3.5 text-green-600 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <span class="flex items-center gap-1.5 text-xs font-medium" style="color: rgba(255,255,255,0.5);">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--cl-violet-light);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
               </svg>
               {label}
@@ -209,7 +219,7 @@ const features = [
   </section>
 
   <!-- Calculator cards -->
-  <section class="bg-white py-16 sm:py-20">
+  <section class="py-16 sm:py-20" style="background-color: var(--cl-page-bg);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">All Calculators</h2>
@@ -221,21 +231,21 @@ const features = [
           <a
             href={calc.href}
             class:list={[
-              "group relative bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:bg-[#F9FFFF] hover:border-green-300 hover:shadow-xl hover:shadow-green-900/10 hover:-translate-y-0.5 transition-all duration-200",
-              i === 0 ? "lg:col-span-1 ring-1 ring-teal-200/60" : "",
+              "group relative bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:border-violet hover:shadow-xl hover:shadow-violet/10 hover:-translate-y-0.5 transition-all duration-200",
+              i === 0 ? "lg:col-span-1 ring-1 ring-violet/20" : "",
             ]}
           >
             {calc.tag && (
-              <span class="absolute top-4 right-4 text-xs font-semibold text-white bg-green-700 px-2.5 py-1 rounded-full">
+              <span class="absolute top-4 right-4 text-xs font-semibold text-white px-2.5 py-1 rounded-full" style="background: var(--cl-violet);">
                 {calc.tag}
               </span>
             )}
-            <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center mb-4 group-hover:bg-green-100 transition-colors">
-              <svg class="w-5 h-5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calcIcons[calc.icon] ?? calcIcons["flame"]}/>
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-colors" style="background: var(--cl-violet);">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" set:html={calcIcons[calc.icon] ?? calcIcons["flame"]}/>
             </div>
-            <h3 class="text-base font-semibold text-gray-900 group-hover:text-green-700 transition-colors">{calc.name}</h3>
+            <h3 class="text-base font-semibold text-gray-900 group-hover:text-violet transition-colors">{calc.name}</h3>
             <p class="mt-2 text-sm text-gray-500 leading-relaxed">{calc.desc}</p>
-            <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-green-700 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-violet opacity-0 group-hover:opacity-100 transition-opacity">
               Use calculator
               <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
@@ -248,26 +258,26 @@ const features = [
     </div>
   </section>
 
-  <!-- Why CaloricLab -->
-  <section class="bg-[#F9FFFF] py-16 sm:py-20">
+  <!-- Why CaloricLab — dark with glass cards -->
+  <section class="py-16 sm:py-20" style="background-color: var(--cl-dark-card);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Why CaloricLab?</h2>
-        <p class="mt-3 text-gray-500 max-w-4xl mx-auto">CaloricLab provides free, science-backed nutrition calculators that help people understand their daily calorie needs, macros, and body composition using peer-reviewed formulas like Mifflin-St Jeor and the U.S. Navy method.</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">Why CaloricLab?</h2>
+        <p class="mt-3 max-w-4xl mx-auto" style="color: rgba(255,255,255,0.55);">CaloricLab provides free, science-backed nutrition calculators that help people understand their daily calorie needs, macros, and body composition using peer-reviewed formulas like Mifflin-St Jeor and the U.S. Navy method.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {features.map(f => (
-          <div class="text-center">
-            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-green-700 mb-5">
+          <div class="rounded-2xl p-7 text-center" style="background: var(--glass-bg); border: var(--glass-border); box-shadow: var(--glass-shadow);">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl mb-5" style="background: var(--cl-violet);">
               <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 {f.icon === "beaker" && <><path d="M9 3H15"/><path d="M10 3v4.5L5.5 14A2 2 0 0 0 7.11 17H16.89A2 2 0 0 0 18.5 14L14 7.5V3"/></>}
                 {f.icon === "gift" && <><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></>}
                 {f.icon === "shield" && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>}
               </svg>
             </div>
-            <h3 class="text-base font-semibold text-gray-900 mb-2">{f.title}</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+            <h3 class="text-base font-semibold text-white mb-2">{f.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">{f.desc}</p>
           </div>
         ))}
       </div>
@@ -275,14 +285,14 @@ const features = [
   </section>
 
   <!-- Recent Articles -->
-  <section class="bg-white py-16 sm:py-20">
+  <section class="py-16 sm:py-20" style="background-color: var(--cl-page-bg);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-10">
         <div>
           <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">From the Blog</h2>
           <p class="mt-2 text-gray-500">Evidence-based nutrition guides to help you get results.</p>
         </div>
-        <a href="/blog/" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors">
+        <a href="/blog/" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style="color: var(--cl-violet);">
           All articles
           <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
@@ -295,7 +305,7 @@ const features = [
         {recentPosts.map(post => (
           <a
             href={`/blog/${post.id.replace(/\.md$/, '')}/`}
-            class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:bg-[#F9FFFF] hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 hover:-translate-y-0.5 transition-all duration-200"
+            class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-violet hover:shadow-lg hover:shadow-violet/10 hover:-translate-y-0.5 transition-all duration-200"
           >
             {post.data.heroImage ? (
               <div class="aspect-video overflow-hidden bg-gray-100">
@@ -307,8 +317,8 @@ const features = [
                 />
               </div>
             ) : (
-              <div class="aspect-video bg-gradient-to-br from-green-50 to-teal-50 flex items-center justify-center">
-                <svg class="w-10 h-10 text-green-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <div class="aspect-video flex items-center justify-center" style="background: var(--cl-violet-subtle);">
+                <svg class="w-10 h-10 text-violet-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
                 </svg>
               </div>
@@ -317,11 +327,11 @@ const features = [
               {post.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-1.5 mb-3">
                   {post.data.tags.slice(0, 2).map(tag => (
-                    <span class="text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded-full">{tag}</span>
+                    <span class="text-xs font-medium px-2 py-0.5 rounded-full" style="color: var(--cl-violet-dark); background: var(--cl-violet-subtle);">{tag}</span>
                   ))}
                 </div>
               )}
-              <h3 class="text-sm font-semibold text-gray-900 leading-snug group-hover:text-green-700 transition-colors line-clamp-2">
+              <h3 class="text-sm font-semibold text-gray-900 leading-snug group-hover:text-violet transition-colors line-clamp-2">
                 {post.data.title}
               </h3>
               <p class="mt-2 text-xs text-gray-500 leading-relaxed line-clamp-2">{post.data.description}</p>
@@ -334,7 +344,7 @@ const features = [
       </div>
 
       <div class="mt-8 sm:hidden text-center">
-        <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors">
+        <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style="color: var(--cl-violet);">
           View all articles
           <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
@@ -345,13 +355,13 @@ const features = [
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="bg-[#F9FFFF] py-16">
+  <!-- CTA Banner — dark -->
+  <section class="py-16" style="background-color: var(--cl-dark-card);">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">
         Ready to get started?
       </h2>
-      <p class="mt-3 text-gray-500 text-base">
+      <p class="mt-3 text-base" style="color: rgba(255,255,255,0.55);">
         Pick a calculator and get your numbers in under two minutes.
       </p>
       <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
@@ -363,7 +373,10 @@ const features = [
         </a>
         <a
           href="/bmr-calculator/"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-green-50 text-green-700 text-sm font-semibold rounded-xl border border-green-200 hover:border-green-300 transition-colors"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl border transition-colors"
+          style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); color: white;"
+          onmouseenter="this.style.background='rgba(255,255,255,0.13)';"
+          onmouseleave="this.style.background='rgba(255,255,255,0.08)';"
         >
           BMR Calculator
         </a>

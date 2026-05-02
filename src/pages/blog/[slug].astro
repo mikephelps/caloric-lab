@@ -128,7 +128,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-8">
 
     <!-- Back link -->
-    <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors mb-8">
+    <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';" >
       <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L4.56 7.5H13a.75.75 0 0 1 0 1.5H4.56l3.22 3.22a.75.75 0 0 1 0 1.06z" clip-rule="evenodd"/>
       </svg>
@@ -139,7 +139,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
     {post.data.tags.length > 0 && (
       <div class="flex flex-wrap gap-2 mb-5">
         {post.data.tags.map(tag => (
-          <span class="text-xs font-semibold text-green-700 bg-green-50 px-2.5 py-1 rounded-full border border-green-100">{tag}</span>
+          <span class="text-xs font-semibold bg-violet-subtle px-2.5 py-1 rounded-full" style="color: var(--cl-violet-dark);"">{tag}</span>
         ))}
       </div>
     )}
@@ -179,12 +179,12 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
   <!-- TL;DR / Key Takeaways box -->
   {tldr && tldr.length > 0 && (
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-      <div class="bg-green-50 border border-green-100 rounded-2xl p-5">
-        <p class="text-xs font-bold text-green-800 uppercase tracking-wider mb-3">Key Takeaways</p>
+      <div class="bg-white rounded-2xl shadow-sm p-5" style="border-left: 4px solid var(--cl-violet);">
+        <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--cl-violet-dark);">Key Takeaways</p>
         <ul class="space-y-2.5">
           {tldr.map(point => (
             <li class="flex items-start gap-2.5 text-sm text-gray-700 leading-relaxed">
-              <svg class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
               </svg>
               {point}
@@ -222,16 +222,23 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
           prose-p:text-gray-600 prose-p:leading-relaxed
           prose-strong:text-gray-900 prose-strong:font-semibold
           prose-li:text-gray-600
-          prose-a:text-green-700 prose-a:underline hover:prose-a:text-green-800
+          prose-a:underline
           prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-base
           prose-table:text-sm">
           <Content />
         </div>
 
         <!-- Why Trust CaloricLab -->
-        <div class="mt-10 p-5 bg-gray-50 rounded-2xl border border-gray-100">
-          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Why Trust CaloricLab</p>
-          <div class="trust-body text-sm text-gray-600 leading-relaxed" set:html={trustBodyHtml} />
+        <div class="mt-10 rounded-2xl p-7" style="background-color: var(--cl-dark-card); background-image: linear-gradient(160deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.04) 100%); border: var(--glass-border); box-shadow: var(--glass-shadow);">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="inline-flex items-center justify-center w-8 h-8 rounded-xl flex-shrink-0" style="background: var(--cl-violet);">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <p class="text-xs font-bold uppercase tracking-wider" style="color: oklch(72% 0.18 292);">Why Trust CaloricLab</p>
+          </div>
+          <div class="trust-body text-sm leading-relaxed" set:html={trustBodyHtml} />
         </div>
 
         <!-- Prev / Next navigation -->
@@ -240,7 +247,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
             {olderPost ? (
               <a
                 href={`/blog/${olderPost.id.replace(/\.md$/, '')}/`}
-                class="group flex flex-col gap-1 p-4 bg-[#F9FFFF] rounded-xl border border-green-100 hover:border-green-300 hover:shadow-md transition-all duration-200"
+                class="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md hover:border-violet/30 transition-all duration-200"
               >
                 <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-1">
                   <svg class="w-3.5 h-3.5 rotate-180" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -248,14 +255,14 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
                   </svg>
                   Older
                 </span>
-                <span class="text-sm font-semibold text-gray-700 group-hover:text-green-700 transition-colors leading-snug">{olderPost.data.title}</span>
+                <span class="text-sm font-semibold text-gray-700 group-hover:text-violet transition-colors leading-snug">{olderPost.data.title}</span>
               </a>
             ) : <div />}
 
             {newerPost ? (
               <a
                 href={`/blog/${newerPost.id.replace(/\.md$/, '')}/`}
-                class="group flex flex-col gap-1 p-4 bg-[#F9FFFF] rounded-xl border border-green-100 hover:border-green-300 hover:shadow-md transition-all duration-200 sm:text-right"
+                class="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md hover:border-violet/30 transition-all duration-200 sm:text-right"
               >
                 <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-1 sm:justify-end">
                   Newer
@@ -263,7 +270,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
                     <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
                   </svg>
                 </span>
-                <span class="text-sm font-semibold text-gray-700 group-hover:text-green-700 transition-colors leading-snug">{newerPost.data.title}</span>
+                <span class="text-sm font-semibold text-gray-700 group-hover:text-violet transition-colors leading-snug">{newerPost.data.title}</span>
               </a>
             ) : <div />}
           </div>
@@ -271,7 +278,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
 
         <!-- Back to blog -->
         <div class="mt-8">
-          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors">
+          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';" >
             <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L4.56 7.5H13a.75.75 0 0 1 0 1.5H4.56l3.22 3.22a.75.75 0 0 1 0 1.06z" clip-rule="evenodd"/>
             </svg>
@@ -330,14 +337,14 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
     color: #374151;
   }
 
-  /* Links — always underlined, dark cyan */
+  /* Links — always underlined, accessible purple */
   .article-body a {
-    color: #0e7490;
+    color: var(--cl-violet-dark);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
   .article-body a:hover {
-    color: #0891b2;
+    color: var(--cl-violet);
   }
 
   /* Callout links — override article link color so they stay white */
@@ -346,7 +353,7 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
     text-underline-offset: 2px;
   }
   .article-body .not-prose a:hover {
-    color: #bfdbfe;
+    color: rgba(255,255,255,0.8);
   }
 
   /* Horizontal rules — subtle */
@@ -395,14 +402,14 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
 
   /* Callout blockquotes */
   .article-body blockquote {
-    border-left: 4px solid #0891b2;
-    background-color: #ecfeff;
+    border-left: 4px solid var(--cl-violet);
+    background-color: var(--cl-violet-subtle);
     border-radius: 0 12px 12px 0;
     padding: 1rem 1.25rem;
     margin: 1.75rem 0;
   }
   .article-body blockquote p {
-    color: #0e7490 !important;
+    color: var(--cl-violet-dark) !important;
     margin: 0 !important;
     font-size: 0.9375rem;
   }
@@ -417,20 +424,23 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
     color: #111827;
   }
 
-  /* Why Trust body — marked outputs <p> tags */
+  /* Why Trust body — dark background, light text */
   .trust-body p {
+    color: rgba(255,255,255,0.7);
     margin-bottom: 0.75rem;
   }
   .trust-body p:last-child {
     margin-bottom: 0;
   }
   .trust-body a {
-    color: #15803d;
+    color: white;
     text-decoration: underline;
     text-underline-offset: 2px;
+    text-decoration-color: rgba(255,255,255,0.4);
   }
   .trust-body a:hover {
-    color: #166534;
+    color: white;
+    text-decoration-color: white;
   }
 
   /* Responsive images */

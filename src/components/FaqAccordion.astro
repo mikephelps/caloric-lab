@@ -5,36 +5,80 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="not-prose divide-y divide-gray-100 rounded-2xl border border-gray-200 overflow-hidden">
+<div class="not-prose faq-accordion rounded-2xl overflow-hidden shadow-sm">
   {items.map((item, i) => (
-    <details open={i === 0 || undefined} class="faq-item">
-      <summary class="faq-summary flex items-center justify-between gap-4 px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors">
-        <h3 class="text-sm font-semibold text-gray-900 leading-snug">{item.question}</h3>
-        <svg class="faq-chevron w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+    <div class={i === 0 ? 'faq-item is-open' : 'faq-item'}>
+      <button
+        class="faq-trigger flex items-center justify-between gap-4 w-full px-5 py-4 text-left cursor-pointer"
+        aria-expanded={i === 0 ? 'true' : 'false'}
+      >
+        <h3 class="text-sm font-semibold leading-snug">{item.question}</h3>
+        <svg class="faq-chevron w-4 h-4 flex-shrink-0 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
         </svg>
-      </summary>
-      <div class="px-5 pb-5 pt-1">
-        <p class="text-sm text-gray-600 leading-relaxed">{item.answer}</p>
+      </button>
+      <!-- Always in DOM — grid clips it to 0fr when closed -->
+      <div class="faq-outer">
+        <div class="faq-body">
+          <div class="px-5 pb-5 pt-4 bg-white">
+            <p class="text-sm text-gray-600 leading-relaxed">{item.answer}</p>
+          </div>
+        </div>
       </div>
-    </details>
+    </div>
   ))}
 </div>
 
 <style>
-  .faq-summary { list-style: none; }
-  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-item + .faq-item { border-top: 1px solid rgba(0,0,0,0.06); }
+
+  .faq-trigger {
+    background-color: rgba(255,255,255,0.5);
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+  }
+  .faq-trigger:hover { background-color: #ffffff; }
+
+  .faq-trigger h3 {
+    color: #111827;
+    transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
   .faq-chevron {
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
+    color: #9ca3af;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                color     0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  details[open] > .faq-summary {
-    background-color: #f9fafb;
-  }
+  .faq-item.is-open > .faq-trigger              { background-color: var(--cl-dark-nav); }
+  .faq-item.is-open > .faq-trigger h3           { color: #ffffff; }
+  .faq-item.is-open > .faq-trigger .faq-chevron { color: rgba(255,255,255,0.5); transform: rotate(180deg); }
 
-  details[open] .faq-chevron {
-    transform: rotate(180deg);
+  /* Content is always in DOM; grid-template-rows clips it smoothly */
+  .faq-outer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  .faq-item.is-open > .faq-outer { grid-template-rows: 1fr; }
+  .faq-body { overflow: hidden; min-height: 0; }
 </style>
+
+<script>
+  document.querySelectorAll('.faq-accordion').forEach(accordion => {
+    const items = Array.from(accordion.querySelectorAll<HTMLElement>('.faq-item'));
+    items.forEach(item => {
+      item.querySelector('.faq-trigger')!.addEventListener('click', () => {
+        const opening = !item.classList.contains('is-open');
+        items.forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.faq-trigger')!.setAttribute('aria-expanded', 'false');
+        });
+        if (opening) {
+          item.classList.add('is-open');
+          item.querySelector('.faq-trigger')!.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>

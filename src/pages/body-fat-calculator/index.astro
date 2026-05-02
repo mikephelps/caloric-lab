@@ -102,7 +102,7 @@ const faqSchema = [
 
       <p class="text-sm font-semibold text-gray-700 mb-2">For Men</p>
       <div class="space-y-3 mb-5">
-        <div class="bg-blue-50 rounded-xl border border-blue-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-blue-300 p-4">
           <p class="text-sm font-bold text-blue-700 mb-1">Essential Fat (under 6%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             The minimum amount of fat required for normal physiological function. Only competitive
@@ -110,7 +110,7 @@ const faqSchema = [
             level you will see every muscle fiber and vein clearly.
           </p>
         </div>
-        <div class="bg-green-50 rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-green-400 p-4">
           <p class="text-sm font-bold text-green-700 mb-1">Athletes (6 to 13%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             The range associated with elite athletic performance and high-definition muscle visibility.
@@ -118,15 +118,15 @@ const faqSchema = [
             typically land here. Sustainable but requires consistent training and careful nutrition.
           </p>
         </div>
-        <div class="bg-teal-50 rounded-xl border border-teal-100 p-4">
-          <p class="text-sm font-bold text-teal-700 mb-1">Fitness (14 to 17%)</p>
+        <div class="bg-white rounded-xl border-l-4 p-4" style="border-color: var(--cl-violet);"">
+          <p class="text-sm font-bold mb-1" style="color: var(--cl-violet-dark);"">Fitness (14 to 17%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             A lean, fit appearance with visible muscle definition. This is the range most recreational
             gym-goers aim for. Abs are visible in good lighting. Sustainable with regular exercise and
             reasonable nutrition.
           </p>
         </div>
-        <div class="bg-yellow-50 rounded-xl border border-yellow-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-yellow-300 p-4">
           <p class="text-sm font-bold text-yellow-700 mb-1">Average (18 to 24%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             The average range for healthy adult men. Some muscle tone is visible but not defined. Most
@@ -134,7 +134,7 @@ const faqSchema = [
             this range.
           </p>
         </div>
-        <div class="bg-red-50 rounded-xl border border-red-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-red-300 p-4">
           <p class="text-sm font-bold text-red-600 mb-1">Obese (25% and above)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Elevated body fat associated with increased risk of metabolic disease, cardiovascular
@@ -146,7 +146,7 @@ const faqSchema = [
 
       <p class="text-sm font-semibold text-gray-700 mb-2">For Women</p>
       <div class="space-y-3 mb-6">
-        <div class="bg-blue-50 rounded-xl border border-blue-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-blue-300 p-4">
           <p class="text-sm font-bold text-blue-700 mb-1">Essential Fat (under 14%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             The minimum fat level required for female hormonal function and reproductive health. Falling
@@ -154,7 +154,7 @@ const faqSchema = [
             female bodybuilders may approach this range briefly during contest prep.
           </p>
         </div>
-        <div class="bg-green-50 rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-green-400 p-4">
           <p class="text-sm font-bold text-green-700 mb-1">Athletes (14 to 20%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Lean and highly conditioned. Elite female athletes across most sports fall in this range.
@@ -162,21 +162,21 @@ const faqSchema = [
             and maintain.
           </p>
         </div>
-        <div class="bg-teal-50 rounded-xl border border-teal-100 p-4">
-          <p class="text-sm font-bold text-teal-700 mb-1">Fitness (21 to 24%)</p>
+        <div class="bg-white rounded-xl border-l-4 p-4" style="border-color: var(--cl-violet);"">
+          <p class="text-sm font-bold mb-1" style="color: var(--cl-violet-dark);"">Fitness (21 to 24%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             A lean, toned physique with some visible muscle definition. The range most active women
             aim for. Sustainable with consistent exercise and a balanced diet.
           </p>
         </div>
-        <div class="bg-yellow-50 rounded-xl border border-yellow-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-yellow-300 p-4">
           <p class="text-sm font-bold text-yellow-700 mb-1">Average (25 to 31%)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Normal and healthy for adult women. Less defined muscle tone but no significant health
             risk within this range. Many healthy women who do not train regularly fall here.
           </p>
         </div>
-        <div class="bg-red-50 rounded-xl border border-red-100 p-4">
+        <div class="bg-white rounded-xl border-l-4 border-red-300 p-4">
           <p class="text-sm font-bold text-red-600 mb-1">Obese (32% and above)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Above the healthy range, associated with the same increased metabolic and cardiovascular
@@ -194,7 +194,7 @@ const faqSchema = [
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl shadow-sm p-4">
           <p class="text-sm font-bold text-gray-900 mb-2">Waist</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Men: measure at the navel. Women: measure at the narrowest point, roughly 1 inch above the
@@ -202,7 +202,7 @@ const faqSchema = [
             Do not compress the skin. The tape should be parallel to the floor all the way around.
           </p>
         </div>
-        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl shadow-sm p-4">
           <p class="text-sm font-bold text-gray-900 mb-2">Neck</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Measure just below the larynx (Adam's apple) at the widest point of the neck. Keep your
@@ -210,7 +210,7 @@ const faqSchema = [
             follow the natural contour. Pull snug but not tight.
           </p>
         </div>
-        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl shadow-sm p-4">
           <p class="text-sm font-bold text-gray-900 mb-2">Hip (women only)</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Stand with feet together. Measure at the widest point of the hips and buttocks, which is
@@ -218,7 +218,7 @@ const faqSchema = [
             to the floor all the way around.
           </p>
         </div>
-        <div class="bg-[#F9FFFF] rounded-xl border border-green-100 p-4">
+        <div class="bg-white rounded-xl shadow-sm p-4">
           <p class="text-sm font-bold text-gray-900 mb-2">Timing and consistency</p>
           <p class="text-xs text-gray-600 leading-relaxed">
             Take measurements first thing in the morning before eating or drinking. Repeat each

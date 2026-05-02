@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import GlassHero from "../../components/GlassHero.astro";
 
 const siteUrl = "https://caloriclab.com";
 const pageUrl = `${siteUrl}/about/`;
@@ -50,11 +49,27 @@ const aboutSchema = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
   </Fragment>
-  <!-- Page header — liquid glass -->
-  <GlassHero
-    title="About CaloricLab"
-    subtitle="Free, accurate, science-backed nutrition calculators for everyone."
-  />
+
+  <!-- Page header — dark aurora band -->
+  <header class="relative overflow-hidden py-10 sm:py-12" style="background-color: var(--cl-dark-nav);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1160 160" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="ab1"><feGaussianBlur stdDeviation="22"/></filter>
+          <filter id="ab2"><feGaussianBlur stdDeviation="32"/></filter>
+          <filter id="ab3"><feGaussianBlur stdDeviation="18"/></filter>
+        </defs>
+        <ellipse cx="200" cy="120" rx="420" ry="70" fill="none" stroke="#0e7490" stroke-width="50" opacity="0.14" filter="url(#ab1)" transform="rotate(-6 200 120)"/>
+        <ellipse cx="640" cy="80" rx="400" ry="55" fill="none" stroke="oklch(59% 0.24 292)" stroke-width="44" opacity="0.10" filter="url(#ab2)" transform="rotate(3 640 80)"/>
+        <ellipse cx="980" cy="50" rx="280" ry="42" fill="none" stroke="#22d3ee" stroke-width="30" opacity="0.09" filter="url(#ab3)" transform="rotate(-4 980 50)"/>
+        <ellipse cx="480" cy="140" rx="320" ry="38" fill="none" stroke="#0891b2" stroke-width="34" opacity="0.08" filter="url(#ab2)" transform="rotate(5 480 140)"/>
+      </svg>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl sm:text-3xl font-bold text-white">About CaloricLab</h1>
+      <p class="mt-2 text-sm sm:text-base max-w-2xl" style="color: rgba(255,255,255,0.55);">Free, accurate, science-backed nutrition calculators for everyone.</p>
+    </div>
+  </header>
 
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-10">
 
@@ -62,11 +77,11 @@ const aboutSchema = {
     <div>
       <h2 class="text-xl font-bold text-gray-900 mb-3">Mission</h2>
       <p class="text-xl text-gray-700 leading-relaxed font-medium">
-        I’m Mike, a Senior UX Designer and the founder of CaloricLab. I built this platform because I believe nutrition science should be accessible, not gatekept. As a designer currently working toward my Precision Nutrition (PN1) certification, I wanted to bridge the gap between complex peer-reviewed formulas and the everyday tools we use to hit our goals.
+        I'm Mike, a Senior UX Designer and the founder of CaloricLab. I built this platform because I believe nutrition science should be accessible, not gatekept. As a designer currently working toward my Precision Nutrition (PN1) certification, I wanted to bridge the gap between complex peer-reviewed formulas and the everyday tools we use to hit our goals.
       </p>
       <br>
       <p class="text-xl text-gray-700 leading-relaxed font-medium">
-        Most fitness apps want your email address, your location, and a monthly subscription before they’ll even show you your BMR. I’m building a faster, privacy-first alternative. No accounts, no paywalls, just science-backed tools that get out of your way so you can get to work.
+        Most fitness apps want your email address, your location, and a monthly subscription before they'll even show you your BMR. I'm building a faster, privacy-first alternative. No accounts, no paywalls, just science-backed tools that get out of your way so you can get to work.
       </p>
     </div>
 
@@ -79,7 +94,7 @@ const aboutSchema = {
         There's a lot of noise in the nutrition world. Fad diets, conflicting advice, and overcomplicated
         systems leave most people more confused than when they started. CaloricLab cuts through that.
       </p>
-      <blockquote class="mt-5 pl-4 border-l-4 border-green-400 bg-green-50/50 py-3 pr-4 rounded-r-xl">
+      <blockquote class="mt-5 pl-4 border-l-4 py-3 pr-4 rounded-r-xl" style="border-color: var(--cl-violet); background-color: var(--cl-violet-subtle);">
         <p class="text-gray-700 font-medium leading-relaxed italic">
           Give people the right numbers, explain the science clearly, and get out of the way.
         </p>
@@ -143,16 +158,16 @@ const aboutSchema = {
             href: "https://doi.org/10.1038/ijo.2017.206",
           },
         ].map(item => (
-          <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex gap-3 p-4 bg-[#F9FFFF] rounded-xl border border-green-100 hover:border-green-300 hover:shadow-md hover:shadow-green-900/5 transition-all duration-200">
-            <div class="flex-shrink-0 w-7 h-7 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center mt-0.5 transition-colors">
-              <svg class="w-3.5 h-3.5 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <a href={item.href} target="_blank" rel="noopener noreferrer" class="group flex gap-3 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+            <div class="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center mt-0.5 transition-colors" style="background-color: var(--cl-violet-subtle);">
+              <svg class="w-3.5 h-3.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
               </svg>
             </div>
             <div class="min-w-0">
-              <p class="text-sm font-semibold text-gray-900 group-hover:text-green-700 transition-colors flex items-center gap-1">
+              <p class="text-sm font-semibold text-gray-900 flex items-center gap-1" style="transition: color 0.15s;" onmouseenter="this.style.color='var(--cl-violet)'" onmouseleave="this.style.color=''">
                 {item.title}
-                <svg class="w-3 h-3 text-gray-400 group-hover:text-green-700 transition-colors flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <svg class="w-3 h-3 text-gray-400 flex-shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
                 </svg>
               </p>
@@ -167,9 +182,9 @@ const aboutSchema = {
 
     <!-- Free & Privacy side by side -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div class="p-5 bg-green-50 rounded-2xl border border-green-100">
+      <div class="p-5 rounded-2xl shadow-sm bg-white">
         <div class="flex items-center gap-2 mb-3">
-          <svg class="w-5 h-5 text-green-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="w-5 h-5" style="color: var(--cl-violet);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
           </svg>
           <h3 class="font-bold text-gray-900">Completely Free</h3>
@@ -180,16 +195,16 @@ const aboutSchema = {
         </p>
       </div>
 
-      <div class="p-5 bg-teal-50 rounded-2xl border border-teal-100">
+      <div class="p-5 rounded-2xl shadow-sm bg-white">
         <div class="flex items-center gap-2 mb-3">
-          <svg class="w-5 h-5 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="w-5 h-5" style="color: var(--cl-violet);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
           <h3 class="font-bold text-gray-900">Privacy First</h3>
         </div>
         <p class="text-sm text-gray-600 leading-relaxed">
           Every calculation happens in your browser. Your age, weight, height, and other
-          health data never leaves your device. No 3rd party trackers or data selling. See our <a href="/privacy/" class="text-teal-700 font-medium hover:underline">Privacy Policy</a>.
+          health data never leaves your device. No 3rd party trackers or data selling. See our <a href="/privacy/" style="color: var(--cl-violet-dark); font-weight: 500;" class="hover:underline">Privacy Policy</a>.
         </p>
       </div>
     </div>
@@ -202,7 +217,7 @@ const aboutSchema = {
       <p class="text-gray-600 leading-relaxed">
         Have a question, found an error, or want to suggest a new calculator? We'd love to hear from you.
         Reach us at{" "}
-        <a href="mailto:hello.caloriclab@proton.me" class="text-green-700 font-medium hover:underline">hello.caloriclab@proton.me</a>.
+        <a href="mailto:hello.caloriclab@proton.me" style="color: var(--cl-violet-dark); font-weight: 500;" class="hover:underline">hello.caloriclab@proton.me</a>.
       </p>
     </div>
 

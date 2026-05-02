@@ -382,20 +382,20 @@ export default function BMRCalculator() {
 
           {/* Primary BMR hero */}
           <div className="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-            <p className="text-sm font-medium text-green-100 mb-2 tracking-wide">
+            <p className="result-label text-sm font-medium mb-2 tracking-wide">
               Your Basal Metabolic Rate
             </p>
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">
                 {results.mifflin.toLocaleString()}
               </span>
-              <span className="text-xl font-semibold text-green-100">cal / day</span>
+              <span className="result-label text-xl font-semibold">cal / day</span>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">
                 Mifflin-St Jeor formula
               </span>
-              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">
+              <span className="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">
                 At complete rest
               </span>
             </div>
@@ -453,11 +453,11 @@ export default function BMRCalculator() {
               {/* Katch-McArdle — conditional */}
               {results.katch !== null ? (
                 <div className="flex items-center gap-4 px-5 py-4">
-                  <div className="flex-shrink-0 w-1 h-12 rounded-full bg-teal-400" />
+                  <div className="flex-shrink-0 w-1 h-12 rounded-full bg-violet" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-sm font-semibold text-gray-700">Katch-McArdle</span>
-                      <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
+                      <span className="text-xs font-semibold text-violet-dark bg-violet-subtle px-2 py-0.5 rounded-full">
                         Body fat adjusted
                       </span>
                     </div>

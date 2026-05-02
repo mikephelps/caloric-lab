@@ -7,11 +7,11 @@
   <!-- ── Form card ── -->
   <div class="bg-white rounded-2xl ring-1 ring-gray-900/[0.08] shadow-xl shadow-green-900/[0.08] overflow-hidden">
     <div class="px-6 py-4 bg-gray-950 flex items-center gap-2">
-      <svg class="w-4 h-4 text-green-400" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <svg class="w-4 h-4 text-violet" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <path d="M8 12.5c-3.5-2.5-6.5-5-6.5-8a3.5 3.5 0 0 1 6.5-2 3.5 3.5 0 0 1 6.5 2c0 3-3 5.5-6.5 8z"/>
       </svg>
       <span class="text-sm font-bold text-white">BMR Calculator</span>
-      <span class="text-sm text-green-400">· Enter Your Details</span>
+      <span class="text-sm" style="color: rgba(255,255,255,0.65);">· Enter Your Details</span>
     </div>
 
     <div class="p-6 sm:p-8 space-y-5">
@@ -37,7 +37,7 @@
             min="18"
             max="100"
             placeholder="30"
-            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
           />
           <p id="bmr-age-err" class="mt-1.5 text-xs text-red-500 font-medium hidden">Enter an age between 18 and 100.</p>
         </div>
@@ -52,7 +52,7 @@
               inputmode="decimal"
               min="0"
               placeholder="165"
-              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
             />
             <div id="bmr-weight-toggle" class="inline-flex rounded-xl bg-gray-100 p-1 gap-0.5">
               <button type="button" data-wunit="lbs" class="rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200">lbs</button>
@@ -85,7 +85,7 @@
                 max="9"
                 placeholder="5"
                 aria-label="Height feet"
-                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
               />
               <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">ft</span>
             </div>
@@ -98,7 +98,7 @@
                 max="11"
                 placeholder="10"
                 aria-label="Height inches"
-                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+                class="w-full px-4 py-3 pr-10 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
               />
               <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">in</span>
             </div>
@@ -117,7 +117,7 @@
               max="280"
               placeholder="178"
               aria-label="Height in centimetres"
-              class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
             />
             <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">cm</span>
           </div>
@@ -139,7 +139,7 @@
               min="5"
               max="50"
               placeholder="e.g. 18"
-              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300"
+              class="w-full px-4 py-3 pr-8 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300"
             />
             <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 pointer-events-none select-none">%</span>
           </div>
@@ -182,8 +182,8 @@
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
   const PILL_MD_ACTIVE   = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_MD_INACTIVE = 'rounded-lg font-semibold transition-all px-5 py-2 text-sm text-gray-500 hover:text-gray-700';
-  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
-  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-green-500/25 focus:border-green-400 transition-colors placeholder:text-gray-300';
+  const INPUT_OK    = 'w-full px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300';
+  const INPUT_ERROR = 'w-full px-4 py-3 rounded-xl border border-red-300 bg-red-50/40 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300';
 
   // ── State ────────────────────────────────────────────────────────────────────
   let sex        = 'male';
@@ -361,11 +361,11 @@
       const katchDiffStr = (katchDiff >= 0 ? '+' : '') + katchDiff.toLocaleString();
       katchRow = `
         <div class="flex items-center gap-4 px-5 py-4">
-          <div class="flex-shrink-0 w-1 h-12 rounded-full bg-teal-400"></div>
+          <div class="flex-shrink-0 w-1 h-12 rounded-full bg-violet"></div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
               <span class="text-sm font-semibold text-gray-700">Katch-McArdle</span>
-              <span class="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">Body fat adjusted</span>
+              <span class="text-xs font-semibold text-violet-dark bg-violet-subtle px-2 py-0.5 rounded-full">Body fat adjusted</span>
             </div>
             <p class="text-xs text-gray-500 mt-0.5">Based on lean mass. Most accurate when body fat is known.</p>
           </div>
@@ -394,37 +394,37 @@
       <div class="animate-fade-up space-y-4">
 
         <!-- Hero BMR number -->
-        <div class="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-          <p class="text-sm font-medium text-green-100 mb-2 tracking-wide">Your Basal Metabolic Rate</p>
+        <div class="rounded-2xl bg-gray-950 result-hero p-6 sm:p-8 text-white">
+          <p class="result-label text-sm font-medium mb-2 tracking-wide">Your Basal Metabolic Rate</p>
           <div class="flex items-baseline gap-3 flex-wrap">
             <span class="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">${mifflinR.toLocaleString()}</span>
-            <span class="text-xl font-semibold text-green-100">cal / day</span>
+            <span class="result-label text-xl font-semibold">cal / day</span>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">
-            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">Mifflin-St Jeor formula</span>
-            <span class="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full">At complete rest</span>
+            <span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">Mifflin-St Jeor formula</span>
+            <span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">At complete rest</span>
           </div>
         </div>
 
         <!-- Formula comparison table -->
         <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-          <div class="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+          <div class="px-5 py-4 bg-gray-50 border-b border-gray-100">
             <h3 class="text-sm font-bold text-gray-700">Formula Comparison</h3>
             <p class="text-xs text-gray-500 mt-0.5">Different equations, same person. See how they compare.</p>
           </div>
           <div class="divide-y divide-gray-50">
 
             <!-- Mifflin-St Jeor — primary -->
-            <div class="flex items-center gap-4 px-5 py-4 bg-green-50">
-              <div class="flex-shrink-0 w-1 h-12 rounded-full bg-green-500"></div>
+            <div class="flex items-center gap-4 px-5 py-4 bg-violet-subtle">
+              <div class="flex-shrink-0 w-1 h-12 rounded-full bg-violet"></div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2 flex-wrap">
-                  <span class="text-sm font-semibold text-green-700">Mifflin-St Jeor</span>
-                  <span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">Recommended</span>
+                  <span class="text-sm font-semibold text-violet-dark">Mifflin-St Jeor</span>
+                  <span class="text-xs font-bold text-violet bg-violet-subtle px-2 py-0.5 rounded-full" style="border: 1px solid var(--cl-violet-light);">Recommended</span>
                 </div>
                 <p class="text-xs text-gray-500 mt-0.5">Most accurate for the general population</p>
               </div>
-              <span class="flex-shrink-0 text-lg font-bold tabular-nums text-green-700">${mifflinR.toLocaleString()}</span>
+              <span class="flex-shrink-0 text-lg font-bold tabular-nums text-violet-dark">${mifflinR.toLocaleString()}</span>
             </div>
 
             <!-- Harris-Benedict -->
@@ -463,16 +463,16 @@
         </div>
 
         <!-- TDEE CTA -->
-        <a href="/tdee-calculator/" class="group flex items-center justify-between gap-4 bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4 hover:border-green-300 hover:shadow-md transition-all">
+        <a href="/tdee-calculator/" class="group flex items-center justify-between gap-4 bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4 hover:border-violet/40 hover:shadow-md transition-all">
           <div>
-            <p class="text-sm font-bold text-gray-900 group-hover:text-green-700 transition-colors">
+            <p class="text-sm font-bold text-gray-900 group-hover:text-violet transition-colors">
               Calculate your full daily calorie needs (TDEE)
             </p>
             <p class="text-xs text-gray-500 mt-0.5">
               Add your activity level to BMR to get your total daily energy expenditure
             </p>
           </div>
-          <svg class="flex-shrink-0 w-5 h-5 text-gray-300 group-hover:text-green-500 transition-all" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg class="flex-shrink-0 w-5 h-5 text-gray-300 group-hover:text-violet transition-all" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10z" clip-rule="evenodd"/>
           </svg>
         </a>

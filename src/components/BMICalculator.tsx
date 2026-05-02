@@ -316,14 +316,14 @@ export default function BMICalculator() {
 
           {/* Hero */}
           <div className="rounded-2xl bg-green-700 p-6 sm:p-8 text-white">
-            <p className="text-sm font-medium text-green-100 mb-2 tracking-wide">
+            <p className="result-label text-sm font-medium mb-2 tracking-wide">
               Your BMI is
             </p>
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-6xl sm:text-7xl font-extrabold tracking-tight tabular-nums leading-none">
                 {results.bmi}
               </span>
-              <span className="text-xs font-medium text-green-100 bg-white/[0.1] px-3 py-1 rounded-full self-center">
+              <span className="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full self-center">
                 {results.category.label}
               </span>
             </div>
