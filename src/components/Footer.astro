@@ -28,15 +28,36 @@ const year = new Date().getFullYear();
       <div class="col-span-2 lg:col-span-1">
         <a href="/" class="flex items-center gap-2.5 group" aria-label="CaloricLab home">
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <g clip-path="url(#footer_clip)">
-              <path d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z" fill="#0D7490"/>
-              <path d="M15.812 20.329C17.849 20.329 18.626 19.174 18.815 17.935H22.553C22.217 21.022 20.243 23.647 15.686 23.647C11.612 23.647 8.672 20.602 8.672 16.276C8.672 11.866 11.612 8.905 15.686 8.905C20.201 8.905 22.238 11.467 22.553 14.617H18.815C18.605 13.441 17.744 12.223 15.791 12.223C13.922 12.223 12.515 13.777 12.536 16.276C12.557 18.796 13.943 20.329 15.812 20.329Z" fill="white"/>
-              <path d="M5.14 11.02C6.44 11.02 7.28 11.86 7.3 13.08C7.3 14.28 6.44 15.16 5.14 15.16C3.86 15.16 3 14.28 3 13.08C3 11.86 3.86 11.02 5.14 11.02Z" fill="white" fill-opacity="0.4"/>
-              <path d="M19 20.9674C19 25.2 16.1594 27.9349 12.0338 28C7.97584 28 5 25.2 5 20.9674C5 16.8 7.97585 14 12.0338 14C16.1594 14 19 16.8 19 20.9674Z" fill="white" fill-opacity="0.2"/>
-            </g>
             <defs>
-              <clipPath id="footer_clip"><rect width="32" height="32" fill="white"/></clipPath>
+              <clipPath id="fc"><rect width="32" height="32" fill="white"/></clipPath>
+              <mask id="fm" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+                <path d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z" fill="#22D3EE"/>
+              </mask>
+              <filter id="ff" x="4.736" y="4.015" width="22.8053" height="24.146" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset/><feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.380465 0 0 0 0 0.638605 0 0 0 0 1 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+              </filter>
+              <linearGradient id="fg" x1="-3.5" y1="26" x2="34.5" y2="26" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#195C99" stop-opacity="0"/>
+                <stop offset="1" stop-color="#195C99"/>
+              </linearGradient>
             </defs>
+            <g clip-path="url(#fc)">
+              <path d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z" fill="#22D3EE"/>
+              <g mask="url(#fm)">
+                <path d="M10 12.438C5.10731 14.3723 -2 11.1047 -4.5 10.938V23.438C-4.5 23.438 16.5 18.4379 27.5 21.938C40.3388 26.0231 51 23.438 51 23.438V13.438C31.5 13.938 31.5 3.938 10 12.438Z" fill="#62EAFF"/>
+                <path d="M37.3964 33.9109C46.0357 30.4851 58.5856 36.2724 63 36.5675L63 14.4287C63 14.4287 25.9189 23.2844 6.4955 17.0855C-16.1749 9.85026 -35 14.4287 -35 14.4287L-35 32.1398C-0.567569 31.2542 -0.567571 48.9653 37.3964 33.9109Z" fill="url(#fg)" fill-opacity="0.64"/>
+              </g>
+              <g filter="url(#ff)">
+                <path d="M16.556 20.527C17.8543 20.527 18.6853 20.0986 19.1939 19.473C19.8173 18.7063 20.5749 17.905 21.5631 17.905H21.7095C22.8997 17.905 23.8572 18.9603 23.4138 20.0648C22.4662 22.4251 20.2962 24.161 16.418 24.161C11.956 24.161 8.736 20.826 8.736 16.088C8.736 11.258 11.956 8.015 16.418 8.015C20.2836 8.015 22.4907 9.72969 23.4349 12.1263C23.8686 13.2272 22.9123 14.271 21.729 14.271H21.5195C20.5505 14.271 19.7832 13.5082 19.1692 12.7586C18.6406 12.1133 17.795 11.649 16.533 11.649C14.486 11.649 12.945 13.351 12.968 16.088C12.991 18.848 14.509 20.527 16.556 20.527Z" fill="white"/>
+              </g>
+              <path d="M6.9907 4C8.2 4 8.9814 4.81159 9 5.99034C9 7.14976 8.2 8 6.9907 8C5.8 8 5 7.14976 5 5.99034C5 4.81159 5.8 4 6.9907 4Z" fill="white" fill-opacity="0.6"/>
+            </g>
           </svg>
           <span class="text-lg font-bold text-white tracking-tight group-hover:text-violet-light transition-colors">CaloricLab</span>
         </a>
