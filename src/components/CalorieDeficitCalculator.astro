@@ -409,9 +409,9 @@
       </div>` : '';
 
     const planRows = [
-      { label: 'Maintenance calories (TDEE)', value: `${tdee.toLocaleString()} cal/day`, highlight: false },
+      { label: 'Maintenance calories (Your TDEE)', value: `${tdee.toLocaleString()} cal/day`, highlight: false },
       { label: 'Daily deficit',               value: `−${dailyDeficit.toLocaleString()} cal/day`, highlight: false },
-      { label: 'Daily calorie target',         value: `${targetCalories.toLocaleString()} cal/day`, highlight: true  },
+      { label: 'Daily target (BMR + Activity)',         value: `${targetCalories.toLocaleString()} cal/day`, highlight: true  },
     ].map(row => `<div class="flex items-center justify-between px-5 py-3.5 ${row.highlight ? 'bg-violet-subtle' : ''}">
       <span class="text-sm ${row.highlight ? 'font-semibold text-violet-dark' : 'text-gray-500'}">${row.label}</span>
       <span class="text-sm font-bold tabular-nums ${row.highlight ? 'text-violet-dark' : 'text-gray-800'}">${row.value}</span>
