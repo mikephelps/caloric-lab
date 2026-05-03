@@ -160,8 +160,9 @@ export default function ProteinCalculator() {
       dailyG = weightLbs * base;
     }
 
+    const dailyGRounded = Math.round(dailyG);
     setResults({
-      dailyG:        Math.round(dailyG),
+      dailyG:        dailyGRounded,
       perMealG:      Math.round(dailyG / 4),
       multiplierUsed,
       weightLbs:     Math.round(weightLbs * 10) / 10,
@@ -170,6 +171,7 @@ export default function ProteinCalculator() {
       goal,
       activity,
     });
+    try { localStorage.setItem("cl_calc_protein", String(dailyGRounded)); } catch {}
     setCalcKey((k) => k + 1);
   }
 

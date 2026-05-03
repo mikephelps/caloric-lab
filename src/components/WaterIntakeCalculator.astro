@@ -239,6 +239,7 @@
     const totalMl   = Math.round(baseMl + activityMl + climateMl + exerciseMl + specialMl);
     const totalL    = Math.round(totalMl / 100) / 10;
     const totalOz   = Math.round(totalMl * 0.033814);
+    try { localStorage.setItem('cl_calc_water', String(totalOz)); } catch {}
     const glasses   = Math.round(totalMl / 250);
     const ozPerHour = Math.round((totalOz / 16) * 10) / 10;
 
@@ -283,6 +284,9 @@
           <div class="mt-4 flex flex-wrap gap-2">
             <span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">${totalOz} fl oz / day</span>
             <span class="pill text-xs font-medium bg-white/[0.1] px-3 py-1 rounded-full">${glasses} glasses (250 ml each)</span>
+          </div>
+          <div class="mt-5 pt-4 border-t border-white/[0.07]">
+            <a href="/daily-habit-tracker/?add=h1" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.75rem;font-weight:500;display:inline-flex;align-items:center;gap:5px;transition:color 0.15s;" onmouseover="this.style.color='rgba(255,255,255,1)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Track &amp; hit this target in the Daily Foundation <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg></a>
           </div>
         </div>
 

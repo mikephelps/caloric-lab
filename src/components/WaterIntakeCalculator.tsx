@@ -193,6 +193,7 @@ export default function WaterIntakeCalculator() {
       exerciseMl:  Math.round(exerciseMl),
       specialMl,
     });
+    try { localStorage.setItem("cl_calc_water", String(totalOz)); } catch {}
     setCalcKey((k) => k + 1);
   }
 

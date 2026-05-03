@@ -250,6 +250,7 @@ export default function CalorieDeficitCalculator() {
       clamped,
       formula,
     });
+    try { localStorage.setItem("cl_calc_calories", String(targetCalories)); } catch {}
     setCalcKey((k) => k + 1);
   }
 

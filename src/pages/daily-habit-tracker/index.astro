@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DailyFoundation from "../../components/daily-foundation/DailyFoundation";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://caloriclab.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Daily Habit Tracker",
+      item: "https://caloriclab.com/daily-habit-tracker/",
+    },
+  ],
+};
+---
+
+<Layout
+  title="Daily Habit Tracker & Fitness Checklist | CaloricLab"
+  description="A privacy-first, science-backed daily habit tracker. Stay consistent with your metabolic health goals using our foundation checklist. No accounts required."
+  canonicalUrl="https://caloriclab.com/daily-habit-tracker/"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <div style="background: linear-gradient(to bottom, var(--cl-dark-nav) 0%, var(--cl-dark-nav) 40%, oklch(13% 0.028 261.692) 100%); min-height: 100%;">
+    <DailyFoundation client:load />
+  </div>
+</Layout>

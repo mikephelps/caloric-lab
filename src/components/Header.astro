@@ -113,6 +113,22 @@ const currentPath = Astro.url.pathname;
         </button>
 
         <a
+          href="/daily-habit-tracker/"
+          class:list={[
+            "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+            currentPath === "/daily-habit-tracker/"
+              ? "text-white"
+              : "text-gray-300 hover:text-white",
+          ]}
+          style={currentPath === "/daily-habit-tracker/" ? "background: rgba(255,255,255,0.08);" : ""}
+          onmouseenter="if(!this.style.background) this.style.background='rgba(255,255,255,0.08)'"
+          onmouseleave="if(!this.getAttribute('data-active')) this.style.background=''"
+          data-active={currentPath === "/daily-habit-tracker/" ? "true" : null}
+        >
+          Daily Foundation
+        </a>
+
+        <a
           href="/blog/"
           class:list={[
             "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
@@ -270,6 +286,7 @@ const currentPath = Astro.url.pathname;
       ))}
 
       <div class="mt-2 pt-2 space-y-0.5" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <a href="/daily-habit-tracker/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Daily Foundation</a>
         <a href="/blog/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Blog</a>
         <a href="/about/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">About</a>
       </div>
