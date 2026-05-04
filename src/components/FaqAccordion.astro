@@ -40,21 +40,21 @@ const { items } = Astro.props;
     transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     border: none;
   }
-  .faq-trigger:hover { background-color: #ffffff; }
+  .faq-trigger:hover { background-color: white; }
 
   .faq-trigger h3 {
-    color: #111827;
+    color: var(--color-gray-900);
     transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .faq-chevron {
-    color: #9ca3af;
+    color: var(--color-gray-400);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                 color     0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .faq-item.is-open > .faq-trigger              { background-color: var(--cl-dark-nav); }
-  .faq-item.is-open > .faq-trigger h3           { color: #ffffff; }
+  .faq-item.is-open > .faq-trigger h3           { color: white; }
   .faq-item.is-open > .faq-trigger .faq-chevron { color: rgba(255,255,255,0.5); transform: rotate(180deg); }
 
   /* Content is always in DOM; grid-template-rows clips it smoothly */

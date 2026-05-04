@@ -32,10 +32,10 @@ function formatDate(date: Date) {
           <filter id="blog-blur2"><feGaussianBlur stdDeviation="32"/></filter>
           <filter id="blog-blur3"><feGaussianBlur stdDeviation="18"/></filter>
         </defs>
-        <ellipse cx="200" cy="120" rx="420" ry="70" fill="none" stroke="#0e7490" stroke-width="50" opacity="0.14" filter="url(#blog-blur1)" transform="rotate(-6 200 120)"/>
-        <ellipse cx="640" cy="80" rx="400" ry="55" fill="none" stroke="oklch(59% 0.24 292)" stroke-width="44" opacity="0.10" filter="url(#blog-blur2)" transform="rotate(3 640 80)"/>
-        <ellipse cx="980" cy="50" rx="280" ry="42" fill="none" stroke="#22d3ee" stroke-width="30" opacity="0.09" filter="url(#blog-blur3)" transform="rotate(-4 980 50)"/>
-        <ellipse cx="480" cy="140" rx="320" ry="38" fill="none" stroke="#0891b2" stroke-width="34" opacity="0.08" filter="url(#blog-blur2)" transform="rotate(5 480 140)"/>
+        <ellipse cx="200" cy="120" rx="420" ry="70" fill="none" style="stroke: var(--cl-teal-dark);" stroke-width="50" opacity="0.14" filter="url(#blog-blur1)" transform="rotate(-6 200 120)"/>
+        <ellipse cx="640" cy="80" rx="400" ry="55" fill="none" style="stroke: var(--cl-violet);" stroke-width="44" opacity="0.10" filter="url(#blog-blur2)" transform="rotate(3 640 80)"/>
+        <ellipse cx="980" cy="50" rx="280" ry="42" fill="none" style="stroke: var(--cl-teal);" stroke-width="30" opacity="0.09" filter="url(#blog-blur3)" transform="rotate(-4 980 50)"/>
+        <ellipse cx="480" cy="140" rx="320" ry="38" fill="none" style="stroke: var(--cl-teal-mid);" stroke-width="34" opacity="0.08" filter="url(#blog-blur2)" transform="rotate(5 480 140)"/>
       </svg>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +70,7 @@ function formatDate(date: Date) {
     {posts.length === 0 ? (
       <div class="text-center py-20">
         <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5" style="background-color: var(--cl-violet-subtle);">
-          <svg class="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <svg class="w-7 h-7 text-violet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
           </svg>
         </div>
@@ -107,7 +107,7 @@ function formatDate(date: Date) {
                     />
                   </div>
                 ) : (
-                  <div class="hidden md:flex aspect-auto bg-gradient-to-br from-green-50 to-teal-50 items-center justify-center">
+                  <div class="hidden md:flex aspect-auto bg-gradient-to-br from-green-50 to-green-50 items-center justify-center">
                     <svg class="w-16 h-16 text-green-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
                     </svg>

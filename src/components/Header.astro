@@ -40,10 +40,14 @@ const calcIcons: Record<string, string> = {
   "refresh":       `<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.75.75 0 0 1 1.362-.632A6.5 6.5 0 1 1 8 1.5v-.75a.75.75 0 0 1 1.28-.53l2 2a.75.75 0 0 1 0 1.06l-2 2A.75.75 0 0 1 8 5.03V3z" clip-rule="evenodd"/>`,
 };
 
+const TEAL       = '#22d3ee';        /* matches --cl-teal */
+const VIOLET_MID = 'oklch(72% 0.18 292)'; /* matches --cl-violet-mid */
+const ORANGE     = '#f97316';        /* matches --cl-orange */
+
 const columnColors: Record<string, string> = {
-  "Most Popular":  "#22d3ee",
-  "Advanced Labs": "oklch(72% 0.18 292)",
-  "Daily Metrics": "#f97316",
+  "Most Popular":  TEAL,
+  "Advanced Labs": VIOLET_MID,
+  "Daily Metrics": ORANGE,
 };
 
 const currentPath = Astro.url.pathname;

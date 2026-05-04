@@ -399,7 +399,7 @@ export default function WaterIntakeCalculator() {
           </div>
 
           {/* Breakdown */}
-          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <div className="bg-result-bg rounded-2xl border border-green-100 p-5">
             <p className="text-sm font-semibold text-gray-900 mb-3">How we calculated this</p>
             <div className="space-y-2">
               {[

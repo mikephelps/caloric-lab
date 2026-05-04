@@ -89,7 +89,7 @@ function DonutChart({ proteinG, carbsG, fatG, calories }: { proteinG: number; ca
   const fPct = totalG > 0 ? (fatG     / totalG) * 100 : 33.4;
 
   const segments = [
-    { pct: pPct, color: "#16a34a", label: "Protein" },
+    { pct: pPct, color: "#0e7490", label: "Protein" }, /* teal-dark -- matches --cl-teal-dark */
     { pct: cPct, color: "#0ea5e9", label: "Carbs"   },
     { pct: fPct, color: "#f97316", label: "Fat"     },
   ];
@@ -276,7 +276,7 @@ export default function MacroCalculator() {
           </div>
 
           {/* Ratio preview */}
-          <div className="rounded-xl bg-[#F9FFFF] border border-green-100 px-4 py-3 flex items-center gap-3">
+          <div className="rounded-xl bg-result-bg border border-green-100 px-4 py-3 flex items-center gap-3">
             <span className="text-xs text-gray-500 font-medium">Macro split:</span>
             {(["p", "c", "f"] as const).map((key, i) => {
               const preset = PRESETS[goal][diet];
@@ -347,7 +347,7 @@ export default function MacroCalculator() {
 
           {/* Per-meal breakdown */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <div className="px-5 py-4 bg-result-bg border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Per-Meal Breakdown</h3>
               <p className="text-xs text-gray-500 mt-0.5">3 meals + 1 snack (25 / 30 / 35 / 10%)</p>
             </div>
@@ -384,7 +384,7 @@ export default function MacroCalculator() {
           </div>
 
           {/* Why this split */}
-          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <div className="bg-result-bg rounded-2xl border border-green-100 p-5">
             <h3 className="text-sm font-bold text-gray-900 mb-2">
               Why this split?
               <span className="ml-2 text-xs font-semibold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">

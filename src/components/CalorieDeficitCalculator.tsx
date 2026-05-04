@@ -581,7 +581,7 @@ export default function CalorieDeficitCalculator() {
 
           {/* Goal date + breakdown */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <div className="px-5 py-4 bg-result-bg border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">Your Plan at a Glance</h3>
             </div>
             <div className="divide-y divide-gray-50">

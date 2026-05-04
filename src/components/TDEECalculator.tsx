@@ -435,7 +435,7 @@ export default function TDEECalculator() {
 
           {/* Activity comparison table */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-5 py-4 bg-[#F9FFFF] border-b border-green-50">
+            <div className="px-5 py-4 bg-result-bg border-b border-green-50">
               <h3 className="text-sm font-bold text-gray-700">TDEE at All Activity Levels</h3>
               <p className="text-xs text-gray-500 mt-0.5">Based on your BMR of {results.bmr.toLocaleString()} cal/day</p>
             </div>
@@ -475,7 +475,7 @@ export default function TDEECalculator() {
           </div>
 
           {/* What does this mean */}
-          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5 sm:p-6">
+          <div className="bg-result-bg rounded-2xl border border-green-100 p-5 sm:p-6">
             <h3 className="text-sm font-bold text-gray-900 mb-5">What does this mean for you?</h3>
             <div className="space-y-5">
               {(

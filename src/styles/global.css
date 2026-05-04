@@ -74,6 +74,18 @@
   --color-violet-light:  oklch(90% 0.10 292);
   --color-violet-subtle: oklch(96% 0.06 292);
   --color-violet-dark:   oklch(42% 0.20 292);
+  --color-violet-mid:    oklch(72% 0.18 292);
+
+  /* Brand teal utilities */
+  --color-teal-brand:    #22d3ee;
+  --color-teal-mid:      #0891b2;
+  --color-teal-dark:     #0e7490;
+
+  /* Result section background */
+  --color-result-bg:     #F9FFFF;
+
+  /* Callout background */
+  --color-callout:       oklch(26% 0.24 292);
 }
 
 /* ── Design tokens ── */
@@ -83,9 +95,17 @@
   --cl-violet-subtle: oklch(96% 0.06 292);
   --cl-violet-dark:   oklch(42% 0.20 292);
   --cl-violet-glow:   rgba(120, 60, 220, 0.18);
+  --cl-violet-mid:    oklch(72% 0.18 292);
   --cl-dark-nav:      oklch(10% 0.02 220);
   --cl-dark-card:     oklch(13% 0.025 220);
   --cl-page-bg:       oklch(96.5% 0.01 80);
+  --cl-teal:          #22d3ee;
+  --cl-teal-mid:      #0891b2;
+  --cl-teal-dark:     #0e7490;
+  --cl-teal-light:    #62EAFF;
+  --cl-orange:        #f97316;
+  --cl-result-bg:     #F9FFFF;
+  --cl-callout-bg:    oklch(26% 0.24 292);
   --glass-bg:         linear-gradient(160deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.04) 100%);
   --glass-border:     1px solid rgba(255,255,255,.13);
   --glass-shadow:     inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.2), 0 4px 24px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.2);
@@ -124,7 +144,7 @@
 }
 .btn-calc:hover {
   background-color: var(--cl-violet-dark);
-  box-shadow: 0 4px 20px rgba(120, 60, 220, 0.3);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--cl-violet) 30%, transparent);
 }
 .btn-calc:active {
   transform: scale(0.98);
@@ -139,7 +159,7 @@
 }
 .btn-primary:hover {
   background-color: var(--cl-violet-dark);
-  box-shadow: 0 4px 20px rgba(120, 60, 220, 0.3);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--cl-violet) 30%, transparent);
 }
 .btn-primary:active {
   transform: scale(0.98);
@@ -154,15 +174,15 @@
 .result-label { color: rgba(255,255,255,0.55); }
 
 /* Result card pills — sequential teal / lavender / orange */
-.pill           { color: #22d3ee; }
-.pill + .pill   { color: oklch(72% 0.18 292); }
-.pill + .pill + .pill { color: #f97316; }
+.pill           { color: var(--cl-teal); }
+.pill + .pill   { color: var(--cl-violet-mid); }
+.pill + .pill + .pill { color: var(--cl-orange); }
 
 /* ── Results recalculation feedback ── */
 @keyframes resultsFlash {
-  0%   { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 0 rgba(120, 60, 220, 0); }
-  20%  { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 8px rgba(120, 60, 220, 0.22); }
-  100% { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 0 rgba(120, 60, 220, 0); }
+  0%   { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 0 transparent; }
+  20%  { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 8px color-mix(in srgb, var(--cl-violet) 22%, transparent); }
+  100% { box-shadow: inset 4px 0 0 var(--cl-violet), 0 0 0 0 transparent; }
 }
 
 @keyframes numberPop {

@@ -369,7 +369,7 @@ export default function BMICalculator() {
           </div>
 
           {/* Healthy weight range */}
-          <div className="bg-[#F9FFFF] rounded-2xl border border-green-100 p-5">
+          <div className="bg-result-bg rounded-2xl border border-green-100 p-5">
             <div className="flex gap-3">
               <div className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
                 <svg className="w-4 h-4 text-green-700" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
