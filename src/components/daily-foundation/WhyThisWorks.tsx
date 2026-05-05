@@ -38,7 +38,7 @@ export function WhyThisWorks() {
       border: "1px solid rgba(255,255,255,0.055)",
     }}>
       <p style={{
-        fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.18)",
+        fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.30)",
         letterSpacing: "0.10em", textTransform: "uppercase", marginBottom: 14,
         fontFamily: "var(--font-sans)",
       }}>

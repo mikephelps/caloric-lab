@@ -263,10 +263,10 @@ export default function DailyFoundation() {
                     }}>
                       You crushed it today.
                     </p>
-                    <p style={{ fontSize: 12, color: "rgba(255,145,145,0.45)", marginTop: 6, fontFamily: "var(--font-sans)", lineHeight: 1.6 }}>
+                    <p style={{ fontSize: 12, color: "rgba(255,145,145,0.65)", marginTop: 6, fontFamily: "var(--font-sans)", lineHeight: 1.6 }}>
                       Want to dial in your targets?{" "}
-                      <a href="/protein-calculator/" style={{ color: "rgba(190,80,80,0.72)", textDecoration: "none" }}>
-                        Try a calculator
+                      <a href="/protein-calculator/" style={{ color: "rgba(255,195,195,0.92)", textDecoration: "none" }}>
+                        Try a calculator ›
                       </a>
                     </p>
                   </div>
