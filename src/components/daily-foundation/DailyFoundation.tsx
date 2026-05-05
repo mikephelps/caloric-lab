@@ -147,7 +147,7 @@ export default function DailyFoundation() {
               }}>
                 <span style={{ fontSize: 13, lineHeight: 1 }}>{streakIcon}</span>
                 <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,165,80,0.85)", fontFamily: "var(--font-sans)" }}>
-                  Day {streak.count}
+                  {streak.count} Day Streak
                 </span>
               </div>
             )}

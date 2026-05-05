@@ -54,12 +54,16 @@ const LS = {
   },
 };
 
-export const todayStr = () => new Date().toISOString().slice(0, 10);
+// Use local calendar date, not UTC — avoids evening date mismatch for US timezones
+export const todayStr = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
 
 const yesterdayStr = () => {
   const d = new Date();
   d.setDate(d.getDate() - 1);
-  return d.toISOString().slice(0, 10);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
 
 export function useDailyState(): DailyState {
@@ -72,22 +76,34 @@ export function useDailyState(): DailyState {
   const [streak, setStreak] = useState<StreakData>(() => LS.get("cl_daily_streak", { count: 0, lastDate: "" }));
   const [customHabits, setCustomHabits] = useState<Habit[]>(() => LS.get("cl_daily_custom", []));
 
-  // Daily reset on mount
+  // Daily reset on mount — streak break detection only
   useEffect(() => {
     const d = LS.get<CompletedData>("cl_daily_completed", { date: "", items: [] });
     const today = todayStr();
     if (d.date !== today) {
       const yesterday = yesterdayStr();
-      const savedTarget = LS.get<number>("cl_daily_target", 5);
-      if (d.date === yesterday && d.items.length >= savedTarget) {
-        setStreak(s => ({ count: s.count + 1, lastDate: yesterday }));
-      } else if (d.date !== "" && d.date !== yesterday) {
-        setStreak({ count: 0, lastDate: "" });
-      }
+      setStreak(s => {
+        if (s.lastDate !== "" && s.lastDate !== yesterday && s.lastDate !== today) {
+          return { count: 0, lastDate: "" };
+        }
+        return s;
+      });
       LS.set("cl_daily_completed", { date: today, items: [] });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Real-time streak update when daily target is met
+  useEffect(() => {
+    if (completed.length === 0) return;
+    const today = todayStr();
+    if (completed.length >= target) {
+      setStreak(s => {
+        if (s.lastDate === today) return s;
+        return { count: s.count + 1, lastDate: today };
+      });
+    }
+  }, [completed, target]);
 
   useEffect(() => { LS.set("cl_daily_queue", queue); }, [queue]);
   useEffect(() => { LS.set("cl_daily_completed", { date: todayStr(), items: completed }); }, [completed]);
