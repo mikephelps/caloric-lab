@@ -210,6 +210,8 @@
 <span class="animate-fade-up hidden" aria-hidden="true"></span>
 
 <script>
+  import { saveCalculatorData, loadCalculatorData, clearCalculatorData } from '../utils/calculatorStorage.js';
+
   const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
   const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20';
@@ -456,6 +458,7 @@
     const recoveryCeiling = Math.round(adjustedTDEE * 1.05);
     const deficitAmt = maintenanceTarget - Math.round(currentCals);
 
+    { const stWU=weightUnit==='imperial'?'lbs':'kg'; const wL=weightUnit==='imperial'?weightVal:parseFloat((weightVal*2.20462).toFixed(1)); const wK=weightUnit==='metric'?weightVal:parseFloat((weightVal/2.20462).toFixed(1)); let hF=0,hI=0; if(heightUnit==='imperial'){hF=parseFloat((document.getElementById('db-ft') as HTMLInputElement).value)||0;hI=parseFloat((document.getElementById('db-in') as HTMLInputElement).value)||0;}else{const ti=heightCm/2.54;hF=Math.floor(ti/12);hI=Math.round(ti%12);} saveCalculatorData({biometrics:{sex,age,weightLbs:wL,weightKg:wK,weightUnit:stWU,heightFt:hF,heightIn:hI,heightCm:Math.round(heightCm),heightUnit,activity:String(activityMultiplier),...(bfPct!==null?{bodyFatPct:bfPct}:{})},results:{tdee:Math.round(tdee)}}); }
     renderResults({
       maintenanceTarget,
       recoveryCeiling,
@@ -687,4 +690,79 @@
       </div>
       <p class="text-xs text-gray-500 pt-3 px-1">Track weekly weight averages rather than daily fluctuations to identify when weight has truly stabilized.</p>`;
   }
+
+  (function(){
+    const stored = loadCalculatorData();
+    if (!stored?.biometrics) return;
+    const b = stored.biometrics;
+    const root = document.querySelector('.p-6') as HTMLElement;
+    const ps = new Set<HTMLInputElement>();
+    let filled = false;
+
+    if (b.sex) {
+      document.querySelector<HTMLElement>(`#db-sex-group [data-sex="${b.sex}"]`)?.click();
+      filled = true;
+    }
+    if (b.age) {
+      const ageInp = document.getElementById('db-age') as HTMLInputElement;
+      ageInp.value = String(b.age);
+      ageInp.style.borderLeft = '2px solid var(--cl-violet)';
+      ps.add(ageInp);
+      ageInp.addEventListener('input', () => { ageInp.style.borderLeft = ''; ps.delete(ageInp); }, {once: true});
+      filled = true;
+    }
+    if (b.weightLbs || b.weightKg) {
+      const wInp = document.getElementById('db-weight') as HTMLInputElement;
+      if (b.weightUnit === 'kg') {
+        document.querySelector<HTMLElement>('#db-weight-toggle [data-wunit="metric"]')?.click();
+        wInp.value = String(b.weightKg);
+      } else {
+        wInp.value = String(b.weightLbs);
+      }
+      wInp.style.borderLeft = '2px solid var(--cl-violet)';
+      ps.add(wInp);
+      wInp.addEventListener('input', () => { wInp.style.borderLeft = ''; ps.delete(wInp); }, {once: true});
+      filled = true;
+    }
+    if (b.heightFt || b.heightCm) {
+      const ftInp = document.getElementById('db-ft') as HTMLInputElement;
+      const inInp = document.getElementById('db-in') as HTMLInputElement;
+      ftInp.value = String(b.heightFt || 0);
+      inInp.value = String(b.heightIn || 0);
+      if (b.heightUnit === 'metric') {
+        document.querySelector<HTMLElement>('#db-height-toggle [data-hunit="metric"]')?.click();
+        const cmInp = document.getElementById('db-cm') as HTMLInputElement;
+        cmInp.style.borderLeft = '2px solid var(--cl-violet)';
+        ps.add(cmInp);
+        cmInp.addEventListener('input', () => { cmInp.style.borderLeft = ''; ps.delete(cmInp); }, {once: true});
+      } else {
+        ftInp.style.borderLeft = '2px solid var(--cl-violet)';
+        inInp.style.borderLeft = '2px solid var(--cl-violet)';
+        ps.add(ftInp); ps.add(inInp);
+        ftInp.addEventListener('input', () => { ftInp.style.borderLeft = ''; ps.delete(ftInp); }, {once: true});
+        inInp.addEventListener('input', () => { inInp.style.borderLeft = ''; ps.delete(inInp); }, {once: true});
+      }
+      filled = true;
+    }
+    if (b.activity) {
+      (document.getElementById('db-activity') as HTMLSelectElement).value = b.activity;
+    }
+    if (b.bodyFatPct) {
+      const bfInp = document.getElementById('db-bf') as HTMLInputElement;
+      bfInp.value = String(b.bodyFatPct);
+      bfInp.style.borderLeft = '2px solid var(--cl-violet)';
+      ps.add(bfInp);
+      bfInp.addEventListener('input', () => { bfInp.style.borderLeft = ''; ps.delete(bfInp); }, {once: true});
+      filled = true;
+    }
+
+    if (!filled) return;
+    const notice = document.createElement('div');
+    notice.innerHTML = `<div style="border-radius:.75rem;border:1px solid var(--cl-violet-light);background:var(--cl-violet-subtle);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem"><div style="display:flex;align-items:center;gap:.5rem"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:var(--cl-violet);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/></svg><p style="font-size:.75rem;font-weight:500;color:var(--cl-violet-dark);margin:0">Pre-filled from your recent calculations</p></div><button id="cl-prefill-dismiss" type="button" style="font-size:.75rem;font-weight:600;color:var(--cl-violet);background:none;border:none;cursor:pointer;flex-shrink:0;padding:0">Clear</button></div>`;
+    root.insertBefore(notice, root.firstChild);
+    document.getElementById('cl-prefill-dismiss')!.addEventListener('click', () => {
+      clearCalculatorData(); notice.remove();
+      ps.forEach(el => { el.value = ''; el.style.borderLeft = ''; }); ps.clear();
+    });
+  })();
 </script>

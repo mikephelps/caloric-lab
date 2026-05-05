@@ -13,15 +13,16 @@ const columns = [
     items: [
       { name: "Body Fat Calculator",   href: "/body-fat-calculator/",   desc: "Estimate your body fat %",        icon: "ruler"    },
       { name: "Diet Break Calculator", href: "/diet-break-calculator/", desc: "Plan your metabolic reset",       icon: "refresh"  },
-      { name: "TDEE Calculator",       href: "/tdee-calculator/",       desc: "Total daily energy expenditure",  icon: "flame"    },
+      { name: "BMI Calculator",        href: "/bmi-calculator/",        desc: "Check your body mass index",      icon: "person"   },
     ],
   },
   {
     label: "Daily Metrics",
     items: [
-      { name: "Macro Calculator",        href: "/macro-calculator/",        desc: "Protein, carbs & fat targets",  icon: "chart-pie" },
-      { name: "Protein Calculator",      href: "/protein-calculator/",      desc: "Daily protein requirements",    icon: "dumbbell"  },
-      { name: "Water Intake Calculator", href: "/water-intake-calculator/", desc: "Daily water target",            icon: "droplet"   },
+      { name: "TDEE Calculator",         href: "/tdee-calculator/",         desc: "Total daily energy expenditure",  icon: "flame"     },
+      { name: "Macro Calculator",        href: "/macro-calculator/",        desc: "Protein, carbs & fat targets",    icon: "chart-pie" },
+      { name: "Protein Calculator",      href: "/protein-calculator/",      desc: "Daily protein requirements",      icon: "dumbbell"  },
+      { name: "Water Intake Calculator", href: "/water-intake-calculator/", desc: "Daily water target",              icon: "droplet"   },
     ],
   },
 ];
@@ -38,6 +39,7 @@ const calcIcons: Record<string, string> = {
   "target":        `<circle cx="8" cy="8" r="7" opacity="0.2"/><circle cx="8" cy="8" r="4" opacity="0.5"/><circle cx="8" cy="8" r="1.5"/>`,
   "droplet":       `<path d="M8 2C6 5 3 7.5 3 10a5 5 0 0 0 10 0C13 7.5 10 5 8 2z"/>`,
   "refresh":       `<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.75.75 0 0 1 1.362-.632A6.5 6.5 0 1 1 8 1.5v-.75a.75.75 0 0 1 1.28-.53l2 2a.75.75 0 0 1 0 1.06l-2 2A.75.75 0 0 1 8 5.03V3z" clip-rule="evenodd"/>`,
+  "person":        `<circle cx="8" cy="4" r="2.5"/><path d="M4 14.5v-3a4 4 0 0 1 8 0v3z"/>`,
 };
 
 const TEAL       = '#22d3ee';        /* matches --cl-teal */

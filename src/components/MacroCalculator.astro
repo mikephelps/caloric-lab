@@ -117,6 +117,8 @@
 </div>
 
 <script>
+  import { loadCalculatorData, clearCalculatorData } from '../utils/calculatorStorage.js';
+
   const CARD_CENTER_ACTIVE   = 'flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-violet bg-violet-subtle ring-1 ring-violet/20';
   const CARD_CENTER_INACTIVE = 'flex flex-col items-center gap-0.5 px-3 py-3 rounded-xl border text-center transition-all cursor-pointer border-gray-200 bg-white hover:border-gray-300';
   const INPUT_OK    = 'w-full px-4 py-3 pr-14 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-violet/20 focus:border-violet transition-colors placeholder:text-gray-300';
@@ -332,4 +334,24 @@
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     }, 80);
   });
+
+  // ── Pre-fill calories from stored TDEE result ─────────────────────────────────
+  (function () {
+    const stored = loadCalculatorData();
+    const tdee = stored?.results?.tdee || stored?.results?.targetCalories;
+    if (!tdee) return;
+    const calEl = document.getElementById('mc-calories');
+    if (!calEl) return;
+    calEl.value = tdee;
+    calEl.style.borderLeft = '2px solid var(--cl-violet-subtle)';
+    calEl.addEventListener('input', () => { calEl.style.borderLeft = ''; }, { once: true });
+    const root = document.getElementById('mc-submit').closest('.p-6');
+    const notice = document.createElement('div');
+    notice.innerHTML = `<div style="border-radius:.75rem;border:1px solid var(--cl-violet-light);background:var(--cl-violet-subtle);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem"><div style="display:flex;align-items:center;gap:.5rem"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:var(--cl-violet);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/></svg><p style="font-size:.75rem;font-weight:500;color:var(--cl-violet-dark);margin:0">Pre-filled from your recent calculations</p></div><button id="cl-prefill-dismiss" type="button" style="font-size:.75rem;font-weight:600;color:var(--cl-violet);background:none;border:none;cursor:pointer;flex-shrink:0;padding:0">Clear</button></div>`;
+    root.insertBefore(notice, root.firstChild);
+    document.getElementById('cl-prefill-dismiss').addEventListener('click', () => {
+      clearCalculatorData(); notice.remove();
+      calEl.value = ''; calEl.style.borderLeft = '';
+    });
+  })();
 </script>

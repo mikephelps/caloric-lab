@@ -143,6 +143,8 @@
 </div>
 
 <script>
+  import { saveCalculatorData, loadCalculatorData, clearCalculatorData } from '../utils/calculatorStorage.js';
+
   const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
   const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20';
@@ -339,6 +341,7 @@
     setTimeout(() => resultsEl.classList.remove('results-updated'), 700);
     const _heroNum = resultsEl.querySelector('[class*="text-6xl"]');
     if (_heroNum) { _heroNum.classList.add('number-pop'); }
+    { const wK=weightUnit==='kg'?wtN:parseFloat((wtN*0.453592).toFixed(1)); const wL=weightUnit==='lbs'?wtN:parseFloat((wtN*2.20462).toFixed(1)); saveCalculatorData({biometrics:{weightLbs:wL,weightKg:wK,weightUnit}}); }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'water_intake',
@@ -349,4 +352,30 @@
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     }, 80);
   });
+
+  (function(){
+    const stored = loadCalculatorData();
+    if (!stored?.biometrics) return;
+    const b = stored.biometrics;
+    if (!b.weightLbs && !b.weightKg) return;
+    const root = document.querySelector('.p-6');
+    const ps = new Set();
+    const wInp = document.getElementById('wic-weight');
+    if (b.weightUnit === 'kg') {
+      document.querySelector('#wic-wunit-toggle [data-wunit="kg"]')?.click();
+      wInp.value = String(b.weightKg);
+    } else {
+      wInp.value = String(b.weightLbs);
+    }
+    wInp.style.borderLeft = '2px solid var(--cl-violet)';
+    ps.add(wInp);
+    wInp.addEventListener('input', () => { wInp.style.borderLeft = ''; ps.delete(wInp); }, {once: true});
+    const notice = document.createElement('div');
+    notice.innerHTML = `<div style="border-radius:.75rem;border:1px solid var(--cl-violet-light);background:var(--cl-violet-subtle);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem"><div style="display:flex;align-items:center;gap:.5rem"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:var(--cl-violet);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/></svg><p style="font-size:.75rem;font-weight:500;color:var(--cl-violet-dark);margin:0">Pre-filled from your recent calculations</p></div><button id="cl-prefill-dismiss" type="button" style="font-size:.75rem;font-weight:600;color:var(--cl-violet);background:none;border:none;cursor:pointer;flex-shrink:0;padding:0">Clear</button></div>`;
+    root.insertBefore(notice, root.firstChild);
+    document.getElementById('cl-prefill-dismiss').addEventListener('click', () => {
+      clearCalculatorData(); notice.remove();
+      ps.forEach(el => { el.value = ''; el.style.borderLeft = ''; }); ps.clear();
+    });
+  })();
 </script>

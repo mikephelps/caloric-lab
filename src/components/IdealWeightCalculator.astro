@@ -94,6 +94,8 @@
 <span class="animate-fade-up hidden" aria-hidden="true"></span>
 
 <script>
+  import { saveCalculatorData, loadCalculatorData, clearCalculatorData } from '../utils/calculatorStorage.js';
+
   const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
   const CARD_ACTIVE   = 'flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border text-left transition-all cursor-pointer w-full border-violet bg-violet-subtle ring-1 ring-violet/20';
@@ -320,6 +322,11 @@
     setTimeout(() => resultsEl.classList.remove('results-updated'), 700);
     const _heroNum = resultsEl.querySelector('[class*="text-6xl"]');
     if (_heroNum) { _heroNum.classList.add('number-pop'); }
+    // save biometrics
+    { let hF=0,hI=0,hC=0;
+      if (heightUnit==='imperial') { hF=parseFloat(ftEl.value)||0; hI=parseFloat(inEl.value)||0; hC=parseFloat(((hF*12+hI)*2.54).toFixed(1)); }
+      else { hC=parseFloat(cmEl.value)||0; const ti=hC/2.54; hF=Math.floor(ti/12); hI=Math.round(ti%12); }
+      saveCalculatorData({ biometrics:{ sex, heightFt:hF, heightIn:hI, heightCm:hC, heightUnit } }); }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'ideal_weight',
@@ -330,4 +337,41 @@
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     }, 80);
   });
+
+  // ── Pre-fill from stored data ─────────────────────────────────────────────────
+  (function () {
+    const stored = loadCalculatorData();
+    if (!stored?.biometrics) return;
+    const bio = stored.biometrics;
+    const ps = new Set();
+    function mark(el) {
+      if (!el) return;
+      el.style.borderLeft = '2px solid var(--cl-violet-subtle)';
+      ps.add(el);
+      el.addEventListener('input', () => { el.style.borderLeft = ''; ps.delete(el); }, { once: true });
+    }
+    let filled = false;
+    if (bio.sex) { document.querySelector(`#iw-sex-group [data-sex="${bio.sex}"]`)?.click(); filled = true; }
+    if (bio.heightFt !== undefined) {
+      filled = true;
+      if (bio.heightUnit === 'metric') {
+        const f = document.getElementById('iw-ft'), i = document.getElementById('iw-in');
+        if (f) f.value = bio.heightFt; if (i) i.value = bio.heightIn;
+        document.querySelector('#iw-height-toggle [data-hunit="metric"]')?.click();
+        mark(document.getElementById('iw-cm'));
+      } else {
+        const f = document.getElementById('iw-ft'), i = document.getElementById('iw-in');
+        if (f) { f.value = bio.heightFt; mark(f); } if (i) { i.value = bio.heightIn; mark(i); }
+      }
+    }
+    if (!filled) return;
+    const root = document.getElementById('iw-submit').closest('.p-6');
+    const notice = document.createElement('div');
+    notice.innerHTML = `<div style="border-radius:.75rem;border:1px solid var(--cl-violet-light);background:var(--cl-violet-subtle);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem"><div style="display:flex;align-items:center;gap:.5rem"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:var(--cl-violet);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/></svg><p style="font-size:.75rem;font-weight:500;color:var(--cl-violet-dark);margin:0">Pre-filled from your recent calculations</p></div><button id="cl-prefill-dismiss" type="button" style="font-size:.75rem;font-weight:600;color:var(--cl-violet);background:none;border:none;cursor:pointer;flex-shrink:0;padding:0">Clear</button></div>`;
+    root.insertBefore(notice, root.firstChild);
+    document.getElementById('cl-prefill-dismiss').addEventListener('click', () => {
+      clearCalculatorData(); notice.remove();
+      ps.forEach(el => { el.value = ''; el.style.borderLeft = ''; }); ps.clear();
+    });
+  })();
 </script>

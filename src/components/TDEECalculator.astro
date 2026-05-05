@@ -196,6 +196,8 @@
 </div>
 
 <script>
+  import { saveCalculatorData, loadCalculatorData, clearCalculatorData } from '../utils/calculatorStorage.js';
+
   // ── CSS class constants ──────────────────────────────────────────────────────
   const PILL_SM_ACTIVE   = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs bg-white text-gray-900 shadow-sm border border-gray-200';
   const PILL_SM_INACTIVE = 'rounded-lg font-semibold transition-all px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700';
@@ -485,6 +487,15 @@
     setTimeout(() => resultsEl.classList.remove('results-updated'), 700);
     const _heroNum = resultsEl.querySelector('[class*="text-6xl"]');
     if (_heroNum) { _heroNum.classList.add('number-pop'); }
+    // save biometrics + result
+    { const wt = parseFloat(document.getElementById('tdee-weight').value);
+      const wL = weightUnit==='lbs' ? wt : parseFloat((wt*2.20462).toFixed(1));
+      const wK = weightUnit==='kg'  ? wt : parseFloat((wt*0.453592).toFixed(1));
+      let hF=0,hI=0,hC=0;
+      if (heightUnit==='imperial') { hF=parseFloat(document.getElementById('tdee-ft').value)||0; hI=parseFloat(document.getElementById('tdee-in').value)||0; hC=parseFloat(((hF*12+hI)*2.54).toFixed(1)); }
+      else { hC=parseFloat(document.getElementById('tdee-cm').value)||0; const ti=hC/2.54; hF=Math.floor(ti/12); hI=Math.round(ti%12); }
+      const bfS=document.getElementById('tdee-bf').value;
+      saveCalculatorData({ biometrics:{ sex, age:parseInt(document.getElementById('tdee-age').value), weightLbs:wL, weightKg:wK, weightUnit, heightFt:hF, heightIn:hI, heightCm:hC, heightUnit, ...(bfS?{bodyFatPct:parseFloat(bfS)}:{}), activity:document.getElementById('tdee-activity').value }, results:{ tdee:tdeeRounded } }); }
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'calculator_complete', {
         'calculator_name': 'tdee',
@@ -495,4 +506,48 @@
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     }, 80);
   });
+
+  // ── Pre-fill from stored data ─────────────────────────────────────────────────
+  (function () {
+    const stored = loadCalculatorData();
+    if (!stored?.biometrics) return;
+    const bio = stored.biometrics;
+    const ps = new Set();
+    function mark(el) {
+      if (!el) return;
+      el.style.borderLeft = '2px solid var(--cl-violet-subtle)';
+      ps.add(el);
+      el.addEventListener('input', () => { el.style.borderLeft = ''; ps.delete(el); }, { once: true });
+    }
+    let filled = false;
+    if (bio.sex) { document.querySelector(`#tdee-sex-toggle [data-sex="${bio.sex}"]`)?.click(); filled = true; }
+    if (bio.age) { const e = document.getElementById('tdee-age'); if (e) { e.value = bio.age; mark(e); filled = true; } }
+    if (bio.weightLbs) {
+      const e = document.getElementById('tdee-weight'); if (e) { e.value = bio.weightLbs; mark(e); filled = true; }
+      if (bio.weightUnit === 'kg') document.querySelector('#tdee-weight-toggle [data-wunit="kg"]')?.click();
+    }
+    if (bio.heightFt !== undefined) {
+      filled = true;
+      if (bio.heightUnit === 'metric') {
+        const f = document.getElementById('tdee-ft'), i = document.getElementById('tdee-in');
+        if (f) f.value = bio.heightFt; if (i) i.value = bio.heightIn;
+        document.querySelector('#tdee-height-toggle [data-hunit="metric"]')?.click();
+        mark(document.getElementById('tdee-cm'));
+      } else {
+        const f = document.getElementById('tdee-ft'), i = document.getElementById('tdee-in');
+        if (f) { f.value = bio.heightFt; mark(f); } if (i) { i.value = bio.heightIn; mark(i); }
+      }
+    }
+    if (bio.bodyFatPct) { const e = document.getElementById('tdee-bf'); if (e) { e.value = bio.bodyFatPct; mark(e); filled = true; } }
+    if (bio.activity) { const e = document.getElementById('tdee-activity'); if (e) { e.value = bio.activity; filled = true; } }
+    if (!filled) return;
+    const root = document.getElementById('tdee-submit').closest('.p-6');
+    const notice = document.createElement('div');
+    notice.innerHTML = `<div style="border-radius:.75rem;border:1px solid var(--cl-violet-light);background:var(--cl-violet-subtle);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem"><div style="display:flex;align-items:center;gap:.5rem"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:var(--cl-violet);flex-shrink:0" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/></svg><p style="font-size:.75rem;font-weight:500;color:var(--cl-violet-dark);margin:0">Pre-filled from your recent calculations</p></div><button id="cl-prefill-dismiss" type="button" style="font-size:.75rem;font-weight:600;color:var(--cl-violet);background:none;border:none;cursor:pointer;flex-shrink:0;padding:0">Clear</button></div>`;
+    root.insertBefore(notice, root.firstChild);
+    document.getElementById('cl-prefill-dismiss').addEventListener('click', () => {
+      clearCalculatorData(); notice.remove();
+      ps.forEach(el => { el.value = ''; el.style.borderLeft = ''; }); ps.clear();
+    });
+  })();
 </script>
