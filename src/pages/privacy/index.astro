@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import GlassHero from "../../components/GlassHero.astro";
-const updated = "April 20, 2026";
+const updated = "May 6, 2026";
 ---
 
 <Layout
@@ -9,10 +8,26 @@ const updated = "April 20, 2026";
   description="CaloricLab privacy policy. Learn how we handle (and don't collect) your personal health data."
   noindex={false}
 >
-  <!-- Page header — liquid glass -->
-  <GlassHero title="Privacy Policy">
-    <p slot="below" class="mt-2 text-xs text-white/40">Last updated: {updated}</p>
-  </GlassHero>
+  <!-- Page header — dark aurora band -->
+  <header class="relative overflow-hidden py-10 sm:py-12" style="background-color: var(--cl-dark-nav);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1160 160" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="pb1"><feGaussianBlur stdDeviation="22"/></filter>
+          <filter id="pb2"><feGaussianBlur stdDeviation="32"/></filter>
+          <filter id="pb3"><feGaussianBlur stdDeviation="18"/></filter>
+        </defs>
+        <ellipse cx="200" cy="120" rx="420" ry="70" fill="none" style="stroke: var(--cl-teal-dark);" stroke-width="50" opacity="0.14" filter="url(#pb1)" transform="rotate(-6 200 120)"/>
+        <ellipse cx="640" cy="80" rx="400" ry="55" fill="none" style="stroke: var(--cl-violet);" stroke-width="44" opacity="0.10" filter="url(#pb2)" transform="rotate(3 640 80)"/>
+        <ellipse cx="980" cy="50" rx="280" ry="42" fill="none" style="stroke: var(--cl-teal);" stroke-width="30" opacity="0.09" filter="url(#pb3)" transform="rotate(-4 980 50)"/>
+        <ellipse cx="480" cy="140" rx="320" ry="38" fill="none" style="stroke: var(--cl-teal-mid);" stroke-width="34" opacity="0.08" filter="url(#pb2)" transform="rotate(5 480 140)"/>
+      </svg>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl sm:text-3xl font-bold text-white">Privacy Policy</h1>
+      <p class="mt-2 text-sm" style="color: rgba(255,255,255,0.40);">Last updated: {updated}</p>
+    </div>
+  </header>
 
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
 
@@ -23,7 +38,7 @@ const updated = "April 20, 2026";
         {[
           "Your health data (weight, height, age) never leaves your browser. We can't see it.",
           "We collect anonymous analytics only: page views and browser type.",
-          "Advertising partners may use cookies for ad targeting. You can opt out.",
+          "Advertising partners use cookies for ad targeting. You can opt out.",
         ].map(point => (
           <li class="flex items-start gap-2.5 text-sm text-gray-700">
             <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -42,30 +57,71 @@ const updated = "April 20, 2026";
     </p>
 
     <!-- Sections -->
-    <div class="space-y-7">
+    <div class="space-y-3">
 
       <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Information We Do Not Collect</h2>
-        <p class="text-gray-600 leading-relaxed text-sm">
-          All calculations on CaloricLab are performed <strong class="text-gray-800">entirely in your browser</strong>.
-          When you enter your age, weight, height, or other personal measurements into our calculators,
-          that data is never sent to our servers. We have no access to your health data.
+        <h2 class="text-base font-bold text-gray-900 mb-2">How We Handle Your Data</h2>
+        <p class="text-gray-600 leading-relaxed text-sm mb-3">
+          All calculations on CaloricLab are performed <strong class="text-gray-800 font-semibold">entirely in your browser</strong>. 
+          We do not require user accounts or email registration.
         </p>
+        <ul class="space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
+            <span><strong class="text-gray-800 font-semibold">Local Storage:</strong> Personal measurements (age, weight, height) are stored in your browser's local storage. This data stays on your device and is never sent to our servers.</span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
+            <span><strong class="text-gray-800 font-semibold">Data Retention:</strong> Because data is stored locally, it remains on your device until you clear your browser cache. We do not have access to this information.</span>
+          </li>
+        </ul>
       </div>
 
       <hr class="border-gray-100"/>
 
       <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Information We Collect Automatically</h2>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Advertising and Cookies</h2>
         <p class="text-gray-600 leading-relaxed text-sm mb-3">
-          Like most websites, we collect standard analytics data when you visit CaloricLab, including:
+          We use Google AdSense to serve advertisements. To do this, Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
+            <span>
+              <strong class="text-gray-800 font-semibold">Personalized Advertising:</strong> Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.
+            </span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
+            <span>
+              <strong class="text-gray-800 font-semibold">Opting Out:</strong> You may opt out of personalized advertising by visiting 
+              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style="color: var(--cl-violet-dark); font-weight: 500;" class="hover:underline">Google Ads Settings</a>. 
+              Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting 
+              <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" style="color: var(--cl-violet-dark); font-weight: 500;" class="hover:underline">www.aboutads.info</a>.
+            </span>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-600">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
+            <span>
+              <strong class="text-gray-800 font-semibold">Analytics:</strong> We use Google Analytics 4 (GA4) to understand site traffic and usage patterns. GA4 uses cookies to collect anonymous data. No personally identifiable information (PII) is transmitted to Google via these tags.
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Information Collected Automatically</h2>
+        <p class="text-gray-600 leading-relaxed text-sm mb-3">
+          Like most websites, we collect standard analytics data including:
         </p>
         <ul class="space-y-1.5">
           {[
-            "Pages visited and time spent on pages",
-            "Referring URLs (how you found us)",
+            "Pages visited and time spent",
+            "Referring URLs",
             "Browser type and operating system",
-            "Approximate geographic location (country/region level only)",
+            "Approximate geographic location (country/region level)",
           ].map(item => (
             <li class="flex items-center gap-2 text-sm text-gray-600">
               <span class="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0"/>
@@ -73,60 +129,26 @@ const updated = "April 20, 2026";
             </li>
           ))}
         </ul>
-        <p class="mt-3 text-gray-500 text-sm leading-relaxed">
-          This information is collected in aggregate and cannot be used to identify you personally.
+      </div>
+
+      <hr class="border-gray-100"/>
+
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Medical Disclaimer</h2>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          The calculations and information provided by CaloricLab are for <strong class="text-gray-800 font-semibold">educational and informational purposes only</strong>. They are not intended as medical advice or a substitute for professional consultation with a healthcare provider. 
+        </p>
+        <p class="mt-2 text-gray-600 leading-relaxed text-sm">
+          Individual nutritional and fitness needs vary significantly based on medical history and personal circumstances. Always seek the advice of a physician or other qualified health provider before beginning any new diet or fitness program.
         </p>
       </div>
 
       <hr class="border-gray-100"/>
 
       <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Advertising</h2>
+        <h2 class="text-base font-bold text-gray-900 mb-2">Eligibility</h2>
         <p class="text-gray-600 leading-relaxed text-sm">
-          CaloricLab is supported by display advertising. Our advertising partners may use cookies
-          to show you relevant ads. You can opt out of personalized advertising through your browser
-          settings or through the Network Advertising Initiative opt-out page.
-        </p>
-      </div>
-
-      <hr class="border-gray-100"/>
-
-      <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Cookies</h2>
-        <p class="text-gray-600 leading-relaxed text-sm">
-          We use cookies for analytics and advertising purposes. Essential cookies are required for
-          the site to function. You can disable non-essential cookies in your browser settings,
-          though this may affect your experience.
-        </p>
-      </div>
-
-      <hr class="border-gray-100"/>
-
-      <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Third-Party Services</h2>
-        <p class="text-gray-600 leading-relaxed text-sm">
-          We use third-party services including analytics and advertising platforms. These services
-          have their own privacy policies governing how they handle data.
-        </p>
-      </div>
-
-      <hr class="border-gray-100"/>
-
-      <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Children's Privacy</h2>
-        <p class="text-gray-600 leading-relaxed text-sm">
-          CaloricLab is not directed at children under 13. We do not knowingly collect personal
-          information from children.
-        </p>
-      </div>
-
-      <hr class="border-gray-100"/>
-
-      <div>
-        <h2 class="text-base font-bold text-gray-900 mb-2">Changes to This Policy</h2>
-        <p class="text-gray-600 leading-relaxed text-sm">
-          We may update this privacy policy from time to time. We'll note the last updated date
-          at the top of this page.
+          CaloricLab is intended for use by individuals at least 18 years of age. We do not knowingly collect personal information from children under 13.
         </p>
       </div>
 
@@ -135,8 +157,8 @@ const updated = "April 20, 2026";
       <div>
         <h2 class="text-base font-bold text-gray-900 mb-2">Contact</h2>
         <p class="text-gray-600 leading-relaxed text-sm">
-          Questions about this policy? Email us at{" "}
-          <a href="mailto:hello.caloriclab@proton.me" class="text-green-700 font-medium hover:underline">hello.caloriclab@proton.me</a>.
+          Questions about this policy? Email: {" "}
+          <a href="mailto:hello.caloriclab@proton.me" style="color: var(--cl-violet-dark); font-weight: 500;" class="hover:underline">hello.caloriclab@proton.me</a>.
         </p>
       </div>
 
