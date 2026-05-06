@@ -124,89 +124,78 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
 
-  <!-- Article header — narrow, centered -->
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-8">
+  <!-- Header: always a single centered column, never affected by the sidebar grid -->
+  <div class="blog-header">
 
-    <!-- Back link -->
-    <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';" >
-      <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L4.56 7.5H13a.75.75 0 0 1 0 1.5H4.56l3.22 3.22a.75.75 0 0 1 0 1.06z" clip-rule="evenodd"/>
-      </svg>
-      All Articles
-    </a>
+    <div class="pt-10 sm:pt-14 pb-8">
 
-    <!-- Tags -->
-    {post.data.tags.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-5">
-        {post.data.tags.map(tag => (
-          <span class="text-xs font-semibold bg-violet-subtle px-2.5 py-1 rounded-full" style="color: var(--cl-violet-dark);"">{tag}</span>
-        ))}
+      <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L4.56 7.5H13a.75.75 0 0 1 0 1.5H4.56l3.22 3.22a.75.75 0 0 1 0 1.06z" clip-rule="evenodd"/>
+        </svg>
+        All Articles
+      </a>
+
+      {post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-5">
+          {post.data.tags.map(tag => (
+            <span class="text-xs font-semibold bg-violet-subtle px-2.5 py-1 rounded-full" style="color: var(--cl-violet-dark);">{tag}</span>
+          ))}
+        </div>
+      )}
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="mt-4 text-lg sm:text-xl text-gray-500 leading-relaxed">
+        {post.data.description}
+      </p>
+
+      <div class="mt-6 flex items-center gap-3 text-sm text-gray-500">
+        <span>{post.data.author}</span>
+        <span>·</span>
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        <span>·</span>
+        <span>{readingTime} min read</span>
+      </div>
+    </div>
+
+    {post.data.heroImage && (
+      <div class="pb-8">
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full rounded-2xl aspect-video object-cover"
+          loading="lazy"
+        />
       </div>
     )}
 
-    <!-- Title -->
-    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-      {post.data.title}
-    </h1>
+    {tldr && tldr.length > 0 && (
+      <div class="pb-8">
+        <div class="bg-white rounded-2xl shadow-sm p-5" style="border-left: 4px solid var(--cl-violet);">
+          <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--cl-violet-dark);">Key Takeaways</p>
+          <ul class="space-y-2.5">
+            {tldr.map(point => (
+              <li class="flex items-start gap-2.5 text-sm text-gray-700 leading-relaxed">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
+                </svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
 
-    <!-- Description -->
-    <p class="mt-4 text-lg sm:text-xl text-gray-500 leading-relaxed">
-      {post.data.description}
-    </p>
-
-    <!-- Meta -->
-    <div class="mt-6 flex items-center gap-3 text-sm text-gray-500">
-      <span>{post.data.author}</span>
-      <span>·</span>
-      <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-      <span>·</span>
-      <span>{readingTime} min read</span>
-    </div>
   </div>
 
-  <!-- Hero image -->
-  {post.data.heroImage && (
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-      <img
-        src={post.data.heroImage}
-        alt={post.data.title}
-        class="w-full rounded-2xl aspect-video object-cover"
-        loading="lazy"
-      />
-    </div>
-  )}
-
-  <!-- TL;DR / Key Takeaways box -->
-  {tldr && tldr.length > 0 && (
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-      <div class="bg-white rounded-2xl shadow-sm p-5" style="border-left: 4px solid var(--cl-violet);">
-        <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color: var(--cl-violet-dark);">Key Takeaways</p>
-        <ul class="space-y-2.5">
-          {tldr.map(point => (
-            <li class="flex items-start gap-2.5 text-sm text-gray-700 leading-relaxed">
-              <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
-              </svg>
-              {point}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )}
-
-  <!-- Two-column: sidebar above on mobile, right-sticky on desktop -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-14">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8 lg:gap-10">
-
-      <!-- Sidebar: first in DOM so it renders above article on mobile -->
-      <aside class="lg:order-last lg:sticky lg:top-24 lg:self-start">
-        <CalculatorSidebar calculators={sidebarCalculators} />
-      </aside>
-
-      <!-- Article content: pushed left on desktop via order -->
-      <div class="lg:order-first min-w-0">
-        <!-- Callout rendered hidden; JS injects it after 2nd <p> in article body -->
+  <!-- Body: grid kicks in here so the sidebar starts beside the first paragraph -->
+  <div class="blog-layout">
+    <div class="blog-content">
+      <div class="pb-10 sm:pb-14">
         {callout && (
           <div id="callout-tpl" hidden aria-hidden="true">
             <CalculatorCallout
@@ -228,7 +217,6 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
           <Content />
         </div>
 
-        <!-- Why Trust CaloricLab -->
         <div class="mt-10 rounded-2xl p-7" style="background-color: var(--cl-dark-card); background-image: linear-gradient(160deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.04) 100%); border: var(--glass-border); box-shadow: var(--glass-shadow);">
           <div class="flex items-center gap-3 mb-4">
             <div class="inline-flex items-center justify-center w-8 h-8 rounded-xl flex-shrink-0" style="background: var(--cl-violet);">
@@ -241,7 +229,6 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
           <div class="trust-body text-sm leading-relaxed" set:html={trustBodyHtml} />
         </div>
 
-        <!-- Prev / Next navigation -->
         {(newerPost || olderPost) && (
           <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {olderPost ? (
@@ -276,9 +263,8 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
           </div>
         )}
 
-        <!-- Back to blog -->
         <div class="mt-8">
-          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';" >
+          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--cl-violet-dark);" onmouseenter="this.style.color='var(--cl-violet)';" onmouseleave="this.style.color='var(--cl-violet-dark)';">
             <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L4.56 7.5H13a.75.75 0 0 1 0 1.5H4.56l3.22 3.22a.75.75 0 0 1 0 1.06z" clip-rule="evenodd"/>
             </svg>
@@ -286,8 +272,12 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
           </a>
         </div>
       </div>
-
     </div>
+
+    <aside class="blog-sidebar">
+      <CalculatorSidebar calculators={sidebarCalculators} />
+    </aside>
+
   </div>
 </Layout>
 
@@ -307,6 +297,73 @@ const trustBodyHtml = (marked.parse(post.data.trustBody ?? DEFAULT_TRUST_BODY) a
 </script>
 
 <style is:global>
+  /* Blog header: always a single centered column, sidebar never affects it */
+  .blog-header {
+    padding: 0 1rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: 37.5rem) {
+    .blog-header { padding: 0 1.5rem; }
+  }
+  @media (min-width: 92rem) {
+    .blog-header { padding: 0; }
+  }
+
+  /* Blog body: single column by default, grid with sidebar at wide viewports.
+   * Sidebar starts at the same vertical position as the first paragraph.
+   * left-gutter = calc(50% - 24rem - 2.5rem) mirrors mx-auto for 48rem content. */
+  .blog-layout {
+    padding: 0 1rem;
+  }
+  .blog-content {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Mobile/tablet: sidebar appears below the post, centered to match article width */
+  .blog-sidebar {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 37.5rem) {
+    .blog-layout { padding: 0 1.5rem; }
+    .blog-sidebar { padding-left: 0.5rem; padding-right: 0.5rem; }
+  }
+
+  /* Wide desktop: sidebar becomes a sticky grid column beside the article.
+   * Sticky is on the grid item itself so it scrolls within the article's row height. */
+  @media (min-width: 92rem) {
+    .blog-layout {
+      display: grid;
+      grid-template-columns:
+        max(0px, calc(50% - 24rem - 2.5rem))
+        minmax(0, 48rem)
+        17rem
+        1fr;
+      column-gap: 2.5rem;
+      padding: 0;
+    }
+    .blog-content {
+      grid-column: 2;
+      max-width: none;
+      margin: 0;
+    }
+    .blog-sidebar {
+      grid-column: 3;
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
   /* Article headings */
   .article-body h2 {
     font-size: 1.875rem;
