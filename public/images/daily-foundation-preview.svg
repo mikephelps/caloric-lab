@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+  <defs>
+    <filter id="glow"><feGaussianBlur stdDeviation="28"/></filter>
+    <linearGradient id="bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#7c3aed" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="420" fill="#0a0d14"/>
+
+  <!-- Aurora blobs -->
+  <ellipse cx="500" cy="100" rx="240" ry="130" fill="none" stroke="#7c3aed" stroke-width="55" opacity="0.08" filter="url(#glow)"/>
+  <ellipse cx="80" cy="320" rx="200" ry="110" fill="none" stroke="#22d3ee" stroke-width="45" opacity="0.07" filter="url(#glow)"/>
+
+  <!-- Header -->
+  <text x="36" y="52" fill="rgba(255,255,255,0.92)" font-family="system-ui,sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3">The Daily Foundation</text>
+  <text x="36" y="73" fill="rgba(255,255,255,0.30)" font-family="system-ui,sans-serif" font-size="11">Tuesday, May 6, 2026</text>
+
+  <!-- Streak badge -->
+  <rect x="430" y="42" width="134" height="26" rx="13" fill="rgba(249,115,22,0.10)" stroke="rgba(249,115,22,0.28)" stroke-width="1"/>
+  <text x="450" y="59" fill="rgba(249,115,22,0.88)" font-family="system-ui,sans-serif" font-size="12" font-weight="600">⚡ 3 Day Streak</text>
+
+  <!-- Progress track -->
+  <rect x="36" y="92" width="528" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="36" y="92" width="352" height="5" rx="2.5" fill="url(#bar)"/>
+  <text x="36" y="112" fill="rgba(255,255,255,0.28)" font-family="system-ui,sans-serif" font-size="10.5">4 of 6 complete · 67%</text>
+
+  <!-- Habit row 1 — done -->
+  <rect x="36" y="126" width="528" height="48" rx="11" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="66" cy="150" r="11" fill="#7c3aed" opacity="0.95"/>
+  <text x="60" y="155" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="700">✓</text>
+  <text x="90" y="154" fill="rgba(255,255,255,0.38)" font-family="system-ui,sans-serif" font-size="13" text-decoration="line-through">Hit 140g protein</text>
+  <rect x="474" y="138" width="72" height="24" rx="8" fill="rgba(124,58,237,0.15)"/>
+  <text x="487" y="154" fill="rgba(124,58,237,0.9)" font-family="system-ui,sans-serif" font-size="10.5" font-weight="600">Nutrition</text>
+
+  <!-- Habit row 2 — done -->
+  <rect x="36" y="182" width="528" height="48" rx="11" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="66" cy="206" r="11" fill="#7c3aed" opacity="0.95"/>
+  <text x="60" y="211" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="700">✓</text>
+  <text x="90" y="210" fill="rgba(255,255,255,0.38)" font-family="system-ui,sans-serif" font-size="13" text-decoration="line-through">Drink 90oz water</text>
+  <rect x="460" y="194" width="86" height="24" rx="8" fill="rgba(34,211,238,0.10)"/>
+  <text x="471" y="210" fill="rgba(34,211,238,0.85)" font-family="system-ui,sans-serif" font-size="10.5" font-weight="600">Hydration</text>
+
+  <!-- Habit row 3 — active/highlighted -->
+  <rect x="36" y="238" width="528" height="48" rx="11" fill="rgba(124,58,237,0.10)" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.25"/>
+  <circle cx="66" cy="262" r="11" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+  <text x="90" y="266" fill="rgba(255,255,255,0.88)" font-family="system-ui,sans-serif" font-size="13">30-minute walk</text>
+  <rect x="462" y="250" width="84" height="24" rx="8" fill="rgba(34,211,238,0.06)" stroke="rgba(34,211,238,0.15)" stroke-width="1"/>
+  <text x="472" y="266" fill="rgba(34,211,238,0.7)" font-family="system-ui,sans-serif" font-size="10.5" font-weight="600">Movement</text>
+
+  <!-- Habit row 4 -->
+  <rect x="36" y="294" width="528" height="48" rx="11" fill="rgba(255,255,255,0.025)"/>
+  <circle cx="66" cy="318" r="11" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+  <text x="90" y="322" fill="rgba(255,255,255,0.45)" font-family="system-ui,sans-serif" font-size="13">8 hours of sleep</text>
+  <rect x="462" y="306" width="84" height="24" rx="8" fill="rgba(249,115,22,0.06)"/>
+  <text x="472" y="322" fill="rgba(249,115,22,0.55)" font-family="system-ui,sans-serif" font-size="10.5" font-weight="600">Recovery</text>
+
+  <!-- Bottom CTA hint -->
+  <rect x="36" y="360" width="130" height="36" rx="10" fill="#7c3aed" opacity="0.9"/>
+  <text x="56" y="382" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Mark done ✓</text>
+</svg>
