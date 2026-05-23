@@ -1,3 +1,5 @@
+// DEPRECATED — This React component is no longer used in production.
+// The active version is BodyFatCalculator.astro — edit that file instead.
 import { useState, useEffect, useRef } from "react";
 
 type Sex = "male" | "female";

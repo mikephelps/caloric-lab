@@ -1,3 +1,5 @@
+// DEPRECATED — This React component is no longer used in production.
+// The active version is TDEECalculator.astro — edit that file instead.
 import { useState, useEffect, useRef } from "react";
 
 const ACTIVITY_LEVELS = [

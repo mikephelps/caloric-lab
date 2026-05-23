@@ -1,3 +1,5 @@
+// DEPRECATED — This React component is no longer used in production.
+// The active version is WaterIntakeCalculator.astro — edit that file instead.
 import { useState, useEffect, useRef } from "react";
 
 type ActivityKey = "sedentary" | "lightly-active" | "moderately-active" | "very-active" | "extremely-active";
