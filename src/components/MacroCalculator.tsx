@@ -5,20 +5,20 @@ type DietKey = "balanced" | "high-protein" | "low-carb" | "keto";
 
 const PRESETS: Record<GoalKey, Record<DietKey, { p: number; c: number; f: number }>> = {
   "fat-loss": {
-    "balanced":     { p: 35, c: 35, f: 30 },  // ~192g P at 2200 cal
-    "high-protein": { p: 40, c: 30, f: 30 },  // ~220g P at 2200 cal
+    "balanced":     { p: 30, c: 40, f: 30 },  // was p:35
+    "high-protein": { p: 35, c: 35, f: 30 },  // was p:40
     "low-carb":     { p: 35, c: 20, f: 45 },
     "keto":         { p: 25, c:  5, f: 70 },
   },
   "maintenance": {
-    "balanced":     { p: 25, c: 45, f: 30 },
-    "high-protein": { p: 35, c: 35, f: 30 },
+    "balanced":     { p: 20, c: 50, f: 30 },  // was p:25
+    "high-protein": { p: 30, c: 40, f: 30 },  // was p:35
     "low-carb":     { p: 30, c: 25, f: 45 },
     "keto":         { p: 25, c:  5, f: 70 },
   },
   "muscle-gain": {
-    "balanced":     { p: 25, c: 50, f: 25 },
-    "high-protein": { p: 30, c: 45, f: 25 },
+    "balanced":     { p: 20, c: 55, f: 25 },  // was p:25
+    "high-protein": { p: 25, c: 50, f: 25 },  // was p:30
     "low-carb":     { p: 30, c: 25, f: 45 },
     "keto":         { p: 25, c: 10, f: 65 },
   },

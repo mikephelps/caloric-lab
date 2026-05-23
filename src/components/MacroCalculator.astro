@@ -87,8 +87,8 @@
       <!-- Ratio preview -->
       <div id="mc-ratio-preview" class="rounded-xl bg-white shadow-sm px-4 py-3 flex items-center gap-3">
         <span class="text-xs text-gray-500 font-medium">Macro split:</span>
-        <span class="text-xs font-bold text-violet">Protein 35%</span>
-        <span class="text-xs font-bold text-sky-500">Carbs 35%</span>
+        <span class="text-xs font-bold text-violet">Protein 30%</span>
+        <span class="text-xs font-bold text-sky-500">Carbs 40%</span>
         <span class="text-xs font-bold text-orange-500">Fat 30%</span>
       </div>
 
@@ -126,9 +126,9 @@
   const ARROW_SVG = `<svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/></svg>`;
 
   const PRESETS = {
-    'fat-loss':    { 'balanced': {p:35,c:35,f:30}, 'high-protein': {p:40,c:30,f:30}, 'low-carb': {p:35,c:20,f:45}, 'keto': {p:25,c:5,f:70} },
-    'maintenance': { 'balanced': {p:25,c:45,f:30}, 'high-protein': {p:35,c:35,f:30}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:5,f:70} },
-    'muscle-gain': { 'balanced': {p:25,c:50,f:25}, 'high-protein': {p:30,c:45,f:25}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:10,f:65} },
+    'fat-loss':    { 'balanced': {p:30,c:40,f:30}, 'high-protein': {p:35,c:35,f:30}, 'low-carb': {p:35,c:20,f:45}, 'keto': {p:25,c:5,f:70} },
+    'maintenance': { 'balanced': {p:20,c:50,f:30}, 'high-protein': {p:30,c:40,f:30}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:5,f:70} },
+    'muscle-gain': { 'balanced': {p:20,c:55,f:25}, 'high-protein': {p:25,c:50,f:25}, 'low-carb': {p:30,c:25,f:45}, 'keto': {p:25,c:10,f:65} },
   };
 
   const EXPLANATIONS = {
@@ -279,6 +279,16 @@
             <div class="flex-shrink-0">${donutSvg}</div>
             <div class="flex-1 w-full space-y-3">${macroRows}</div>
           </div>
+        </div>
+
+        <div class="flex gap-3 px-5 py-4 bg-violet-subtle rounded-2xl border border-violet-light">
+          <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--cl-violet);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-2.75a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V6A.75.75 0 0 1 8 5.25Zm0-2.25a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" clip-rule="evenodd"/>
+          </svg>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Protein shown here is a percentage-based estimate. For a more precise target based on your body weight and goal, use our
+            <a href="/protein-calculator/" class="text-violet hover:underline font-semibold">Protein Calculator →</a>
+          </p>
         </div>
 
         <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
