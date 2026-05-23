@@ -167,13 +167,28 @@ const features = [
         </div>
 
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
-          Instant, Science-Backed<br />
-          <span style="color: var(--cl-violet-light);">Nutrition Tools</span>
+          Instant, <span style="color: var(--cl-violet-light);">Free</span> Nutrition Tools
         </h1>
 
         <p class="mt-6 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto" style="color: rgba(255,255,255,0.6);">
           Find your calorie targets, macro splits, and body metrics in seconds. No accounts, no tracking, just the math.
         </p>
+
+        <!-- Trust indicators -->
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-5">
+          {[
+            "No account required",
+            "100% free forever",
+            "Privacy friendly",
+          ].map(label => (
+            <span class="flex items-center gap-1.5 text-xs font-medium text-teal-brand">
+              <svg class="w-3.5 h-3.5 flex-shrink-0 text-teal-brand" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
+              </svg>
+              {label}
+            </span>
+          ))}
+        </div>
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
@@ -195,23 +210,6 @@ const features = [
           >
             Get My Macros
           </a>
-        </div>
-
-        <!-- Trust indicators -->
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
-          {[
-            "No account required",
-            "100% free forever",
-            "Mifflin-St Jeor formula",
-            "Privacy friendly",
-          ].map(label => (
-            <span class="flex items-center gap-1.5 text-xs font-medium" style="color: rgba(255,255,255,0.5);">
-              <svg class="w-3.5 h-3.5 flex-shrink-0 text-teal-brand" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207z" clip-rule="evenodd"/>
-              </svg>
-              {label}
-            </span>
-          ))}
         </div>
 
       </div>
