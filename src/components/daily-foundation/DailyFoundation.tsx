@@ -45,6 +45,12 @@ const CALC_LINKS = [
   { label: "Calorie Deficit Calculator", href: "/calorie-deficit-calculator/" },
 ];
 
+const ONBOARDING_STEPS = [
+  { num: 1, color: "#22d3ee", bg: "rgba(34,211,238,0.10)", border: "rgba(34,211,238,0.22)", glow: "rgba(34,211,238,0.18)", title: "Pick your habits", desc: "Choose from 28 science-backed actions or create your own." },
+  { num: 2, color: "oklch(72% 0.18 292)", bg: "rgba(124,58,237,0.10)", border: "rgba(124,58,237,0.22)", glow: "rgba(124,58,237,0.20)", title: "Check them off", desc: "Complete habits throughout the day. The heart fills as you go." },
+  { num: 3, color: "#f97316", bg: "rgba(249,115,22,0.10)", border: "rgba(249,115,22,0.22)", glow: "rgba(249,115,22,0.18)", title: "Build your streak", desc: "Hit your daily target to keep the streak alive. Come back tomorrow." },
+];
+
 export default function DailyFoundation() {
   const [mounted, setMounted] = useState(false);
   const mountTime = useRef(0);
@@ -117,70 +123,102 @@ export default function DailyFoundation() {
 
       {/* Page header */}
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "32px 24px 0" }}>
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 24 }}>
-          <div>
-            <h1 style={{
-              fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 34px)",
-              fontWeight: 800, letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
-            }}>
-              The Daily Foundation
-            </h1>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
-              {today}
-            </p>
-            <p style={{
-              fontSize: "clamp(13px, 2vw, 15px)", color: "rgba(255,255,255,0.50)",
-              marginTop: 10, fontFamily: "var(--font-sans)", lineHeight: 1.65,
-              maxWidth: 600,
-            }}>
-              Pick the habits that move the needle, check them off as you go, and build a streak worth keeping. Connect your calculator results for personalized daily targets.
-            </p>
-          </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 4 }}>
-            {streak.count > 0 && (
-              <div style={{
-                display: "flex", alignItems: "center", gap: 5,
-                padding: "5px 12px", borderRadius: 20,
-                background: "rgba(255,130,30,0.08)", border: "1px solid rgba(255,130,30,0.16)",
-              }}>
-                <span style={{ fontSize: 13, lineHeight: 1 }}>{streakIcon}</span>
-                <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,165,80,0.85)", fontFamily: "var(--font-sans)" }}>
-                  {streak.count} Day Streak
-                </span>
+        {/* Onboarding: wrap hero row in same 780px inner box the cards use */}
+        {!hasActivity && view === "action" ? (
+          <div style={{ maxWidth: 780, margin: "0 auto", marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div>
+                <h1 style={{
+                  fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 34px)",
+                  fontWeight: 800, letterSpacing: "-0.02em",
+                  color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
+                }}>
+                  The Daily Foundation
+                </h1>
+                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
+                  {today}
+                </p>
+                <p style={{
+                  fontSize: "clamp(13px, 2vw, 15px)", color: "rgba(255,255,255,0.50)",
+                  marginTop: 10, fontFamily: "var(--font-sans)", lineHeight: 1.65,
+                  maxWidth: 480,
+                }}>
+                  Pick the habits that move the needle, check them off as you go, and build a streak worth keeping.
+                </p>
               </div>
-            )}
-            <button
-              onClick={() => setShowSettings(s => !s)}
-              aria-label="Settings"
-              aria-expanded={showSettings}
-              style={{
-                padding: 9, borderRadius: 10,
-                background: showSettings ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.035)",
-                border: `1px solid ${showSettings ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.08)"}`,
-                color: showSettings ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.35)",
-                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-                transition: "all 0.15s",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-                e.currentTarget.style.color = "rgba(255,255,255,0.65)";
-              }}
-              onMouseLeave={e => {
-                if (!showSettings) {
-                  e.currentTarget.style.background = "rgba(255,255,255,0.035)";
-                  e.currentTarget.style.color = "rgba(255,255,255,0.35)";
-                }
-              }}
-            >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.32 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
-            </button>
+              <div style={{ width: 220, flexShrink: 0, marginLeft: 24 }}>
+                <LiquidHeart fillPercent={0} completedCount={0} targetCount={target} />
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          /* Active / browse state: full-width header row */
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 24 }}>
+            <div>
+              <h1 style={{
+                fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 34px)",
+                fontWeight: 800, letterSpacing: "-0.02em",
+                color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
+              }}>
+                The Daily Foundation
+              </h1>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
+                {today}
+              </p>
+              <p style={{
+                fontSize: "clamp(13px, 2vw, 15px)", color: "rgba(255,255,255,0.50)",
+                marginTop: 10, fontFamily: "var(--font-sans)", lineHeight: 1.65,
+                maxWidth: 600,
+              }}>
+                Pick the habits that move the needle, check them off as you go, and build a streak worth keeping. Connect your calculator results for personalized daily targets.
+              </p>
+            </div>
+          {/* Normal header right: streak badge + settings */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 4 }}>
+              {streak.count > 0 && (
+                <div style={{
+                  display: "flex", alignItems: "center", gap: 5,
+                  padding: "5px 12px", borderRadius: 20,
+                  background: "rgba(255,130,30,0.08)", border: "1px solid rgba(255,130,30,0.16)",
+                }}>
+                  <span style={{ fontSize: 13, lineHeight: 1 }}>{streakIcon}</span>
+                  <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,165,80,0.85)", fontFamily: "var(--font-sans)" }}>
+                    {streak.count} Day Streak
+                  </span>
+                </div>
+              )}
+              <button
+                onClick={() => setShowSettings(s => !s)}
+                aria-label="Settings"
+                aria-expanded={showSettings}
+                style={{
+                  padding: 9, borderRadius: 10,
+                  background: showSettings ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.035)",
+                  border: `1px solid ${showSettings ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.08)"}`,
+                  color: showSettings ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.35)",
+                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "all 0.15s",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.07)";
+                  e.currentTarget.style.color = "rgba(255,255,255,0.65)";
+                }}
+                onMouseLeave={e => {
+                  if (!showSettings) {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.035)";
+                    e.currentTarget.style.color = "rgba(255,255,255,0.35)";
+                  }
+                }}
+              >
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.32 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Settings panel */}
         {showSettings && (
@@ -294,37 +332,92 @@ export default function DailyFoundation() {
               </div>
             </div>
           ) : (
-            /* Empty state — centered */
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 28, paddingTop: 8 }}>
-              <LiquidHeart
-                fillPercent={0}
-                completedCount={0}
-                targetCount={target}
-              />
-              <div style={{ textAlign: "center" }}>
-                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.28)", marginBottom: 16, fontFamily: "var(--font-sans)" }}>
-                  Pick the habits you want to focus on today.
-                </p>
+            /* Empty state — onboarding */
+            <div style={{ paddingTop: 8 }}>
+
+              {/* 3-step cards — main focus */}
+              <div style={{ position: "relative", width: "100%", maxWidth: 780, margin: "0 auto" }}>
+                {/* Ambient glow behind the row */}
+                <div style={{
+                  position: "absolute", inset: "-40px",
+                  background: "linear-gradient(135deg, rgba(34,211,238,0.08) 0%, rgba(124,58,237,0.13) 50%, rgba(249,115,22,0.08) 100%)",
+                  borderRadius: 40, filter: "blur(36px)", pointerEvents: "none",
+                }} />
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4" style={{ position: "relative" }}>
+                  {ONBOARDING_STEPS.map(step => (
+                    <div key={step.num} style={{
+                      padding: "28px 22px 30px",
+                      borderRadius: 18,
+                      background: "rgba(255,255,255,0.032)",
+                      border: "1px solid rgba(255,255,255,0.09)",
+                      textAlign: "center",
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: 14,
+                      backdropFilter: "blur(8px)",
+                    }}>
+                      {/* Numbered badge */}
+                      <div style={{
+                        width: 44, height: 44, borderRadius: "50%",
+                        background: step.bg,
+                        border: `1.5px solid ${step.border}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        boxShadow: `0 0 24px ${step.glow}`,
+                        flexShrink: 0,
+                      }}>
+                        <span style={{
+                          fontSize: 18, fontWeight: 800, color: step.color,
+                          fontFamily: "var(--font-display)", lineHeight: 1,
+                        }}>
+                          {step.num}
+                        </span>
+                      </div>
+                      <h3 style={{
+                        fontSize: 16, fontWeight: 700, letterSpacing: "-0.02em",
+                        color: "rgba(255,255,255,0.90)", fontFamily: "var(--font-display)", margin: 0,
+                      }}>
+                        {step.title}
+                      </h3>
+                      <p style={{
+                        fontSize: 13, color: "rgba(255,255,255,0.42)",
+                        lineHeight: 1.7, fontFamily: "var(--font-sans)", margin: 0,
+                      }}>
+                        {step.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA — full width of cards */}
+              <div style={{ width: "100%", maxWidth: 780, margin: "16px auto 0", display: "flex", flexDirection: "column", gap: 12 }}>
                 <button
                   onClick={() => setView("browse")}
                   style={{
-                    padding: "13px 32px", borderRadius: 14, fontSize: 14, fontWeight: 600,
+                    width: "100%", padding: "16px 0", borderRadius: 14, fontSize: 15, fontWeight: 700,
                     fontFamily: "var(--font-sans)", cursor: "pointer",
-                    background: "rgba(145,28,28,0.18)", border: "1px solid rgba(145,28,28,0.30)",
-                    color: "rgba(255,180,180,0.92)", transition: "all 0.2s",
+                    background: "var(--cl-violet)", border: "none",
+                    color: "#fff", transition: "all 0.2s",
+                    boxShadow: "0 4px 28px rgba(124,58,237,0.35)",
+                    letterSpacing: "-0.01em",
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background = "rgba(145,28,28,0.28)";
-                    e.currentTarget.style.transform = "scale(1.02)";
+                    e.currentTarget.style.background = "var(--cl-violet-dark)";
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                    e.currentTarget.style.boxShadow = "0 8px 36px rgba(124,58,237,0.45)";
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.background = "rgba(145,28,28,0.18)";
-                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.background = "var(--cl-violet)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "0 4px 28px rgba(124,58,237,0.35)";
                   }}
                 >
-                  Build Your Daily Queue
+                  Build your daily queue
                 </button>
+                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.22)", fontFamily: "var(--font-sans)", textAlign: "center" }}>
+                  No account needed. Everything stays on your device.
+                </p>
               </div>
+
             </div>
           )
         )}
