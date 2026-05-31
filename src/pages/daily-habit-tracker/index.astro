@@ -28,6 +28,7 @@ const breadcrumbSchema = {
   canonicalUrl="https://caloriclab.com/daily-habit-tracker/"
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <style slot="head">html,body{background:oklch(10% 0.02 220);}</style>
 
   <div style="background: linear-gradient(to bottom, var(--cl-dark-nav) 0%, var(--cl-dark-nav) 40%, oklch(13% 0.028 261.692) 100%); min-height: 100%;">
     <DailyFoundation client:load />
