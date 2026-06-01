@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FoodLog from "../../components/food-log/FoodLog";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://caloriclab.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Food Log",
+      item: "https://caloriclab.com/food-log/",
+    },
+  ],
+};
+---
+
+<Layout
+  title="Daily Food Log - Track What You Eat | CaloricLab"
+  description="A simple, private food journal. Log your meals daily to build awareness of your eating habits. No calories, no macros, no account required."
+  canonicalUrl="https://caloriclab.com/food-log/"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <style slot="head">html,body{background:oklch(10% 0.02 220);}</style>
+
+  <div style="background: linear-gradient(to bottom, var(--cl-dark-nav) 0%, var(--cl-dark-nav) 40%, oklch(13% 0.028 261.692) 100%); min-height: 100%;">
+    <FoodLog client:load />
+  </div>
+</Layout>

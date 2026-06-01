@@ -53,6 +53,7 @@ const columnColors: Record<string, string> = {
 };
 
 const currentPath = Astro.url.pathname;
+const dfActive = currentPath === "/daily-habit-tracker/" || currentPath === "/food-log/";
 ---
 
 <header class="sticky top-0 z-50 border-b" style="background-color: var(--cl-dark-nav); border-color: rgba(255,255,255,0.06);">
@@ -118,21 +119,26 @@ const currentPath = Astro.url.pathname;
           </svg>
         </button>
 
-        <a
-          href="/daily-habit-tracker/"
+        <!-- Daily Foundation dropdown -->
+        <button
+          id="df-btn"
+          type="button"
           class:list={[
-            "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
-            currentPath === "/daily-habit-tracker/"
-              ? "text-white"
-              : "text-gray-300 hover:text-white",
+            "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+            dfActive ? "text-white" : "text-gray-300 hover:text-white",
           ]}
-          style={currentPath === "/daily-habit-tracker/" ? "background: rgba(255,255,255,0.08);" : ""}
-          onmouseenter="if(!this.style.background) this.style.background='rgba(255,255,255,0.08)'"
-          onmouseleave="if(!this.getAttribute('data-active')) this.style.background=''"
-          data-active={currentPath === "/daily-habit-tracker/" ? "true" : null}
+          style={dfActive ? "background: rgba(255,255,255,0.08);" : ""}
+          onmouseenter="this.style.background='rgba(255,255,255,0.08)'"
+          onmouseleave={dfActive ? "" : "this.style.background=''"}
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="df-menu"
         >
           Daily Foundation
-        </a>
+          <svg id="df-chevron" class="w-3.5 h-3.5 mt-px" style="transition: transform 0.2s;" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.293 5.293a1 1 0 0 1 1.414 0L8 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z"/>
+          </svg>
+        </button>
 
         <a
           href="/blog/"
@@ -260,6 +266,63 @@ const currentPath = Astro.url.pathname;
       </div>
 
     </div>
+
+    <!-- Daily Foundation dropdown panel -->
+    <div
+      id="df-menu"
+      role="menu"
+      aria-label="Daily Foundation menu"
+      style="opacity:0; transform:translateY(6px); visibility:hidden; pointer-events:none; transition: opacity 0.18s ease, transform 0.18s ease; background: var(--cl-dark-card); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);"
+      class="absolute top-16 z-50 w-[260px] rounded-2xl overflow-hidden"
+    >
+      <div class="py-2">
+        <a
+          href="/daily-habit-tracker/"
+          role="menuitem"
+          class="flex items-start gap-2.5 px-3 py-2 rounded-xl mx-1 transition-colors"
+          style={currentPath === "/daily-habit-tracker/"
+            ? "background: rgba(255,255,255,0.08); color: white;"
+            : "color: rgba(255,255,255,0.7);"}
+          onmouseenter="if(!this.style.background.includes('0.08')) this.style.background='rgba(255,255,255,0.06)'; this.style.color='white';"
+          onmouseleave={`this.style.background='${currentPath === "/daily-habit-tracker/" ? "rgba(255,255,255,0.08)" : ""}'; this.style.color='${currentPath === "/daily-habit-tracker/" ? "white" : "rgba(255,255,255,0.7)"}';`}
+        >
+          <div class="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center" style="background: rgba(255,255,255,0.1);">
+            <svg class="w-3.5 h-3.5" style="color: rgba(255,255,255,0.7);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <!-- check-circle: habit completion -->
+              <circle cx="8" cy="8" r="6" opacity="0.25"/>
+              <path d="M5.5 8.5l2 1.5 3-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-sm font-medium whitespace-nowrap">Habit Tracker</div>
+            <div class="text-xs whitespace-nowrap" style="color: rgba(255,255,255,0.4);">Build your daily routine</div>
+          </div>
+        </a>
+        <a
+          href="/food-log/"
+          role="menuitem"
+          class="flex items-start gap-2.5 px-3 py-2 rounded-xl mx-1 transition-colors"
+          style={currentPath === "/food-log/"
+            ? "background: rgba(255,255,255,0.08); color: white;"
+            : "color: rgba(255,255,255,0.7);"}
+          onmouseenter="if(!this.style.background.includes('0.08')) this.style.background='rgba(255,255,255,0.06)'; this.style.color='white';"
+          onmouseleave={`this.style.background='${currentPath === "/food-log/" ? "rgba(255,255,255,0.08)" : ""}'; this.style.color='${currentPath === "/food-log/" ? "white" : "rgba(255,255,255,0.7)"}';`}
+        >
+          <div class="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center" style="background: rgba(255,255,255,0.1);">
+            <svg class="w-3.5 h-3.5" style="color: rgba(255,255,255,0.7);" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <!-- pencil: writing/logging food -->
+              <path d="M11.5 2.5a1.5 1.5 0 0 1 2 2L5 13H3v-2z" opacity="0.85"/>
+              <path d="M9.5 4.5l2 2" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-sm font-medium whitespace-nowrap">Food Log</div>
+            <div class="text-xs whitespace-nowrap" style="color: rgba(255,255,255,0.4);">Write down what you eat</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
   </nav>
 
   <!-- Mobile menu — grouped by category -->
@@ -291,8 +354,12 @@ const currentPath = Astro.url.pathname;
         </div>
       ))}
 
-      <div class="mt-2 pt-2 space-y-0.5" style="border-top: 1px solid rgba(255,255,255,0.06);">
-        <a href="/daily-habit-tracker/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Daily Foundation</a>
+      <div class="mt-2 pt-2" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <p class="px-3 py-1 text-[10px] font-bold uppercase tracking-widest" style="color: rgba(255,255,255,0.28);">Daily Foundation</p>
+        <a href="/daily-habit-tracker/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Habit Tracker</a>
+        <a href="/food-log/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Food Log</a>
+      </div>
+      <div class="mt-1 pt-1 space-y-0.5" style="border-top: 1px solid rgba(255,255,255,0.06);">
         <a href="/blog/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">Blog</a>
         <a href="/about/" class="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors" style="color: rgba(255,255,255,0.7);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'; this.style.color='white';" onmouseleave="this.style.background=''; this.style.color='rgba(255,255,255,0.7)';">About</a>
       </div>
@@ -356,6 +423,63 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('click', (e) => {
     if (menuOpen && !calcBtn?.contains(e.target as Node) && !calcMenu?.contains(e.target as Node)) {
       scheduleClose();
+    }
+  });
+
+  // ── Daily Foundation dropdown ───────────────────────────────────────────────
+  const dfBtn     = document.getElementById('df-btn') as HTMLButtonElement | null;
+  const dfMenu    = document.getElementById('df-menu') as HTMLElement | null;
+  const dfChevron = document.getElementById('df-chevron') as SVGElement | null;
+
+  let dfCloseTimer: ReturnType<typeof setTimeout> | undefined;
+  let dfMenuOpen = false;
+
+  function openDfMenu() {
+    clearTimeout(dfCloseTimer);
+    if (dfMenuOpen) return;
+    dfMenuOpen = true;
+    if (dfBtn && dfMenu) {
+      const btnLeft = dfBtn.offsetLeft;
+      const btnWidth = dfBtn.offsetWidth;
+      const menuWidth = dfMenu.offsetWidth;
+      const navWidth = (dfMenu.offsetParent as HTMLElement)?.offsetWidth ?? 9999;
+      let left = btnLeft + btnWidth / 2 - menuWidth / 2;
+      left = Math.max(0, Math.min(left, navWidth - menuWidth));
+      dfMenu.style.left = `${left}px`;
+      dfMenu.style.opacity = '1';
+      dfMenu.style.transform = 'translateY(0)';
+      dfMenu.style.visibility = 'visible';
+      dfMenu.style.pointerEvents = 'auto';
+    }
+    if (dfChevron) dfChevron.style.transform = 'rotate(180deg)';
+    dfBtn?.setAttribute('aria-expanded', 'true');
+  }
+
+  function scheduleDfClose() {
+    dfCloseTimer = setTimeout(() => {
+      dfMenuOpen = false;
+      if (dfMenu) {
+        dfMenu.style.opacity = '0';
+        dfMenu.style.transform = 'translateY(6px)';
+        dfMenu.style.visibility = 'hidden';
+        dfMenu.style.pointerEvents = 'none';
+      }
+      if (dfChevron) dfChevron.style.transform = 'rotate(0deg)';
+      dfBtn?.setAttribute('aria-expanded', 'false');
+    }, 120);
+  }
+
+  dfBtn?.addEventListener('mouseenter', openDfMenu);
+  dfBtn?.addEventListener('mouseleave', scheduleDfClose);
+  dfMenu?.addEventListener('mouseenter', openDfMenu);
+  dfMenu?.addEventListener('mouseleave', scheduleDfClose);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dfMenuOpen) scheduleDfClose();
+  });
+  document.addEventListener('click', (e) => {
+    if (dfMenuOpen && !dfBtn?.contains(e.target as Node) && !dfMenu?.contains(e.target as Node)) {
+      scheduleDfClose();
     }
   });
 

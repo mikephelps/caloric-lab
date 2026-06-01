@@ -45,7 +45,7 @@ export function HabitGrid({
   };
 
   return (
-    <div style={{ animation: "fadeUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }}>
+    <div style={{ animation: "fadeUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)", paddingTop: 24 }}>
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
         <h2 style={{

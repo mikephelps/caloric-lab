@@ -134,7 +134,7 @@ export default function DailyFoundation() {
                   fontWeight: 800, letterSpacing: "-0.02em",
                   color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
                 }}>
-                  The Daily Foundation
+                  Habit Tracker
                 </h1>
                 <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
                   {today}
@@ -161,7 +161,7 @@ export default function DailyFoundation() {
                 fontWeight: 800, letterSpacing: "-0.02em",
                 color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
               }}>
-                The Daily Foundation
+                Habit Tracker
               </h1>
               <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
                 {today}
