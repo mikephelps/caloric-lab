@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import HeroAuroraBg from "../../components/HeroAuroraBg.astro";
 
 const PAGE_SIZE = 10;
 
@@ -25,20 +26,8 @@ function formatDate(date: Date) {
 >
   <!-- Blog header — dark aurora band -->
   <header class="relative overflow-hidden py-10 sm:py-12" style="background-color: var(--cl-dark-nav);">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1160 160" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <filter id="blog-blur1"><feGaussianBlur stdDeviation="22"/></filter>
-          <filter id="blog-blur2"><feGaussianBlur stdDeviation="32"/></filter>
-          <filter id="blog-blur3"><feGaussianBlur stdDeviation="18"/></filter>
-        </defs>
-        <ellipse cx="200" cy="120" rx="420" ry="70" fill="none" style="stroke: var(--cl-teal-dark);" stroke-width="50" opacity="0.14" filter="url(#blog-blur1)" transform="rotate(-6 200 120)"/>
-        <ellipse cx="640" cy="80" rx="400" ry="55" fill="none" style="stroke: var(--cl-violet);" stroke-width="44" opacity="0.10" filter="url(#blog-blur2)" transform="rotate(3 640 80)"/>
-        <ellipse cx="980" cy="50" rx="280" ry="42" fill="none" style="stroke: var(--cl-teal);" stroke-width="30" opacity="0.09" filter="url(#blog-blur3)" transform="rotate(-4 980 50)"/>
-        <ellipse cx="480" cy="140" rx="320" ry="38" fill="none" style="stroke: var(--cl-teal-mid);" stroke-width="34" opacity="0.08" filter="url(#blog-blur2)" transform="rotate(5 480 140)"/>
-      </svg>
-    </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <HeroAuroraBg variant="compact" />
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-2xl sm:text-3xl font-bold text-white">Blog</h1>
       <p class="mt-2 text-sm sm:text-base max-w-2xl" style="color: rgba(255,255,255,0.55);">Evidence-based nutrition and fitness insights to help you make smarter decisions about your health.</p>
     </div>

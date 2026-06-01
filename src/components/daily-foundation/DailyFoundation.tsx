@@ -133,7 +133,12 @@ export default function DailyFoundation() {
                   fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 34px)",
                   fontWeight: 800, letterSpacing: "-0.02em",
                   color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
+                  display: "flex", alignItems: "center", gap: "0.3em",
                 }}>
+                  <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style={{ color: "#22d3ee", flexShrink: 0 }}>
+                    <circle cx="8" cy="8" r="6" opacity="0.22"/>
+                    <path d="M5.5 8.5l2 1.5 3-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  </svg>
                   Habit Tracker
                 </h1>
                 <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
@@ -160,7 +165,12 @@ export default function DailyFoundation() {
                 fontFamily: "var(--font-display)", fontSize: "clamp(26px, 5vw, 34px)",
                 fontWeight: 800, letterSpacing: "-0.02em",
                 color: "rgba(255,255,255,0.92)", lineHeight: 1.1,
+                display: "flex", alignItems: "center", gap: "0.3em",
               }}>
+                <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style={{ color: "#22d3ee", flexShrink: 0 }}>
+                  <circle cx="8" cy="8" r="6" opacity="0.22"/>
+                  <path d="M5.5 8.5l2 1.5 3-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
                 Habit Tracker
               </h1>
               <p style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginTop: 6, fontFamily: "var(--font-sans)" }}>
@@ -481,20 +491,20 @@ export default function DailyFoundation() {
                 style={{
                   padding: "7px 16px", borderRadius: 20, fontSize: 12, fontWeight: 500,
                   fontFamily: "var(--font-sans)", textDecoration: "none",
-                  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-                  color: "rgba(255,255,255,0.38)", transition: "all 0.2s",
+                  background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.55)",
+                  color: "var(--cl-violet-light)", transition: "all 0.2s",
                 }}
                 onMouseEnter={e => {
-                  const el = e.target as HTMLElement;
-                  el.style.color = "rgba(255,255,255,0.72)";
-                  el.style.borderColor = "rgba(255,255,255,0.16)";
-                  el.style.background = "rgba(255,255,255,0.06)";
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.color = "rgba(255,255,255,0.95)";
+                  el.style.borderColor = "rgba(124,58,237,0.80)";
+                  el.style.background = "var(--cl-violet)";
                 }}
                 onMouseLeave={e => {
-                  const el = e.target as HTMLElement;
-                  el.style.color = "rgba(255,255,255,0.38)";
-                  el.style.borderColor = "rgba(255,255,255,0.08)";
-                  el.style.background = "rgba(255,255,255,0.03)";
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.color = "var(--cl-violet-light)";
+                  el.style.borderColor = "rgba(124,58,237,0.55)";
+                  el.style.background = "rgba(124,58,237,0.08)";
                 }}
               >
                 {link.label} →

@@ -1,0 +1,125 @@
+---
+/**
+ * HeroAuroraBg.astro — CaloricLab "Aurora · Rising Veil" hero background.
+ *
+ * BACKGROUND LAYER ONLY. This renders nothing but the animated gradient
+ * backdrop. It is fully decoupled from hero content — drop it in as the
+ * first child of a `position: relative; overflow: hidden` hero wrapper and
+ * render your existing content as a sibling with a higher z-index.
+ *
+ * Props:
+ *   variant: 'full'    → tall homepage hero (default)
+ *            'compact' → short interior page hero (breadcrumb/title bands)
+ *   class:   extra classes to merge onto the root (optional)
+ *
+ * Usage:
+ *   <section class="relative overflow-hidden bg-[oklch(10%_0.02_220)]">
+ *     <HeroAuroraBg variant="full" />
+ *     <div class="relative z-10 mx-auto max-w-7xl px-6 py-20">
+ *       {/* your existing, current hero content goes here, untouched */}
+ *     </div>
+ *   </section>
+ *
+ * Notes:
+ *   - The root sits at z-index:0; keep your content at z-10 (or any value > 0).
+ *   - The wrapper MUST be `relative` + `overflow-hidden` and own the dark base
+ *     colour. This component only paints the colour bands + veil + grain.
+ *   - Honors prefers-reduced-motion (freezes all animation).
+ *   - Resolution-independent; no image assets.
+ */
+interface Props {
+  variant?: 'full' | 'compact';
+  class?: string;
+}
+const { variant = 'full', class: className = '' } = Astro.props;
+---
+
+<div class:list={['hero-aurora', variant, className]} aria-hidden="true">
+  {variant === 'full' ? (
+    <>
+      <span class="band b1"></span>
+      <span class="band b2"></span>
+      <span class="band b3"></span>
+      <span class="floor v1"></span>
+      <span class="floor v2"></span>
+    </>
+  ) : (
+    <>
+      <span class="band sb1"></span>
+      <span class="band sb2"></span>
+      <span class="band sb3"></span>
+      <span class="floor v1"></span>
+      <span class="floor v2"></span>
+    </>
+  )}
+  <span class="grain"></span>
+</div>
+
+<style>
+  .hero-aurora {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* base wash (sits behind the wrapper's own dark bg, reinforces depth) */
+  .hero-aurora.full {
+    background: radial-gradient(120% 90% at 50% 0%, oklch(16% 0.04 250) 0%, oklch(9% 0.02 250) 55%, #060608 100%);
+  }
+  .hero-aurora.compact {
+    background: radial-gradient(130% 150% at 50% 0%, oklch(15% 0.038 250) 0%, oklch(9.5% 0.022 250) 72%, #060608 100%);
+  }
+
+  /* ── drifting colour bands (top) ── */
+  .band {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    will-change: transform;
+  }
+
+  /* full / homepage bands */
+  .full .band { filter: blur(58px); opacity: .5; }
+  .full .b1 { width: 760px; height: 240px; left: -8%; top: 4%;  background: radial-gradient(closest-side, #0e7490, transparent 70%);                 animation: aDrift1 17s ease-in-out infinite; }
+  .full .b2 { width: 680px; height: 220px; left: 30%; top: -8%; background: radial-gradient(closest-side, oklch(60% 0.22 292), transparent 70%);      animation: aDrift2 21s ease-in-out infinite; }
+  .full .b3 { width: 560px; height: 180px; right: -6%; top: 0%; background: radial-gradient(closest-side, #22d3ee, transparent 70%);                 animation: aDrift3 19s ease-in-out infinite; }
+
+  /* compact / interior bands (smaller, lifted above the fold of a short band) */
+  .compact .band { filter: blur(46px); }
+  .compact .sb1 { width: 560px; height: 130px; left: -6%; top: -28%; opacity: .45; background: radial-gradient(closest-side, #0e7490, transparent 70%);            animation: aDrift1 18s ease-in-out infinite; }
+  .compact .sb2 { width: 520px; height: 120px; left: 34%; top: -36%; opacity: .40; background: radial-gradient(closest-side, oklch(60% 0.22 292), transparent 70%); animation: aDrift2 22s ease-in-out infinite; }
+  .compact .sb3 { width: 420px; height: 100px; right: -4%; top: -22%; opacity: .32; background: radial-gradient(closest-side, #22d3ee, transparent 70%);            animation: aDrift3 20s ease-in-out infinite; }
+
+  /* ── rising veil (bottom) ── */
+  .floor { position: absolute; mix-blend-mode: screen; }
+
+  /* v1: soft gradient wash anchored to the bottom edge */
+  .full .floor.v1    { inset: auto 0 0 0; height: 56%; opacity: .60; background: linear-gradient(0deg, rgba(14,116,144,.50) 0%, rgba(124,58,220,.26) 40%, transparent 100%); }
+  .compact .floor.v1 { inset: auto 0 0 0; height: 72%; opacity: .55; background: linear-gradient(0deg, rgba(14,116,144,.50) 0%, rgba(124,58,220,.24) 46%, transparent 100%); }
+
+  /* v2: faint centred bloom rising from below the fold */
+  .floor.v2 { left: 50%; transform: translateX(-50%); border-radius: 50%; mix-blend-mode: screen; will-change: transform; background: radial-gradient(closest-side, oklch(52% 0.2 292), transparent 72%); animation: aFloorGlow 20s ease-in-out infinite; }
+  .full .floor.v2    { bottom: -22%; width: 760px; height: 280px; filter: blur(54px); opacity: .5; }
+  .compact .floor.v2 { bottom: -42%; width: 620px; height: 200px; filter: blur(48px); opacity: .5; }
+
+  /* ── fine film grain (tactile premium texture) ── */
+  .grain {
+    position: absolute;
+    inset: -50%;
+    opacity: .045;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes aDrift1 { 0%, 100% { transform: translate(0, 0) scaleX(1); }    50% { transform: translate(70px, 18px) scaleX(1.12); } }
+  @keyframes aDrift2 { 0%, 100% { transform: translate(0, 0) scaleX(1); }    50% { transform: translate(-60px, 26px) scaleX(.9); } }
+  @keyframes aDrift3 { 0%, 100% { transform: translate(0, 0); }              50% { transform: translate(-46px, 30px); } }
+  @keyframes aFloorGlow { 0%, 100% { transform: translateX(-50%) scaleY(1); } 50% { transform: translateX(-50%) translateX(26px) scaleY(1.08); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .band, .floor.v2 { animation: none !important; }
+  }
+</style>

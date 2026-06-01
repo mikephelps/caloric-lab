@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HeroAuroraBg from "../components/HeroAuroraBg.astro";
 import { getCollection } from "astro:content";
 
 const recentPosts = (await getCollection("blog"))
@@ -139,23 +140,9 @@ const features = [
   <!-- Hero — full dark with aurora -->
   <section class="relative overflow-hidden pt-16 pb-20 sm:pt-20 sm:pb-28" style="background-color: var(--cl-dark-nav);">
 
-    <!-- Aurora background -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1160 420" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <filter id="aurora-blur1"><feGaussianBlur stdDeviation="28"/></filter>
-          <filter id="aurora-blur2"><feGaussianBlur stdDeviation="40"/></filter>
-          <filter id="aurora-blur3"><feGaussianBlur stdDeviation="22"/></filter>
-        </defs>
-        <ellipse cx="280" cy="260" rx="520" ry="90" fill="none" style="stroke: var(--cl-teal-dark);" stroke-width="60" opacity="0.13" filter="url(#aurora-blur1)" transform="rotate(-8 280 260)"/>
-        <ellipse cx="640" cy="200" rx="480" ry="70" fill="none" style="stroke: var(--cl-violet);" stroke-width="50" opacity="0.11" filter="url(#aurora-blur2)" transform="rotate(4 640 200)"/>
-        <ellipse cx="920" cy="140" rx="340" ry="50" fill="none" style="stroke: var(--cl-teal);" stroke-width="36" opacity="0.09" filter="url(#aurora-blur3)" transform="rotate(-5 920 140)"/>
-        <ellipse cx="500" cy="310" rx="400" ry="55" fill="none" style="stroke: var(--cl-teal-mid);" stroke-width="44" opacity="0.08" filter="url(#aurora-blur2)" transform="rotate(6 500 310)"/>
-        <ellipse cx="820" cy="340" rx="300" ry="45" fill="none" style="stroke: var(--cl-violet-mid);" stroke-width="30" opacity="0.07" filter="url(#aurora-blur1)" transform="rotate(-3 820 340)"/>
-      </svg>
-    </div>
+    <HeroAuroraBg variant="full" />
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
 
         <!-- Badge -->

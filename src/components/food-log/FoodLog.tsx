@@ -41,13 +41,14 @@ function CtaLink({ label, href }: { label: string; href: string }) {
       style={{
         fontSize: 13,
         fontWeight: 500,
-        color: hovered ? "rgba(255,255,255,0.70)" : "rgba(255,255,255,0.32)",
-        border: `1px solid ${hovered ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.10)"}`,
+        color: hovered ? "rgba(255,255,255,0.95)" : "var(--cl-violet-light)",
+        border: `1px solid ${hovered ? "rgba(124,58,237,0.80)" : "rgba(124,58,237,0.55)"}`,
         borderRadius: 20,
         padding: "7px 14px",
         textDecoration: "none",
         fontFamily: "var(--font-sans)",
-        transition: "color 0.15s, border-color 0.15s",
+        background: hovered ? "var(--cl-violet)" : "rgba(124,58,237,0.08)",
+        transition: "color 0.15s, border-color 0.15s, background 0.15s",
       }}
     >
       {label}
@@ -103,8 +104,17 @@ export default function FoodLog() {
                 color: "rgba(255,255,255,0.92)",
                 lineHeight: 1.1,
                 margin: 0,
+                display: "flex",
+                alignItems: "center",
+                gap: "0.3em",
               }}
             >
+              <svg width="0.85em" height="0.85em" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style={{ color: "#f97316", flexShrink: 0 }}>
+                <path d="M8 14Q5.5 10 5.5 6Q5.5 3 8 3Q10.5 3 10.5 6Q10.5 10 8 14Z"/>
+                <path d="M7 3.5Q5.5 1.5 5 1Q5.5 0.5 7 2Q7.5 3 7 3.5Z" opacity="0.65"/>
+                <path d="M8 3Q7.5 1.5 8 0.5Q8.5 1.5 8 3Z" opacity="0.5"/>
+                <path d="M9 3.5Q10.5 1.5 11 1Q10.5 0.5 9 2Q8.5 3 9 3.5Z" opacity="0.65"/>
+              </svg>
               Food Log
             </h1>
             <p
@@ -161,31 +171,48 @@ export default function FoodLog() {
           </p>
         )}
 
-        {/* TODAY label */}
-        <p
-          style={{
-            fontSize: 10,
-            fontWeight: 600,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.18)",
-            marginBottom: 10,
-            fontFamily: "var(--font-sans)",
-          }}
-        >
-          Today
-        </p>
+        {/* TODAY label + card with glow */}
+        <div style={{ position: "relative" }}>
 
-        {/* Today's meal card */}
-        <div
-          style={{
-            background: "var(--cl-dark-card)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: 18,
-            overflow: "hidden",
-            marginBottom: 40,
-          }}
-        >
+          {/* Triple-color aurora glow */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: "-4px -4px",
+              borderRadius: 48,
+              background: "linear-gradient(130deg, rgba(14,116,144,0.30) 0%, rgba(124,58,220,0.20) 52%, rgba(34,211,238,0.15) 100%)",
+              filter: "blur(48px)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <p
+            style={{
+              position: "relative",
+              fontSize: 10,
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.18)",
+              marginBottom: 10,
+              fontFamily: "var(--font-sans)",
+            }}
+          >
+            Today
+          </p>
+
+          {/* Today's meal card */}
+          <div
+            style={{
+              position: "relative",
+              background: "var(--cl-dark-card)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 18,
+              overflow: "hidden",
+              marginBottom: 40,
+            }}
+          >
           {MEAL_ORDER.map((mealId, idx) => (
             <MealSection
               key={mealId}
@@ -196,7 +223,9 @@ export default function FoodLog() {
               isLast={idx === MEAL_ORDER.length - 1}
             />
           ))}
-        </div>
+          </div>
+
+        </div>{/* end glow wrapper */}
 
         {/* Past days */}
         {pastDays.length > 0 && (
