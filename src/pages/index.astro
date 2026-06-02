@@ -266,54 +266,107 @@ const features = [
           </div>
         ))}
 
-        <!-- Daily Foundation feature card — full width, teal→violet→orange glow -->
-        <div class="md:col-span-3 relative">
-          <!-- Ambient glow layer -->
-          <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-40 pointer-events-none"
-               style="background: linear-gradient(135deg, #22d3ee 0%, var(--cl-violet) 52%, #f97316 100%);"></div>
-          <!-- Sharper inner glow ring -->
-          <div class="absolute -inset-px rounded-3xl opacity-30 pointer-events-none"
-               style="background: linear-gradient(135deg, #22d3ee 0%, var(--cl-violet) 52%, #f97316 100%); filter: blur(4px);"></div>
+        <!-- Daily Foundation split cards -->
+        <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          <div class="relative rounded-2xl overflow-hidden flex flex-col md:flex-row" style="background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.10);">
-
-            <!-- NEW ribbon -->
-            <span class="absolute top-4 right-4 z-10 text-xs font-bold text-dark px-2.5 py-1 rounded-full tracking-wide" style="background: var(--cl-violet-mid);">NEW</span>
-
-            <!-- Image — replace /images/daily-foundation-preview.svg with your own image -->
-            <div class="md:w-[40%] flex-shrink-0 overflow-hidden relative" style="background: #060a14;">
-              <img
-                src="/images/daily-foundation-preview.svg"
-                alt="Daily Foundation habit tracker"
-                class="w-full h-56 md:h-full object-cover object-left-top"
-              />
-              <!-- Darkens the bottom on desktop (hides competing UI), fades to card bg on mobile when stacked -->
-              <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 38%, rgba(6,10,20,0.93) 100%);"></div>
-            </div>
-
-            <!-- Content -->
-            <div class="flex-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
-              <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug">Build Your Daily Foundation: Healthy Habit Tracker</h3>
-              <p class="text-sm sm:text-base leading-relaxed mb-7" style="color: rgba(255,255,255,0.58);">
-                Track your calories, hydration, and daily habits in one place. Your calculator results instantly turn actionable on your own dashboard, privacy-free.
-              </p>
-              <div>
-                <a
-                  href="/daily-habit-tracker/"
-                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
-                  style="background: var(--cl-dark-card);"
-                  onmouseenter="this.style.background='var(--cl-violet)';"
-                  onmouseleave="this.style.background='var(--cl-dark-card)';"
-                >
-                  Start tracking
-                  <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
-                  </svg>
-                </a>
+          <!-- Habit Tracker card — teal → violet glow -->
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-40 pointer-events-none"
+                 style="background: linear-gradient(135deg, #22d3ee 0%, var(--cl-violet) 100%);"></div>
+            <div class="absolute -inset-px rounded-3xl opacity-25 pointer-events-none"
+                 style="background: linear-gradient(135deg, #22d3ee 0%, var(--cl-violet) 100%); filter: blur(4px);"></div>
+            <div class="relative rounded-2xl overflow-hidden flex flex-col md:flex-row h-full"
+                 style="background: radial-gradient(ellipse at 0% 0%, rgba(34,211,238,0.11) 0%, transparent 62%), radial-gradient(ellipse at 100% 100%, rgba(124,58,237,0.10) 0%, transparent 62%), #0d1020; border: 1px solid rgba(255,255,255,0.10);">
+              <!-- Content -->
+              <div class="flex-1 p-8 flex flex-col">
+                <p class="text-[10px] font-bold uppercase tracking-widest mb-5" style="color: #22d3ee;">Foundation: Habits</p>
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,211,238,0.12); border: 1px solid rgba(34,211,238,0.22);">
+                    <svg class="w-4.5 h-4.5" style="color: #22d3ee;" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                      <circle cx="8" cy="8" r="6" opacity="0.22"/>
+                      <path d="M5.5 8.5l2 1.5 3-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                  </div>
+                  Daily Habit Tracker
+                </h3>
+                <p class="text-sm leading-relaxed mb-7 flex-1" style="color: rgba(255,255,255,0.55);">
+                  Pick the habits that move the needle, check them off as you go, and build a streak worth keeping. Connect your calculator results for personalized daily targets.
+                </p>
+                <div>
+                  <a href="/daily-habit-tracker/"
+                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
+                     style="background: var(--cl-dark-card);"
+                     onmouseenter="this.style.background='var(--cl-violet)';"
+                     onmouseleave="this.style.background='var(--cl-dark-card)';">
+                    Start tracking
+                    <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+                      <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <!-- Mockup image -->
+              <div class="hidden md:block relative self-stretch flex-shrink-0 overflow-hidden" style="width: 210px;">
+                <img src="/images/habit-tracker-preview.svg"
+                     class="absolute inset-0 w-full h-full object-cover object-left-top"
+                     alt="" aria-hidden="true"/>
+                <div class="absolute inset-0 pointer-events-none"
+                     style="background: linear-gradient(to right, #0d1020 0%, transparent 48%)"></div>
               </div>
             </div>
           </div>
+
+          <!-- Food Log card — violet → orange glow -->
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-3xl blur-2xl opacity-40 pointer-events-none"
+                 style="background: linear-gradient(135deg, var(--cl-violet) 0%, #f97316 100%);"></div>
+            <div class="absolute -inset-px rounded-3xl opacity-25 pointer-events-none"
+                 style="background: linear-gradient(135deg, var(--cl-violet) 0%, #f97316 100%); filter: blur(4px);"></div>
+            <div class="relative rounded-2xl overflow-hidden flex flex-col md:flex-row h-full"
+                 style="background: radial-gradient(ellipse at 0% 0%, rgba(124,58,237,0.11) 0%, transparent 62%), radial-gradient(ellipse at 100% 100%, rgba(249,115,22,0.10) 0%, transparent 62%), #0d1020; border: 1px solid rgba(255,255,255,0.10);">
+              <!-- Content -->
+              <div class="flex-1 p-8 flex flex-col">
+                <p class="text-[10px] font-bold uppercase tracking-widest mb-5" style="color: #f97316;">Foundation: Food</p>
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.22);">
+                    <svg class="w-4.5 h-4.5" style="color: #f97316;" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                      <path d="M8 14Q5.5 10 5.5 6Q5.5 3 8 3Q10.5 3 10.5 6Q10.5 10 8 14Z"/>
+                      <path d="M7 3.5Q5.5 1.5 5 1Q5.5 0.5 7 2Q7.5 3 7 3.5Z" opacity="0.65"/>
+                      <path d="M8 3Q7.5 1.5 8 0.5Q8.5 1.5 8 3Z" opacity="0.5"/>
+                      <path d="M9 3.5Q10.5 1.5 11 1Q10.5 0.5 9 2Q8.5 3 9 3.5Z" opacity="0.65"/>
+                    </svg>
+                  </div>
+                  Daily Food Log
+                </h3>
+                <p class="text-sm leading-relaxed mb-7 flex-1" style="color: rgba(255,255,255,0.55);">
+                  Write down what you eat. No calories, no macros, no judgment — just awareness. Notice patterns, spot the gaps, and build better habits one meal at a time.
+                </p>
+                <div>
+                  <a href="/food-log/"
+                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
+                     style="background: var(--cl-dark-card);"
+                     onmouseenter="this.style.background='var(--cl-violet)';"
+                     onmouseleave="this.style.background='var(--cl-dark-card)';">
+                    Start logging
+                    <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.44 8 8.22 4.78a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/>
+                      <path fill-rule="evenodd" d="M2.75 8a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5h-8A.75.75 0 0 1 2.75 8z" clip-rule="evenodd"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <!-- Mockup image -->
+              <div class="hidden md:block relative self-stretch flex-shrink-0 overflow-hidden" style="width: 210px;">
+                <img src="/images/food-log-preview.svg"
+                     class="absolute inset-0 w-full h-full object-cover object-left-top"
+                     alt="" aria-hidden="true"/>
+                <div class="absolute inset-0 pointer-events-none"
+                     style="background: linear-gradient(to right, #0d1020 0%, transparent 48%)"></div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
