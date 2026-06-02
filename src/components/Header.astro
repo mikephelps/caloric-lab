@@ -501,11 +501,13 @@ const dfActive = currentPath === "/daily-habit-tracker/" || currentPath === "/fo
       hamburger?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
       mobileBtn?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     } else {
       mobileMenu?.classList.remove('hidden');
       hamburger?.classList.add('hidden');
       closeIcon?.classList.remove('hidden');
       mobileBtn?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
   });
 </script>
